@@ -16,7 +16,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-4 py-12">
         <header className="mb-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">Contact Us</h1>
-          <p className="text-gray-600 dark:text-gray-300">We'd love to hear from you. Send us a message.</p>
+          <p className="text-gray-600 dark:text-gray-300">We&apos;d love to hear from you. Send us a message.</p>
         </header>
 
         <main className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
