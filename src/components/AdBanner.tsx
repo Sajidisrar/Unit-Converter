@@ -9,7 +9,7 @@ interface AdBannerProps {
 export default function AdBanner({ position, className = '' }: AdBannerProps) {
   useEffect(() => {
     try {
-      // @ts-expect-error
+      // @ts-expect-error adsbygoogle is not defined on Window
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       console.error("Adsense error", e);
