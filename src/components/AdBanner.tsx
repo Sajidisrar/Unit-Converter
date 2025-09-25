@@ -9,7 +9,7 @@ interface AdBannerProps {
 export default function AdBanner({ position, className = '' }: AdBannerProps) {
   useEffect(() => {
     try {
-      // @ts-ignore
+      // @ts-expect-error
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       console.error("Adsense error", e);
