@@ -1,8 +1,10 @@
 import AdBanner from "@/components/AdBanner";
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <Analytics/>
       <div className="container mx-auto px-4 py-8">
         {/* Top Ad Banner */}
         <AdBanner position="top" />
