@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { 
   convertLength, 
   convertWeight, 
@@ -28,7 +28,7 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   // Conversion functions
-  const convertValue = (value: number, fromUnit: string, toUnit: string): number => {
+  const convertValue = useCallback((value: number, fromUnit: string, toUnit: string): number => {
     switch (conversionType) {
       case 'length':
         return convertLength(value, fromUnit, toUnit);
@@ -43,7 +43,7 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
       default:
         return 0;
     }
-  };
+  }, [conversionType]);
 
   // Auto convert on change
   useEffect(() => {

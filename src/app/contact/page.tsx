@@ -37,7 +37,7 @@ export default function ContactPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <p className="text-xs text-gray-500 dark:text-gray-400">We respect your privacy. We won't share your details.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">We respect your privacy. We won&apos;t share your details.</p>
               <button type="button" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">Send Message</button>
             </div>
           </form>
