@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Calculator from "@/components/Calculator";
 import { lengthUnits } from "@/utils/conversions";
 import StructuredData from "@/components/StructuredData";
+import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
 
 export const metadata: Metadata = {
@@ -41,6 +42,21 @@ export default function LengthPage() {
 
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Length Converter - Unit Converter",
+              "url": "https://freeonlineconverters.vercel.app/length",
+              "applicationCategory": "Calculator",
+              "operatingSystem": "All"
+            }),
+          }}
+        />
+      </Head>
       <StructuredData faqs={faqs} />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">

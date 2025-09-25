@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Calculator from "@/components/Calculator";
 import { areaUnits } from "@/utils/conversions";
 import AdBanner from "@/components/AdBanner";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Area Converter - Convert Square Meters, Square Feet, Acres & More | Unit Converter",
@@ -17,6 +18,21 @@ export const metadata: Metadata = {
 export default function AreaPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Area Converter - Free Online Unit Converter",
+              url: "https://freeonlineconverters.vercel.app/area",
+              applicationCategory: "Calculator",
+              operatingSystem: "All",
+            }),
+          }}
+        />
+      </Head>
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">

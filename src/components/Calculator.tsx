@@ -214,6 +214,19 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
           </div>
         )}
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": title,
+            "applicationCategory": conversionType,
+            "operatingSystem": "Web",
+            "description": `A ${conversionType} unit converter application named ${title}.`
+          })
+        }}
+      />
     </div>
   );
 }
