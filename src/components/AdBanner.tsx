@@ -33,7 +33,7 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-3759958145886276"
-        data-ad-slot="1234567890"
+        data-ad-slot="4003156004"
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
