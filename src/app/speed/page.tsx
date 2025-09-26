@@ -26,7 +26,7 @@ export default function SpeedPage() {
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "Speed Converter",
-              "url": "https://freeonlineconverters.vercel.app/speed",
+              "url": "https://freeunitconvertor.com",
               "applicationCategory": "Calculator",
               "operatingSystem": "All",
             }),

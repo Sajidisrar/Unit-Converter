@@ -50,7 +50,7 @@ export default function LengthPage() {
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "Length Converter - Unit Converter",
-              "url": "https://freeonlineconverters.vercel.app/length",
+              "url": "https://freeunitconvertor.com",
               "applicationCategory": "Calculator",
               "operatingSystem": "All"
             }),

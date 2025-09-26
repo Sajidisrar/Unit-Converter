@@ -49,7 +49,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "Free Online Unit Converters",
-              "url": "https://freeonlineconverters.vercel.app",
+              "url": "https://freeunitconvertor.com",
               "applicationCategory": "Calculator",
               "operatingSystem": "All",
             }),

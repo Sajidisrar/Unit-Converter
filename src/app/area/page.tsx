@@ -26,7 +26,7 @@ export default function AreaPage() {
               "@context": "https://schema.org",
               "@type": "WebApplication",
               name: "Area Converter - Free Online Unit Converter",
-              url: "https://freeonlineconverters.vercel.app/area",
+              url: "https://freeunitconvertor.com",
               applicationCategory: "Calculator",
               operatingSystem: "All",
             }),
