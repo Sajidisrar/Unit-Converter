@@ -1,10 +1,19 @@
+import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <Analytics/>
+      <Head>
+        <title>Free Online Unit Converter Tools – Length, Weight, Temperature & More</title>
+        <meta name="description" content="Instantly convert units of length, weight, temperature, area, speed, cooking measures, and more with our free online converter. Accurate and fast!" />
+        <meta name="keywords" content="unit converter, length converter, weight converter, cooking converter, BMI calculator, temperature converter, speed converter, area converter" />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
+      <Analytics />
       <div className="container mx-auto px-4 py-8">
         {/* Top Ad Banner */}
         <AdBanner position="top" />
@@ -16,150 +25,99 @@ export default function Home() {
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Convert between different units of measurement instantly with our comprehensive collection of free online unit converters. 
-            Fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, and more.
+            Fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, cooking, and more.
           </p>
         </header>
 
         <main className="max-w-6xl mx-auto">
-          {/* Most Common Converters */}
+          {/* Most Popular Converters */}
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
               Most Popular Converters
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <a href="/length" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              {/* Length Converter */}
+              <a href="/length" aria-label="Length Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Length</h3>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Length Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Meters, feet, inches, yards, kilometers, miles</p>
                 </div>
               </a>
 
-              <a href="/weight" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              {/* Weight Converter */}
+              <a href="/weight" aria-label="Weight Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9m3-9l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M15 7l3 1m-3-1l-3 9" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Weight</h3>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Weight Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Kilograms, pounds, ounces, grams, stones</p>
                 </div>
               </a>
 
-              <a href="/temperature" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              {/* Temperature Converter */}
+              <a href="/temperature" aria-label="Temperature Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Temperature</h3>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Temperature Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">Celsius, Fahrenheit, Kelvin</p>
                 </div>
               </a>
 
+              {/* Area Converter */}
+              <a href="/area" aria-label="Area Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Area Converter</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Square meters, acres, hectares</p>
+                </div>
+              </a>
+
+              {/* Speed Converter */}
+              <a href="/speed" aria-label="Speed Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Speed Converter</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">MPH, KPH, knots, m/s</p>
+                </div>
+              </a>
+
+              {/* Cooking Converter */}
+              <a href="/cooking" aria-label="Cooking Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2a2 2 0 012 2v4h-4V4a2 2 0 012-2zm0 6h4v12H8V8h4z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Cooking Converter</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Cups, tablespoons, teaspoons, grams</p>
+                </div>
+              </a>
             </div>
           </section>
 
           {/* Inline Ad Banner */}
           <AdBanner position="inline" />
-
-          {/* All Converters Navigation Grid */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
-              All Unit Converters
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <a href="/length" className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-blue-200 dark:border-blue-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200">Length Converter</h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-300">Meters, feet, inches, yards</p>
-                  </div>
-                </div>
-              </a>
-
-              <a href="/weight" className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-green-200 dark:border-green-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9m3-9l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M15 7l3 1m-3-1l-3 9" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-green-800 dark:text-green-200">Weight Converter</h3>
-                    <p className="text-sm text-green-600 dark:text-green-300">Kilograms, pounds, ounces</p>
-                  </div>
-                </div>
-              </a>
-
-              <a href="/temperature" className="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-yellow-200 dark:border-yellow-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200">Temperature Converter</h3>
-                    <p className="text-sm text-yellow-600 dark:text-yellow-300">Celsius, Fahrenheit, Kelvin</p>
-                  </div>
-                </div>
-              </a>
-
-              <a href="/area" className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-purple-200 dark:border-purple-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200">Area Converter</h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-300">Square meters, acres, hectares</p>
-                  </div>
-                </div>
-              </a>
-
-              <a href="/speed" className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-red-200 dark:border-red-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">Speed Converter</h3>
-                    <p className="text-sm text-red-600 dark:text-red-300">MPH, KPH, knots, m/s</p>
-                  </div>
-                </div>
-              </a>
-
-              <a href="/volume" className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-indigo-200 dark:border-indigo-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-indigo-800 dark:text-indigo-200">Volume Converter</h3>
-                    <p className="text-sm text-indigo-600 dark:text-indigo-300">Liters, gallons, cups, pints</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </section>
 
           {/* Features Section */}
           <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
