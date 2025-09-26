@@ -145,19 +145,19 @@ export default function Home() {
                 </div>
               </a>
 
-              <a href="/volume" className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-indigo-200 dark:border-indigo-700">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-indigo-800 dark:text-indigo-200">Volume Converter</h3>
-                    <p className="text-sm text-indigo-600 dark:text-indigo-300">Liters, gallons, cups, pints</p>
-                  </div>
-                </div>
-              </a>
+              <a href="/cooking" className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300 border border-orange-200 dark:border-orange-700">
+  <div className="flex items-center space-x-4">
+    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2a2 2 0 012 2v4h-4V4a2 2 0 012-2zm0 6h4v12H8V8h4z" />
+      </svg>
+    </div>
+    <div>
+      <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200">Cooking Converter</h3>
+      <p className="text-sm text-orange-600 dark:text-orange-300">Cups, tablespoons, teaspoons, grams</p>
+    </div>
+  </div>
+</a>
             </div>
           </section>
 

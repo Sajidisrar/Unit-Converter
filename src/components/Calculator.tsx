@@ -6,7 +6,10 @@ import {
   convertWeight, 
   convertTemperature, 
   convertArea, 
-  convertSpeed 
+  convertSpeed,
+  convertHeight,
+  convertCooking,
+  convertFuelEconomy
 } from '@/utils/conversions';
 
 interface Unit {
@@ -17,7 +20,7 @@ interface Unit {
 interface CalculatorProps {
   title: string;
   units: Unit[];
-  conversionType: 'length' | 'weight' | 'temperature' | 'area' | 'speed';
+  conversionType: 'length' | 'weight' | 'temperature' | 'area' | 'speed' | 'height' | 'cooking' | 'fuelEconomy' | 'fitnessWeight' | 'bmi';
 }
 
 export default function Calculator({ title, units, conversionType }: CalculatorProps) {
@@ -26,6 +29,10 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
   const [toUnit, setToUnit] = useState<string>(units[1]?.value || '');
   const [result, setResult] = useState<number>(0);
   const [isCopied, setIsCopied] = useState<boolean>(false);
+
+  // For BMI inputs
+  const [weightKg, setWeightKg] = useState<string>('');
+  const [heightCm, setHeightCm] = useState<string>('');
 
   // Conversion functions
   const convertValue = useCallback((value: number, fromUnit: string, toUnit: string): number => {
@@ -40,6 +47,24 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
         return convertArea(value, fromUnit, toUnit);
       case 'speed':
         return convertSpeed(value, fromUnit, toUnit);
+      case 'height':
+        return convertHeight(value, fromUnit, toUnit);
+      case 'cooking':
+        return convertCooking(value, fromUnit, toUnit);
+      case 'fuelEconomy':
+        return convertFuelEconomy(value, fromUnit, toUnit);
+      case 'fitnessWeight':
+        return convertWeight(value, fromUnit, toUnit);
+      case 'bmi': {
+        // value is weight in kg
+        // fromUnit is height in cm (string)
+        const heightM = Number(toUnit) / 100;
+        if (heightM > 0) {
+          return value / (heightM * heightM);
+        } else {
+          return 0;
+        }
+      }
       default:
         return 0;
     }
@@ -47,13 +72,24 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
 
   // Auto convert on change
   useEffect(() => {
-    if (inputValue && fromUnit && toUnit && !isNaN(Number(inputValue))) {
-      const convertedValue = convertValue(Number(inputValue), fromUnit, toUnit);
-      setResult(convertedValue);
+    if (conversionType === 'bmi') {
+      const weight = Number(weightKg);
+      const height = Number(heightCm);
+      if (weight > 0 && height > 0) {
+        const bmiValue = convertValue(weight, heightCm, heightCm);
+        setResult(bmiValue);
+      } else {
+        setResult(0);
+      }
     } else {
-      setResult(0);
+      if (inputValue && fromUnit && toUnit && !isNaN(Number(inputValue))) {
+        const convertedValue = convertValue(Number(inputValue), fromUnit, toUnit);
+        setResult(convertedValue);
+      } else {
+        setResult(0);
+      }
     }
-  }, [inputValue, fromUnit, toUnit, conversionType, convertValue]);
+  }, [inputValue, fromUnit, toUnit, conversionType, convertValue, weightKg, heightCm]);
 
   // Copy to clipboard function
   const copyToClipboard = async () => {
@@ -88,6 +124,15 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
     setToUnit(fromUnit);
   };
 
+  // BMI category helper
+  const getBmiCategory = (bmi: number): string => {
+    if (bmi === 0) return '';
+    if (bmi < 18.5) return 'Underweight';
+    if (bmi < 25) return 'Normal';
+    if (bmi < 30) return 'Overweight';
+    return 'Obese';
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
@@ -96,73 +141,104 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
       
       <div className="space-y-6">
         {/* Input Section */}
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="inputValue" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Enter Value
-            </label>
-            <input
-              id="inputValue"
-              type="number"
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="Enter a value to convert"
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-            />
-          </div>
-
-          {/* Unit Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {conversionType === 'bmi' ? (
+          <div className="space-y-4">
             <div>
-              <label htmlFor="fromUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                From Unit
+              <label htmlFor="weightKg" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Weight (kg)
               </label>
-              <select
-                id="fromUnit"
-                value={fromUnit}
-                onChange={handleFromUnitChange}
+              <input
+                id="weightKg"
+                type="number"
+                value={weightKg}
+                onChange={(e) => setWeightKg(e.target.value)}
+                placeholder="Enter weight in kg"
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              >
-                {units.map((unit) => (
-                  <option key={unit.value} value={unit.value}>
-                    {unit.label}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
-
             <div>
-              <label htmlFor="toUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                To Unit
+              <label htmlFor="heightCm" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Height (cm)
               </label>
-              <select
-                id="toUnit"
-                value={toUnit}
-                onChange={handleToUnitChange}
+              <input
+                id="heightCm"
+                type="number"
+                value={heightCm}
+                onChange={(e) => setHeightCm(e.target.value)}
+                placeholder="Enter height in cm"
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              >
-                {units.map((unit) => (
-                  <option key={unit.value} value={unit.value}>
-                    {unit.label}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
           </div>
+        ) : (
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="inputValue" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Enter Value
+              </label>
+              <input
+                id="inputValue"
+                type="number"
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Enter a value to convert"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+              />
+            </div>
 
-          {/* Swap Button */}
-          <div className="flex justify-center">
-            <button
-              onClick={swapUnits}
-              className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors duration-200 flex items-center space-x-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-              </svg>
-              <span>Swap Units</span>
-            </button>
+            {/* Unit Selection */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="fromUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  From Unit
+                </label>
+                <select
+                  id="fromUnit"
+                  value={fromUnit}
+                  onChange={handleFromUnitChange}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                >
+                  {units.map((unit) => (
+                    <option key={unit.value} value={unit.value}>
+                      {unit.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="toUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  To Unit
+                </label>
+                <select
+                  id="toUnit"
+                  value={toUnit}
+                  onChange={handleToUnitChange}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                >
+                  {units.map((unit) => (
+                    <option key={unit.value} value={unit.value}>
+                      {unit.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Swap Button */}
+            <div className="flex justify-center">
+              <button
+                onClick={swapUnits}
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+                <span>Swap Units</span>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Result Section */}
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
@@ -196,16 +272,22 @@ export default function Calculator({ title, units, conversionType }: CalculatorP
           
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              {result.toLocaleString()}
+              {result === 0 ? '-' : result.toLocaleString(undefined, { maximumFractionDigits: 2 })}
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              {units.find(unit => unit.value === toUnit)?.label}
-            </div>
+            {conversionType === 'bmi' ? (
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                {getBmiCategory(result)}
+              </div>
+            ) : (
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                {units.find(unit => unit.value === toUnit)?.label}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Conversion Formula Display */}
-        {inputValue && fromUnit && toUnit && !isNaN(Number(inputValue)) && (
+        {conversionType !== 'bmi' && inputValue && fromUnit && toUnit && !isNaN(Number(inputValue)) && (
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
             <h4 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">Conversion</h4>
             <p className="text-sm text-blue-700 dark:text-blue-300">

@@ -75,6 +75,24 @@ export default function Navbar() {
                   >
                     🚀 Speed Converter
                   </Link>
+                  <Link 
+                    href="/fitness" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    🏋️ Fitness Converter
+                  </Link>
+                  <Link 
+                    href="/cooking" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    🍳 Cooking Converter
+                  </Link>
+                  <Link 
+                    href="/fuel-economy" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    ⛽ Fuel Economy Converter
+                  </Link>
                 </div>
               </div>
             </div>
@@ -142,6 +160,27 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   🚀 Speed Converter
+                </Link>
+                <Link 
+                  href="/fitness" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🏋️ Fitness Converter
+                </Link>
+                <Link 
+                  href="/cooking" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🍳 Cooking Converter
+                </Link>
+                <Link 
+                  href="/fuel-economy" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  ⛽ Fuel Economy Converter
                 </Link>
               </div>
             </div>

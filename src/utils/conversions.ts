@@ -155,3 +155,118 @@ export function convertSpeed(value: number, fromUnit: string, toUnit: string): n
   const metersPerSecond = value * speedConversions[fromUnit];
   return metersPerSecond / speedConversions[toUnit];
 }
+
+// Cooking conversion functions
+export const cookingConversions: { [key: string]: number } = {
+  // Base unit: milliliters
+  'ml': 1,               // milliliter
+  'l': 1000,             // liter
+  'tsp': 4.92892,        // teaspoon
+  'tbsp': 14.7868,       // tablespoon
+  'cup': 240,            // cup
+  'fl oz': 29.5735,      // fluid ounce
+  'g': 1,                // gram (assuming water equivalence)
+};
+
+export const cookingUnits = [
+  { label: 'Milliliter (ml)', value: 'ml' },
+  { label: 'Liter (l)', value: 'l' },
+  { label: 'Teaspoon (tsp)', value: 'tsp' },
+  { label: 'Tablespoon (tbsp)', value: 'tbsp' },
+  { label: 'Cup (cup)', value: 'cup' },
+  { label: 'Fluid Ounce (fl oz)', value: 'fl oz' },
+  { label: 'Gram (g)', value: 'g' },
+];
+
+export function convertCooking(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to milliliters first, then to target unit
+  const milliliters = value * cookingConversions[fromUnit];
+  return milliliters / cookingConversions[toUnit];
+}
+
+// Fitness Height conversion functions
+export const heightConversions: { [key: string]: number } = {
+  // Base unit: centimeters
+  'cm': 1,               // centimeter
+  'm': 100,              // meter
+  'in': 2.54,            // inch
+  'ft': 30.48,           // foot
+};
+
+export const heightUnits = [
+  { label: 'Centimeter (cm)', value: 'cm' },
+  { label: 'Meter (m)', value: 'm' },
+  { label: 'Inch (in)', value: 'in' },
+  { label: 'Foot (ft)', value: 'ft' },
+];
+
+export function convertHeight(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to centimeters first, then to target unit
+  const centimeters = value * heightConversions[fromUnit];
+  return centimeters / heightConversions[toUnit];
+}
+
+// Fitness Weight units (alias to weightUnits)
+export const fitnessWeightUnits = weightUnits;
+
+// BMI calculation functions
+export function calculateBMI(weightKg: number, heightCm: number): number {
+  const heightM = heightCm / 100;
+  return weightKg / (heightM * heightM);
+}
+
+export function getBMICategory(bmi: number): string {
+  if (bmi < 18.5) {
+    return 'Underweight';
+  } else if (bmi < 24.9) {
+    return 'Normal weight';
+  } else if (bmi < 29.9) {
+    return 'Overweight';
+  } else {
+    return 'Obesity';
+  }
+}
+
+// Fuel Economy conversion functions
+export const fuelEconomyUnits = [
+  { label: 'Liters per 100 Kilometers (L/100km)', value: 'L/100km' },
+  { label: 'Kilometers per Liter (km/L)', value: 'km/L' },
+  { label: 'Miles per Gallon (US) (mpgUS)', value: 'mpgUS' },
+  { label: 'Miles per Gallon (UK) (mpgUK)', value: 'mpgUK' },
+];
+
+export function convertFuelEconomy(value: number, fromUnit: string, toUnit: string): number {
+  let lPer100km: number;
+
+  // Convert from source unit to L/100km
+  switch (fromUnit) {
+    case 'L/100km':
+      lPer100km = value;
+      break;
+    case 'km/L':
+      lPer100km = 100 / value;
+      break;
+    case 'mpgUS':
+      lPer100km = 235.215 / value;
+      break;
+    case 'mpgUK':
+      lPer100km = 282.481 / value;
+      break;
+    default:
+      lPer100km = value;
+  }
+
+  // Convert from L/100km to target unit
+  switch (toUnit) {
+    case 'L/100km':
+      return lPer100km;
+    case 'km/L':
+      return 100 / lPer100km;
+    case 'mpgUS':
+      return 235.215 / lPer100km;
+    case 'mpgUK':
+      return 282.481 / lPer100km;
+    default:
+      return lPer100km;
+  }
+}
