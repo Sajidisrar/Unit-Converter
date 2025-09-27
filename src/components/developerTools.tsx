@@ -9,20 +9,22 @@ function jsonToCsv(jsonStr: string): string {
     }
     // Collect all unique keys in all objects
     const keys = Array.from(
-      arr.reduce((set: Set<string>, obj: any) => {
+      arr.reduce((set: Set<string>, obj: Record<string, unknown>) => {
         Object.keys(obj).forEach(k => set.add(k));
         return set;
       }, new Set<string>())
     );
     // Convert to CSV
-    const escape = (v: any) =>
+    const escape = (v: unknown) =>
       typeof v === 'undefined' || v === null
         ? ''
         : String(v).replace(/"/g, '""').includes(',') || String(v).includes('"') || String(v).includes('\n')
         ? `"${String(v).replace(/"/g, '""')}"`
         : String(v);
     const header = keys.join(',');
-    const rows = arr.map((obj: any) => keys.map(k => escape(obj[k])).join(','));
+    const rows = arr.map((obj: Record<string, string | number | boolean | null | undefined>) =>
+      keys.map(k => escape(obj[k as keyof typeof obj])).join(',')
+    );
     return [header, ...rows].join('\n');
   } catch {
     return 'Invalid JSON array';
@@ -155,8 +157,8 @@ function rgbToHsl(r: number, g: number, b: number) {
   const max = Math.max(r, g, b),
     min = Math.min(r, g, b);
   let h = 0,
-    s = 0,
-    l = (max + min) / 2;
+    s = 0;
+  const l = (max + min) / 2;
   if (max !== min) {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
