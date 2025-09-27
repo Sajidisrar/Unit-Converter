@@ -61,7 +61,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Contact</h2>
             <p className="text-gray-700 dark:text-gray-300">
-              Questions about this policy? Visit our Contact page or email us at contact@example.com.
+              Questions about this policy? Visit our Contact page or email us at sajidisrar86@gmail.com.
             </p>
           </section>
         </main>

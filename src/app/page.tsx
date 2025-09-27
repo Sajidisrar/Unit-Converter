@@ -14,6 +14,21 @@ export default function Home() {
       </Head>
 
       <Analytics />
+      {/* Developer Tools Navigation Link */}
+      <div className="container mx-auto px-4 pt-6 flex justify-start">
+        {/* <a
+          href="/developer"
+          className="inline-block rounded-md bg-indigo-600 text-white px-4 py-2 font-medium shadow hover:bg-indigo-700 transition-colors duration-200"
+        >
+          Developer Tools
+        </a> */}
+        <a
+          href="/about"
+          className="inline-block rounded-md bg-indigo-600 text-white px-4 py-2 font-medium shadow hover:bg-indigo-700 transition-colors"
+        >
+          About
+        </a>
+      </div>
       <div className="container mx-auto px-4 py-8">
         {/* Top Ad Banner */}
         <AdBanner position="top" />
