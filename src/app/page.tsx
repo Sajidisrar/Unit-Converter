@@ -22,12 +22,7 @@ export default function Home() {
         >
           Developer Tools
         </a> */}
-        <a
-          href="/about"
-          className="inline-block rounded-md bg-indigo-600 text-white px-4 py-2 font-medium shadow hover:bg-indigo-700 transition-colors"
-        >
-          About
-        </a>
+
       </div>
       <div className="container mx-auto px-4 py-8">
         {/* Top Ad Banner */}
