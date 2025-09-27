@@ -6,11 +6,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Free Online Unit Converter Tools – Length, Weight, Temperature & More</title>
-        <meta name="description" content="Instantly convert units of length, weight, temperature, area, speed, cooking measures, and more with our free online converter. Accurate and fast!" />
+        <title>Free Online Unit Converter – Length, Weight, Temperature & More</title>
+        <meta name="description" content="Instantly convert length, weight, temperature, area, speed, cooking measures, and more with our free online converter. Accurate and fast!" />
         <meta name="keywords" content="unit converter, length converter, weight converter, cooking converter, BMI calculator, temperature converter, speed converter, area converter" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Free Online Unit Converter",
+              "url": "https://freeunitconvertor.com"
+            }),
+          }}
+        />
       </Head>
 
       <Analytics />
@@ -162,6 +173,32 @@ export default function Home() {
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Mobile Friendly</h3>
                 <p className="text-gray-600 dark:text-gray-300">Works perfectly on all devices and screen sizes</p>
               </div>
+            </div>
+          </section>
+
+          <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">What is a Unit Converter?</h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              A unit converter is a tool that allows you to convert measurements from one unit to another, such as converting meters to feet or kilograms to pounds. These converters are essential for ensuring accuracy and consistency across various fields including science, engineering, cooking, and everyday life. They simplify complex calculations, save time, and help you make informed decisions by providing instant and reliable conversion results.
+            </p>
+          </section>
+
+          <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
+
+            <div className="mb-6 max-w-4xl mx-auto">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">How accurate are these converters?</h3>
+              <p className="text-gray-600 dark:text-gray-300">They use official conversion rates for reliable results.</p>
+            </div>
+
+            <div className="mb-6 max-w-4xl mx-auto">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Can I use this unit converter on mobile?</h3>
+              <p className="text-gray-600 dark:text-gray-300">Yes, it works seamlessly across devices.</p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Do you support scientific unit conversions?</h3>
+              <p className="text-gray-600 dark:text-gray-300">Yes, many converters cover scientific and engineering units.</p>
             </div>
           </section>
         </main>
