@@ -14,7 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TemperaturePage() {
+export default function TemperaturePage({ searchParams }: { searchParams: { from?: string } }) {
+  const defaultFromUnit = searchParams.from || "c";
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
@@ -37,6 +39,7 @@ export default function TemperaturePage() {
                 title="Temperature Conversion Tool"
                 units={temperatureUnits}
                 conversionType="temperature"
+                initialFromUnit={defaultFromUnit}
               />
 
               <div className="mt-6">

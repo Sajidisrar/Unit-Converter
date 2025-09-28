@@ -137,7 +137,7 @@ export default function Home() {
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Speed Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
                     <a href="/speed?from=mph" className="text-blue-600 dark:text-blue-400 hover:underline">MPH</a>,{" "}
-                    <a href="/speed?from=kph" className="text-blue-600 dark:text-blue-400 hover:underline">KPH</a>,{" "}
+                    <a href="/speed?from=km/h" className="text-blue-600 dark:text-blue-400 hover:underline">KPH</a>,{" "}
                     <a href="/speed?from=knot" className="text-blue-600 dark:text-blue-400 hover:underline">Knots</a>,{" "}
                     <a href="/speed?from=ms" className="text-blue-600 dark:text-blue-400 hover:underline">m/s</a>
                   </p>

@@ -14,7 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WeightPage() {
+export default function WeightPage({ searchParams }: { searchParams: { from?: string } }) {
+  const defaultFromUnit = searchParams.from || "kg";
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
@@ -37,6 +39,7 @@ export default function WeightPage() {
                 title="Weight Conversion Tool"
                 units={weightUnits}
                 conversionType="weight"
+                initialFromUnit={defaultFromUnit}
               />
 
               {/* Inline Ad below calculator for additional placement if desired */}

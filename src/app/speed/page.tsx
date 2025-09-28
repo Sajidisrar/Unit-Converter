@@ -15,7 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SpeedPage() {
+export default function SpeedPage({ searchParams }: { searchParams: { from?: string } }) {
+  const defaultFromUnit = searchParams.from || "m/s";
+
   return (
     <>
       <Head>
@@ -54,6 +56,7 @@ export default function SpeedPage() {
                 title="Speed Conversion Tool"
                 units={speedUnits}
                 conversionType="speed"
+                initialFromUnit={defaultFromUnit}
               />
 
               <div className="mt-6">

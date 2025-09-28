@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import { 
   convertLength, 
   convertWeight, 
@@ -26,10 +26,10 @@ interface CalculatorProps {
 }
 
 export default function Calculator({ title, units, conversionType, initialFromUnit }: CalculatorProps) {
-  const searchParams = useSearchParams();
-  const fromParam = searchParams.get("from");
+  // const searchParams = useSearchParams();
+  // const fromParam = searchParams.get("from");
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<string>(fromParam || initialFromUnit || units[0]?.value || '');
+  const [fromUnit, setFromUnit] = useState<string>(initialFromUnit || units[0]?.value || '');
   const [toUnit, setToUnit] = useState<string>(units[1]?.value || '');
   const [result, setResult] = useState<number>(0);
   const [isCopied, setIsCopied] = useState<boolean>(false);
