@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LengthPage() {
+export default function LengthPage({ searchParams }: { searchParams: { from?: string } }) {
+  const defaultFromUnit = searchParams.from || "m";
+
   const faqs = [
     {
       question: "How do I convert meters to feet?",
@@ -80,6 +82,7 @@ export default function LengthPage() {
                   title="Length Conversion Tool"
                   units={lengthUnits}
                   conversionType="length"
+                  initialFromUnit={defaultFromUnit}
                 />
 
                 <div className="mt-6">

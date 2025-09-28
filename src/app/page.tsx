@@ -27,13 +27,6 @@ export default function Home() {
       <Analytics />
       {/* Developer Tools Navigation Link */}
       <div className="container mx-auto px-4 pt-6 flex justify-start">
-        {/* <a
-          href="/developer"
-          className="inline-block rounded-md bg-indigo-600 text-white px-4 py-2 font-medium shadow hover:bg-indigo-700 transition-colors duration-200"
-        >
-          Developer Tools
-        </a> */}
-
       </div>
       <div className="container mx-auto px-4 py-8">
         {/* Top Ad Banner */}
@@ -66,7 +59,12 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Length Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Meters, feet, inches, yards, kilometers, miles</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/length?from=m" className="text-blue-600 dark:text-blue-400 hover:underline">Meters</a>,{" "}
+                    <a href="/length?from=ft" className="text-blue-600 dark:text-blue-400 hover:underline">Feet</a>,{" "}
+                    <a href="/length?from=in" className="text-blue-600 dark:text-blue-400 hover:underline">Inches</a>,{" "}
+                    <a href="/length?from=mi" className="text-blue-600 dark:text-blue-400 hover:underline">Miles</a>
+                  </p>
                 </div>
               </a>
 
@@ -79,7 +77,12 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Weight Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Kilograms, pounds, ounces, grams, stones</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/weight?from=kg" className="text-blue-600 dark:text-blue-400 hover:underline">Kilograms</a>,{" "}
+                    <a href="/weight?from=lb" className="text-blue-600 dark:text-blue-400 hover:underline">Pounds</a>,{" "}
+                    <a href="/weight?from=g" className="text-blue-600 dark:text-blue-400 hover:underline">Grams</a>,{" "}
+                    <a href="/weight?from=oz" className="text-blue-600 dark:text-blue-400 hover:underline">Ounces</a>
+                  </p>
                 </div>
               </a>
 
@@ -92,7 +95,11 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Temperature Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Celsius, Fahrenheit, Kelvin</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/temperature?from=c" className="text-blue-600 dark:text-blue-400 hover:underline">Celsius</a>,{" "}
+                    <a href="/temperature?from=f" className="text-blue-600 dark:text-blue-400 hover:underline">Fahrenheit</a>,{" "}
+                    <a href="/temperature?from=k" className="text-blue-600 dark:text-blue-400 hover:underline">Kelvin</a>
+                  </p>
                 </div>
               </a>
 
@@ -105,9 +112,19 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Area Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Square meters, acres, hectares</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/area?from=m2" className="text-blue-600 dark:text-blue-400 hover:underline">Square meters</a>,{" "}
+                    <a href="/area?from=ac" className="text-blue-600 dark:text-blue-400 hover:underline">acres</a>,{" "}
+                    <a href="/area?from=ha" className="text-blue-600 dark:text-blue-400 hover:underline">hectares</a>
+                  </p>
                 </div>
               </a>
+
+             
+
+              
+
+              
 
               {/* Speed Converter */}
               <a href="/speed" aria-label="Speed Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
@@ -118,7 +135,12 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Speed Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">MPH, KPH, knots, m/s</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/speed?from=mph" className="text-blue-600 dark:text-blue-400 hover:underline">MPH</a>,{" "}
+                    <a href="/speed?from=km/h" className="text-blue-600 dark:text-blue-400 hover:underline">KPH</a>,{" "}
+                    <a href="/speed?from=knot" className="text-blue-600 dark:text-blue-400 hover:underline">Knots</a>,{" "}
+                    <a href="/speed?from=ms" className="text-blue-600 dark:text-blue-400 hover:underline">m/s</a>
+                  </p>
                 </div>
               </a>
 
@@ -131,9 +153,71 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Cooking Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Cups, tablespoons, teaspoons, grams</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/cooking?from=cup" className="text-blue-600 dark:text-blue-400 hover:underline">Cups</a>,{" "}
+                    <a href="/cooking?from=tbsp" className="text-blue-600 dark:text-blue-400 hover:underline">Tablespoons</a>,{" "}
+                    <a href="/cooking?from=tsp" className="text-blue-600 dark:text-blue-400 hover:underline">Teaspoons</a>,{" "}
+                    <a href="/cooking?from=g" className="text-blue-600 dark:text-blue-400 hover:underline">Grams</a>
+                  </p>
                 </div>
               </a>
+
+               {/* Volume Converter */}
+              {/* <a href="/volume" aria-label="Volume Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Volume Converter</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/volume?from=l" className="text-blue-600 dark:text-blue-400 hover:underline">Liters</a>,{" "}
+                    <a href="/volume?from=ml" className="text-blue-600 dark:text-blue-400 hover:underline">Milliliters</a>,{" "}
+                    <a href="/volume?from=gal" className="text-blue-600 dark:text-blue-400 hover:underline">Gallons</a>,{" "}
+                    <a href="/volume?from=cup" className="text-blue-600 dark:text-blue-400 hover:underline">Cups</a>
+                  </p>
+                </div>
+              </a> */}
+
+              {/* Currency Converter */}
+              {/* <a href="/currency" aria-label="Currency Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v2m0 10v2m7-7h-2M7 12H5" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Currency Converter</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/currency?from=usd" className="text-blue-600 dark:text-blue-400 hover:underline">USD</a>,{" "}
+                    <a href="/currency?from=eur" className="text-blue-600 dark:text-blue-400 hover:underline">EUR</a>,{" "}
+                    <a href="/currency?from=gbp" className="text-blue-600 dark:text-blue-400 hover:underline">GBP</a>,{" "}
+                    <a href="/currency?from=pkr" className="text-blue-600 dark:text-blue-400 hover:underline">PKR</a>
+                  </p>
+                </div>
+              </a> */}
+
+
+              {/* Developer Tools */}
+              {/* <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/developer?tool=base64" className="text-blue-600 dark:text-blue-400 hover:underline">Base64</a>,{" "}
+                    <a href="/developer?tool=json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a>,{" "}
+                    <a href="/developer?tool=url" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</a>,{" "}
+                    <a href="/developer?tool=unixtime" className="text-blue-600 dark:text-blue-400 hover:underline">Unix Time</a>
+                  </p>
+                </div>
+              </a> */}
+
             </div>
           </section>
 
@@ -179,28 +263,10 @@ export default function Home() {
           <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">What is a Unit Converter?</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              A unit converter is a tool that allows you to convert measurements from one unit to another, such as converting meters to feet or kilograms to pounds. These converters are essential for ensuring accuracy and consistency across various fields including science, engineering, cooking, and everyday life. They simplify complex calculations, save time, and help you make informed decisions by providing instant and reliable conversion results.
+              A unit converter is a tool that allows you to quickly and accurately transform values from one measurement unit to another across a wide variety of categories. On this site, you can convert between units for <b>Length</b> (e.g., meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Volume</b> (liters to gallons), <b>Currency</b> (USD to EUR), <b>Speed</b> (MPH to KPH), <b>Cooking</b> (cups to grams), and use handy <b>Developer Tools</b> (like Base64 and JSON encoding/decoding). These converters are essential for science, engineering, finance, cooking, and everyday tasks, simplifying complex calculations and providing instant, reliable results.
             </p>
           </section>
 
-          <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
-
-            <div className="mb-6 max-w-4xl mx-auto">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">How accurate are these converters?</h3>
-              <p className="text-gray-600 dark:text-gray-300">They use official conversion rates for reliable results.</p>
-            </div>
-
-            <div className="mb-6 max-w-4xl mx-auto">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Can I use this unit converter on mobile?</h3>
-              <p className="text-gray-600 dark:text-gray-300">Yes, it works seamlessly across devices.</p>
-            </div>
-
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Do you support scientific unit conversions?</h3>
-              <p className="text-gray-600 dark:text-gray-300">Yes, many converters cover scientific and engineering units.</p>
-            </div>
-          </section>
         </main>
       </div>
     </div>

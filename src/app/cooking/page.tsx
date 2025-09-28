@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CookingPage() {
+export default function CookingPage({ searchParams }: { searchParams: { from?: string } }) {
+  const defaultFromUnit = searchParams.from || "cup";
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 font-sans">
       <div className="max-w-5xl mx-auto px-4">
@@ -31,6 +33,7 @@ export default function CookingPage() {
                 title="Cooking Unit Converter"
                 units={cookingUnits}
                 conversionType="cooking"
+                initialFromUnit={defaultFromUnit}
               />
               <AdBanner position="inline" className="mt-4" />
             </section>
