@@ -57,6 +57,7 @@ function jsonToCsv(jsonStr: string): string {
 }
 
 import React, { useState } from 'react';
+import AdBanner from './AdBanner';
 
 type Tool = {
   title: string;
@@ -557,6 +558,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
       <section className="w-full h-full flex flex-col flex-1 p-0 bg-white dark:bg-zinc-900">
         {/* Tool title removed from top of editor area */}
         <div className="w-full h-full flex flex-col bg-gray-100 dark:bg-zinc-800 rounded-lg min-h-[200px] p-6 text-gray-900 dark:text-gray-100 font-mono overflow-auto flex-1">
+          <AdBanner position="top" className="col-span-2" />
           {tool.title === 'Base64 Encoder/Decoder' && (
             <div className="w-full h-full flex flex-col gap-3 flex-1">
               <textarea

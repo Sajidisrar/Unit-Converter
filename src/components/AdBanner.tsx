@@ -21,7 +21,7 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
   }, []);
 
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg flex items-center justify-center w-full';
+    const baseClasses = 'rounded-lg flex items-center justify-center w-full';// bg-red-50
     const positionClasses = {
       top: 'mx-auto mb-6',
       side: 'mx-auto',
@@ -32,10 +32,10 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
   };
 
   return (
-    <div className={getContainerClasses()} style={{ minHeight: '100px', minWidth: '100px' }}>
+    <div className={getContainerClasses()} style={{ minHeight: '50px', minWidth: '100vh' }}>
       <ins
         className="adsbygoogle"
-        style={{ display: "block", width: "100%", height: "100%" }}
+        style={{ display: "block", width: "100vh", height: "50%" }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot="4003156004"
         data-ad-format="auto"
