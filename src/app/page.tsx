@@ -43,13 +43,38 @@ export default function Home() {
           </p>
         </header>
 
+        
+
         <main className="max-w-6xl mx-auto">
           {/* Most Popular Converters */}
           <section className="mb-12">
+            
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
               Most Popular Converters
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-12 md:grid-cols-12 lg:grid-cols-1 gap-6 mb-12">
+
+               {/* Developer Tools */}
+              <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
+                  {/* <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <a href="/developer?tool=base64" className="text-blue-600 dark:text-blue-400 hover:underline">Base64</a>,{" "}
+                    <a href="/developer?tool=json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a>,{" "}
+                    <a href="/developer?tool=url" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</a>,{" "}
+                    <a href="/developer?tool=unixtime" className="text-blue-600 dark:text-blue-400 hover:underline">Unix Time</a>
+                  </p> */}
+                </div>
+              </a>
+            </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
               {/* Length Converter */}
               <a href="/length" aria-label="Length Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
@@ -161,63 +186,6 @@ export default function Home() {
                   </p>
                 </div>
               </a>
-
-               {/* Volume Converter */}
-              {/* <a href="/volume" aria-label="Volume Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Volume Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/volume?from=l" className="text-blue-600 dark:text-blue-400 hover:underline">Liters</a>,{" "}
-                    <a href="/volume?from=ml" className="text-blue-600 dark:text-blue-400 hover:underline">Milliliters</a>,{" "}
-                    <a href="/volume?from=gal" className="text-blue-600 dark:text-blue-400 hover:underline">Gallons</a>,{" "}
-                    <a href="/volume?from=cup" className="text-blue-600 dark:text-blue-400 hover:underline">Cups</a>
-                  </p>
-                </div>
-              </a> */}
-
-              {/* Currency Converter */}
-              {/* <a href="/currency" aria-label="Currency Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-teal-600 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v2m0 10v2m7-7h-2M7 12H5" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Currency Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/currency?from=usd" className="text-blue-600 dark:text-blue-400 hover:underline">USD</a>,{" "}
-                    <a href="/currency?from=eur" className="text-blue-600 dark:text-blue-400 hover:underline">EUR</a>,{" "}
-                    <a href="/currency?from=gbp" className="text-blue-600 dark:text-blue-400 hover:underline">GBP</a>,{" "}
-                    <a href="/currency?from=pkr" className="text-blue-600 dark:text-blue-400 hover:underline">PKR</a>
-                  </p>
-                </div>
-              </a> */}
-
-
-              {/* Developer Tools */}
-              {/* <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/developer?tool=base64" className="text-blue-600 dark:text-blue-400 hover:underline">Base64</a>,{" "}
-                    <a href="/developer?tool=json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a>,{" "}
-                    <a href="/developer?tool=url" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</a>,{" "}
-                    <a href="/developer?tool=unixtime" className="text-blue-600 dark:text-blue-400 hover:underline">Unix Time</a>
-                  </p>
-                </div>
-              </a> */}
-
             </div>
           </section>
 
