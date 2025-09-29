@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Free Online Unit Converter – Length, Weight, Temperature & More</title>
-        <meta name="description" content="Instantly convert length, weight, temperature, area, speed, cooking measures, and more with our free online converter. Accurate and fast!" />
-        <meta name="keywords" content="unit converter, length converter, weight converter, cooking converter, BMI calculator, temperature converter, speed converter, area converter" />
+        <title>Free Online Unit Converter & Developer Tools</title>
+        <meta name="description" content="Free Online Unit Converter and Developer Tools – Quickly convert length, weight, temperature, area, speed, cooking measures, and more. Includes Base64, JSON, URL, JWT, and Number Base converters for developers." />
+        <meta name="keywords" content="unit converter, developer tools, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, Base64 encoder, JSON formatter, URL encoder, JWT decoder, number base converter" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script
@@ -38,8 +38,7 @@ export default function Home() {
             Free Online Unit Converter Tools
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Convert between different units of measurement instantly with our comprehensive collection of free online unit converters. 
-            Fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, cooking, and more.
+            Instantly convert units and access powerful developer tools with our free online converters. Fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, cooking, and more, plus Base64, JSON, URL, JWT, and Number Base converters for developers.
           </p>
         </header>
 
@@ -53,8 +52,7 @@ export default function Home() {
               Most Popular Converters
             </h2>
             <div className="grid grid-cols-12 md:grid-cols-12 lg:grid-cols-1 gap-6 mb-12">
-
-               {/* Developer Tools */}
+              {/* Developer Tools */}
               <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -63,12 +61,9 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
-                  {/* <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/developer?tool=base64" className="text-blue-600 dark:text-blue-400 hover:underline">Base64</a>,{" "}
-                    <a href="/developer?tool=json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</a>,{" "}
-                    <a href="/developer?tool=url" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</a>,{" "}
-                    <a href="/developer?tool=unixtime" className="text-blue-600 dark:text-blue-400 hover:underline">Unix Time</a>
-                  </p> */}
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
+                    Quick access to developer tools: Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text &#8596; ASCII.
+                  </p>
                 </div>
               </a>
             </div>
@@ -213,7 +208,7 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">100% Accurate</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">100&#37; Accurate</h3>
                 <p className="text-gray-600 dark:text-gray-300">Precise calculations using official conversion rates</p>
               </div>
               <div className="text-center">
@@ -231,7 +226,9 @@ export default function Home() {
           <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">What is a Unit Converter?</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              A unit converter is a tool that allows you to quickly and accurately transform values from one measurement unit to another across a wide variety of categories. On this site, you can convert between units for <b>Length</b> (e.g., meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Volume</b> (liters to gallons), <b>Currency</b> (USD to EUR), <b>Speed</b> (MPH to KPH), <b>Cooking</b> (cups to grams), and use handy <b>Developer Tools</b> (like Base64 and JSON encoding/decoding). These converters are essential for science, engineering, finance, cooking, and everyday tasks, simplifying complex calculations and providing instant, reliable results.
+              A unit converter is a tool that allows you to quickly and accurately transform values from one measurement unit to another across a wide variety of categories. On this site, you can convert between units for <b>Length</b> (meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Volume</b> (liters to gallons), <b>Speed</b> (MPH to KPH), <b>Cooking</b> (cups to grams), and <b>Currency</b> (USD to EUR). 
+              <br /><br />
+              For developers and technical users, we also offer handy <b>Developer Tools</b> including Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text to ASCII conversion. These tools are essential for software development, API testing, data processing, and debugging, providing fast and accurate results for technical workflows.
             </p>
           </section>
 
