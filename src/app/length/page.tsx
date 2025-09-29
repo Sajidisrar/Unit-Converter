@@ -71,12 +71,12 @@ export default function LengthPage({ searchParams }: { searchParams: { from?: st
             </p>
           </header>
 
-          <main className="max-w-6xl mx-auto">
-            <AdBanner position="top" />
-            <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] gap-6 items-start mt-6">
-              <div className="">
-                <AdBanner position="side" />
-              </div>
+          <main className="max-w-6xl mx-auto rounded-lg flex-row">
+            <div className="block">  
+              <AdBanner position="top" />
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6 items-start mt-6 items-center justify-center">
               <div>
                 <Calculator
                   title="Length Conversion Tool"
@@ -84,18 +84,15 @@ export default function LengthPage({ searchParams }: { searchParams: { from?: st
                   conversionType="length"
                   initialFromUnit={defaultFromUnit}
                 />
+              </div>
 
-                <div className="mt-6">
-                  <AdBanner position="inline" />
-                </div>
-              </div>
-              <div className="">
-                <AdBanner position="side" />
-              </div>
+              <div className="block  bg-red-50">  
+              <AdBanner position="top" />
+             </div>
             </div>
 
           {/* FAQ Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-12">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
               Frequently Asked Questions - Length Conversion
             </h2>

@@ -30,9 +30,9 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
         </header>
 
         <main className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] gap-6 items-start">
+          <div className="grid grid-cols-1 gap-6 items-start">
             <div className="">
-              <AdBanner position="side" />
+              <AdBanner position="top" />
             </div>
             <div>
               <Calculator
@@ -45,9 +45,6 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
               <div className="mt-6">
                 <AdBanner position="inline" />
               </div>
-            </div>
-            <div className="">
-              <AdBanner position="side" />
             </div>
           </div>
 
