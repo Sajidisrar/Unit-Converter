@@ -990,22 +990,22 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 <strong>What is a JWT?</strong> A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe token format used to securely transmit information between parties. A JWT consists of three parts: <strong>header</strong>, <strong>payload</strong>, and <strong>signature</strong>, separated by dots (<code>.</code>). The header specifies the algorithm and token type; the payload contains claims (such as user ID, roles, or expiration); and the signature ensures integrity by allowing the recipient to verify that the payload hasn&apos;t been tampered with.<br /><br />
                 <strong>JWT Structure:</strong>
                 <ul className="list-disc ml-5">
-                  <li><strong>Header:</strong> Encoded in Base64Url, contains algorithm and type (e.g., <code>{'{'}"alg":"HS256","typ":"JWT"{'}'}</code>).</li>
-                  <li><strong>Payload:</strong> Encoded in Base64Url, holds user data and claims (e.g., <code>{'{'}"sub":"1234567890","name":"John Doe"{'}'}</code>).</li>
+                  <li><strong>Header:</strong> Encoded in Base64Url, contains algorithm and type (e.g., <code>&#123;&quot;alg&quot;:&quot;HS256&quot;,&quot;typ&quot;:&quot;JWT&quot;&#125;</code>).</li>
+                  <li><strong>Payload:</strong> Encoded in Base64Url, holds user data and claims (e.g., <code>&#123;&quot;sub&quot;:&quot;1234567890&quot;,&quot;name&quot;:&quot;John Doe&quot;&#125;</code>).</li>
                   <li><strong>Signature:</strong> Cryptographic hash of the header and payload, signed with a secret key.</li>
                 </ul>
                 <br />
-                <strong>Use Cases:</strong>
+               <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Authentication:</strong> Securely identify users in web/mobile apps (stateless sessions).</li>
-                  <li><strong>Authorization:</strong> Grant or restrict access to resources based on JWT&apos;s claims.</li>
+                  <li><strong>Authorization:</strong> Grant or restrict access to resources based on JWTs claims.</li>
                   <li><strong>API Security:</strong> Pass identity and permissions between microservices or client/server.</li>
-                  <li><strong>Debugging:</strong> Inspect JWT&apos;s to verify claims, expiration, or troubleshoot authentication issues.</li>
+                  <li><strong>Debugging:</strong> Inspect JWTs to verify claims, expiration, or troubleshoot authentication issues.</li>
                 </ul>
                 <br />
-                <strong>Benefits:</strong> JWT&apos;s are compact, portable, and self-contained. They enable stateless authentication, easy scaling, and secure data transmission.<br /><br />
-                <strong>Limitations:</strong> JWT&apos;s are only as secure as their signing key&mdash;never share secrets. Decoding a JWT does not verify it&apos;s signature; always validate tokens server-side.<br /><br />
-                Use this tool to <strong>decode JWT&apos;s</strong> and inspect their contents for debugging, learning, or security analysis.
+                <strong>Benefits:</strong> JWTs are compact, portable, and self-contained. They enable stateless authentication, easy scaling, and secure data transmission.<br /><br />
+                <strong>Limitations:</strong> JWTs are only as secure as their signing key&mdash;never share secrets. Decoding a JWT does not verify it&apos;s signature; always validate tokens server-side.<br /><br />
+                Use this tool to <strong>decode JWTs</strong> and inspect their contents for debugging, learning, or security analysis.
               </p>
             </div>
           )}
