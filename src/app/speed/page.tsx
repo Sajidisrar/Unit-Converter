@@ -48,7 +48,7 @@ export default function SpeedPage({ searchParams }: { searchParams: { from?: str
 
         <main className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-6 items-start">
-            <div className="k">
+            <div className="mb-6">
               <AdBanner position="top" />
             </div>
             <div>

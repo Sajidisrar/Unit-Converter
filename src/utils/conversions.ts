@@ -175,7 +175,7 @@ export const cookingUnits = [
   { label: 'Tablespoon (tbsp)', value: 'tbsp' },
   { label: 'Cup (cup)', value: 'cup' },
   { label: 'Fluid Ounce (fl oz)', value: 'fl oz' },
-  { label: 'Gram (g)', value: 'g' },
+  { label: 'Gram (g) – water equivalence', value: 'g' },
 ];
 
 export function convertCooking(value: number, fromUnit: string, toUnit: string): number {

@@ -71,12 +71,12 @@ export default function LengthPage({ searchParams }: { searchParams: { from?: st
             </p>
           </header>
 
-          <main className="max-w-6xl mx-auto rounded-lg flex-row">
-            <div className="block">  
+          <main className="max-w-6xl mx-auto">
+            <div className="mb-6">
               <AdBanner position="top" />
             </div>
-            
-            <div className="grid grid-cols-1 gap-6 items-start mt-6 items-center justify-center">
+
+            <div className="grid grid-cols-1 gap-6 items-start">
               <div>
                 <Calculator
                   title="Length Conversion Tool"
@@ -86,9 +86,9 @@ export default function LengthPage({ searchParams }: { searchParams: { from?: st
                 />
               </div>
 
-              <div className="block  bg-red-50">  
-              <AdBanner position="top" />
-             </div>
+              <div className="mt-6">
+                <AdBanner position="inline" />
+              </div>
             </div>
 
           {/* FAQ Section */}

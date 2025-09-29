@@ -11,6 +11,7 @@ export default function Home() {
         <meta name="keywords" content="unit converter, developer tools, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, Base64 encoder, JSON formatter, URL encoder, JWT decoder, number base converter" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="canonical" href="https://freeunitconvertor.com/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -20,6 +21,18 @@ export default function Home() {
               "name": "Free Online Unit Converter",
               "url": "https://freeunitconvertor.com"
             }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeunitconvertor.com/" }
+              ]
+            })
           }}
         />
       </Head>
@@ -51,7 +64,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
               Most Popular Converters
             </h2>
-            <div className="grid grid-cols-12 md:grid-cols-12 lg:grid-cols-1 gap-6 mb-12">
+            <div className="grid grid-cols-1 gap-6 mb-12">
               {/* Developer Tools */}
               <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">

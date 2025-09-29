@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     description: "Read the Terms of Service for Unit Converter. Learn the rules and guidelines for using our service.",
     type: "article",
   },
+  alternates: {
+    canonical: "https://freeunitconvertor.com/terms",
+  },
 };
 
 export default function Terms() {
@@ -42,6 +45,13 @@ export default function Terms() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Advertising & Monetization</h2>
+            <p className="text-gray-700 dark:text-gray-300">
+              This website displays advertising, including Google AdSense. Ads may be personalized based on cookies and similar technologies. Your use of the site constitutes your acknowledgment that third-party vendors, including Google, may use cookies to serve ads based on your prior visits to this and other websites. For details, see our Privacy Policy and Google’s Ads Settings.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Intellectual Property</h2>
             <p className="text-gray-700 dark:text-gray-300">
               All content, tools, and software on Unit Converter are the property of the website owner and protected by copyright and other intellectual property laws.
@@ -68,7 +78,34 @@ export default function Terms() {
               Questions about these Terms? Visit our Contact page or email us at sajidisrar86@gmail.com.
             </p>
           </section>
+
+          <section>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Effective date: 2024-01-01</p>
+          </section>
         </main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://freeunitconvertor.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Terms of Service",
+                  "item": "https://freeunitconvertor.com/terms"
+                }
+              ]
+            })
+          }}
+        />
       </div>
     </div>
   );
