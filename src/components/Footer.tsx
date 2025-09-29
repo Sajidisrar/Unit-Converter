@@ -26,6 +26,11 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Calculators</h3>
             <ul className="space-y-2">
               <li>
+                <Link href="/developer" className="text-gray-400 hover:text-white transition-colors">
+                  🛠️ Developer Tools
+                </Link>
+              </li>
+              <li>
                 <Link href="/length" className="text-gray-400 hover:text-white transition-colors">
                   📏 Length Converter
                 </Link>
@@ -75,6 +80,11 @@ export default function Footer() {
               <li>
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
                   Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
+                  Terms of Service
                 </Link>
               </li>
             </ul>

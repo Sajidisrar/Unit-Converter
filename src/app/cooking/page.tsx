@@ -23,7 +23,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 font-sans">
       <div className="max-w-5xl mx-auto px-4">
         <div className="grid grid-cols-12 gap-4">
-          <AdBanner position="side" className="col-span-2 hidden md:block" />
+          <AdBanner position="side" className="col-span-2" />
           <main className="col-span-12 md:col-span-8">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Cooking Unit Converter
@@ -71,7 +71,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
               </div>
             </section>
           </main>
-          <AdBanner position="side" className="col-span-2 hidden md:block" />
+          <AdBanner position="side" className="col-span-2" />
         </div>
       </div>
     </div>

@@ -31,7 +31,7 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
 
         <main className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] gap-6 items-start">
-            <div className="hidden lg:block">
+            <div className="lg:block">
               <AdBanner position="side" />
             </div>
             <div>
@@ -47,7 +47,7 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
                 <AdBanner position="inline" />
               </div>
             </div>
-            <div className="hidden lg:block">
+            <div className="">
               <AdBanner position="side" />
             </div>
           </div>
