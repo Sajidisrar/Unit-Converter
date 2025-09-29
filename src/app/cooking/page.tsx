@@ -21,14 +21,14 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 font-sans">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid grid-cols-12 gap-4">
-
-          <main className="max-w-6xl mx-auto rounded-lg flex-row ">
+      <div className="container mx-auto px-4 py-8">
+        <main className="max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Cooking Unit Converter
             </h1>
-            <AdBanner position="top" className="col-span-2" />
+            <div className="mb-6">
+              <AdBanner position="top" />
+            </div>
             <section className="mb-6">
               <Calculator
                 title="Cooking Unit Converter"
@@ -36,13 +36,16 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                 conversionType="cooking"
                 initialFromUnit={defaultFromUnit}
               />
-              <AdBanner position="top" className="mt-4" />
+              <div className="mt-6">
+                <AdBanner position="inline" />
+              </div>
             </section>
             <section>
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
                 <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
                   Frequently Asked Questions
                 </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Note: Gram (g) assumes water-equivalent density for volume-to-weight conversions.</p>
                 <dl className="space-y-4">
                   <div>
                     <dt className="font-semibold text-gray-900 dark:text-white">
@@ -72,9 +75,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
               </div>
             </section>
             
-          </main>
-          
-        </div>
+        </main>
       </div>
     </div>
   );

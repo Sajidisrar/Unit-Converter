@@ -14,6 +14,19 @@ export default function AboutPage() {
         <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
           Enjoy an intuitive interface, seamless performance, and accurate results—making your work easier and more efficient. Thank you for choosing us as your go-to resource for unit conversions and developer utilities!
         </p>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeunitconvertor.com/" },
+                { "@type": "ListItem", "position": 2, "name": "About", "item": "https://freeunitconvertor.com/about" }
+              ]
+            })
+          }}
+        />
       </div>
     </main>
   );

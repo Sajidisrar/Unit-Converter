@@ -9,8 +9,8 @@ export default function ToolSelector() {
   const selectedTool = tools[selectedToolIndex];
 
   return (
-    <div className="flex flex-1 h-full">
-      <aside className="w-64 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-y-auto">
+    <div className="flex flex-1 min-h-screen flex-col md:flex-row">
+      <aside className="w-full md:w-64 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-y-auto mb-4 md:mb-0">
         <h1 className="text-2xl font-bold p-4 border-b border-gray-200 dark:border-gray-700">Developer Tools</h1>
         <ul>
           {tools.map((tool, index) => (
@@ -29,7 +29,7 @@ export default function ToolSelector() {
           ))}
         </ul>
       </aside>
-      <section className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 ml-6 p-6 flex flex-col">
+      <section className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 md:ml-6 p-4 md:p-6 flex flex-col">
         <h2 className="text-3xl font-semibold mb-4">{selectedTool.title}</h2>
         <p className="text-gray-700 dark:text-gray-300 mb-6">{selectedTool.description}</p>
         <div className="flex-1 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg italic select-none">

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface AdBannerProps {
   position: 'top' | 'side' | 'inline';
@@ -7,21 +7,63 @@ interface AdBannerProps {
 }
 
 export default function AdBanner({ position, className = '' }: AdBannerProps) {
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      try {
-        // @ts-expect-error adsbygoogle is not defined on Window
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.error("Adsense error", e);
-      }
-    }, 100);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const insRef = useRef<HTMLModElement | null>(null);
+  const hasPushedRef = useRef(false);
 
-    return () => clearTimeout(timeoutId);
+  useEffect(() => {
+    function tryPush() {
+      if (hasPushedRef.current) return;
+      const container = containerRef.current;
+      const ins = insRef.current;
+      if (!container || !ins) return;
+      const width = container.offsetWidth;
+      if (width && width > 0) {
+        try {
+          // @ts-expect-error adsbygoogle is not defined on Window
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          hasPushedRef.current = true;
+        } catch (e) {
+          // Swallow and retry on next observer event
+        }
+      }
+    }
+
+    // Attempt immediately in case width is already available
+    tryPush();
+
+    // Observe size changes to push when width becomes available
+    const resizeObserver = new ResizeObserver(() => {
+      tryPush();
+    });
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    // Also attempt when element becomes visible in viewport
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry && entry.isIntersecting) {
+        tryPush();
+      }
+    }, { threshold: 0.1 });
+    if (containerRef.current) {
+      intersectionObserver.observe(containerRef.current);
+    }
+
+    // Fallback: try on window load
+    const onLoad = () => tryPush();
+    window.addEventListener('load', onLoad);
+
+    return () => {
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      window.removeEventListener('load', onLoad);
+    };
   }, []);
 
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg flex items-center justify-center w-full';// bg-red-50
+    const baseClasses = 'rounded-lg flex items-center justify-center w-full';
     const positionClasses = {
       top: 'mx-auto mb-6',
       side: 'mx-auto',
@@ -32,10 +74,11 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
   };
 
   return (
-    <div className={getContainerClasses()} style={{ minHeight: '50px', minWidth: '100vh' }}>
+    <div ref={containerRef} className={getContainerClasses()} style={{ minHeight: '50px', width: '100%' }}>
       <ins
+        ref={insRef}
         className="adsbygoogle"
-        style={{ display: "block", width: "100vh", height: "50%" }}
+        style={{ display: "block", width: "100%" }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot="4003156004"
         data-ad-format="auto"
