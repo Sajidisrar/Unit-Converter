@@ -46,6 +46,12 @@ export default function Navbar() {
               <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
                   <Link 
+                    href="/developer" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    🛠️ Developer Tools
+                  </Link>
+                  <Link 
                     href="/length" 
                     className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
@@ -126,6 +132,13 @@ export default function Navbar() {
               </Link>
               <div className="space-y-1 pl-4">
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">All Calculators</div>
+                <Link 
+                  href="/developer" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  🛠️ Developer Tools
+                </Link>
                 <Link 
                   href="/length" 
                   className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"

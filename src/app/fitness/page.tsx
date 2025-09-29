@@ -63,7 +63,7 @@ export default function FitnessPage() {
       <div className="max-w-5xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
           {/* Left side ad/empty */}
-          <div className="hidden md:block md:col-span-1"><AdBanner position="side" /></div>
+          <div className=""><AdBanner position="side" /></div>
           {/* Center content */}
           <div className="col-span-1 md:col-span-4">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
@@ -107,7 +107,7 @@ export default function FitnessPage() {
             </section>
           </div>
           {/* Right side ad/empty */}
-          <div className="hidden md:block md:col-span-1"><AdBanner position="side" /></div>
+          <div className=""><AdBanner position="side" /></div>
         </div>
       </div>
     </div>

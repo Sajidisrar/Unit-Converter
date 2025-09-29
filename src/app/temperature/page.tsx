@@ -31,7 +31,7 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
 
         <main className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_300px] gap-6 items-start">
-            <div className="hidden lg:block">
+            <div className="">
               <AdBanner position="side" />
             </div>
             <div>
@@ -46,7 +46,7 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
                 <AdBanner position="inline" />
               </div>
             </div>
-            <div className="hidden lg:block">
+            <div className="">
               <AdBanner position="side" />
             </div>
           </div>
