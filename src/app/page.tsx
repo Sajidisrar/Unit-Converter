@@ -62,7 +62,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                    Quick access to developer tools: Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text ↔ ASCII.
+                    Quick access to developer tools: Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text &#8596; ASCII.
                   </p>
                 </div>
               </a>
@@ -208,7 +208,7 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">100% Accurate</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">100&#37; Accurate</h3>
                 <p className="text-gray-600 dark:text-gray-300">Precise calculations using official conversion rates</p>
               </div>
               <div className="text-center">
