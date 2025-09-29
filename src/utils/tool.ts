@@ -2,6 +2,7 @@
 
 // NOTE: Selection state should be handled in the client-side component, not here.
 // Top 10 Developer Conversion Tools
+
 export const tools = [
   {
     title: "JSON to CSV Converter",
@@ -24,19 +25,9 @@ export const tools = [
     slug: "color-code-converter"
   },
   {
-    title: "Markdown to HTML Converter",
-    description: "Quickly convert Markdown text into HTML markup.",
-    slug: "markdown-to-html"
-  },
-  {
     title: "URL Encoder/Decoder",
     description: "Encode or decode URLs to ensure safe transmission of text in web addresses.",
     slug: "url-encoder-decoder"
-  },
-  {
-    title: "UUID Generator",
-    description: "Generate Universally Unique Identifiers (UUIDs) for database keys or unique tokens.",
-    slug: "uuid-generator"
   },
   {
     title: "HTML Entity Encoder/Decoder",
@@ -44,14 +35,29 @@ export const tools = [
     slug: "html-entity-encoder-decoder"
   },
   {
-    title: "YAML to JSON Converter",
-    description: "Easily convert YAML configuration files to JSON format and vice versa.",
-    slug: "yaml-to-json"
+    title: "JSON Formatter/Minifier",
+    description: "Format JSON data for readability or minify it for compact storage and transmission.",
+    slug: "json-formatter-minifier"
   },
   {
-    title: "String Case Converter",
-    description: "Change string casing between camelCase, snake_case, PascalCase, and more.",
-    slug: "string-case-converter"
+    title: "Text ↔ ASCII",
+    description: "Convert plain text to ASCII codes and back again.",
+    slug: "text-ascii"
+  },
+  {
+    title: "Number Base Converter",
+    description: "Convert numbers between binary, decimal, hexadecimal, and octal systems.",
+    slug: "number-base-converter"
+  },
+  {
+    title: "JWT Decoder",
+    description: "Decode and inspect the payload of JSON Web Tokens (JWTs).",
+    slug: "jwt-decoder"
+  },
+  {
+    title: "CSS Unit Converter",
+    description: "Convert CSS units between px, rem, and em for responsive design.",
+    slug: "css-unit-converter"
   }
 ];
 
