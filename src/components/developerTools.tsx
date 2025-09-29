@@ -584,15 +584,15 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                   type="button"
                 >Copy</button>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                <strong>Base64 encoding</strong> is a widely used technique for converting binary data into a text-based format that can be safely transmitted and stored in environments that only support textual data. At its core, Base64 encoding transforms binary data—such as images, files, or any arbitrary byte stream—into a string of ASCII characters. This process is crucial because many communication protocols, data storage systems, and APIs are designed to handle only readable text, making the direct transmission or storage of raw binary data impractical or even impossible.
+                <strong>Base64 encoding</strong> is a widely used technique for converting binary data into a text-based format that can be safely transmitted and stored in environments that only support textual data. At its core, Base64 encoding transforms binary data&mdash;such as images, files, or any arbitrary byte stream&mdash;into a string of ASCII characters. This process is crucial because many communication protocols, data storage systems, and APIs are designed to handle only readable text, making the direct transmission or storage of raw binary data impractical or even impossible.
                 <br /><br />
-                The way <strong>Base64 encoding</strong> works is by grouping the original binary data into blocks of three bytes (24 bits). These 24 bits are then split into four groups of six bits each. Each six-bit group is mapped to a specific character in the Base64 alphabet, which consists of 64 unique characters: uppercase and lowercase letters (A-Z, a-z), digits (0-9), and two special characters (+ and /). If the input data does not divide evenly into three-byte chunks, padding characters (=) are added to the output to ensure that the encoded string length is always a multiple of four. This systematic approach guarantees that the encoded data remains consistent and easily decodable.
+                The way <strong>Base64 encoding</strong> works is by grouping the original binary data into blocks of three bytes (24 bits). These 24 bits are then split into four groups of six bits each. Each six-bit group is mapped to a specific character in the Base64 alphabet, which consists of 64 unique characters: uppercase and lowercase letters (A-Z, a-z), digits (0-9), and two special characters (<code>+</code> and <code>/</code>). If the input data does not divide evenly into three-byte chunks, padding characters (<code>=</code>) are added to the output to ensure that the encoded string length is always a multiple of four. This systematic approach guarantees that the encoded data remains consistent and easily decodable.
                 <br /><br />
-                <strong>Base64 decoding</strong> is the reverse operation, converting a Base64-encoded string back into its original binary form. During decoding, the Base64 string is processed in four-character blocks, each representing 24 bits. These are then reassembled into the original bytes. This seamless conversion between binary and text formats is why Base64 is often referred to as a <em>binary-to-text encoding scheme</em>.
+                <strong>Base64 decoding</strong> is the reverse operation, converting a Base64-encoded string back into its original binary form. During decoding, the Base64 string is processed in four-character blocks, each representing 24 bits. These are then reassembled into the original bytes. This seamless conversion between binary and text formats is why Base64 is often referred to as a <strong>binary-to-text encoding scheme</strong>.
                 <br /><br />
                 The primary benefit of using Base64 encoding is that it enables the reliable and secure transmission of binary data over media that are designed to handle only textual data. For example, email protocols such as SMTP and MIME were originally designed to transfer text, so sending binary attachments (like images or documents) requires encoding them in Base64. Similarly, when embedding images directly into HTML or CSS as data URIs, Base64 encoding ensures that the image data is represented as plain text, making it compatible with web standards and easy to include within source code. <strong>APIs</strong> and <strong>web services</strong> also often use Base64 encoding to transmit binary files, authentication tokens, or cryptographic keys in JSON or XML payloads, which are inherently text-based formats.
                 <br /><br />
-                Common applications of Base64 encoding include:
+                <strong>Common applications of Base64 encoding include:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Email attachments</strong>: Safely transmitting binary files (images, PDFs, etc.) via email by encoding them into a Base64 string.</li>
                   <li><strong>Web development</strong>: Embedding images and fonts in HTML, CSS, or SVG files using Base64-encoded data URIs, reducing the number of HTTP requests.</li>
@@ -651,7 +651,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                   <li><strong>Performance Optimization:</strong> Minify JSON to reduce payload size in web applications.</li>
                 </ul>
                 <br />
-                <strong>Benefits:</strong> Readable JSON reduces errors and speeds up development, while minified JSON saves bandwidth and storage. Both formatting and minification are lossless, meaning no data is changed—only presentation.<br /><br />
+                <strong>Benefits:</strong> Readable JSON reduces errors and speeds up development, while minified JSON saves bandwidth and storage. Both formatting and minification are lossless, meaning no data is changed&mdash;only presentation.<br /><br />
                 <strong>Limitations:</strong> Formatting large or deeply nested JSON can be slow in browsers or editors. Minification does not compress data as efficiently as binary formats, and minified files are hard to read without formatting.<br /><br />
                 Use this tool to quickly <strong>beautify</strong> or <strong>compress</strong> your JSON for any workflow, from debugging to production deployment.
               </p>
@@ -754,7 +754,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 <strong>Hex, RGB, and HSL Color Converters</strong> are indispensable tools for web designers, developers, and digital artists who work with colors in different coding and design environments.<br /><br />
                 <strong>Hexadecimal (Hex)</strong> color codes are six-digit codes (e.g., <code>#FF5733</code>) widely used in HTML, CSS, and graphic design to represent colors. Each pair of digits corresponds to the red, green, and blue (RGB) components in hexadecimal (base 16).<br /><br />
                 <strong>RGB (Red, Green, Blue)</strong> is another popular color model, representing colors through three integer values ranging from 0 to 255 (e.g., <code>255,87,51</code>). RGB is intuitive for digital displays, as it matches how screens emit colored light.<br /><br />
-                <strong>HSL (Hue, Saturation, Lightness)</strong> is a cylindrical color model that describes colors more like artists do: <strong>hue</strong> (color type, 0–360°), <strong>saturation</strong> (intensity, 0–100%), and <strong>lightness</strong> (brightness, 0–100%). HSL is especially useful for generating color palettes, adjusting tints/shades, and creating accessible designs.<br /><br />
+                <strong>HSL (Hue, Saturation, Lightness)</strong> is a cylindrical color model that describes colors more like artists do: <strong>hue</strong> (color type, 0&ndash;360&deg;), <strong>saturation</strong> (intensity, 0&ndash;100%), and <strong>lightness</strong> (brightness, 0&ndash;100%). HSL is especially useful for generating color palettes, adjusting tints/shades, and creating accessible designs.<br /><br />
                 <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Web Design:</strong> Convert between hex, RGB, and HSL to match CSS requirements or design tools.</li>
@@ -765,7 +765,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 <br />
                 <strong>Benefits:</strong> Quick conversion between color models speeds up design workflows, ensures precision, and enhances cross-platform compatibility. HSL makes it easy to tweak colors for contrast and accessibility.<br /><br />
                 <strong>Limitations:</strong> Some color models (like CMYK for print) are not covered here. Converting between models may result in rounding errors or slight color shifts.<br /><br />
-                Use this tool to seamlessly switch between <strong>Hex, RGB, and HSL</strong> color formats, ensuring your designs look perfect everywhere—from code to canvas.
+                Use this tool to seamlessly switch between <strong>Hex, RGB, and HSL</strong> color formats, ensuring your designs look perfect everywhere&mdash;from code to canvas.
               </p>
             </div>
           )}
@@ -796,7 +796,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 >Copy</button>
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                <strong>Unix Timestamps</strong> are a universal method for representing a specific point in time as the number of seconds (or milliseconds) that have elapsed since January 1, 1970, 00:00:00 UTC—known as the Unix epoch.<br /><br />
+                <strong>Unix Timestamps</strong> are a universal method for representing a specific point in time as the number of seconds (or milliseconds) that have elapsed since January 1, 1970, 00:00:00 UTC&mdash;known as the Unix epoch.<br /><br />
                 <strong>What is a Unix Timestamp?</strong> A Unix timestamp is a simple integer, such as <code>1687555200</code>, that counts the total seconds since the epoch. This format is widely used in programming, databases, and logging systems for its simplicity and cross-platform compatibility. Unix timestamps are timezone-independent, making them ideal for storing and comparing dates and times in distributed systems.<br /><br />
                 <strong>Conversion and Use Cases:</strong> While Unix timestamps are efficient for computers, they are not human-readable. Converting a Unix timestamp to a human-readable date (e.g., <code>2023-06-24T00:00:00Z</code>) is essential for debugging, reporting, or displaying dates to users. This tool also converts human-readable dates back to Unix timestamps, simplifying tasks like scheduling, time calculations, or working with APIs and logs.<br /><br />
                 <strong>Practical Applications:</strong>
@@ -808,7 +808,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 </ul>
                 <br />
                 <strong>Benefits:</strong> Unix timestamps are compact, unambiguous, and easy to manipulate in code. They avoid issues with timezones and date formatting.<br /><br />
-                <strong>Limitations:</strong> Not human-friendly—conversion is needed for display or manual entry. Some systems use milliseconds instead of seconds, so care must be taken to use the correct unit.<br /><br />
+                <strong>Limitations:</strong> Not human-friendly&mdash;conversion is needed for display or manual entry. Some systems use milliseconds instead of seconds, so care must be taken to use the correct unit.<br /><br />
                 Use this tool to <strong>convert between Unix timestamps and readable dates</strong> for programming, logging, and data analysis tasks.
               </p>
             </div>
@@ -841,7 +841,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 <strong>HTML Entity Encoder/Decoder</strong> tools are vital for web developers, content creators, and anyone working with HTML, XML, or web-based text. <br /><br />
-                <strong>HTML entity encoding</strong> replaces reserved or special characters (like <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code>, and <code>'</code>) with their corresponding HTML entities (e.g., <code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;amp;</code>, <code>&amp;quot;</code>, <code>&amp;apos;</code>). This process ensures that the browser interprets the text as literal characters and not as HTML tags or code, preventing rendering issues and security vulnerabilities such as <strong>Cross-Site Scripting (XSS)</strong>.<br /><br />
+                <strong>HTML entity encoding</strong> replaces reserved or special characters (like <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>&quot;</code>, and <code>&apos;</code>) with their corresponding HTML entities (e.g., <code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;amp;</code>, <code>&amp;quot;</code>, <code>&amp;apos;</code>). This process ensures that the browser interprets the text as literal characters and not as HTML tags or code, preventing rendering issues and security vulnerabilities such as <strong>Cross-Site Scripting (XSS)</strong>.<br /><br />
                 <strong>HTML entity decoding</strong> reverses this process, converting entities back to their original characters. This is crucial when displaying encoded data, extracting text from HTML sources, or preparing content for editing.<br /><br />
                 <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
@@ -882,7 +882,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 <strong>Text to ASCII and ASCII to Text Conversion</strong> is a powerful capability for developers, network engineers, and anyone working with data encoding or low-level communications.<br /><br />
-                <strong>ASCII (American Standard Code for Information Interchange)</strong> is a character encoding standard that assigns a unique numeric code (0–127) to each letter, digit, punctuation mark, and control character. For example, the letter "A" is <code>65</code>, and "a" is <code>97</code>. Converting text to ASCII reveals the underlying codes, which are used in computers, communication protocols, and file formats.<br /><br />
+                <strong>ASCII (American Standard Code for Information Interchange)</strong> is a character encoding standard that assigns a unique numeric code (0&ndash;127) to each letter, digit, punctuation mark, and control character. For example, the letter &quot;A&quot; is <code>65</code>, and &quot;a&quot; is <code>97</code>. Converting text to ASCII reveals the underlying codes, which are used in computers, communication protocols, and file formats.<br /><br />
                 <strong>Text to ASCII conversion</strong> allows you to see or transmit the numeric representation of characters, which is useful for debugging, data transmission, or cryptography. <strong>ASCII to text conversion</strong> does the reverse, reconstructing readable messages from numeric codes.<br /><br />
                 <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
@@ -893,7 +893,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 </ul>
                 <br />
                 <strong>Benefits:</strong> ASCII encoding is universally supported, lightweight, and easy to process in code. It forms the foundation for many modern encodings (like UTF-8).<br /><br />
-                <strong>Limitations:</strong> ASCII is limited to 128 characters—no support for accented letters, emojis, or non-Latin scripts. For those, Unicode is required.<br /><br />
+                <strong>Limitations:</strong> ASCII is limited to 128 characters&mdash;no support for accented letters, emojis, or non-Latin scripts. For those, Unicode is required.<br /><br />
                 Use this tool to <strong>convert text to ASCII codes and back</strong> for learning, debugging, or data transmission tasks.
               </p>
             </div>
@@ -944,10 +944,10 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 <strong>Number Base Converter</strong> tools are crucial for programmers, engineers, and students working with different numbering systems in computing and electronics.<br /><br />
-                <strong>Binary (Base 2):</strong> Uses only 0 and 1. It’s the fundamental language of computers, representing every value as a series of bits.<br />
-                <strong>Decimal (Base 10):</strong> The standard system for human arithmetic, using digits 0–9.<br />
-                <strong>Hexadecimal (Base 16):</strong> Uses digits 0–9 and letters A–F. Hex is compact and maps easily to binary, making it popular for representing colors, memory addresses, and machine code.<br />
-                <strong>Octal (Base 8):</strong> Uses digits 0–7. While less common today, it’s still found in legacy systems and Unix file permissions.<br /><br />
+                <strong>Binary (Base 2):</strong> Uses only 0 and 1. It&apos;s the fundamental language of computers, representing every value as a series of bits.<br />
+                <strong>Decimal (Base 10):</strong> The standard system for human arithmetic, using digits 0&ndash;9.<br />
+                <strong>Hexadecimal (Base 16):</strong> Uses digits 0&ndash;9 and letters A&ndash;F. Hex is compact and maps easily to binary, making it popular for representing colors, memory addresses, and machine code.<br />
+                <strong>Octal (Base 8):</strong> Uses digits 0&ndash;7. While less common today, it&apos;s still found in legacy systems and Unix file permissions.<br /><br />
                 <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Programming:</strong> Convert between binary, decimal, hex, and octal for debugging, memory dumps, or low-level development.</li>
@@ -987,7 +987,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
               </div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 <strong>JWT Decoder</strong> tools are essential for developers working with secure authentication and authorization in modern web applications.<br /><br />
-                <strong>What is a JWT?</strong> A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe token format used to securely transmit information between parties. A JWT consists of three parts: <strong>header</strong>, <strong>payload</strong>, and <strong>signature</strong>, separated by dots (<code>.</code>). The header specifies the algorithm and token type; the payload contains claims (such as user ID, roles, or expiration); and the signature ensures integrity by allowing the recipient to verify that the payload hasn’t been tampered with.<br /><br />
+                <strong>What is a JWT?</strong> A <strong>JSON Web Token (JWT)</strong> is a compact, URL-safe token format used to securely transmit information between parties. A JWT consists of three parts: <strong>header</strong>, <strong>payload</strong>, and <strong>signature</strong>, separated by dots (<code>.</code>). The header specifies the algorithm and token type; the payload contains claims (such as user ID, roles, or expiration); and the signature ensures integrity by allowing the recipient to verify that the payload hasn&apos;t been tampered with.<br /><br />
                 <strong>JWT Structure:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Header:</strong> Encoded in Base64Url, contains algorithm and type (e.g., <code>{'{'}"alg":"HS256","typ":"JWT"{'}'}</code>).</li>
@@ -998,14 +998,14 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 <strong>Use Cases:</strong>
                 <ul className="list-disc ml-5">
                   <li><strong>Authentication:</strong> Securely identify users in web/mobile apps (stateless sessions).</li>
-                  <li><strong>Authorization:</strong> Grant or restrict access to resources based on JWT claims.</li>
+                  <li><strong>Authorization:</strong> Grant or restrict access to resources based on JWT&apos;s claims.</li>
                   <li><strong>API Security:</strong> Pass identity and permissions between microservices or client/server.</li>
-                  <li><strong>Debugging:</strong> Inspect JWTs to verify claims, expiration, or troubleshoot authentication issues.</li>
+                  <li><strong>Debugging:</strong> Inspect JWT&apos;s to verify claims, expiration, or troubleshoot authentication issues.</li>
                 </ul>
                 <br />
-                <strong>Benefits:</strong> JWTs are compact, portable, and self-contained. They enable stateless authentication, easy scaling, and secure data transmission.<br /><br />
-                <strong>Limitations:</strong> JWTs are only as secure as their signing key—never share secrets. Decoding a JWT does not verify its signature; always validate tokens server-side.<br /><br />
-                Use this tool to <strong>decode JWTs</strong> and inspect their contents for debugging, learning, or security analysis.
+                <strong>Benefits:</strong> JWT&apos;s are compact, portable, and self-contained. They enable stateless authentication, easy scaling, and secure data transmission.<br /><br />
+                <strong>Limitations:</strong> JWT&apos;s are only as secure as their signing key&mdash;never share secrets. Decoding a JWT does not verify it&apos;s signature; always validate tokens server-side.<br /><br />
+                Use this tool to <strong>decode JWT&apos;s</strong> and inspect their contents for debugging, learning, or security analysis.
               </p>
             </div>
           )}
@@ -1044,7 +1044,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 <ul className="list-disc ml-5">
                   <li><strong>px (Pixels):</strong> Absolute unit representing a single screen pixel. Simple but not scalable for different devices or user settings.</li>
                   <li><strong>em:</strong> Relative to the font size of the current element. Useful for scaling components within a design system.</li>
-                  <li><strong>rem (Root em):</strong> Relative to the root (HTML) element’s font size. Provides consistent scaling across an entire page.</li>
+                  <li><strong>rem (Root em):</strong> Relative to the root (HTML) element&apos;s font size. Provides consistent scaling across an entire page.</li>
                 </ul>
                 <br />
                 <strong>Use Cases:</strong>
@@ -1117,7 +1117,7 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
                 </ul>
                 <br />
                 <strong>Benefits:</strong> CSV is fast to read, easy to edit, and supported everywhere. Converting from JSON unlocks powerful spreadsheet and analytics capabilities.<br /><br />
-                <strong>Limitations:</strong> CSV cannot represent nested or hierarchical data&mdash;only flat tables. Data may need to be normalized or simplified before conversion.<br /><br />
+                <strong>Limitations:</strong> CSV can&apos;t represent nested or hierarchical data&mdash;only flat tables. Data may need to be normalized or simplified before conversion.<br /><br />
                 Use this tool to <strong>convert JSON to CSV</strong> for seamless data analysis, reporting, and integration with spreadsheet tools.
               </p>
             </div>
