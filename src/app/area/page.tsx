@@ -102,6 +102,9 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
             <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
               For example, when buying land, you might need to convert acres to square meters to understand the size better. In construction, converting between square feet and square yards helps in estimating materials. Farmers often convert hectares to acres for crop planning. Additionally, educators use area conversions to teach students about different measurement systems.
             </p>
+            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
+              Related tasks for technical users include <a href="/developer" className="text-purple-600 dark:text-purple-400 hover:underline">json to csv</a> formatting and <a href="/developer" className="text-purple-600 dark:text-purple-400 hover:underline">base64 encoding</a> when moving geospatial data between systems. These are common in <b>AI artificial Intelligence</b> mapping and <b>Data Science</b> workflows.
+            </p>
             <div className="flex space-x-4">
               <Link href="/length" className="inline-block mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors">
                 Length Converter

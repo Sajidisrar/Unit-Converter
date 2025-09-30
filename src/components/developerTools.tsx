@@ -1126,6 +1126,17 @@ export default function DeveloperTools({ tool }: { tool: Tool }) {
           )}
         </div>
       </section>
+
+      {/* SEO Content Footer */}
+      {/* <section className="w-full bg-white dark:bg-zinc-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-4 mt-4">
+        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools for AI and Data Science</h3>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+          Build modern data workflows with <a href="/developer" className="text-blue-600 dark:text-blue-400 hover:underline">json to csv</a>, robust <a href="/developer" className="text-blue-600 dark:text-blue-400 hover:underline">base64 encoding</a>, URL utilities, and JWT debugging&mdash;all in your browser. These tools support <b>AI artificial Intelligence</b> and <b>Data Science</b> pipelines for ingest, transform, and export.
+        </p>
+        <p className="text-sm text-gray-700 dark:text-gray-300">
+          Working with measurements? Normalize inputs using our <a href="/area" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter area</a> and <a href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter weight</a> to keep datasets consistent across metric and imperial systems.
+        </p>
+      </section> */}
     </div>
   );
 }

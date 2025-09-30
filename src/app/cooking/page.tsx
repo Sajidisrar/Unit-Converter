@@ -41,6 +41,16 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
               </div>
             </section>
             {/* SEO Content Section */}
+            <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-6">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Cooking Conversion Insights</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Convert cups, tablespoons, teaspoons, grams, and ounces for baking and meal prep. Pair with the <a href="/weight" className="text-orange-600 dark:text-orange-400 hover:underline">Unit converter weight</a> for ingredient weight tracking and the <a href="/temperature" className="text-orange-600 dark:text-orange-400 hover:underline">Temperature Converter</a> for oven settings.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                Recipe systems often transform datasets using <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">json to csv</a> and store images or attachments via <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">base64 encoding</a>, especially in <b>AI artificial Intelligence</b> nutrition analysis and <b>Data Science</b>.
+              </p>
+            </section>
+            {/* SEO Content Section */}
             <section className="bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
                 About Cooking Conversions
