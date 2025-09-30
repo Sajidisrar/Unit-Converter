@@ -34,6 +34,16 @@ export default function FuelEconomyPage() {
             />
             <AdBanner position="inline" />
           </section>
+          {/* SEO Content Section */}
+          <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fuel Economy Insights</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Convert MPG (US/UK), L/100km, and km/L for vehicles and fleet analytics. Combine with <a href="/speed" className="text-indigo-600 dark:text-indigo-400 hover:underline">Speed Converter</a> and <a href="/length" className="text-indigo-600 dark:text-indigo-400 hover:underline">Length Converter</a> for route planning.
+            </p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Telematics and fleet <b>Data Science</b> pipelines frequently export telemetry via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and compress payloads with <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a> for <b>AI artificial Intelligence</b> models.
+            </p>
+          </section>
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               Frequently Asked Questions

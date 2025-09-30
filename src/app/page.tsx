@@ -7,8 +7,14 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
         <title>Free Online Unit Converter & Developer Tools</title>
-        <meta name="description" content="Free Online Unit Converter and Developer Tools – Quickly convert length, weight, temperature, area, speed, cooking measures, and more. Includes Base64, JSON, URL, JWT, and Number Base converters for developers." />
-        <meta name="keywords" content="unit converter, developer tools, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, Base64 encoder, JSON formatter, URL encoder, JWT decoder, number base converter" />
+        <meta
+          name="description"
+          content="Free online developer tools and unit converters. Convert length, weight, temperature, area, speed, and cooking measures instantly. Includes Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, Text to ASCII, JSON to CSV, Base64 encoding, and more for developers, AI, and Data Science."
+        />
+        <meta
+          name="keywords"
+          content="developer tools, Base64 encoder, Base64 encoding, JSON formatter, JSON to CSV, URL encoder, JWT decoder, Unix timestamp, number base converter, ASCII converter, free online tools, AI, artificial intelligence, data science, unit converter area, unit converter weight, length converter, weight converter, temperature converter"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://freeunitconvertor.com/" />

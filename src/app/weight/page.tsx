@@ -92,6 +92,17 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
           </div>
 
           {/* SEO Content Section */}
+          <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 my-8">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Weight Conversion Insights</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Convert kilograms, pounds, ounces, and grams for cooking, shipping, and health tracking. For body metrics and nutrition, explore the <a href="/fitness" className="text-green-600 dark:text-green-400 hover:underline">Fitness Converter</a> and <a href="/cooking" className="text-green-600 dark:text-green-400 hover:underline">Cooking Converter</a>. This page is often searched as <b>Unit converter weight</b>.
+            </p>
+            <p className="text-gray-600 dark:text-gray-300">
+              Data pipelines for nutrition and health apps may use <a href="/developer" className="text-green-600 dark:text-green-400 hover:underline">json to csv</a> and <a href="/developer" className="text-green-600 dark:text-green-400 hover:underline">base64 encoding</a>, common in <b>AI artificial Intelligence</b> and <b>Data Science</b>.
+            </p>
+          </section>
+
+          {/* SEO Content Section */}
           <section className="bg-gradient-to-r from-green-100 to-emerald-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
               About Weight Conversion
