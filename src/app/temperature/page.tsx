@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Calculator from "@/components/Calculator";
 import { temperatureUnits } from "@/utils/conversions";
 import AdBanner from "@/components/AdBanner";
+import StructuredData from "@/components/StructuredData";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Temperature Converter - Convert Celsius, Fahrenheit, Kelvin | Unit Converter",
@@ -17,7 +19,47 @@ export const metadata: Metadata = {
 export default function TemperaturePage({ searchParams }: { searchParams: { from?: string } }) {
   const defaultFromUnit = searchParams.from || "c";
 
+  const faqs = [
+    {
+      question: "How do I convert Celsius to Fahrenheit?",
+      answer: "To convert Celsius to Fahrenheit, multiply by 9/5 and add 32. Formula: °F = (°C × 9/5) + 32. For example, 25°C = (25 × 9/5) + 32 = 77°F."
+    },
+    {
+      question: "How do I convert Fahrenheit to Celsius?",
+      answer: "To convert Fahrenheit to Celsius, subtract 32 and multiply by 5/9. Formula: °C = (°F - 32) × 5/9. For example, 68°F = (68 - 32) × 5/9 = 20°C."
+    },
+    {
+      question: "What is absolute zero?",
+      answer: "Absolute zero is the lowest possible temperature, where all molecular motion stops. It's 0 Kelvin (-273.15°C or -459.67°F)."
+    },
+    {
+      question: "How do I convert Celsius to Kelvin?",
+      answer: "To convert Celsius to Kelvin, simply add 273.15. Formula: K = °C + 273.15. For example, 25°C = 25 + 273.15 = 298.15K."
+    },
+    {
+      question: "What temperature is room temperature?",
+      answer: "Room temperature is typically around 20-22°C (68-72°F). This is the comfortable temperature range for most indoor environments."
+    }
+  ];
+
   return (
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Temperature Converter - Free Online Unit Converter",
+              "url": "https://freeunitconvertor.com/temperature",
+              "applicationCategory": "Calculator",
+              "operatingSystem": "All",
+            }),
+          }}
+        />
+      </Head>
+      <StructuredData faqs={faqs} />
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
@@ -104,5 +146,6 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
         </main>
       </div>
     </div>
+    </>
   );
 }

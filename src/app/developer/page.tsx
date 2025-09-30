@@ -3,13 +3,26 @@
 import { useState } from 'react';
 import { tools } from '@/utils/tool';
 import DeveloperTools from '@/components/developerTools';
+import Head from 'next/head';
 
 export default function ToolSelector() {
   const [selectedToolIndex, setSelectedToolIndex] = useState(0);
   const selectedTool = tools[selectedToolIndex];
 
   return (
-    <div className="flex flex-1 min-h-screen flex-col md:flex-row">
+    <>
+      <Head>
+        <title>Developer Tools - Base64, JSON, URL, JWT, Number Base Converter | Free Online Tools</title>
+        <meta name="description" content="Free online developer tools including Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text to ASCII conversion." />
+        <meta name="keywords" content="developer tools, Base64 encoder, JSON formatter, URL encoder, JWT decoder, Unix timestamp, number base converter, ASCII converter, free online tools" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://freeunitconvertor.com/developer" />
+        <meta property="og:title" content="Developer Tools - Base64, JSON, URL, JWT Converter" />
+        <meta property="og:description" content="Free online developer tools for Base64, JSON, URL, JWT, and more. Essential utilities for developers." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://freeunitconvertor.com/developer" />
+      </Head>
+      <div className="flex flex-1 min-h-screen flex-col md:flex-row">
       <aside className="w-full md:w-64 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-y-auto mb-4 md:mb-0">
         <h1 className="text-2xl font-bold p-4 border-b border-gray-200 dark:border-gray-700">Developer Tools</h1>
         <ul>
@@ -36,6 +49,7 @@ export default function ToolSelector() {
           <DeveloperTools tool={selectedTool} />
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
