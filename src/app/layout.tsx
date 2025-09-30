@@ -36,10 +36,36 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="17b185c1-1414-4fe3-a9b3-0194aa14849c"
+          data-blockingmode="auto"
+          type="text/javascript"
+          strategy="beforeInteractive"
+        />
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3759958145886276"
           crossOrigin="anonymous"
           strategy="afterInteractive"
+        />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-YXYR0FKNSK"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-YXYR0FKNSK');
+            `,
+          }}
         />
         <Script
           id="schema-webapp"
