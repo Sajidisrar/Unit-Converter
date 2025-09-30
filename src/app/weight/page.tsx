@@ -34,7 +34,7 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
     },
     {
       question: "What is a stone in weight measurement?",
-      answer: "A stone is a British imperial unit of weight equal to 14 pounds. It's commonly used in the UK and Ireland for measuring body weight."
+      answer: "A stone is a British imperial unit of weight equal to 14 pounds. It&apos;s commonly used in the UK and Ireland for measuring body weight."
     },
     {
       question: "How do I convert grams to ounces?",

@@ -46,7 +46,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                 About Cooking Conversions
               </h2>
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
-                Cooking conversions are essential for following recipes from different countries and cultures. Whether you're baking a cake, preparing a traditional dish, or scaling recipes up or down, accurate measurements ensure consistent results.
+                Cooking conversions are essential for following recipes from different countries and cultures. Whether you&apos;re baking a cake, preparing a traditional dish, or scaling recipes up or down, accurate measurements ensure consistent results.
               </p>
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
                 For example, when following European recipes, you might need to convert grams to cups for flour. American recipes often use cups and tablespoons, while European recipes prefer metric measurements. Professional chefs often use weight measurements for precision, while home cooks typically use volume measurements.
@@ -105,7 +105,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                   </div>
                   <div>
                     <dt className="font-semibold text-gray-900 dark:text-white">
-                      What's the difference between US and metric cups?
+                      What&apos;s the difference between US and metric cups?
                     </dt>
                     <dd className="text-gray-600 dark:text-gray-300">
                       A US cup is 240ml, while a metric cup is 250ml. Our converter uses US measurements. For precise baking, always use the same measurement system throughout your recipe.

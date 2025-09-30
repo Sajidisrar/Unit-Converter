@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Our Mission</h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Welcome to our comprehensive unit converter platform! Our mission is to provide a simple, fast, and reliable platform for all your unit conversion needs. Whether you're a student, professional, developer, or everyday user, our site helps you convert between various units and access essential developer tools, all in one convenient place.
+              Welcome to our comprehensive unit converter platform! Our mission is to provide a simple, fast, and reliable platform for all your unit conversion needs. Whether you&apos;re a student, professional, developer, or everyday user, our site helps you convert between various units and access essential developer tools, all in one convenient place.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               We believe that accurate unit conversions should be accessible to everyone, regardless of their technical background or location. Our platform serves users worldwide, from students working on science projects to professionals in engineering, cooking, healthcare, and technology.

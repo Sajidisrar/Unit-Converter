@@ -30,7 +30,7 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
     },
     {
       question: "What is absolute zero?",
-      answer: "Absolute zero is the lowest possible temperature, where all molecular motion stops. It's 0 Kelvin (-273.15°C or -459.67°F)."
+      answer: "Absolute zero is the lowest possible temperature, where all molecular motion stops. It&apos;s 0 Kelvin (-273.15°C or -459.67°F)."
     },
     {
       question: "How do I convert Celsius to Kelvin?",
