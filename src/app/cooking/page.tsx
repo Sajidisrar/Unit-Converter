@@ -40,6 +40,30 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                 <AdBanner position="inline" />
               </div>
             </section>
+            {/* SEO Content Section */}
+            <section className="bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+                About Cooking Conversions
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
+                Cooking conversions are essential for following recipes from different countries and cultures. Whether you&apos;re baking a cake, preparing a traditional dish, or scaling recipes up or down, accurate measurements ensure consistent results.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
+                For example, when following European recipes, you might need to convert grams to cups for flour. American recipes often use cups and tablespoons, while European recipes prefer metric measurements. Professional chefs often use weight measurements for precision, while home cooks typically use volume measurements.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="/weight" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
+                  Weight Converter
+                </a>
+                <a href="/temperature" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
+                  Temperature Converter
+                </a>
+                <a href="/fitness" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
+                  Fitness Converter
+                </a>
+              </div>
+            </section>
+
             <section>
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
                 <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
@@ -69,6 +93,22 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                     </dt>
                     <dd className="text-gray-600 dark:text-gray-300">
                       Kitchen conversions provide approximate values suitable for most recipes. For precise baking or cooking, use a kitchen scale.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900 dark:text-white">
+                      How do I convert tablespoons to grams?
+                    </dt>
+                    <dd className="text-gray-600 dark:text-gray-300">
+                      The conversion depends on the ingredient. For water, 1 tablespoon = 15 grams. For flour, 1 tablespoon = 8-9 grams. Use our converter for accurate measurements.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900 dark:text-white">
+                      What&apos;s the difference between US and metric cups?
+                    </dt>
+                    <dd className="text-gray-600 dark:text-gray-300">
+                      A US cup is 240ml, while a metric cup is 250ml. Our converter uses US measurements. For precise baking, always use the same measurement system throughout your recipe.
                     </dd>
                   </div>
                 </dl>

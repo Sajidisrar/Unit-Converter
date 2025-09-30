@@ -245,6 +245,110 @@ export default function Home() {
             </p>
           </section>
 
+          {/* SEO Content Section */}
+          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+              Popular Unit Conversion Categories
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Length & Distance</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert between meters, feet, inches, yards, kilometers, miles, and nautical miles. Perfect for construction, travel planning, and academic work.
+                </p>
+                <a href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
+                  Try Length Converter →
+                </a>
+              </div>
+              
+              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Weight & Mass</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert kilograms, pounds, ounces, grams, tons, and stones. Essential for cooking, shipping, and health monitoring.
+                </p>
+                <a href="/weight" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">
+                  Try Weight Converter →
+                </a>
+              </div>
+              
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Temperature</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert between Celsius, Fahrenheit, and Kelvin. Useful for weather, cooking, and scientific calculations.
+                </p>
+                <a href="/temperature" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">
+                  Try Temperature Converter →
+                </a>
+              </div>
+              
+              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Area & Land</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert square meters, square feet, acres, hectares, and square yards. Ideal for real estate and agriculture.
+                </p>
+                <a href="/area" className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-medium">
+                  Try Area Converter →
+                </a>
+              </div>
+              
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Speed & Velocity</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert MPH, KPH, knots, meters per second, and feet per second. Great for automotive and aviation.
+                </p>
+                <a href="/speed" className="text-red-600 dark:text-red-400 hover:underline text-sm font-medium">
+                  Try Speed Converter →
+                </a>
+              </div>
+              
+              <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Cooking & Kitchen</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                  Convert cups, tablespoons, teaspoons, grams, ounces, and milliliters. Perfect for baking and cooking.
+                </p>
+                <a href="/cooking" className="text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium">
+                  Try Cooking Converter →
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Developer Tools Section */}
+          <section className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl shadow-lg p-8 mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+              Developer Tools & Utilities
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-center mb-8">
+              Essential tools for developers, programmers, and technical professionals. All tools are free, fast, and work directly in your browser.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Data Encoding & Decoding</h3>
+                <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
+                  <li>• Base64 Encoder/Decoder</li>
+                  <li>• URL Encoder/Decoder</li>
+                  <li>• JWT Token Decoder</li>
+                  <li>• Text to ASCII Converter</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Data Formatting</h3>
+                <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
+                  <li>• JSON Formatter/Minifier</li>
+                  <li>• Unix Timestamp Converter</li>
+                  <li>• Number Base Converter</li>
+                  <li>• Text Processing Tools</li>
+                </ul>
+              </div>
+            </div>
+            <div className="text-center mt-6">
+              <a href="/developer" className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                Access All Developer Tools →
+              </a>
+            </div>
+          </section>
+
         </main>
       </div>
     </div>

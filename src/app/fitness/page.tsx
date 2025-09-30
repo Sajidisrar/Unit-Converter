@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { fitnessWeightUnits, heightUnits } from "@/utils/conversions";
+import { heightUnits } from "@/utils/conversions";
 import Calculator from "@/components/Calculator";
 import AdBanner from "@/components/AdBanner";
 
@@ -33,7 +33,7 @@ const faqs = [
   {
     question: "What is BMI and why is it important?",
     answer:
-      "BMI (Body Mass Index) is a measure that uses your height and weight to estimate if you have a healthy body weight. It's widely used to assess health risks related to underweight and overweight.",
+      "BMI (Body Mass Index) is a measure that uses your height and weight to estimate if you have a healthy body weight. It&apos;s widely used to assess health risks related to underweight and overweight.",
   },
   {
     question: "How do I convert my weight between kilograms and pounds?",
