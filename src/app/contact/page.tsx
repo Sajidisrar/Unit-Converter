@@ -45,6 +45,21 @@ export default function ContactPage() {
             </div>
           </form>
         </main>
+
+        <section className="max-w-4xl mx-auto mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Why Contact Free Unit Converter?
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+            Our free online unit converter and developer tools are used worldwide by students, engineers, programmers, teachers, real estate professionals, and data scientists. Whether you need to convert <b>meters to feet</b>, <b>kilograms to pounds</b>, <b>Celsius to Fahrenheit</b>, <b>acres to square meters</b>, or format <b>JSON to CSV</b> for data analysis, we are here to support you.
+          </p>
+          <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+            If you face issues such as tools not loading, want to request a new feature (e.g., a <b>currency converter</b> or <b>file format converter</b>), or need help with developer utilities like <b>Base64 encoding</b>, <b>Unix timestamp conversion</b>, or <b>JWT decoding</b>, please reach out to us. We value user feedback and constantly improve based on your suggestions.
+          </p>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            For quick help, explore our <a href="/faq" className="text-red-600 dark:text-red-400 hover:underline">Frequently Asked Questions</a>. You can also connect with us via email for specific queries. We respond to questions about unit conversions, developer tools, and site improvements as quickly as possible.
+          </p>
+        </section>
       </div>
       <script
         type="application/ld+json"
@@ -62,5 +77,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
-
