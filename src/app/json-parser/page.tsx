@@ -20,7 +20,7 @@ export default function JsonParser() {
   });
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
-  const calculateDepth = (obj: unknown, currentDepth = 0): number => {
+  const calculateDepth = useCallback((obj: unknown, currentDepth = 0): number => {
     if (typeof obj !== 'object' || obj === null) return currentDepth;
     
     let maxDepth = currentDepth;
@@ -34,7 +34,7 @@ export default function JsonParser() {
       }
     }
     return maxDepth;
-  };
+  }, []);
 
   const countElements = (obj: unknown): { keys: number; arrays: number; objects: number } => {
     let keys = 0;
@@ -86,7 +86,7 @@ export default function JsonParser() {
       setParsedData(null);
       setStats({ size: 0, keys: 0, depth: 0, arrays: 0, objects: 0 });
     }
-  }, [jsonInput]);
+  }, [jsonInput, calculateDepth]);
 
   const toggleNode = (path: string) => {
     const newExpanded = new Set(expandedNodes);
@@ -161,7 +161,7 @@ export default function JsonParser() {
               {entries.map(([key, value]) => (
                 <div key={`${path}.${key}`} className="mb-2">
                   <div className="text-sm">
-                    <span className="text-orange-600 dark:text-orange-400 font-medium">"{key}"</span>
+                    <span className="text-orange-600 dark:text-orange-400 font-medium">&quot;{key}&quot;</span>
                     <span className="text-gray-500 mx-2">:</span>
                   </div>
                   {renderJsonTree(value, `${path}.${key}`, depth + 1)}
