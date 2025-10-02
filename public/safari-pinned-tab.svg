@@ -1,0 +1,8 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g transform="translate(0,16) scale(0.1,-0.1)" fill="#000000" stroke="none">
+    <path d="M20 120 l0 -40 15 0 15 0 0 40 0 40 -15 0 -15 0 0 -40z"/>
+    <path d="M60 130 l0 -50 15 0 15 0 0 50 0 50 -15 0 -15 0 0 -50z"/>
+    <path d="M100 140 l0 -60 15 0 15 0 0 60 0 60 -15 0 -15 0 0 -60z"/>
+    <circle cx="140" cy="40" r="8" fill="#000000"/>
+  </g>
+</svg>
