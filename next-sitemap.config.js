@@ -45,7 +45,8 @@ module.exports = {
         path.includes('/jwt-decoder') || path.includes('/xml-formatter') ||
         path.includes('/json-compare') || path.includes('/xml-compare') ||
         path.includes('/text-compare') || path.includes('/color-converter') ||
-        path.includes('/json-prettier')) {
+        path.includes('/json-prettier') || path.includes('/json-parser') ||
+        path.includes('/xml-parser')) {
       return {
         loc: path,
         changefreq: 'weekly',

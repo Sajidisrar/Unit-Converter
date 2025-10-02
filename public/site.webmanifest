@@ -1,0 +1,24 @@
+{
+  "name": "Free Unit Converter Tools",
+  "short_name": "Unit Converter",
+  "description": "Convert between different units of measurement instantly with our free online unit converters.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "categories": ["utilities", "productivity", "education"]
+}
