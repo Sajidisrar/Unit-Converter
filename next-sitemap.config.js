@@ -29,7 +29,9 @@ module.exports = {
       }
     }
     
-    if (path.includes('/length') || path.includes('/weight') || path.includes('/temperature')) {
+    if (path.includes('/length') || path.includes('/weight') || path.includes('/temperature') || 
+        path.includes('/area') || path.includes('/speed') || path.includes('/cooking') || 
+        path.includes('/fuel-economy') || path.includes('/fitness')) {
       return {
         loc: path,
         changefreq: 'weekly',
@@ -38,7 +40,12 @@ module.exports = {
       }
     }
     
-    if (path.includes('/developer')) {
+    if (path.includes('/developer') || path.includes('/json-to-csv') || 
+        path.includes('/base64-encoder-decoder') || path.includes('/url-encoder-decoder') ||
+        path.includes('/jwt-decoder') || path.includes('/xml-formatter') ||
+        path.includes('/json-compare') || path.includes('/xml-compare') ||
+        path.includes('/text-compare') || path.includes('/color-converter') ||
+        path.includes('/json-prettier')) {
       return {
         loc: path,
         changefreq: 'weekly',
