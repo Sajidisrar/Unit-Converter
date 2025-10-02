@@ -6,14 +6,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Free Online Unit Converter & Developer Tools</title>
+        <title>Free Online Unit Converter & Developer Tools | Length, Weight, JSON, Base64 & More</title>
         <meta
           name="description"
-          content="Free online developer tools and unit converters. Convert length, weight, temperature, area, speed, and cooking measures instantly. Includes Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, Text to ASCII, JSON to CSV, Base64 encoding, and more for developers, AI, and Data Science."
+          content="Free online unit converters and developer tools. Instantly convert length, weight, temperature, area, speed, cooking, and more. Includes Base64 Encoder/Decoder, JSON Formatter, JSON to CSV, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, ASCII Converter, and AI & Data Science utilities."
         />
         <meta
           name="keywords"
-          content="developer tools, Base64 encoder, Base64 encoding, JSON formatter, JSON to CSV, URL encoder, JWT decoder, Unix timestamp, number base converter, ASCII converter, free online tools, AI, artificial intelligence, data science, unit converter area, unit converter weight, length converter, weight converter, temperature converter"
+          content="free online unit converter, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, developer tools, Base64 encoder decoder, Base64 encoding, JSON formatter, JSON to CSV converter, URL encoder decoder, JWT decoder, Unix timestamp converter, number base converter, ASCII converter, AI tools, artificial intelligence, data science tools"
         />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,10 +54,10 @@ export default function Home() {
         {/* Hero Section */}
         <header className="text-center mb-12">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            Free Online Unit Converter Tools
+            Free Online Unit Converters & Developer Tools
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Instantly convert units and access powerful developer tools with our free online converters. Fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, cooking, and more, plus Base64, JSON, URL, JWT, and Number Base converters for developers.
+            Instantly convert units and use powerful developer utilities with our free online tools. Perform fast, accurate, and user-friendly conversions for length, weight, temperature, area, speed, cooking, and more. Developers can also access JSON Formatter, Base64 Encoder/Decoder, URL Encoder/Decoder, JWT Decoder, Unix Timestamp Converter, and Number Base Converter to streamline coding and data science tasks.
           </p>
         </header>
 
@@ -72,19 +72,87 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 gap-6 mb-12">
               {/* Developer Tools */}
-              <a href="/developer" aria-label="Developer Tools" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+                <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                    Quick access to developer tools: Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text &#8596; ASCII.
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    Quick access to developer tools for encoding, formatting, and data conversion
                   </p>
                 </div>
-              </a>
+                
+                {/* Most Frequently Used Tools - Top Row */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">Most Popular Tools</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <a href="/base64-encoder-decoder" className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
+                      <div className="text-2xl mb-1">🔐</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Base64</div>
+                    </a>
+                    
+                    <a href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
+                      <div className="text-2xl mb-1">📊</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON to CSV</div>
+                    </a>
+                    
+                    <a href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-pink-200 dark:border-pink-800">
+                      <div className="text-2xl mb-1">🎨</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Color Picker</div>
+                    </a>
+                    
+                    <a href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
+                      <div className="text-2xl mb-1">🌐</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">URL Encoder</div>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Additional Developer Tools */}
+                <div>
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">More Developer Tools</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                    <a href="/json-prettier" className="bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">✨</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Pretty</div>
+                    </a>
+                    
+                    <a href="/jwt-decoder" className="bg-yellow-50 dark:bg-yellow-900/20 hover:bg-yellow-100 dark:hover:bg-yellow-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🔑</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JWT Decoder</div>
+                    </a>
+                    
+                    <a href="/xml-formatter" className="bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">📄</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Format</div>
+                    </a>
+                    
+                    <a href="/json-compare" className="bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🔍</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Diff</div>
+                    </a>
+                    
+                    <a href="/xml-compare" className="bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">⚖️</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Diff</div>
+                    </a>
+                    
+                    <a href="/text-compare" className="bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">📝</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Text Diff</div>
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="text-center mt-4">
+                  <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium">
+                    View All Tools →
+                  </a>
+                </div>
+              </div>
             </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -209,7 +277,7 @@ export default function Home() {
           {/* Features Section */}
           <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Why Choose Our Unit Converters?
+              Why Use Our Free Online Unit Converters?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
@@ -245,9 +313,9 @@ export default function Home() {
           <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">What is a Unit Converter?</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              A unit converter is a tool that allows you to quickly and accurately transform values from one measurement unit to another across a wide variety of categories. On this site, you can convert between units for <b>Length</b> (meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Volume</b> (liters to gallons), <b>Speed</b> (MPH to KPH), <b>Cooking</b> (cups to grams), and <b>Currency</b> (USD to EUR). 
+              A unit converter is a free online tool that helps you quickly transform values from one measurement system to another. With our converters, you can easily switch between units of <b>Length</b> (meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Speed</b> (MPH to KPH), and <b>Cooking</b> (cups to grams).
               <br /><br />
-              For developers and technical users, we also offer handy <b>Developer Tools</b> including Base64 Encoder/Decoder, JSON Formatter/Minifier, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text to ASCII conversion. These tools are essential for software development, API testing, data processing, and debugging, providing fast and accurate results for technical workflows.
+              In addition, we provide a full suite of <b>Developer Tools</b> such as Base64 Encoder/Decoder, JSON Formatter/Minifier, JSON to CSV Converter, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text to ASCII conversion. These tools are designed for programmers, AI practitioners, and data science professionals who need fast and accurate online utilities.
             </p>
           </section>
 
@@ -319,41 +387,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Developer Tools Section */}
-          <section className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl shadow-lg p-8 mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Developer Tools & Utilities
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-center mb-8">
-              Essential tools for developers, programmers, and technical professionals. All tools are free, fast, and work directly in your browser.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Data Encoding & Decoding</h3>
-                <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
-                  <li>• Base64 Encoder/Decoder</li>
-                  <li>• URL Encoder/Decoder</li>
-                  <li>• JWT Token Decoder</li>
-                  <li>• Text to ASCII Converter</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Data Formatting</h3>
-                <ul className="text-gray-600 dark:text-gray-300 text-sm space-y-2">
-                  <li>• JSON Formatter/Minifier</li>
-                  <li>• Unix Timestamp Converter</li>
-                  <li>• Number Base Converter</li>
-                  <li>• Text Processing Tools</li>
-                </ul>
-              </div>
-            </div>
-            <div className="text-center mt-6">
-              <a href="/developer" className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
-                Access All Developer Tools →
-              </a>
-            </div>
-          </section>
 
         </main>
       </div>

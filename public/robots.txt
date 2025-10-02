@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://freeunitconvertor.com
+Host: https://freeunitconvertor.com/
 
 # Sitemaps
 Sitemap: https://freeunitconvertor.com/sitemap.xml

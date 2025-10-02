@@ -23,7 +23,7 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
           // @ts-expect-error adsbygoogle is not defined on Window
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           hasPushedRef.current = true;
-        } catch (e) {
+        } catch {
           // Swallow and retry on next observer event
         }
       }

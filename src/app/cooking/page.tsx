@@ -29,6 +29,9 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
+            <p className="text-lg text-gray-600 dark:text-gray-300 text-center mt-4">
+              Convert common cooking measurements like <b>cups to grams</b>, <b>tablespoons to ounces</b>, <b>grams to teaspoons</b>, and <b>cups to milliliters</b>. This cooking unit converter is designed for bakers, chefs, and home cooks who need accurate conversions for recipes from around the world.
+            </p>
             <section className="mb-6">
               <Calculator
                 title="Cooking Unit Converter"
@@ -47,7 +50,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                 Convert cups, tablespoons, teaspoons, grams, and ounces for baking and meal prep. Pair with the <a href="/weight" className="text-orange-600 dark:text-orange-400 hover:underline">Unit converter weight</a> for ingredient weight tracking and the <a href="/temperature" className="text-orange-600 dark:text-orange-400 hover:underline">Temperature Converter</a> for oven settings.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                Recipe systems often transform datasets using <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">json to csv</a> and store images or attachments via <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">base64 encoding</a>, especially in <b>AI artificial Intelligence</b> nutrition analysis and <b>Data Science</b>.
+                Recipe systems and nutrition apps often require unit conversions like <b>grams to cups</b>, <b>ml to tablespoons</b>, and <b>ounces to grams</b> for accurate calculations. Developers working on food-related apps may also use <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">JSON to CSV</a> for recipe datasets and <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">Base64 encoding</a> for storing recipe images, especially in <b>AI artificial intelligence</b> nutrition analysis and <b>data science pipelines</b>.
               </p>
             </section>
             {/* SEO Content Section */}
@@ -59,7 +62,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                 Cooking conversions are essential for following recipes from different countries and cultures. Whether you&apos;re baking a cake, preparing a traditional dish, or scaling recipes up or down, accurate measurements ensure consistent results.
               </p>
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
-                For example, when following European recipes, you might need to convert grams to cups for flour. American recipes often use cups and tablespoons, while European recipes prefer metric measurements. Professional chefs often use weight measurements for precision, while home cooks typically use volume measurements.
+                For example, when following European recipes, you might need to convert <b>grams to cups</b> for flour or <b>milliliters to cups</b> for liquids. American recipes often use cups and tablespoons, while European recipes prefer metric measurements like grams and liters. Professional chefs rely on weight-based measurements such as <b>grams to ounces</b> for precision, while home cooks often search for quick conversions like <b>cups to grams for sugar</b> or <b>tablespoons to ml</b>.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="/weight" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
@@ -119,6 +122,14 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
                     </dt>
                     <dd className="text-gray-600 dark:text-gray-300">
                       A US cup is 240ml, while a metric cup is 250ml. Our converter uses US measurements. For precise baking, always use the same measurement system throughout your recipe.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900 dark:text-white">
+                      How many grams are in a cup of sugar or flour?
+                    </dt>
+                    <dd className="text-gray-600 dark:text-gray-300">
+                      A cup of sugar is about 200 grams, while a cup of all-purpose flour is about 120 grams. The exact conversion depends on the ingredient density, so our cooking unit converter ensures accuracy.
                     </dd>
                   </div>
                 </dl>
