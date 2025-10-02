@@ -28,7 +28,7 @@ export default function XmlParser() {
   });
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
-  const parseXmlToNode = (element: Element, path = ''): XmlNode => {
+  const parseXmlToNode = useCallback((element: Element, path = ''): XmlNode => {
     const attributes: Record<string, string> = {};
     for (let i = 0; i < element.attributes.length; i++) {
       const attr = element.attributes[i];
@@ -57,9 +57,9 @@ export default function XmlParser() {
       textContent,
       path: path || element.nodeName
     };
-  };
+  }, []);
 
-  const calculateStats = (node: XmlNode, depth = 0): { elements: number; attributes: number; maxDepth: number; textNodes: number } => {
+  const calculateStats = useCallback((node: XmlNode, depth = 0): { elements: number; attributes: number; maxDepth: number; textNodes: number } => {
     let elements = 1;
     let attributes = Object.keys(node.attributes).length;
     let maxDepth = depth;
@@ -74,7 +74,7 @@ export default function XmlParser() {
     }
 
     return { elements, attributes, maxDepth, textNodes };
-  };
+  }, []);
 
   const parseXml = useCallback(() => {
     if (!xmlInput.trim()) {
@@ -118,7 +118,7 @@ export default function XmlParser() {
       setParsedData(null);
       setStats({ size: 0, elements: 0, attributes: 0, depth: 0, textNodes: 0 });
     }
-  }, [xmlInput]);
+  }, [xmlInput, parseXmlToNode, calculateStats]);
 
   const toggleNode = (path: string) => {
     const newExpanded = new Set(expandedNodes);
