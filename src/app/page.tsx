@@ -144,6 +144,16 @@ export default function Home() {
                       <div className="text-xl mb-1">📝</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Text Diff</div>
                     </a>
+                    
+                    <a href="/json-parser" className="bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 dark:hover:bg-cyan-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🔧</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Parser</div>
+                    </a>
+                    
+                    <a href="/xml-parser" className="bg-lime-50 dark:bg-lime-900/20 hover:bg-lime-100 dark:hover:bg-lime-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🛠️</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Parser</div>
+                    </a>
                   </div>
                 </div>
                 
@@ -167,10 +177,10 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Length Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/length?from=m" className="text-blue-600 dark:text-blue-400 hover:underline">Meters</a>,{" "}
-                    <a href="/length?from=ft" className="text-blue-600 dark:text-blue-400 hover:underline">Feet</a>,{" "}
-                    <a href="/length?from=in" className="text-blue-600 dark:text-blue-400 hover:underline">Inches</a>,{" "}
-                    <a href="/length?from=mi" className="text-blue-600 dark:text-blue-400 hover:underline">Miles</a>
+                    <span className="text-blue-600 dark:text-blue-400">Meters</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Feet</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Inches</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Miles</span>
                   </p>
                 </div>
               </a>
@@ -185,10 +195,10 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Weight Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/weight?from=kg" className="text-blue-600 dark:text-blue-400 hover:underline">Kilograms</a>,{" "}
-                    <a href="/weight?from=lb" className="text-blue-600 dark:text-blue-400 hover:underline">Pounds</a>,{" "}
-                    <a href="/weight?from=g" className="text-blue-600 dark:text-blue-400 hover:underline">Grams</a>,{" "}
-                    <a href="/weight?from=oz" className="text-blue-600 dark:text-blue-400 hover:underline">Ounces</a>
+                    <span className="text-blue-600 dark:text-blue-400">Kilograms</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Pounds</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Grams</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Ounces</span>
                   </p>
                 </div>
               </a>
@@ -203,9 +213,9 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Temperature Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/temperature?from=c" className="text-blue-600 dark:text-blue-400 hover:underline">Celsius</a>,{" "}
-                    <a href="/temperature?from=f" className="text-blue-600 dark:text-blue-400 hover:underline">Fahrenheit</a>,{" "}
-                    <a href="/temperature?from=k" className="text-blue-600 dark:text-blue-400 hover:underline">Kelvin</a>
+                    <span className="text-blue-600 dark:text-blue-400">Celsius</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Fahrenheit</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Kelvin</span>
                   </p>
                 </div>
               </a>
@@ -220,9 +230,9 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Area Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/area?from=m2" className="text-blue-600 dark:text-blue-400 hover:underline">Square meters</a>,{" "}
-                    <a href="/area?from=ac" className="text-blue-600 dark:text-blue-400 hover:underline">acres</a>,{" "}
-                    <a href="/area?from=ha" className="text-blue-600 dark:text-blue-400 hover:underline">hectares</a>
+                    <span className="text-blue-600 dark:text-blue-400">Square meters</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">acres</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">hectares</span>
                   </p>
                 </div>
               </a>
@@ -243,10 +253,10 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Speed Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/speed?from=mph" className="text-blue-600 dark:text-blue-400 hover:underline">MPH</a>,{" "}
-                    <a href="/speed?from=km/h" className="text-blue-600 dark:text-blue-400 hover:underline">KPH</a>,{" "}
-                    <a href="/speed?from=knot" className="text-blue-600 dark:text-blue-400 hover:underline">Knots</a>,{" "}
-                    <a href="/speed?from=ms" className="text-blue-600 dark:text-blue-400 hover:underline">m/s</a>
+                    <span className="text-blue-600 dark:text-blue-400">MPH</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">KPH</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Knots</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">m/s</span>
                   </p>
                 </div>
               </a>
@@ -261,10 +271,10 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Cooking Converter</h3>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <a href="/cooking?from=cup" className="text-blue-600 dark:text-blue-400 hover:underline">Cups</a>,{" "}
-                    <a href="/cooking?from=tbsp" className="text-blue-600 dark:text-blue-400 hover:underline">Tablespoons</a>,{" "}
-                    <a href="/cooking?from=tsp" className="text-blue-600 dark:text-blue-400 hover:underline">Teaspoons</a>,{" "}
-                    <a href="/cooking?from=g" className="text-blue-600 dark:text-blue-400 hover:underline">Grams</a>
+                    <span className="text-blue-600 dark:text-blue-400">Cups</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Tablespoons</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Teaspoons</span>,{" "}
+                    <span className="text-blue-600 dark:text-blue-400">Grams</span>
                   </p>
                 </div>
               </a>

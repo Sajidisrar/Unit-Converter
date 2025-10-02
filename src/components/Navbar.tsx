@@ -35,35 +35,35 @@ export default function Navbar() {
               Home
             </Link>
             
-            {/* Most Used Tools - Quick Access */}
-            <div className="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-600 pl-6">
+            {/* Most Frequently Used Tools - Quick Access */}
+            <div className="flex items-center space-x-3 border-l border-gray-300 dark:border-gray-600 pl-6">
+              <Link 
+                href="/length" 
+                className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors font-medium"
+                title="Length Converter - Most Popular"
+              >
+                📏 Length
+              </Link>
+              <Link 
+                href="/weight" 
+                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors font-medium"
+                title="Weight Converter - High Usage"
+              >
+                ⚖️ Weight
+              </Link>
               <Link 
                 href="/base64-encoder-decoder" 
-                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
-                title="Base64 Encoder/Decoder"
+                className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1.5 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors font-medium"
+                title="Base64 Encoder/Decoder - Developer Favorite"
               >
                 🔐 Base64
               </Link>
               <Link 
-                href="/json-to-csv" 
-                className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-                title="JSON to CSV Converter"
+                href="/temperature" 
+                className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1.5 rounded-full hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors font-medium"
+                title="Temperature Converter - Frequently Used"
               >
-                📊 JSON→CSV
-              </Link>
-              <Link 
-                href="/color-converter" 
-                className="text-xs bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-2 py-1 rounded-full hover:bg-pink-200 dark:hover:bg-pink-900/50 transition-colors"
-                title="Color Converter"
-              >
-                🎨 Colors
-              </Link>
-              <Link 
-                href="/length" 
-                className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-2 py-1 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
-                title="Length Converter"
-              >
-                📏 Length
+                🌡️ Temp
               </Link>
             </div>
             <div className="relative group">
@@ -163,37 +163,37 @@ export default function Navbar() {
                 Home
               </Link>
               
-              {/* Quick Access Tools for Mobile */}
+              {/* Most Frequently Used Tools for Mobile */}
               <div className="py-2 border-t border-gray-200 dark:border-gray-700 mt-2">
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Quick Access</div>
+                <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Most Used Tools</div>
                 <div className="grid grid-cols-2 gap-2">
                   <Link 
+                    href="/length" 
+                    className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-lg text-center font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    📏 Length
+                  </Link>
+                  <Link 
+                    href="/weight" 
+                    className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg text-center font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    ⚖️ Weight
+                  </Link>
+                  <Link 
                     href="/base64-encoder-decoder" 
-                    className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg text-center"
+                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     🔐 Base64
                   </Link>
                   <Link 
-                    href="/json-to-csv" 
-                    className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-lg text-center"
+                    href="/temperature" 
+                    className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-lg text-center font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    📊 JSON→CSV
-                  </Link>
-                  <Link 
-                    href="/color-converter" 
-                    className="text-xs bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-3 py-2 rounded-lg text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    🎨 Colors
-                  </Link>
-                  <Link 
-                    href="/length" 
-                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    📏 Length
+                    🌡️ Temp
                   </Link>
                 </div>
               </div>

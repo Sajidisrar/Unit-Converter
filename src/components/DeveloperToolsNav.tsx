@@ -10,7 +10,9 @@ const developerTools = [
   { name: 'XML Compare', url: '/xml-compare', icon: '⚖️' },
   { name: 'Text Compare', url: '/text-compare', icon: '📝' },
   { name: 'Color Converter', url: '/color-converter', icon: '🎨' },
-  { name: 'JSON Prettier', url: '/json-prettier', icon: '✨' }
+  { name: 'JSON Prettier', url: '/json-prettier', icon: '✨' },
+  { name: 'JSON Parser', url: '/json-parser', icon: '🔧' },
+  { name: 'XML Parser', url: '/xml-parser', icon: '🛠️' }
 ];
 
 interface DeveloperToolsNavProps {

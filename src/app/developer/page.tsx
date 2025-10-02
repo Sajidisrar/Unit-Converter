@@ -51,6 +51,30 @@ const developerTools = [
     description: 'Compare text documents by lines, words, or characters',
     url: '/text-compare',
     icon: '📝'
+  },
+  {
+    title: 'Color Converter',
+    description: 'Convert colors between HEX, RGB, HSL, HSV, CMYK formats with a color picker',
+    url: '/color-converter',
+    icon: '🎨'
+  },
+  {
+    title: 'JSON Prettier',
+    description: 'Format and visualize JSON data with an interactive expand/collapse tree structure',
+    url: '/json-prettier',
+    icon: '✨'
+  },
+  {
+    title: 'JSON Parser',
+    description: 'Parse, validate, and analyze JSON data with interactive tree view and statistics',
+    url: '/json-parser',
+    icon: '🔧'
+  },
+  {
+    title: 'XML Parser',
+    description: 'Parse, validate, and analyze XML data with interactive tree view and element analysis',
+    url: '/xml-parser',
+    icon: '🛠️'
   }
 ];
 
