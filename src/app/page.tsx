@@ -6,14 +6,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Free Online Unit Converter & Developer Tools | Length, Weight, JSON, Base64 & More</title>
+        <title>Free Online Unit Converter | Length, Weight, Temperature, Area, Speed & Cooking Tools</title>
         <meta
           name="description"
-          content="Free online unit converters and developer tools. Instantly convert length, weight, temperature, area, speed, cooking, and more. Includes Base64 Encoder/Decoder, JSON Formatter, JSON to CSV, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, ASCII Converter, and AI & Data Science utilities."
+          content="Use our free online unit converters for length, weight, temperature, area, speed, and cooking. Convert values instantly with accurate results. Also includes developer tools like JSON Formatter, Base64 Encoder, URL Encoder, JWT Decoder, and more."
         />
         <meta
           name="keywords"
-          content="free online unit converter, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, developer tools, Base64 encoder decoder, Base64 encoding, JSON formatter, JSON to CSV converter, URL encoder decoder, JWT decoder, Unix timestamp converter, number base converter, ASCII converter, AI tools, artificial intelligence, data science tools"
+          content="unit converter, free unit converter, length converter, weight converter, temperature converter, area converter, cooking converter, speed converter, online tools, developer tools, JSON formatter, Base64 encoder, URL encoder, JWT decoder"
         />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,6 +37,41 @@ export default function Home() {
               "@type": "BreadcrumbList",
               "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeunitconvertor.com/" }
+              ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is an online unit converter?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "An online unit converter lets you quickly change values between measurement systems such as length, weight, temperature, area, speed, and cooking units."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is this unit converter free?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, all our converters are completely free to use without any registration required."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What developer tools are available?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We provide free developer tools including JSON Formatter, JSON to CSV Converter, Base64 Encoder/Decoder, URL Encoder/Decoder, JWT Decoder, Unix Timestamp Converter, and Number Base Converter."
+                  }
+                }
               ]
             })
           }}
@@ -398,6 +433,26 @@ export default function Home() {
           </section>
 
 
+        {/* FAQ Section for Engagement */}
+        <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6 text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
+            <div>
+              <h3 className="font-medium">What can I convert with this unit converter?</h3>
+              <p>You can convert length, weight, temperature, area, speed, and cooking units. Our converters are designed to be fast and accurate.</p>
+            </div>
+            <div>
+              <h3 className="font-medium">Do I need to install software to use it?</h3>
+              <p>No, all converters run directly in your browser. Nothing to install or download.</p>
+            </div>
+            <div>
+              <h3 className="font-medium">Are developer tools included?</h3>
+              <p>Yes, we provide JSON, XML, Base64, URL, and JWT tools for developers and data scientists, accessible online for free.</p>
+            </div>
+          </div>
+        </section>
         </main>
       </div>
     </div>
