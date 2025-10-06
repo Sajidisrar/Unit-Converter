@@ -12,7 +12,10 @@ const developerTools = [
   { name: 'Color Converter', url: '/color-converter', icon: '🎨' },
   { name: 'JSON Prettier', url: '/json-prettier', icon: '✨' },
   { name: 'JSON Parser', url: '/json-parser', icon: '🔧' },
-  { name: 'XML Parser', url: '/xml-parser', icon: '🛠️' }
+  { name: 'XML Parser', url: '/xml-parser', icon: '🛠️' },
+  { name: 'AI Cheat Sheet', url: '/ai-cheat-sheet', icon: '🤖' },
+  { name: 'Regex Validator', url: '/regex-validator', icon: '🔍' },
+  { name: 'Prompt Engineering', url: '/prompt-engineering', icon: '💬' }
 ];
 
 interface DeveloperToolsNavProps {

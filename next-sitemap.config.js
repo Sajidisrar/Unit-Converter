@@ -46,7 +46,8 @@ module.exports = {
         path.includes('/json-compare') || path.includes('/xml-compare') ||
         path.includes('/text-compare') || path.includes('/color-converter') ||
         path.includes('/json-prettier') || path.includes('/json-parser') ||
-        path.includes('/xml-parser')) {
+        path.includes('/xml-parser') || path.includes('/ai-cheat-sheet') ||
+        path.includes('/regex-validator') || path.includes('/prompt-engineering')) {
       return {
         loc: path,
         changefreq: 'weekly',
