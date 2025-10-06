@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Head from 'next/head';
+import AdBanner from '@/components/AdBanner';
 
 const developerTools = [
   {
@@ -75,6 +76,24 @@ const developerTools = [
     description: 'Parse, validate, and analyze XML data with interactive tree view and element analysis',
     url: '/xml-parser',
     icon: '🛠️'
+  },
+  {
+    title: 'Developer AI Cheat Sheet',
+    description: 'Complete reference for 10 main programming languages with syntax, patterns, and AI development tools',
+    url: '/ai-cheat-sheet',
+    icon: '🤖'
+  },
+  {
+    title: 'Regex Validator',
+    description: 'Test and validate regular expressions with real-time matching, common patterns, and syntax reference',
+    url: '/regex-validator',
+    icon: '🔍'
+  },
+  {
+    title: 'Prompt Engineering',
+    description: 'Master AI coding assistance with copyable prompts for 10 programming languages and AI tools',
+    url: '/prompt-engineering',
+    icon: '💬'
   }
 ];
 
@@ -146,13 +165,17 @@ export default function DeveloperPage() {
             <div className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
               <p>
                 These <strong>free online developer tools</strong> are designed for web developers, software engineers, and data scientists who need quick solutions for everyday tasks.
-                Whether you're <strong>formatting JSON and XML</strong>, <strong>encoding Base64</strong>, or <strong>debugging JWT tokens</strong>, our tools are trusted by thousands of developers worldwide.
+                Whether you&apos;re <strong>formatting JSON and XML</strong>, <strong>encoding Base64</strong>, or <strong>debugging JWT tokens</strong>, our tools are trusted by thousands of developers worldwide.
               </p>
               <p className="mt-4">
                 Explore tools for <strong>API development</strong>, <strong>data transformation</strong>, <strong>web encoding</strong>, and <strong>frontend debugging</strong>.
                 Each tool is optimized for performance and SEO visibility to help you work faster while staying up to date with modern developer workflows.
               </p>
             </div>
+          </div>
+
+          <div className="mb-8">
+            <AdBanner position="top" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
@@ -180,6 +203,10 @@ export default function DeveloperPage() {
                 </div>
               </Link>
             ))}
+          </div>
+
+          <div className="mb-8">
+            <AdBanner position="inline" />
           </div>
 
           <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
