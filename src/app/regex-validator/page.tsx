@@ -460,6 +460,85 @@ export default function RegexValidatorPage() {
             </div>
           </div>
 
+          {/* How to Use Section */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
+              How to Use the Regex Validator
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  🔧 Basic Usage
+                </h3>
+                <ol className="text-gray-700 dark:text-gray-300 space-y-3">
+                  <li>
+                    <strong>1. Enter Your Pattern:</strong> Type your regular expression in the &quot;Regular Expression&quot; field
+                  </li>
+                  <li>
+                    <strong>2. Set Flags:</strong> Choose appropriate flags like global (g) or case-insensitive (i)
+                  </li>
+                  <li>
+                    <strong>3. Add Test Text:</strong> Enter sample text to test your regex against
+                  </li>
+                  <li>
+                    <strong>4. View Results:</strong> See matches highlighted in real-time with match count
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  💡 Advanced Features
+                </h3>
+                <ul className="text-gray-700 dark:text-gray-300 space-y-3">
+                  <li>
+                    <strong>Common Patterns:</strong> Click on pre-built patterns to quickly test common use cases
+                  </li>
+                  <li>
+                    <strong>Pattern Library:</strong> Browse email, phone, URL, and other validation patterns
+                  </li>
+                  <li>
+                    <strong>Syntax Reference:</strong> Use the metacharacters guide for regex syntax help
+                  </li>
+                  <li>
+                    <strong>Error Detection:</strong> Invalid patterns are highlighted with helpful error messages
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                🎯 Common Use Cases
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700 dark:text-gray-300">
+                <div>
+                  <h4 className="font-medium mb-2">Data Validation</h4>
+                  <p>Validate email addresses, phone numbers, and user input in forms</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Text Processing</h4>
+                  <p>Find and replace patterns in text documents and code files</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">Log Analysis</h4>
+                  <p>Extract specific information from log files and system outputs</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+              <h4 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-2">
+                ⚠️ Important Notes
+              </h4>
+              <ul className="text-sm text-yellow-800 dark:text-yellow-200 space-y-1">
+                <li>• Always test your regex with various input examples before using in production</li>
+                <li>• Be aware of regex performance with large text inputs</li>
+                <li>• Use anchors (^ and $) for exact matches when needed</li>
+                <li>• Escape special characters with backslash (\) when matching literally</li>
+              </ul>
+            </div>
+          </div>
+
           <DeveloperToolsNav currentPath="/regex-validator" />
         </div>
       </div>

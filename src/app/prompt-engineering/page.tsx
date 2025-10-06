@@ -553,6 +553,86 @@ export default function PromptEngineeringPage() {
             </div>
           </div>
 
+          {/* How to Use Section */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
+              How to Use Prompt Engineering
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  🚀 Step-by-Step Guide
+                </h3>
+                <ol className="text-gray-700 dark:text-gray-300 space-y-3">
+                  <li>
+                    <strong>1. Choose Language:</strong> Select your programming language from the 10 available options
+                  </li>
+                  <li>
+                    <strong>2. Pick Category:</strong> Choose from Code Generation, Debugging, Testing, Documentation, or Architecture
+                  </li>
+                  <li>
+                    <strong>3. Select Template:</strong> Choose a specific prompt template that fits your needs
+                  </li>
+                  <li>
+                    <strong>4. Customize Variables:</strong> Fill in the variables with your specific requirements
+                  </li>
+                  <li>
+                    <strong>5. Copy & Use:</strong> Copy the generated prompt and paste it into your AI tool
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  💡 Best Practices
+                </h3>
+                <ul className="text-gray-700 dark:text-gray-300 space-y-3">
+                  <li>
+                    <strong>Be Specific:</strong> Provide detailed context about your project and requirements
+                  </li>
+                  <li>
+                    <strong>Include Examples:</strong> Add sample code or expected output when possible
+                  </li>
+                  <li>
+                    <strong>Set Constraints:</strong> Specify performance, security, or style requirements
+                  </li>
+                  <li>
+                    <strong>Iterate & Refine:</strong> Adjust prompts based on AI responses for better results
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                🎯 AI Tool Recommendations
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700 dark:text-gray-300">
+                <div>
+                  <h4 className="font-medium mb-2">For Code Generation</h4>
+                  <p><strong>ChatGPT:</strong> Great for explanations and step-by-step guidance</p>
+                  <p><strong>GitHub Copilot:</strong> Best for real-time coding assistance</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">For Code Analysis</h4>
+                  <p><strong>Claude:</strong> Excellent for detailed code reviews and security analysis</p>
+                  <p><strong>Cursor:</strong> Ideal for codebase-aware generation and editing</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                💡 Pro Tips for Better Results
+              </h4>
+              <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                <li>• Use &quot;think step by step&quot; for complex problems to get detailed reasoning</li>
+                <li>• Provide examples of your desired output format for consistent results</li>
+                <li>• Ask AI to act as a senior developer or architect for expert-level responses</li>
+                <li>• Break down large tasks into smaller, more specific prompts</li>
+              </ul>
+            </div>
+          </div>
+
           <DeveloperToolsNav currentPath="/prompt-engineering" />
         </div>
       </div>
