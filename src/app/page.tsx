@@ -6,14 +6,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Free Online Unit Converter | Length, Weight, Temperature, Area, Speed & Cooking Tools</title>
+        <title>Free Online Unit & Developer Tools | JSON, Base64, URL, JWT, XML & Unit Converters</title>
         <meta
           name="description"
-          content="Use our free online unit converters for length, weight, temperature, area, speed, and cooking. Convert values instantly with accurate results. Also includes developer tools like JSON Formatter, Base64 Encoder, URL Encoder, JWT Decoder, and more."
+          content="Discover free online developer tools and unit converters for 2025. Instantly format JSON, encode Base64, decode JWT, and convert values for length, weight, temperature, area, and more — all in one place."
         />
         <meta
           name="keywords"
-          content="unit converter, free unit converter, length converter, weight converter, temperature converter, area converter, cooking converter, speed converter, online tools, developer tools, JSON formatter, Base64 encoder, URL encoder, JWT decoder"
+          content="online developer tools, free JSON formatter, JSON to CSV converter, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, online unit converter, length converter, weight converter, area converter, API testing tools, web developer utilities, data conversion tools"
         />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,7 +96,18 @@ export default function Home() {
           </p>
         </header>
 
-        
+        {/* Keyword-optimized Intro Text */}
+        <div className="mt-8 text-lg text-gray-700 dark:text-gray-300 max-w-5xl mx-auto leading-relaxed">
+          <p>
+            Welcome to <strong>FreeUnitConvertor.com</strong> — your all-in-one hub for developers, data engineers, and general users. Whether you need to 
+            <strong> format JSON data, convert Base64, decode JWT tokens, or perform accurate unit conversions </strong> for daily tasks, we provide fast and reliable tools trusted by professionals worldwide.
+          </p>
+          <p className="mt-4">
+            Our collection includes trending <strong>developer utilities</strong> like <strong>JSON Formatter, XML Parser, URL Encoder/Decoder</strong>, and <strong>Number Base Converter</strong>, 
+            along with traditional <strong>unit converters</strong> for <strong>length, temperature, area, and cooking measurements</strong>.
+            Each tool is optimized for SEO, user experience, and Google Core Web Vitals performance.
+          </p>
+        </div>
 
         <main className="max-w-6xl mx-auto">
           {/* Most Popular Converters */}
@@ -432,6 +443,34 @@ export default function Home() {
             </div>
           </section>
 
+          {/* Trending Developer Tools 2025 Section */}
+          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+              Trending Developer Tools in 2025
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 max-w-4xl mx-auto text-center mb-8">
+              Based on Google Trends, the most searched developer utilities in 2025 are focused on <strong>data formatting, encoding, and web debugging</strong>. 
+              Explore the tools gaining traction among software developers and data analysts this year.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 text-center">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JSON Formatter & Parser</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Clean, validate, and format JSON instantly — perfect for API testing and data analysis.</p>
+                <a href="/json-prettier" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">Use JSON Formatter →</a>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 text-center">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JWT Decoder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Decode and inspect JWT tokens for authentication debugging and API security testing.</p>
+                <a href="/jwt-decoder" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">Try JWT Decoder →</a>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6 text-center">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Base64 Encoder / Decoder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Convert Base64 strings for API development, image encoding, and secure data handling.</p>
+                <a href="/base64-encoder-decoder" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">Open Base64 Tool →</a>
+              </div>
+            </div>
+          </section>
+
 
         {/* FAQ Section for Engagement */}
         <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
@@ -453,6 +492,17 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Keyword-rich Closing Paragraph for SEO */}
+        <div className="mt-12 text-gray-700 dark:text-gray-300 max-w-5xl mx-auto text-center">
+          <p>
+            <strong>FreeUnitConvertor.com</strong> is designed to help <strong>web developers, students, and engineers</strong> access accurate and secure online tools instantly.
+            From <strong>API development utilities</strong> to <strong>real-world unit conversions</strong>, our goal is to make data handling simpler, faster, and accessible to everyone.
+          </p>
+          <p className="mt-4">
+            Explore the most searched <strong>developer tools 2025</strong> and <strong>free online converters</strong> trusted by thousands of users across the globe.
+          </p>
+        </div>
         </main>
       </div>
     </div>
