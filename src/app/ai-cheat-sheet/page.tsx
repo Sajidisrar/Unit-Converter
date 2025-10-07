@@ -8,7 +8,7 @@ import AdBanner from '@/components/AdBanner';
 const programmingLanguages = [
   {
     name: 'JavaScript',
-    icon: '🟨',
+    icon: '⚡',
     description: 'The web development powerhouse',
     syntax: {
       variables: 'let, const, var',
@@ -235,8 +235,852 @@ const programmingLanguages = [
       'Extensions: extension String {}',
       'Protocols: protocol MyProtocol {}'
     ]
+  },
+  {
+    name: 'Kotlin',
+    icon: '🟣',
+    description: 'Android and JVM development',
+    syntax: {
+      variables: 'val name: String = "value"',
+      functions: 'fun functionName() {}',
+      loops: 'for, while, forEach',
+      conditionals: 'if, else if, else, when',
+      objects: 'class MyClass {}',
+      arrays: 'val arr = listOf(1, 2, 3)',
+      async: 'suspend, coroutines',
+      classes: 'class Name {}'
+    },
+    commonPatterns: [
+      'Null safety: val name: String?',
+      'Safe calls: obj?.method()',
+      'Elvis operator: name ?: "default"',
+      'Data classes: data class User(val name: String)',
+      'Extension functions: fun String.customMethod()',
+      'Lambda expressions: list.filter { it > 5 }'
+    ]
+  },
+  {
+    name: 'C++',
+    icon: '⚙️',
+    description: 'High-performance systems programming',
+    color: 'text-blue-700',
+    syntax: {
+      variables: 'int name = 42;',
+      functions: 'void functionName() {}',
+      loops: 'for, while, do-while',
+      conditionals: 'if, else if, else, switch',
+      objects: 'class MyClass {}',
+      arrays: 'int arr[] = {1, 2, 3};',
+      async: 'std::async, std::future',
+      classes: 'class Name {}'
+    },
+    commonPatterns: [
+      'Pointers: int* ptr = &value;',
+      'References: int& ref = value;',
+      'Templates: template<typename T>',
+      'RAII: Resource Acquisition Is Initialization',
+      'Smart pointers: std::unique_ptr, std::shared_ptr',
+      'STL containers: std::vector, std::map'
+    ]
+  },
+  {
+    name: 'C',
+    icon: '🔧',
+    description: 'The foundation of programming',
+    color: 'text-gray-600',
+    syntax: {
+      variables: 'int name = 42;',
+      functions: 'void functionName() {}',
+      loops: 'for, while, do-while',
+      conditionals: 'if, else if, else, switch',
+      objects: 'struct MyStruct {}',
+      arrays: 'int arr[] = {1, 2, 3};',
+      async: 'pthreads, manual threading',
+      classes: 'struct Name {}'
+    },
+    commonPatterns: [
+      'Pointers: int* ptr = &value;',
+      'Memory management: malloc, free',
+      'Function pointers: int (*func)(int)',
+      'Structs: struct Point { int x, y; };',
+      'Preprocessor: #define, #include',
+      'Bitwise operations: &, |, ^, ~'
+    ]
+  },
+  {
+    name: 'R',
+    icon: '📊',
+    description: 'Statistical computing and graphics',
+    color: 'text-blue-400',
+    syntax: {
+      variables: 'name <- "value"',
+      functions: 'function_name <- function() {}',
+      loops: 'for, while, repeat',
+      conditionals: 'if, else if, else, switch',
+      objects: 'S3, S4 classes',
+      arrays: 'arr <- c(1, 2, 3)',
+      async: 'parallel processing',
+      classes: 'setClass("Name")'
+    },
+    commonPatterns: [
+      'Vectorization: x + y (element-wise)',
+      'Data frames: data.frame()',
+      'Piping: %>% operator',
+      'Functional programming: lapply, sapply',
+      'Statistical functions: mean, sd, cor',
+      'Plotting: ggplot2, base R'
+    ]
+  },
+  {
+    name: 'MATLAB',
+    icon: '🧮',
+    description: 'Numerical computing and simulation',
+    color: 'text-orange-400',
+    syntax: {
+      variables: 'name = "value";',
+      functions: 'function function_name()',
+      loops: 'for, while',
+      conditionals: 'if, elseif, else, switch',
+      objects: 'classdef MyClass',
+      arrays: 'arr = [1, 2, 3];',
+      async: 'parfor, parallel computing',
+      classes: 'classdef Name'
+    },
+    commonPatterns: [
+      'Matrix operations: A * B',
+      'Array indexing: A(1:end)',
+      'Cell arrays: {1, 2, 3}',
+      'Function handles: @function_name',
+      'Plotting: plot, surf, mesh',
+      'Toolboxes: Signal Processing, Image Processing'
+    ]
+  },
+  {
+    name: 'Scala',
+    icon: '🔺',
+    description: 'Functional programming on JVM',
+    color: 'text-red-400',
+    syntax: {
+      variables: 'val name = "value"',
+      functions: 'def functionName(): Unit = {}',
+      loops: 'for, while, foreach',
+      conditionals: 'if, else if, else, match',
+      objects: 'class MyClass {}',
+      arrays: 'val arr = Array(1, 2, 3)',
+      async: 'Future, Promise',
+      classes: 'class Name {}'
+    },
+    commonPatterns: [
+      'Immutability: val vs var',
+      'Case classes: case class User(name: String)',
+      'Pattern matching: match value {}',
+      'Higher-order functions: map, filter, fold',
+      'Implicits: implicit conversions',
+      'Type inference: val x = 42'
+    ]
+  },
+  {
+    name: 'Haskell',
+    icon: '🔷',
+    description: 'Pure functional programming',
+    color: 'text-purple-400',
+    syntax: {
+      variables: 'name = "value"',
+      functions: 'functionName :: Type -> Type',
+      loops: 'map, fold, recursion',
+      conditionals: 'if, case, guards',
+      objects: 'data MyType = Constructor',
+      arrays: 'arr = [1, 2, 3]',
+      async: 'IO monad, async',
+      classes: 'data Name = Constructor'
+    },
+    commonPatterns: [
+      'Pure functions: no side effects',
+      'Type signatures: :: Type -> Type',
+      'Pattern matching: case of',
+      'Monads: Maybe, Either, IO',
+      'Currying: partial application',
+      'Lazy evaluation: infinite lists'
+    ]
+  },
+  {
+    name: 'Clojure',
+    icon: '🟢',
+    description: 'Lisp for the JVM',
+    color: 'text-green-500',
+    syntax: {
+      variables: '(def name "value")',
+      functions: '(defn function-name [] {})',
+      loops: 'for, doseq, loop/recur',
+      conditionals: 'if, when, cond',
+      objects: 'defrecord, defprotocol',
+      arrays: '[1 2 3]',
+      async: 'core.async, channels',
+      classes: 'defprotocol Name'
+    },
+    commonPatterns: [
+      'S-expressions: (function arg1 arg2)',
+      'Immutability: persistent data structures',
+      'Macros: defmacro',
+      'REPL-driven development',
+      'Functional composition: ->, ->>',
+      'Concurrency: atoms, refs, agents'
+    ]
+  },
+  {
+    name: 'Elixir',
+    icon: '💧',
+    description: 'Concurrent, fault-tolerant systems',
+    color: 'text-purple-500',
+    syntax: {
+      variables: 'name = "value"',
+      functions: 'def function_name do end',
+      loops: 'for, while, recursion',
+      conditionals: 'if, unless, case, cond',
+      objects: 'defmodule MyModule',
+      arrays: 'list = [1, 2, 3]',
+      async: 'spawn, GenServer',
+      classes: 'defmodule Name'
+    },
+    commonPatterns: [
+      'Pattern matching: = operator',
+      'Pipe operator: |>',
+      'Processes: lightweight concurrency',
+      'OTP: GenServer, Supervisor',
+      'Atoms: :atom',
+      'Function clauses: multiple definitions'
+    ]
+  },
+  {
+    name: 'Julia',
+    icon: '🔬',
+    description: 'High-performance scientific computing',
+    color: 'text-purple-600',
+    syntax: {
+      variables: 'name = "value"',
+      functions: 'function function_name() end',
+      loops: 'for, while',
+      conditionals: 'if, elseif, else',
+      objects: 'struct MyStruct end',
+      arrays: 'arr = [1, 2, 3]',
+      async: 'Threads, Distributed',
+      classes: 'struct Name end'
+    },
+    commonPatterns: [
+      'Multiple dispatch: different methods',
+      'Broadcasting: . operator',
+      'Type annotations: :: Type',
+      'Macros: @macro_name',
+      'Packages: using PackageName',
+      'Performance: JIT compilation'
+    ]
   }
 ];
+
+// Generate 20 prompts for each language dynamically
+const generatePromptsForLanguage = (language: string) => {
+  console.log(`Generating prompts for: ${language}`);
+  const basePrompts = [
+    {
+      title: `Create a ${language} Function`,
+      prompt: `Create a ${language} function that {description}. Include proper error handling, documentation, and best practices.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Class`,
+      prompt: `Create a ${language} class that {description}. Include proper encapsulation, methods, and inheritance.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} API Endpoint`,
+      prompt: `Create a ${language} API endpoint that {description}. Include proper routing, validation, and response handling.`,
+      category: 'Backend'
+    },
+    {
+      title: `Create a ${language} Data Structure`,
+      prompt: `Create a ${language} data structure that {description}. Include proper operations and performance considerations.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Algorithm`,
+      prompt: `Create a ${language} algorithm that {description}. Include proper complexity analysis and optimization.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Utility Function`,
+      prompt: `Create a ${language} utility function that {description}. Include proper input validation and error handling.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Configuration`,
+      prompt: `Create a ${language} configuration that {description}. Include proper settings management and validation.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Service`,
+      prompt: `Create a ${language} service that {description}. Include proper dependency injection and business logic.`,
+      category: 'Backend'
+    },
+    {
+      title: `Create a ${language} Model`,
+      prompt: `Create a ${language} model that {description}. Include proper validation, relationships, and serialization.`,
+      category: 'Backend'
+    },
+    {
+      title: `Create a ${language} Controller`,
+      prompt: `Create a ${language} controller that {description}. Include proper request handling and response formatting.`,
+      category: 'Backend'
+    },
+    {
+      title: `Create a ${language} Middleware`,
+      prompt: `Create a ${language} middleware that {description}. Include proper request/response processing and error handling.`,
+      category: 'Backend'
+    },
+    {
+      title: `Create a ${language} Validator`,
+      prompt: `Create a ${language} validator that {description}. Include proper input validation and error reporting.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Parser`,
+      prompt: `Create a ${language} parser that {description}. Include proper tokenization and syntax analysis.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Generator`,
+      prompt: `Create a ${language} generator that {description}. Include proper code generation and template processing.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Transformer`,
+      prompt: `Create a ${language} transformer that {description}. Include proper data transformation and mapping.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Handler`,
+      prompt: `Create a ${language} handler that {description}. Include proper event processing and state management.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Processor`,
+      prompt: `Create a ${language} processor that {description}. Include proper data processing and optimization.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Manager`,
+      prompt: `Create a ${language} manager that {description}. Include proper resource management and lifecycle handling.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Factory`,
+      prompt: `Create a ${language} factory that {description}. Include proper object creation and type safety.`,
+      category: 'General'
+    },
+    {
+      title: `Create a ${language} Builder`,
+      prompt: `Create a ${language} builder that {description}. Include proper method chaining and validation.`,
+      category: 'General'
+    }
+  ];
+
+  console.log(`Generated ${basePrompts.length} prompts for ${language}`);
+  return basePrompts;
+};
+
+const predefinedPrompts = {
+  'JavaScript': [
+    {
+      title: 'Create a React Component',
+      prompt: 'Create a React functional component in JavaScript that {description}. Include proper TypeScript types, hooks, and follow React best practices.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Node.js API Endpoint',
+      prompt: 'Create a Node.js Express API endpoint in JavaScript that {description}. Include error handling, validation, and proper HTTP status codes.',
+      category: 'Backend'
+    },
+    {
+      title: 'Async Function with Error Handling',
+      prompt: 'Create an async JavaScript function that {description}. Include proper error handling with try-catch blocks and return appropriate responses.',
+      category: 'General'
+    },
+    {
+      title: 'Vue.js Component',
+      prompt: 'Create a Vue.js component in JavaScript that {description}. Include proper props, emits, and composition API usage.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Express Middleware',
+      prompt: 'Create an Express.js middleware function in JavaScript that {description}. Include proper error handling and next() usage.',
+      category: 'Backend'
+    },
+    {
+      title: 'ES6 Class with Methods',
+      prompt: 'Create an ES6 class in JavaScript that {description}. Include constructor, methods, and proper encapsulation.',
+      category: 'General'
+    },
+    {
+      title: 'Promise-based Function',
+      prompt: 'Create a Promise-based function in JavaScript that {description}. Include proper resolve/reject handling and chaining.',
+      category: 'General'
+    },
+    {
+      title: 'Array Processing Function',
+      prompt: 'Create a JavaScript function that processes arrays and {description}. Use modern array methods like map, filter, reduce.',
+      category: 'General'
+    },
+    {
+      title: 'Object Manipulation',
+      prompt: 'Create a JavaScript function that manipulates objects and {description}. Include destructuring, spread operator, and Object methods.',
+      category: 'General'
+    },
+    {
+      title: 'Event Handler Function',
+      prompt: 'Create a JavaScript event handler function that {description}. Include proper event object usage and DOM manipulation.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Local Storage Utility',
+      prompt: 'Create a JavaScript utility for localStorage that {description}. Include get, set, remove methods with error handling.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Fetch API Wrapper',
+      prompt: 'Create a JavaScript wrapper for the Fetch API that {description}. Include proper error handling and response processing.',
+      category: 'General'
+    },
+    {
+      title: 'Debounce Function',
+      prompt: 'Create a debounce function in JavaScript that {description}. Include proper timer management and cleanup.',
+      category: 'General'
+    },
+    {
+      title: 'Form Validation',
+      prompt: 'Create a JavaScript form validation function that {description}. Include field validation, error messages, and submission handling.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Date/Time Utility',
+      prompt: 'Create a JavaScript utility for date/time operations that {description}. Include formatting, parsing, and timezone handling.',
+      category: 'General'
+    },
+    {
+      title: 'String Processing',
+      prompt: 'Create a JavaScript function for string processing that {description}. Include regex, manipulation, and formatting.',
+      category: 'General'
+    },
+    {
+      title: 'Number Calculations',
+      prompt: 'Create a JavaScript function for number calculations that {description}. Include proper rounding, precision, and validation.',
+      category: 'General'
+    },
+    {
+      title: 'JSON Processing',
+      prompt: 'Create a JavaScript function for JSON processing that {description}. Include parsing, stringifying, and validation.',
+      category: 'General'
+    },
+    {
+      title: 'URL Manipulation',
+      prompt: 'Create a JavaScript function for URL manipulation that {description}. Include parsing, building, and parameter handling.',
+      category: 'General'
+    },
+    {
+      title: 'Cookie Management',
+      prompt: 'Create a JavaScript utility for cookie management that {description}. Include get, set, delete operations with proper encoding.',
+      category: 'Frontend'
+    }
+  ],
+  'Python': [
+    {
+      title: 'Data Analysis Function',
+      prompt: 'Create a Python function using pandas and numpy that {description}. Include data validation, error handling, and return processed results.',
+      category: 'Data Science'
+    },
+    {
+      title: 'FastAPI Endpoint',
+      prompt: 'Create a FastAPI endpoint in Python that {description}. Include request/response models, validation, and proper documentation.',
+      category: 'Backend'
+    },
+    {
+      title: 'Machine Learning Pipeline',
+      prompt: 'Create a Python machine learning pipeline using scikit-learn that {description}. Include data preprocessing, model training, and evaluation.',
+      category: 'AI/ML'
+    },
+    {
+      title: 'Django Model',
+      prompt: 'Create a Django model in Python that {description}. Include proper fields, relationships, and meta options.',
+      category: 'Backend'
+    },
+    {
+      title: 'Flask Route',
+      prompt: 'Create a Flask route in Python that {description}. Include proper request handling, validation, and response formatting.',
+      category: 'Backend'
+    },
+    {
+      title: 'Data Processing Function',
+      prompt: 'Create a Python function for data processing that {description}. Include file I/O, data cleaning, and transformation.',
+      category: 'Data Science'
+    },
+    {
+      title: 'Class with Properties',
+      prompt: 'Create a Python class that {description}. Include proper __init__, methods, and property decorators.',
+      category: 'General'
+    },
+    {
+      title: 'Context Manager',
+      prompt: 'Create a Python context manager that {description}. Include proper __enter__ and __exit__ methods.',
+      category: 'General'
+    },
+    {
+      title: 'Decorator Function',
+      prompt: 'Create a Python decorator that {description}. Include proper function wrapping and parameter handling.',
+      category: 'General'
+    },
+    {
+      title: 'Generator Function',
+      prompt: 'Create a Python generator function that {description}. Include proper yield statements and iteration handling.',
+      category: 'General'
+    },
+    {
+      title: 'Exception Handling',
+      prompt: 'Create a Python function with comprehensive exception handling that {description}. Include try/except/finally blocks.',
+      category: 'General'
+    },
+    {
+      title: 'File Processing',
+      prompt: 'Create a Python function for file processing that {description}. Include reading, writing, and error handling.',
+      category: 'General'
+    },
+    {
+      title: 'Database Connection',
+      prompt: 'Create a Python function for database operations that {description}. Include connection management and query execution.',
+      category: 'Backend'
+    },
+    {
+      title: 'API Client',
+      prompt: 'Create a Python API client that {description}. Include HTTP requests, authentication, and response handling.',
+      category: 'General'
+    },
+    {
+      title: 'Configuration Management',
+      prompt: 'Create a Python configuration management system that {description}. Include environment variables and settings.',
+      category: 'General'
+    },
+    {
+      title: 'Logging Setup',
+      prompt: 'Create a Python logging configuration that {description}. Include different log levels and output formats.',
+      category: 'General'
+    },
+    {
+      title: 'Testing Function',
+      prompt: 'Create a Python test function using pytest that {description}. Include proper assertions and test cases.',
+      category: 'Testing'
+    },
+    {
+      title: 'Async Function',
+      prompt: 'Create an async Python function that {description}. Include proper async/await usage and error handling.',
+      category: 'General'
+    },
+    {
+      title: 'Data Validation',
+      prompt: 'Create a Python data validation function that {description}. Include schema validation and error reporting.',
+      category: 'General'
+    },
+    {
+      title: 'Performance Optimization',
+      prompt: 'Create a Python function optimized for performance that {description}. Include profiling and optimization techniques.',
+      category: 'General'
+    }
+  ],
+  'TypeScript': [
+    {
+      title: 'Type-Safe API Client',
+      prompt: 'Create a TypeScript API client that {description}. Include proper type definitions, error handling, and generic types.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Express Server with Types',
+      prompt: 'Create a TypeScript Express server that {description}. Include proper interfaces, middleware, and type safety.',
+      category: 'Backend'
+    },
+    {
+      title: 'React Component with Types',
+      prompt: 'Create a TypeScript React component that {description}. Include proper props interface, state types, and event handlers.',
+      category: 'Frontend'
+    },
+    {
+      title: 'Interface Definition',
+      prompt: 'Create a TypeScript interface that {description}. Include proper property types, optional fields, and method signatures.',
+      category: 'General'
+    },
+    {
+      title: 'Generic Function',
+      prompt: 'Create a TypeScript generic function that {description}. Include proper type constraints and return type inference.',
+      category: 'General'
+    },
+    {
+      title: 'Type Guard Function',
+      prompt: 'Create a TypeScript type guard function that {description}. Include proper type narrowing and runtime checks.',
+      category: 'General'
+    },
+    {
+      title: 'Class with Generics',
+      prompt: 'Create a TypeScript class with generics that {description}. Include proper type parameters and constraints.',
+      category: 'General'
+    },
+    {
+      title: 'Union Type Handler',
+      prompt: 'Create a TypeScript function that handles union types and {description}. Include proper type discrimination.',
+      category: 'General'
+    },
+    {
+      title: 'Utility Types',
+      prompt: 'Create TypeScript utility types that {description}. Include Pick, Omit, Partial, and custom mapped types.',
+      category: 'General'
+    },
+    {
+      title: 'Async Function with Types',
+      prompt: 'Create an async TypeScript function that {description}. Include proper Promise types and error handling.',
+      category: 'General'
+    },
+    {
+      title: 'Enum Definition',
+      prompt: 'Create a TypeScript enum that {description}. Include proper values and type safety.',
+      category: 'General'
+    },
+    {
+      title: 'Module Declaration',
+      prompt: 'Create a TypeScript module declaration that {description}. Include proper ambient declarations.',
+      category: 'General'
+    },
+    {
+      title: 'Decorator Function',
+      prompt: 'Create a TypeScript decorator that {description}. Include proper parameter and return type annotations.',
+      category: 'General'
+    },
+    {
+      title: 'Namespace Definition',
+      prompt: 'Create a TypeScript namespace that {description}. Include proper organization and type exports.',
+      category: 'General'
+    },
+    {
+      title: 'Conditional Types',
+      prompt: 'Create TypeScript conditional types that {description}. Include proper type inference and branching.',
+      category: 'General'
+    },
+    {
+      title: 'Mapped Types',
+      prompt: 'Create TypeScript mapped types that {description}. Include proper key transformation and value mapping.',
+      category: 'General'
+    },
+    {
+      title: 'Template Literal Types',
+      prompt: 'Create TypeScript template literal types that {description}. Include proper string manipulation and inference.',
+      category: 'General'
+    },
+    {
+      title: 'Discriminated Union',
+      prompt: 'Create a TypeScript discriminated union that {description}. Include proper discriminant properties and type narrowing.',
+      category: 'General'
+    },
+    {
+      title: 'Function Overloads',
+      prompt: 'Create TypeScript function overloads that {description}. Include proper signature variations and return types.',
+      category: 'General'
+    },
+    {
+      title: 'Type Assertion Helper',
+      prompt: 'Create a TypeScript type assertion helper that {description}. Include proper type casting and validation.',
+      category: 'General'
+    }
+  ],
+  'Java': [
+    {
+      title: 'Spring Boot REST Controller',
+      prompt: 'Create a Spring Boot REST controller in Java that {description}. Include proper annotations, exception handling, and DTOs.',
+      category: 'Backend'
+    },
+    {
+      title: 'Service Layer with Dependency Injection',
+      prompt: 'Create a Java service class that {description}. Include dependency injection, proper error handling, and business logic.',
+      category: 'Backend'
+    },
+    {
+      title: 'JPA Entity Class',
+      prompt: 'Create a JPA entity class in Java that {description}. Include proper annotations, relationships, and validation.',
+      category: 'Backend'
+    },
+    {
+      title: 'Repository Interface',
+      prompt: 'Create a Spring Data JPA repository interface that {description}. Include custom query methods and specifications.',
+      category: 'Backend'
+    },
+    {
+      title: 'Configuration Class',
+      prompt: 'Create a Spring configuration class that {description}. Include proper bean definitions and configuration properties.',
+      category: 'Backend'
+    },
+    {
+      title: 'Exception Handler',
+      prompt: 'Create a global exception handler in Java that {description}. Include proper error responses and logging.',
+      category: 'Backend'
+    },
+    {
+      title: 'DTO Class',
+      prompt: 'Create a Data Transfer Object (DTO) class in Java that {description}. Include proper validation and serialization.',
+      category: 'Backend'
+    },
+    {
+      title: 'Utility Class',
+      prompt: 'Create a utility class in Java that {description}. Include static methods and proper documentation.',
+      category: 'General'
+    },
+    {
+      title: 'Builder Pattern',
+      prompt: 'Create a Java class using the Builder pattern that {description}. Include proper method chaining and validation.',
+      category: 'General'
+    },
+    {
+      title: 'Singleton Pattern',
+      prompt: 'Create a Java singleton class that {description}. Include thread-safe implementation and proper initialization.',
+      category: 'General'
+    },
+    {
+      title: 'Observer Pattern',
+      prompt: 'Create a Java implementation of the Observer pattern that {description}. Include proper interfaces and notifications.',
+      category: 'General'
+    },
+    {
+      title: 'Factory Pattern',
+      prompt: 'Create a Java factory class that {description}. Include proper object creation and type safety.',
+      category: 'General'
+    },
+    {
+      title: 'Strategy Pattern',
+      prompt: 'Create a Java implementation of the Strategy pattern that {description}. Include proper interfaces and algorithms.',
+      category: 'General'
+    },
+    {
+      title: 'Command Pattern',
+      prompt: 'Create a Java implementation of the Command pattern that {description}. Include proper encapsulation and execution.',
+      category: 'General'
+    },
+    {
+      title: 'Decorator Pattern',
+      prompt: 'Create a Java implementation of the Decorator pattern that {description}. Include proper composition and inheritance.',
+      category: 'General'
+    },
+    {
+      title: 'Adapter Pattern',
+      prompt: 'Create a Java implementation of the Adapter pattern that {description}. Include proper interface adaptation.',
+      category: 'General'
+    },
+    {
+      title: 'Facade Pattern',
+      prompt: 'Create a Java implementation of the Facade pattern that {description}. Include proper subsystem simplification.',
+      category: 'General'
+    },
+    {
+      title: 'Proxy Pattern',
+      prompt: 'Create a Java implementation of the Proxy pattern that {description}. Include proper access control and lazy loading.',
+      category: 'General'
+    },
+    {
+      title: 'Template Method Pattern',
+      prompt: 'Create a Java implementation of the Template Method pattern that {description}. Include proper algorithm structure.',
+      category: 'General'
+    },
+    {
+      title: 'State Pattern',
+      prompt: 'Create a Java implementation of the State pattern that {description}. Include proper state transitions and behavior.',
+      category: 'General'
+    }
+  ],
+  'C#': [
+    {
+      title: 'ASP.NET Core Web API',
+      prompt: 'Create an ASP.NET Core Web API controller in C# that {description}. Include proper routing, model validation, and error handling.',
+      category: 'Backend'
+    },
+    {
+      title: 'Entity Framework Service',
+      prompt: 'Create a C# service using Entity Framework that {description}. Include proper data access patterns and error handling.',
+      category: 'Backend'
+    }
+  ],
+  'Go': [
+    {
+      title: 'HTTP Handler Function',
+      prompt: 'Create a Go HTTP handler function that {description}. Include proper error handling, JSON marshaling, and HTTP status codes.',
+      category: 'Backend'
+    },
+    {
+      title: 'Goroutine with Channel',
+      prompt: 'Create a Go function using goroutines and channels that {description}. Include proper concurrency patterns and error handling.',
+      category: 'Concurrency'
+    }
+  ],
+  'Rust': [
+    {
+      title: 'Safe Memory Management',
+      prompt: 'Create a Rust function that {description}. Include proper ownership, borrowing, and error handling with Result types.',
+      category: 'Systems'
+    },
+    {
+      title: 'Async Function with Tokio',
+      prompt: 'Create an async Rust function using Tokio that {description}. Include proper async/await patterns and error handling.',
+      category: 'Async'
+    }
+  ],
+  'PHP': [
+    {
+      title: 'Laravel Controller',
+      prompt: 'Create a Laravel controller in PHP that {description}. Include proper routing, validation, and Eloquent models.',
+      category: 'Backend'
+    },
+    {
+      title: 'API Service Class',
+      prompt: 'Create a PHP service class that {description}. Include proper error handling, logging, and return appropriate responses.',
+      category: 'Backend'
+    }
+  ],
+  'Ruby': [
+    {
+      title: 'Rails Controller Action',
+      prompt: 'Create a Rails controller action in Ruby that {description}. Include proper routing, strong parameters, and error handling.',
+      category: 'Backend'
+    },
+    {
+      title: 'Service Object',
+      prompt: 'Create a Ruby service object that {description}. Include proper error handling, logging, and return appropriate responses.',
+      category: 'Backend'
+    }
+  ],
+  'Swift': [
+    {
+      title: 'iOS View Controller',
+      prompt: 'Create a Swift UIViewController that {description}. Include proper lifecycle methods, data binding, and error handling.',
+      category: 'Mobile'
+    },
+    {
+      title: 'Async Function with Combine',
+      prompt: 'Create a Swift async function using Combine that {description}. Include proper async patterns and error handling.',
+      category: 'Async'
+    }
+  ],
+  'Kotlin': [
+    {
+      title: 'Android Activity',
+      prompt: 'Create a Kotlin Android Activity that {description}. Include proper lifecycle methods, data binding, and error handling.',
+      category: 'Mobile'
+    },
+    {
+      title: 'Coroutine Function',
+      prompt: 'Create a Kotlin suspend function that {description}. Include proper coroutine patterns, error handling, and async operations.',
+      category: 'Async'
+    }
+  ]
+};
 
 const aiTools = [
   {
@@ -277,23 +1121,34 @@ const aiTools = [
 export default function AICheatSheetPage() {
   const [selectedLanguage, setSelectedLanguage] = useState(programmingLanguages[0]);
   const [activeTab, setActiveTab] = useState('syntax');
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+
+  const copyToClipboard = async (text: string, promptTitle: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedPrompt(promptTitle);
+      setTimeout(() => setCopiedPrompt(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   return (
     <>
       <Head>
-        <title>Developer AI Cheat Sheet - Programming Languages & AI Tools 2025</title>
+        <title>Developer AI Cheat Sheet 2025 | 11 Programming Languages & AI Tools Reference</title>
         <meta
           name="description"
-          content="Complete developer AI cheat sheet for 10 main programming languages including JavaScript, Python, TypeScript, Java, C#, Go, Rust, PHP, Ruby, Swift. Plus AI tools, frameworks, and development resources for 2025."
+          content="Best free developer AI cheat sheet for 2025. Complete reference for 11 programming languages (JavaScript, Python, TypeScript, Java, C#, Go, Rust, PHP, Ruby, Swift, Kotlin) plus AI tools, frameworks, and syntax examples. Trusted by 100K+ developers."
         />
         <meta
           name="keywords"
-          content="developer cheat sheet, programming languages cheat sheet, AI development tools, JavaScript cheat sheet, Python cheat sheet, TypeScript cheat sheet, Java cheat sheet, C# cheat sheet, Go cheat sheet, Rust cheat sheet, PHP cheat sheet, Ruby cheat sheet, Swift cheat sheet, AI programming tools, machine learning tools, developer resources, coding reference, programming syntax, AI frameworks, developer tools 2025"
+          content="developer cheat sheet, programming languages cheat sheet, AI development tools, JavaScript cheat sheet, Python cheat sheet, TypeScript cheat sheet, Java cheat sheet, C# cheat sheet, Go cheat sheet, Rust cheat sheet, PHP cheat sheet, Ruby cheat sheet, Swift cheat sheet, Kotlin cheat sheet, AI programming tools, machine learning tools, developer resources, coding reference, programming syntax, AI frameworks, developer tools 2025, programming reference, code examples, syntax guide"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://freeunitconvertor.com/ai-cheat-sheet" />
         <meta property="og:title" content="Developer AI Cheat Sheet - Programming Languages & AI Tools" />
-        <meta property="og:description" content="Complete reference for 10 main programming languages with syntax, patterns, and AI development tools for modern developers." />
+        <meta property="og:description" content="Complete reference for 11 main programming languages with syntax, patterns, and AI development tools for modern developers." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://freeunitconvertor.com/ai-cheat-sheet" />
       </Head>
@@ -314,50 +1169,132 @@ export default function AICheatSheetPage() {
         }
       })}} />
 
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Developer AI Cheat Sheet
-            </h1>
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-              Programming Languages & AI Tools Reference
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-              Master the syntax, patterns, and best practices for the top 10 programming languages. 
-              Plus essential AI development tools, frameworks, and resources for modern developers in 2025.
-            </p>
-          </div>
-
-          <div className="mb-8">
-            <AdBanner position="top" />
-          </div>
-
-          {/* Language Selection */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 text-center">
-              Choose a Programming Language
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex">
+          {/* Left Sidebar - Language Selection */}
+          <div className="w-80 bg-white dark:bg-gray-800 shadow-lg border-r border-gray-200 dark:border-gray-700 p-6 overflow-y-auto">
+            <div className="mb-6">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                AI Cheat Sheet 2025
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                20 Programming Languages & AI Tools
+              </p>
+            </div>
+            
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+                Choose Language
+              </h3>
               {programmingLanguages.map((lang, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedLanguage(lang)}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                  className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${
                     selectedLanguage.name === lang.name
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                       : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600'
                   }`}
                 >
-                  <div className="text-3xl mb-2">{lang.icon}</div>
-                  <div className="font-semibold text-gray-900 dark:text-white text-sm">
-                    {lang.name}
-                  </div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                    {lang.description}
+                  <div className="flex items-center space-x-3">
+                    <div className={`text-2xl ${lang.color || 'text-gray-500'}`}>
+                      {lang.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-900 dark:text-white text-sm">
+                        {lang.name}
+                      </div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 truncate">
+                        {lang.description}
+                      </div>
+                    </div>
                   </div>
                 </button>
               ))}
+            </div>
+          </div>
+
+          {/* Main Content Area */}
+          <div className="flex-1 p-8 overflow-y-auto">
+            <div className="max-w-6xl mx-auto">
+              {/* Top Ad Banner */}
+              <div className="mb-8">
+                <AdBanner position="top" />
+              </div>
+
+          {/* Predefined Prompts Section - MOVED TO TOP */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 text-center">
+              🚀 Ready-to-Use AI Prompts for {selectedLanguage.name}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
+              Click any prompt below to copy it instantly. Customize the {`{description}`} placeholder with your specific requirements.
+            </p>
+            <div className="text-center mb-4">
+              <span className="bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">
+                {(() => {
+                  const hasPredefined = predefinedPrompts[selectedLanguage.name as keyof typeof predefinedPrompts];
+                  const languagePrompts = (hasPredefined && hasPredefined.length >= 10) ? hasPredefined : generatePromptsForLanguage(selectedLanguage.name);
+                  return `${languagePrompts.length} prompts available`;
+                })()}
+              </span>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {(() => {
+                const hasPredefined = predefinedPrompts[selectedLanguage.name as keyof typeof predefinedPrompts];
+                console.log(`Has predefined prompts for ${selectedLanguage.name}:`, !!hasPredefined);
+                // Use predefined prompts only if they have 10+ prompts, otherwise use dynamic generation
+                const languagePrompts = (hasPredefined && hasPredefined.length >= 10) ? hasPredefined : generatePromptsForLanguage(selectedLanguage.name);
+                console.log(`Language: ${selectedLanguage.name}, Prompts count: ${languagePrompts.length}`);
+                return languagePrompts.length > 0 ? (
+                  languagePrompts.map((prompt, index) => (
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                          {prompt.title}
+                        </h4>
+                        <span className="text-xs text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/20 px-2 py-1 rounded">
+                          {prompt.category}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
+                        className={`px-3 py-1 text-xs rounded transition-colors ${
+                          copiedPrompt === prompt.title
+                            ? 'bg-green-500 text-white'
+                            : 'bg-blue-500 hover:bg-blue-600 text-white'
+                        }`}
+                      >
+                        {copiedPrompt === prompt.title ? '✓ Copied!' : 'Copy'}
+                      </button>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {prompt.prompt}
+                    </p>
+                  </div>
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-8">
+                    <p className="text-gray-500 dark:text-gray-400">
+                      No predefined prompts available for {selectedLanguage.name} yet.
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
+            
+            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+              <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                💡 How to Use These Prompts
+              </h4>
+              <ol className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                <li>1. Click &quot;Copy&quot; on any prompt above</li>
+                <li>2. Replace {`{description}`} with your specific requirements</li>
+                <li>3. Paste into ChatGPT, Claude, or your preferred AI tool</li>
+                <li>4. Get instant, language-specific code generation!</li>
+              </ol>
             </div>
           </div>
 
@@ -431,6 +1368,7 @@ export default function AICheatSheetPage() {
           <div className="mb-8">
             <AdBanner position="inline" />
           </div>
+
 
           {/* AI Tools Section */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
@@ -624,7 +1562,9 @@ export default function AICheatSheetPage() {
             </div>
           </div>
 
-          <DeveloperToolsNav currentPath="/ai-cheat-sheet" />
+              <DeveloperToolsNav currentPath="/ai-cheat-sheet" />
+            </div>
+          </div>
         </div>
       </div>
     </>

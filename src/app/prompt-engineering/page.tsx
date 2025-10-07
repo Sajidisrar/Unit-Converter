@@ -6,16 +6,16 @@ import DeveloperToolsNav from '@/components/DeveloperToolsNav';
 import AdBanner from '@/components/AdBanner';
 
 const programmingLanguages = [
-  { name: 'JavaScript', icon: '🟨', extension: '.js' },
-  { name: 'Python', icon: '🐍', extension: '.py' },
-  { name: 'TypeScript', icon: '🔷', extension: '.ts' },
-  { name: 'Java', icon: '☕', extension: '.java' },
-  { name: 'C#', icon: '🔵', extension: '.cs' },
-  { name: 'Go', icon: '🐹', extension: '.go' },
-  { name: 'Rust', icon: '🦀', extension: '.rs' },
-  { name: 'PHP', icon: '🐘', extension: '.php' },
-  { name: 'Ruby', icon: '💎', extension: '.rb' },
-  { name: 'Swift', icon: '🦉', extension: '.swift' }
+  { name: 'JavaScript', icon: '⚡', extension: '.js', color: 'text-yellow-500' },
+  { name: 'Python', icon: '🐍', extension: '.py', color: 'text-blue-500' },
+  { name: 'TypeScript', icon: '🔷', extension: '.ts', color: 'text-blue-600' },
+  { name: 'Java', icon: '☕', extension: '.java', color: 'text-red-500' },
+  { name: 'C#', icon: '🔵', extension: '.cs', color: 'text-purple-500' },
+  { name: 'Go', icon: '🐹', extension: '.go', color: 'text-cyan-500' },
+  { name: 'Rust', icon: '🦀', extension: '.rs', color: 'text-orange-500' },
+  { name: 'PHP', icon: '🐘', extension: '.php', color: 'text-indigo-500' },
+  { name: 'Ruby', icon: '💎', extension: '.rb', color: 'text-red-600' },
+  { name: 'Swift', icon: '🦉', extension: '.swift', color: 'text-orange-600' }
 ];
 
 const promptCategories = [
@@ -251,10 +251,29 @@ export default function PromptEngineeringPage() {
     }));
   };
 
-  // Auto-generate prompt when selections change
-  useState(() => {
-    generatePrompt();
-  });
+  // Auto-fill language variable when language selection changes
+  const handleLanguageChange = (language: typeof programmingLanguages[0]) => {
+    setSelectedLanguage(language);
+    // Auto-fill the language variable if it exists in the current prompt
+    if (selectedPrompt.variables.includes('language')) {
+      setCustomVariables(prev => ({
+        ...prev,
+        language: language.name
+      }));
+    }
+  };
+
+  // Auto-fill language when prompt changes
+  const handlePromptChange = (prompt: typeof promptCategories[0]['prompts'][0]) => {
+    setSelectedPrompt(prompt);
+    // Auto-fill language if the prompt has a language variable
+    if (prompt.variables.includes('language')) {
+      setCustomVariables(prev => ({
+        ...prev,
+        language: selectedLanguage.name
+      }));
+    }
+  };
 
   return (
     <>
@@ -320,14 +339,14 @@ export default function PromptEngineeringPage() {
               {programmingLanguages.map((lang, index) => (
                 <button
                   key={index}
-                  onClick={() => setSelectedLanguage(lang)}
+                  onClick={() => handleLanguageChange(lang)}
                   className={`p-4 rounded-xl border-2 transition-all duration-300 ${
                     selectedLanguage.name === lang.name
                       ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
                       : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-purple-300 dark:hover:border-purple-600'
                   }`}
                 >
-                  <div className="text-3xl mb-2">{lang.icon}</div>
+                  <div className={`text-3xl mb-2 ${lang.color}`}>{lang.icon}</div>
                   <div className="font-semibold text-gray-900 dark:text-white text-sm">
                     {lang.name}
                   </div>
@@ -352,7 +371,7 @@ export default function PromptEngineeringPage() {
                       key={index}
                       onClick={() => {
                         setSelectedCategory(category);
-                        setSelectedPrompt(category.prompts[0]);
+                        handlePromptChange(category.prompts[0]);
                       }}
                       className={`w-full text-left p-3 rounded-lg transition-all ${
                         selectedCategory.name === category.name
@@ -418,7 +437,7 @@ export default function PromptEngineeringPage() {
                     value={selectedPrompt.title}
                     onChange={(e) => {
                       const prompt = selectedCategory.prompts.find(p => p.title === e.target.value);
-                      if (prompt) setSelectedPrompt(prompt);
+                      if (prompt) handlePromptChange(prompt);
                     }}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   >
@@ -441,13 +460,26 @@ export default function PromptEngineeringPage() {
                         <div key={index}>
                           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             {variable.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                            {variable === 'language' && (
+                              <span className="text-xs text-green-600 dark:text-green-400 ml-2">
+                                (Auto-filled from selection above)
+                              </span>
+                            )}
                           </label>
                           <input
                             type="text"
                             value={customVariables[variable] || ''}
                             onChange={(e) => handleVariableChange(variable, e.target.value)}
-                            placeholder={`Enter ${variable.replace('_', ' ')}...`}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            placeholder={
+                              variable === 'language' 
+                                ? `Enter custom language (default: ${selectedLanguage.name})...`
+                                : `Enter ${variable.replace('_', ' ')}...`
+                            }
+                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                              variable === 'language' && customVariables[variable] === selectedLanguage.name
+                                ? 'border-green-300 bg-green-50 dark:bg-green-900/20'
+                                : 'border-gray-300'
+                            }`}
                           />
                         </div>
                       ))}
@@ -455,25 +487,37 @@ export default function PromptEngineeringPage() {
                   </div>
                 )}
 
-                {/* Generated Prompt */}
+                {/* Generate Button */}
                 <div className="mb-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-medium text-gray-900 dark:text-white">
-                      Generated Prompt
-                    </h4>
-                    <button
-                      onClick={() => copyToClipboard(generatedPrompt)}
-                      className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-                    >
-                      Copy Prompt
-                    </button>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                    <pre className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
-                      {generatedPrompt}
-                    </pre>
-                  </div>
+                  <button
+                    onClick={generatePrompt}
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-colors mb-4"
+                  >
+                    Generate Prompt
+                  </button>
                 </div>
+
+                {/* Generated Prompt */}
+                {generatedPrompt && (
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="text-lg font-medium text-gray-900 dark:text-white">
+                        Generated Prompt
+                      </h4>
+                      <button
+                        onClick={() => copyToClipboard(generatedPrompt)}
+                        className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                      >
+                        Copy Prompt
+                      </button>
+                    </div>
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <pre className="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+                        {generatedPrompt}
+                      </pre>
+                    </div>
+                  </div>
+                )}
 
                 {/* Usage Instructions */}
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
