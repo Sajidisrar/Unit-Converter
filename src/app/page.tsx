@@ -103,7 +103,7 @@ export default function Home() {
             <strong> format JSON data, convert Base64, decode JWT tokens, or perform accurate unit conversions </strong> for daily tasks, we provide fast and reliable tools trusted by professionals worldwide.
           </p>
           <p className="mt-4">
-            Our collection includes trending <strong>developer utilities</strong> like <strong>JSON Formatter, XML Parser, URL Encoder/Decoder</strong>, and <strong>Number Base Converter</strong>, 
+            Our collection includes trending <strong>developer utilities</strong> like <strong>AI Cheat Sheet, Regex Validator, Prompt Engineering, JSON Formatter, XML Parser, URL Encoder/Decoder</strong>, and <strong>Number Base Converter</strong>, 
             along with traditional <strong>unit converters</strong> for <strong>length, temperature, area, and cooking measurements</strong>.
             Each tool is optimized for SEO, user experience, and Google Core Web Vitals performance.
           </p>
@@ -135,24 +135,24 @@ export default function Home() {
                 <div className="mb-4">
                   <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">Most Popular Tools</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <a href="/ai-cheat-sheet" className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
+                      <div className="text-2xl mb-1">🤖</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">AI Cheat Sheet</div>
+                    </a>
+                    
+                    <a href="/regex-validator" className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/40 dark:hover:to-emerald-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
+                      <div className="text-2xl mb-1">🔍</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Regex Validator</div>
+                    </a>
+                    
+                    <a href="/prompt-engineering" className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
+                      <div className="text-2xl mb-1">💬</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Prompt Engineering</div>
+                    </a>
+                    
                     <a href="/base64-encoder-decoder" className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
                       <div className="text-2xl mb-1">🔐</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Base64</div>
-                    </a>
-                    
-                    <a href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
-                      <div className="text-2xl mb-1">📊</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON to CSV</div>
-                    </a>
-                    
-                    <a href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-pink-200 dark:border-pink-800">
-                      <div className="text-2xl mb-1">🎨</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Color Picker</div>
-                    </a>
-                    
-                    <a href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
-                      <div className="text-2xl mb-1">🌐</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">URL Encoder</div>
                     </a>
                   </div>
                 </div>
@@ -161,6 +161,21 @@ export default function Home() {
                 <div>
                   <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">More Developer Tools</h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                    <a href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">📊</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON to CSV</div>
+                    </a>
+                    
+                    <a href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🎨</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">Color Picker</div>
+                    </a>
+                    
+                    <a href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-2 text-center transition-colors">
+                      <div className="text-xl mb-1">🌐</div>
+                      <div className="text-xs font-medium text-gray-800 dark:text-white">URL Encoder</div>
+                    </a>
+                    
                     <a href="/json-prettier" className="bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">✨</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Pretty</div>

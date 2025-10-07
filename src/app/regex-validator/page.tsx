@@ -9,62 +9,142 @@ const commonRegexPatterns = [
   {
     name: 'Email Validation',
     pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
-    description: 'Validates email addresses',
-    example: 'user@example.com'
+    description: 'Validates email addresses with proper format',
+    example: 'user@example.com',
+    category: 'Validation'
   },
   {
     name: 'Phone Number (US)',
     pattern: '^\\+?1?[-.\\s]?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$',
-    description: 'US phone number format',
-    example: '(555) 123-4567'
+    description: 'US phone number with various formats',
+    example: '(555) 123-4567',
+    category: 'Validation'
+  },
+  {
+    name: 'Phone Number (International)',
+    pattern: '^\\+[1-9]\\d{1,14}$',
+    description: 'International phone number format',
+    example: '+1234567890',
+    category: 'Validation'
   },
   {
     name: 'URL Validation',
     pattern: '^https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)$',
     description: 'Validates HTTP/HTTPS URLs',
-    example: 'https://www.example.com'
+    example: 'https://www.example.com',
+    category: 'Validation'
   },
   {
-    name: 'Password (8+ chars, mixed case, number)',
-    pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@$!%*?&]{8,}$',
-    description: 'Strong password with uppercase, lowercase, and number',
-    example: 'MyPass123'
+    name: 'Strong Password',
+    pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+    description: 'Password with uppercase, lowercase, number, and special char',
+    example: 'MyPass123!',
+    category: 'Security'
   },
   {
-    name: 'Credit Card (Visa/MasterCard)',
-    pattern: '^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$',
-    description: 'Visa and MasterCard numbers',
-    example: '4111111111111111'
+    name: 'Credit Card (Visa)',
+    pattern: '^4[0-9]{12}(?:[0-9]{3})?$',
+    description: 'Visa credit card numbers',
+    example: '4111111111111111',
+    category: 'Finance'
+  },
+  {
+    name: 'Credit Card (MasterCard)',
+    pattern: '^5[1-5][0-9]{14}$',
+    description: 'MasterCard credit card numbers',
+    example: '5555555555554444',
+    category: 'Finance'
   },
   {
     name: 'Date (YYYY-MM-DD)',
     pattern: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$',
-    description: 'ISO date format',
-    example: '2024-12-25'
+    description: 'ISO date format validation',
+    example: '2024-12-25',
+    category: 'Date/Time'
+  },
+  {
+    name: 'Time (HH:MM)',
+    pattern: '^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$',
+    description: '24-hour time format',
+    example: '14:30',
+    category: 'Date/Time'
   },
   {
     name: 'IPv4 Address',
     pattern: '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
     description: 'Validates IPv4 addresses',
-    example: '192.168.1.1'
+    example: '192.168.1.1',
+    category: 'Network'
+  },
+  {
+    name: 'IPv6 Address',
+    pattern: '^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$',
+    description: 'Validates IPv6 addresses',
+    example: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+    category: 'Network'
   },
   {
     name: 'Hex Color Code',
     pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$',
-    description: 'CSS hex color codes',
-    example: '#FF5733'
+    description: 'CSS hex color codes (3 or 6 digits)',
+    example: '#FF5733',
+    category: 'Design'
   },
   {
-    name: 'Username (alphanumeric, underscore)',
+    name: 'RGB Color',
+    pattern: '^rgb\\(\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])\\s*\\)$',
+    description: 'RGB color format validation',
+    example: 'rgb(255, 87, 51)',
+    category: 'Design'
+  },
+  {
+    name: 'Username (3-20 chars)',
     pattern: '^[a-zA-Z0-9_]{3,20}$',
-    description: 'Username with 3-20 characters',
-    example: 'user_123'
+    description: 'Username with alphanumeric and underscore',
+    example: 'user_123',
+    category: 'Validation'
   },
   {
     name: 'Social Security Number',
     pattern: '^\\d{3}-\\d{2}-\\d{4}$',
-    description: 'US SSN format',
-    example: '123-45-6789'
+    description: 'US SSN format (XXX-XX-XXXX)',
+    example: '123-45-6789',
+    category: 'Validation'
+  },
+  {
+    name: 'ZIP Code (US)',
+    pattern: '^\\d{5}(-\\d{4})?$',
+    description: 'US ZIP code with optional +4',
+    example: '12345-6789',
+    category: 'Validation'
+  },
+  {
+    name: 'Alphanumeric Only',
+    pattern: '^[a-zA-Z0-9]+$',
+    description: 'Only letters and numbers allowed',
+    example: 'abc123',
+    category: 'Validation'
+  },
+  {
+    name: 'No Spaces',
+    pattern: '^\\S+$',
+    description: 'No whitespace characters allowed',
+    example: 'noSpacesHere',
+    category: 'Validation'
+  },
+  {
+    name: 'Decimal Number',
+    pattern: '^\\d+\\.\\d{1,2}$',
+    description: 'Decimal number with 1-2 decimal places',
+    example: '123.45',
+    category: 'Numbers'
+  },
+  {
+    name: 'Positive Integer',
+    pattern: '^[1-9]\\d*$',
+    description: 'Positive integers only (no leading zeros)',
+    example: '123',
+    category: 'Numbers'
   }
 ];
 
@@ -102,6 +182,7 @@ export default function RegexValidatorPage() {
   const [isValid, setIsValid] = useState(true);
   const [error, setError] = useState('');
   const [selectedPattern, setSelectedPattern] = useState<typeof commonRegexPatterns[0] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     if (regex.trim()) {
@@ -331,13 +412,130 @@ export default function RegexValidatorPage() {
             <AdBanner position="inline" />
           </div>
 
+          {/* Regex Structure Guide */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+              How Regex Works - Structure Guide
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  🔍 Basic Structure
+                </h4>
+                <div className="space-y-3 text-sm">
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">^</code> - Start of string
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">$</code> - End of string
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">.</code> - Any character
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">*</code> - Zero or more
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">+</code> - One or more
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">?</code> - Zero or one
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                  📝 Character Classes
+                </h4>
+                <div className="space-y-3 text-sm">
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">[a-z]</code> - Lowercase letters
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">[A-Z]</code> - Uppercase letters
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">[0-9]</code> - Digits
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">\\d</code> - Any digit
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">\\w</code> - Word characters
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                    <code className="text-blue-600 dark:text-blue-400">\\s</code> - Whitespace
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                💡 Quick Examples
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Email Pattern:</strong>
+                  <code className="block bg-gray-100 dark:bg-gray-600 p-2 rounded mt-1 text-xs">
+                    ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]&#123;2,&#125;$
+                  </code>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">
+                    Matches: user@example.com
+                  </p>
+                </div>
+                <div>
+                  <strong>Phone Pattern:</strong>
+                  <code className="block bg-gray-100 dark:bg-gray-600 p-2 rounded mt-1 text-xs">
+                    ^\\+?1?[-.\\s]?\\(?([0-9]&#123;3&#125;)\\)?[-.\\s]?([0-9]&#123;3&#125;)[-.\\s]?([0-9]&#123;4&#125;)$
+                  </code>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">
+                    Matches: (555) 123-4567
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Common Patterns */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-              Common Regex Patterns
+              Common Regex Patterns by Category
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {commonRegexPatterns.map((pattern, index) => (
+            
+            {/* Category Filter */}
+            <div className="mb-6">
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setSelectedCategory('All')}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                    selectedCategory === 'All'
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  All
+                </button>
+                {Array.from(new Set(commonRegexPatterns.map(p => p.category))).map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedCategory === category
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {commonRegexPatterns
+                .filter(pattern => selectedCategory === 'All' || pattern.category === selectedCategory)
+                .map((pattern, index) => (
                 <div
                   key={index}
                   className={`p-4 border rounded-lg cursor-pointer transition-all ${
@@ -347,13 +545,18 @@ export default function RegexValidatorPage() {
                   }`}
                   onClick={() => handlePatternSelect(pattern)}
                 >
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    {pattern.name}
-                  </h4>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                      {pattern.name}
+                    </h4>
+                    <span className="text-xs bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 px-2 py-1 rounded">
+                      {pattern.category}
+                    </span>
+                  </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                     {pattern.description}
                   </p>
-                  <code className="text-xs text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded block">
+                  <code className="text-xs text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded block break-all">
                     {pattern.pattern}
                   </code>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">
