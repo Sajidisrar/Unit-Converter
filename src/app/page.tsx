@@ -1,5 +1,6 @@
 import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
+import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
@@ -116,6 +117,24 @@ export default function Home() {
           </div>
         </div>
 
+        <section className="my-12 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Why Use Online Developer Tools?</h2>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-700 dark:text-gray-300">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <h3 className="font-semibold text-lg mb-2">🚀 No Installation Needed</h3>
+              <p className="text-sm">Access powerful tools instantly from any browser without any setup.</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <h3 className="font-semibold text-lg mb-2">🔄 Always Up-to-Date</h3>
+              <p className="text-sm">Our tools are continuously updated to support the latest standards and formats.</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <h3 className="font-semibold text-lg mb-2">🔒 Secure & Private</h3>
+              <p className="text-sm">All processing is done in your browser. Your data is never sent to our servers.</p>
+            </div>
+          </div>
+        </section>
+
         <main className="max-w-6xl mx-auto">
           {/* Most Popular Converters */}
           <section className="mb-12">
@@ -123,7 +142,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
               Most Popular Converters
             </h2>
-            <div className="grid grid-cols-1 gap-6 mb-12">
+            <div className="grid grid-cols-1 gap-8 mb-12">
               {/* Developer Tools */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
                 <div className="text-center mb-6">
@@ -142,25 +161,25 @@ export default function Home() {
                 <div className="mb-4">
                   <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">Most Popular Tools</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <a href="/ai-cheat-sheet" className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
+                    <Link href="/ai-cheat-sheet" className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
                       <div className="text-2xl mb-1">🤖</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">AI Cheat Sheet</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/regex-validator" className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/40 dark:hover:to-emerald-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
+                    <Link href="/regex-validator" className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/40 dark:hover:to-emerald-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
                       <div className="text-2xl mb-1">🔍</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Regex Validator</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/prompt-engineering" className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
+                    <Link href="/prompt-engineering" className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
                       <div className="text-2xl mb-1">💬</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Prompt Engineering</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/base64-encoder-decoder" className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
+                    <Link href="/base64-encoder-decoder" className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
                       <div className="text-2xl mb-1">🔐</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Base64</div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -168,67 +187,67 @@ export default function Home() {
                 <div>
                   <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">More Developer Tools</h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-                    <a href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">📊</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JSON to CSV</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🎨</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Color Picker</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🌐</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">URL Encoder</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/json-prettier" className="bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/json-prettier" className="bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">✨</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Pretty</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/jwt-decoder" className="bg-yellow-50 dark:bg-yellow-900/20 hover:bg-yellow-100 dark:hover:bg-yellow-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/jwt-decoder" className="bg-yellow-50 dark:bg-yellow-900/20 hover:bg-yellow-100 dark:hover:bg-yellow-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🔑</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JWT Decoder</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/xml-formatter" className="bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/xml-formatter" className="bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">📄</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">XML Format</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/json-compare" className="bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/json-compare" className="bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🔍</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Diff</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/xml-compare" className="bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/xml-compare" className="bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">⚖️</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">XML Diff</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/text-compare" className="bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/text-compare" className="bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">📝</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">Text Diff</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/json-parser" className="bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 dark:hover:bg-cyan-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/json-parser" className="bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 dark:hover:bg-cyan-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🔧</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Parser</div>
-                    </a>
+                    </Link>
                     
-                    <a href="/xml-parser" className="bg-lime-50 dark:bg-lime-900/20 hover:bg-lime-100 dark:hover:bg-lime-900/40 rounded-lg p-2 text-center transition-colors">
+                    <Link href="/xml-parser" className="bg-lime-50 dark:bg-lime-900/20 hover:bg-lime-100 dark:hover:bg-lime-900/40 rounded-lg p-2 text-center transition-colors">
                       <div className="text-xl mb-1">🛠️</div>
                       <div className="text-xs font-medium text-gray-800 dark:text-white">XML Parser</div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 
                 <div className="text-center mt-4">
-                  <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium">
+                  <Link href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium">
                     View All Tools →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -236,7 +255,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
               {/* Length Converter */}
-              <a href="/length" aria-label="Length Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/length" aria-label="Length Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,10 +270,10 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">Miles</span>
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Weight Converter */}
-              <a href="/weight" aria-label="Weight Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/weight" aria-label="Weight Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,10 +288,10 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">Ounces</span>
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Temperature Converter */}
-              <a href="/temperature" aria-label="Temperature Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/temperature" aria-label="Temperature Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -286,10 +305,10 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">Kelvin</span>
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Area Converter */}
-              <a href="/area" aria-label="Area Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/area" aria-label="Area Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -303,7 +322,7 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">hectares</span>
                   </p>
                 </div>
-              </a>
+              </Link>
 
              
 
@@ -312,7 +331,7 @@ export default function Home() {
               
 
               {/* Speed Converter */}
-              <a href="/speed" aria-label="Speed Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/speed" aria-label="Speed Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -327,10 +346,10 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">m/s</span>
                   </p>
                 </div>
-              </a>
+              </Link>
 
               {/* Cooking Converter */}
-              <a href="/cooking" aria-label="Cooking Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
+              <Link href="/cooking" aria-label="Cooking Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -345,7 +364,7 @@ export default function Home() {
                     <span className="text-blue-600 dark:text-blue-400">Grams</span>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </section>
 
@@ -424,9 +443,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert between meters, feet, inches, yards, kilometers, miles, and nautical miles. Perfect for construction, travel planning, and academic work.
                 </p>
-                <a href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
+                <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
                   Try Length Converter →
-                </a>
+                </Link>
               </div>
               
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6">
@@ -434,9 +453,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert kilograms, pounds, ounces, grams, tons, and stones. Essential for cooking, shipping, and health monitoring.
                 </p>
-                <a href="/weight" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">
+                <Link href="/weight" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">
                   Try Weight Converter →
-                </a>
+                </Link>
               </div>
               
               <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6">
@@ -444,9 +463,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert between Celsius, Fahrenheit, and Kelvin. Useful for weather, cooking, and scientific calculations.
                 </p>
-                <a href="/temperature" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">
+                <Link href="/temperature" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">
                   Try Temperature Converter →
-                </a>
+                </Link>
               </div>
               
               <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
@@ -454,9 +473,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert square meters, square feet, acres, hectares, and square yards. Ideal for real estate and agriculture.
                 </p>
-                <a href="/area" className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-medium">
+                <Link href="/area" className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-medium">
                   Try Area Converter →
-                </a>
+                </Link>
               </div>
               
               <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
@@ -464,9 +483,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert MPH, KPH, knots, meters per second, and feet per second. Great for automotive and aviation.
                 </p>
-                <a href="/speed" className="text-red-600 dark:text-red-400 hover:underline text-sm font-medium">
+                <Link href="/speed" className="text-red-600 dark:text-red-400 hover:underline text-sm font-medium">
                   Try Speed Converter →
-                </a>
+                </Link>
               </div>
               
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-6">
@@ -474,9 +493,9 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   Convert cups, tablespoons, teaspoons, grams, ounces, and milliliters. Perfect for baking and cooking.
                 </p>
-                <a href="/cooking" className="text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium">
+                <Link href="/cooking" className="text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium">
                   Try Cooking Converter →
-                </a>
+                </Link>
               </div>
             </div>
           </section>
