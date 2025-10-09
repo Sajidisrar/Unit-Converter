@@ -218,6 +218,15 @@ export default function RegexValidatorPage() {
     setSelectedPattern(null);
   };
 
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Optional: Show a toast notification for feedback
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -554,9 +563,14 @@ export default function RegexValidatorPage() {
                       {pattern.category}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                    {pattern.description}
-                  </p>
+                  <div className="flex justify-between items-start mb-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 pr-2">
+                      {pattern.description}
+                    </p>
+                    <button onClick={(e) => { e.stopPropagation(); copyToClipboard(pattern.pattern); }} className="text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded px-2 py-1 transition-colors flex-shrink-0">
+                      Copy
+                    </button>
+                  </div>
                   <code className="text-xs text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded block break-all">
                     {pattern.pattern}
                   </code>
@@ -661,6 +675,13 @@ export default function RegexValidatorPage() {
                 <li>• <strong>Use character classes</strong> [a-z] instead of [abcdef...]</li>
                 <li>• <strong>Consider performance</strong> for large text processing</li>
               </ul>
+              <div className="mt-6">
+                <h4 className="text-md font-medium text-gray-900 dark:text-white mb-2">Related Developer Tools:</h4>
+                <p className="text-gray-700 dark:text-gray-300">
+                  After validating your patterns, you might need to work with data formats. Try our <a href="/json-parser" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Parser</a> or 
+                  <a href="/xml-formatter" className="text-blue-600 dark:text-blue-400 hover:underline">XML Formatter</a> to continue your workflow.
+                </p>
+              </div>
             </div>
           </div>
 

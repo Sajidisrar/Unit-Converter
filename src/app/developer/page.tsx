@@ -3,105 +3,13 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
-
-const developerTools = [
-  {
-    title: 'Prompt Engineering',
-    description: 'Master AI coding assistance with copyable prompts for 10 programming languages and AI tools',
-    url: '/prompt-engineering',
-    icon: '💬'
-  },
-  {
-    title: 'Developer AI Cheat Sheet',
-    description: 'Complete reference for 10 main programming languages with syntax, patterns, and AI development tools',
-    url: '/ai-cheat-sheet',
-    icon: '🤖'
-  },
-  {
-    title: 'Regex Validator',
-    description: 'Test and validate regular expressions with real-time matching, common patterns, and syntax reference',
-    url: '/regex-validator',
-    icon: '🔍'
-  },
-  {
-    title: 'JSON to CSV Converter',
-    description: 'Convert JSON data to CSV format for spreadsheets and data analysis',
-    url: '/json-to-csv',
-    icon: '📊'
-  },
-  {
-    title: 'Base64 Encoder/Decoder',
-    description: 'Encode and decode Base64 strings for data transmission and storage',
-    url: '/base64-encoder-decoder',
-    icon: '🔐'
-  },
-  {
-    title: 'URL Encoder/Decoder',
-    description: 'Encode and decode URLs for web development and API calls',
-    url: '/url-encoder-decoder',
-    icon: '🌐'
-  },
-  {
-    title: 'JWT Decoder',
-    description: 'Decode JSON Web Tokens to inspect payload and claims',
-    url: '/jwt-decoder',
-    icon: '🔑'
-  },
-  {
-    title: 'XML Formatter',
-    description: 'Format and minify XML data for better readability and debugging',
-    url: '/xml-formatter',
-    icon: '📄'
-  },
-  {
-    title: 'JSON Compare',
-    description: 'Compare two JSON objects and find differences instantly',
-    url: '/json-compare',
-    icon: '🔍'
-  },
-  {
-    title: 'XML Compare',
-    description: 'Compare two XML documents and identify structural differences',
-    url: '/xml-compare',
-    icon: '⚖️'
-  },
-  {
-    title: 'Text Compare',
-    description: 'Compare text documents by lines, words, or characters',
-    url: '/text-compare',
-    icon: '📝'
-  },
-  {
-    title: 'Color Converter',
-    description: 'Convert colors between HEX, RGB, HSL, HSV, CMYK formats with a color picker',
-    url: '/color-converter',
-    icon: '🎨'
-  },
-  {
-    title: 'JSON Prettier',
-    description: 'Format and visualize JSON data with an interactive expand/collapse tree structure',
-    url: '/json-prettier',
-    icon: '✨'
-  },
-  {
-    title: 'JSON Parser',
-    description: 'Parse, validate, and analyze JSON data with interactive tree view and statistics',
-    url: '/json-parser',
-    icon: '🔧'
-  },
-  {
-    title: 'XML Parser',
-    description: 'Parse, validate, and analyze XML data with interactive tree view and element analysis',
-    url: '/xml-parser',
-    icon: '🛠️'
-  }
-];
+import { developerTools } from '@/data/developerTools';
 
 export default function DeveloperPage() {
   return (
     <>
       <Head>
-        <title>Free Online Developer Tools 2025 | JSON, Base64, URL, JWT, XML, Regex & AI Tools</title>
+        <title>15+ Free Online Developer Tools for 2025 | JSON, Regex, AI & More</title>
         <meta
           name="description"
           content="Best free online developer tools for 2025. JSON formatter, Base64 encoder, URL encoder, JWT decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering. Trusted by 100K+ developers. No registration required."
@@ -153,13 +61,13 @@ export default function DeveloperPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Free Developer Tools 2025
+              Free Online Developer Tools (2025)
             </h1>
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               Best Online Developer Tools for Programming & AI Development
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              <strong>Trusted by 100K+ developers worldwide.</strong> Essential utilities for developers, data scientists, and AI engineers. 
+              <strong>Trusted by 100K+ developers worldwide.</strong> Essential utilities for developers, data scientists, and AI engineers.
               Format JSON, encode Base64, decode JWT, validate regex, and transform data formats instantly in your browser.
             </p>
 
@@ -214,13 +122,13 @@ export default function DeveloperPage() {
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">Developer Tools Insights</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Data Processing & AI</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Streamline Your Data Processing & AI Workflows</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
                   Build data workflows with <Link href="/json-to-csv" className="text-blue-600 dark:text-blue-400 hover:underline">json to csv</Link> conversion, perform <Link href="/base64-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">base64 encoding</Link>, and manipulate data formats directly in your browser. These utilities are essential for modern stacks spanning <strong>AI artificial Intelligence</strong> and <strong>Data Science</strong>.
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Unit Conversions</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Integrate Seamless Unit Conversions</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
                   When your applications handle measurements, pair our developer utilities with the <Link href="/area" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter area</Link> and <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter weight</Link> to normalize inputs across metric and imperial systems.
                 </p>
@@ -266,8 +174,7 @@ export default function DeveloperPage() {
 
             <div className="mt-10 text-gray-700 dark:text-gray-300">
               <p>
-                Our <strong>free developer tools online</strong> help you boost productivity with quick JSON, XML, and Base64 transformations.
-                Built for <strong>frontend developers, backend engineers, and data analysts</strong>, these utilities save time and reduce errors in <strong>API testing, web integrations, and AI-driven data preprocessing</strong>.
+                Our <strong>free developer tools online</strong> help you boost productivity with quick JSON, XML, and Base64 transformations. Built for <strong>frontend developers, backend engineers, and data analysts</strong>, these utilities save time and reduce errors in <strong>API testing, web integrations, and AI-driven data preprocessing</strong>.
               </p>
               <p className="mt-4">
                 Start using the most searched <strong>developer tools 2025</strong> — easy, fast, and accessible from any browser.
