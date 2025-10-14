@@ -1,11 +1,51 @@
+"use client";
+
 import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
+import { useState } from "react";
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  // Tool data for search and filtering
+  const allTools = [
+    // Developer Tools
+    { name: "AI Cheat Sheet", url: "/ai-cheat-sheet", icon: "🤖", category: "developer", description: "Comprehensive AI development reference" },
+    { name: "Regex Validator", url: "/regex-validator", icon: "🔍", category: "developer", description: "Test and validate regular expressions" },
+    { name: "Prompt Engineering", url: "/prompt-engineering", icon: "💬", category: "developer", description: "Learn effective prompt engineering" },
+    { name: "Base64 Encoder/Decoder", url: "/base64-encoder-decoder", icon: "🔐", category: "developer", description: "Encode and decode Base64 data" },
+    { name: "JSON to CSV", url: "/json-to-csv", icon: "📊", category: "developer", description: "Convert JSON to CSV format" },
+    { name: "URL Encoder/Decoder", url: "/url-encoder-decoder", icon: "🌐", category: "developer", description: "Encode and decode URLs" },
+    { name: "JWT Decoder", url: "/jwt-decoder", icon: "🔑", category: "developer", description: "Decode JSON Web Tokens" },
+    { name: "JSON Prettier", url: "/json-prettier", icon: "✨", category: "developer", description: "Format and beautify JSON" },
+    { name: "JSON Parser", url: "/json-parser", icon: "🔧", category: "developer", description: "Parse and validate JSON" },
+    { name: "XML Formatter", url: "/xml-formatter", icon: "📄", category: "developer", description: "Format XML documents" },
+    { name: "JSON Compare", url: "/json-compare", icon: "🔍", category: "developer", description: "Compare JSON objects" },
+    { name: "Text Compare", url: "/text-compare", icon: "📝", category: "developer", description: "Compare text documents" },
+    { name: "Color Converter", url: "/color-converter", icon: "🎨", category: "developer", description: "Convert color formats" },
+    
+    // Unit Converters
+    { name: "Length Converter", url: "/length", icon: "📏", category: "converter", description: "Convert length units (meters, feet, inches)" },
+    { name: "Weight Converter", url: "/weight", icon: "⚖️", category: "converter", description: "Convert weight units (kg, lbs, oz)" },
+    { name: "Temperature Converter", url: "/temperature", icon: "🌡️", category: "converter", description: "Convert temperature (Celsius, Fahrenheit)" },
+    { name: "Area Converter", url: "/area", icon: "📐", category: "converter", description: "Convert area units (sq meters, acres)" },
+    { name: "Speed Converter", url: "/speed", icon: "🏃", category: "converter", description: "Convert speed (MPH, KPH, knots)" },
+    { name: "Cooking Converter", url: "/cooking", icon: "👨‍🍳", category: "converter", description: "Convert cooking units (cups, tbsp)" }
+  ];
+
+  const filteredTools = allTools.filter(tool => {
+    const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         tool.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === "all" || tool.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
         <title>Free Online Unit & Developer Tools 2025 | JSON, Base64, URL, JWT, XML Converters & Regex Validator</title>
         <meta
@@ -84,484 +124,169 @@ export default function Home() {
       <div className="container mx-auto px-4 pt-6 flex justify-start">
       </div>
       <div className="container mx-auto px-4 py-8">
-        {/* Top Ad Banner */}
-        <AdBanner position="top" />
 
-        {/* Hero Section */}
-        <header className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-            Free Online Unit Converters & Developer Tools 2025
+        {/* Compact Hero Section */}
+        <header className="text-center mb-8">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Free Online Tools 2025
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            <strong>Best free online developer tools and unit converters for 2025.</strong> Instantly format JSON, encode Base64, decode JWT, validate regex, and convert units for length, weight, temperature, area, speed, and cooking. Trusted by 100K+ developers worldwide. No registration required.
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
+            Developer tools & unit converters. JSON, Base64, JWT, Regex, Length, Weight, Temperature & more.
           </p>
+          
         </header>
 
-        {/* Enhanced SEO Content */}
-        <div className="mt-8 text-lg text-gray-700 dark:text-gray-300 max-w-5xl mx-auto leading-relaxed">
-          <p>
-            Welcome to <strong>FreeUnitConvertor.com</strong> — the #1 free online developer tools platform trusted by 100K+ developers worldwide. 
-            Whether you need to <strong>format JSON data, encode Base64, decode JWT tokens, validate regex patterns, or convert units</strong> for daily tasks, 
-            we provide lightning-fast, accurate tools with zero registration required.
-          </p>
-          <p className="mt-4">
-            Our comprehensive collection includes trending <strong>2025 developer utilities</strong> like <strong>AI Cheat Sheet, Regex Validator, Prompt Engineering, JSON Formatter, XML Parser, URL Encoder/Decoder</strong>, 
-            plus essential <strong>unit converters</strong> for <strong>length, weight, temperature, area, speed, and cooking measurements</strong>.
-            Each tool is optimized for Google Core Web Vitals, mobile-first design, and maximum user experience.
-          </p>
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
-            <p className="text-blue-800 dark:text-blue-200 font-medium">
-              🚀 <strong>Why developers choose us:</strong> Instant results, no ads blocking tools, mobile-optimized, and always free. 
-              Perfect for <strong>API testing, data analysis, web development, and AI programming</strong>.
-            </p>
-          </div>
-        </div>
-
-        <section className="my-12 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Why Use Online Developer Tools?</h2>
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-700 dark:text-gray-300">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-              <h3 className="font-semibold text-lg mb-2">🚀 No Installation Needed</h3>
-              <p className="text-sm">Access powerful tools instantly from any browser without any setup.</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-              <h3 className="font-semibold text-lg mb-2">🔄 Always Up-to-Date</h3>
-              <p className="text-sm">Our tools are continuously updated to support the latest standards and formats.</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-              <h3 className="font-semibold text-lg mb-2">🔒 Secure & Private</h3>
-              <p className="text-sm">All processing is done in your browser. Your data is never sent to our servers.</p>
-            </div>
-          </div>
-        </section>
-
+        {/* All Tools Grid - Moved to Top */}
         <main className="max-w-6xl mx-auto">
-          {/* Most Popular Converters */}
           <section className="mb-12">
-            
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
-              Most Popular Converters
-            </h2>
-            <div className="grid grid-cols-1 gap-8 mb-12">
-              {/* Developer Tools */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
-                    </svg>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+              {allTools.map((tool, index) => (
+                <Link
+                  key={index}
+                  href={tool.url}
+                  className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 p-6 h-full flex flex-col"
+                >
+                  <div className="text-center flex flex-col h-full">
+                    <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                      {tool.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {tool.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 flex-1">
+                      {tool.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Developer Tools</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    Quick access to developer tools for encoding, formatting, and data conversion
-                  </p>
-                </div>
-                
-                {/* Most Frequently Used Tools - Top Row */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">Most Popular Tools</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <Link href="/ai-cheat-sheet" className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 rounded-lg p-3 text-center transition-colors border-2 border-purple-200 dark:border-purple-800">
-                      <div className="text-2xl mb-1">🤖</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">AI Cheat Sheet</div>
-                    </Link>
-                    
-                    <Link href="/regex-validator" className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 hover:from-green-100 hover:to-emerald-100 dark:hover:from-green-900/40 dark:hover:to-emerald-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
-                      <div className="text-2xl mb-1">🔍</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Regex Validator</div>
-                    </Link>
-                    
-                    <Link href="/prompt-engineering" className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 rounded-lg p-3 text-center transition-colors border-2 border-blue-200 dark:border-blue-800">
-                      <div className="text-2xl mb-1">💬</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Prompt Engineering</div>
-                    </Link>
-                    
-                    <Link href="/base64-encoder-decoder" className="bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg p-3 text-center transition-colors border-2 border-green-200 dark:border-green-800">
-                      <div className="text-2xl mb-1">🔐</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Base64</div>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Additional Developer Tools */}
-                <div>
-                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3 text-center">More Developer Tools</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-                    <Link href="/json-to-csv" className="bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">📊</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON to CSV</div>
-                    </Link>
-                    
-                    <Link href="/color-converter" className="bg-pink-50 dark:bg-pink-900/20 hover:bg-pink-100 dark:hover:bg-pink-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🎨</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Color Picker</div>
-                    </Link>
-                    
-                    <Link href="/url-encoder-decoder" className="bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🌐</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">URL Encoder</div>
-                    </Link>
-                    
-                    <Link href="/json-prettier" className="bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">✨</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Pretty</div>
-                    </Link>
-                    
-                    <Link href="/jwt-decoder" className="bg-yellow-50 dark:bg-yellow-900/20 hover:bg-yellow-100 dark:hover:bg-yellow-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🔑</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JWT Decoder</div>
-                    </Link>
-                    
-                    <Link href="/xml-formatter" className="bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">📄</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Format</div>
-                    </Link>
-                    
-                    <Link href="/json-compare" className="bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🔍</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Diff</div>
-                    </Link>
-                    
-                    <Link href="/xml-compare" className="bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">⚖️</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Diff</div>
-                    </Link>
-                    
-                    <Link href="/text-compare" className="bg-teal-50 dark:bg-teal-900/20 hover:bg-teal-100 dark:hover:bg-teal-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">📝</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">Text Diff</div>
-                    </Link>
-                    
-                    <Link href="/json-parser" className="bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 dark:hover:bg-cyan-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🔧</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">JSON Parser</div>
-                    </Link>
-                    
-                    <Link href="/xml-parser" className="bg-lime-50 dark:bg-lime-900/20 hover:bg-lime-100 dark:hover:bg-lime-900/40 rounded-lg p-2 text-center transition-colors">
-                      <div className="text-xl mb-1">🛠️</div>
-                      <div className="text-xs font-medium text-gray-800 dark:text-white">XML Parser</div>
-                    </Link>
-                  </div>
-                </div>
-                
-                <div className="text-center mt-4">
-                  <Link href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline text-sm font-medium">
-                    View All Tools →
-                  </Link>
-                </div>
-              </div>
+                </Link>
+              ))}
             </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-              {/* Length Converter */}
-              <Link href="/length" aria-label="Length Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Length Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">Meters</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Feet</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Inches</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Miles</span>
-                  </p>
-                </div>
-              </Link>
-
-              {/* Weight Converter */}
-              <Link href="/weight" aria-label="Weight Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9m3-9l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M15 7l3 1m-3-1l-3 9" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Weight Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">Kilograms</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Pounds</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Grams</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Ounces</span>
-                  </p>
-                </div>
-              </Link>
-
-              {/* Temperature Converter */}
-              <Link href="/temperature" aria-label="Temperature Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Temperature Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">Celsius</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Fahrenheit</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Kelvin</span>
-                  </p>
-                </div>
-              </Link>
-
-              {/* Area Converter */}
-              <Link href="/area" aria-label="Area Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Area Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">Square meters</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">acres</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">hectares</span>
-                  </p>
-                </div>
-              </Link>
-
-             
-
-              
-
-              
-
-              {/* Speed Converter */}
-              <Link href="/speed" aria-label="Speed Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Speed Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">MPH</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">KPH</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Knots</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">m/s</span>
-                  </p>
-                </div>
-              </Link>
-
-              {/* Cooking Converter */}
-              <Link href="/cooking" aria-label="Cooking Converter" className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2a2 2 0 012 2v4h-4V4a2 2 0 012-2zm0 6h4v12H8V8h4z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Cooking Converter</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    <span className="text-blue-600 dark:text-blue-400">Cups</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Tablespoons</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Teaspoons</span>,{" "}
-                    <span className="text-blue-600 dark:text-blue-400">Grams</span>
-                  </p>
-                </div>
-              </Link>
+            {/* Ad Banner between tools */}
+            <div className="my-8">
+              <AdBanner position="inline" />
             </div>
           </section>
 
-          {/* Inline Ad Banner */}
-          <AdBanner position="inline" />
 
-          {/* Enhanced Features Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+
+
+          {/* Compact Features */}
+          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-3xl mb-2">⚡</div>
+                <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Fast & Free</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Instant results, no registration</p>
+              </div>
+              <div>
+                <div className="text-3xl mb-2">🔒</div>
+                <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Secure & Private</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">All processing in your browser</p>
+              </div>
+              <div>
+                <div className="text-3xl mb-2">📱</div>
+                <h3 className="font-semibold text-gray-800 dark:text-white mb-1">Mobile Optimized</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Works on all devices</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Practical Use Cases Section */}
+          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Why 100K+ Developers Trust Our Free Online Tools
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Lightning Fast Results</h3>
-                <p className="text-gray-600 dark:text-gray-300">Instant conversions and real-time calculations. No waiting, no delays.</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">100&#37; Accurate & Secure</h3>
-                <p className="text-gray-600 dark:text-gray-300">Precise calculations using official rates. Your data stays private and secure.</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Mobile-First Design</h3>
-                <p className="text-gray-600 dark:text-gray-300">Optimized for all devices. Perfect experience on phone, tablet, and desktop.</p>
-              </div>
-            </div>
-            
-            {/* Additional Benefits */}
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-6">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-3">🚀 Zero Setup Required</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  No downloads, no installations, no registration. Just open your browser and start using our tools instantly.
-                </p>
-              </div>
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-6">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-3">💡 Developer-Focused</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Built by developers, for developers. Every tool is designed to solve real-world programming challenges.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">What is a Unit Converter?</h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              A unit converter is a free online tool that helps you quickly transform values from one measurement system to another. With our converters, you can easily switch between units of <b>Length</b> (meters to feet), <b>Weight</b> (kilograms to pounds), <b>Temperature</b> (Celsius to Fahrenheit), <b>Area</b> (acres to square meters), <b>Speed</b> (MPH to KPH), and <b>Cooking</b> (cups to grams).
-              <br /><br />
-              In addition, we provide a full suite of <b>Developer Tools</b> such as Base64 Encoder/Decoder, JSON Formatter/Minifier, JSON to CSV Converter, URL Encoder/Decoder, Unix Timestamp Converter, JWT Decoder, Number Base Converter, and Text to ASCII conversion. These tools are designed for programmers, AI practitioners, and data science professionals who need fast and accurate online utilities.
-            </p>
-          </section>
-
-          {/* SEO Content Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Popular Unit Conversion Categories
+              Tools for Different Fields
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Length & Distance</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert between meters, feet, inches, yards, kilometers, miles, and nautical miles. Perfect for construction, travel planning, and academic work.
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">👨‍💻 Software Development</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Debug APIs, format JSON responses, validate JWT tokens, and test regex patterns for authentication and data validation.
                 </p>
-                <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
-                  Try Length Converter →
-                </Link>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <strong>Use cases:</strong> API testing, authentication debugging, data validation, code formatting
+                </div>
               </div>
               
               <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Weight & Mass</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert kilograms, pounds, ounces, grams, tons, and stones. Essential for cooking, shipping, and health monitoring.
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">📊 Data Science</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Convert measurement units, format datasets, compare data files, and process information for analysis and reporting.
                 </p>
-                <Link href="/weight" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">
-                  Try Weight Converter →
-                </Link>
-              </div>
-              
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Temperature</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert between Celsius, Fahrenheit, and Kelvin. Useful for weather, cooking, and scientific calculations.
-                </p>
-                <Link href="/temperature" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">
-                  Try Temperature Converter →
-                </Link>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>Use cases:</strong> Unit conversions, data formatting, file comparison, measurement analysis
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/length" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Length</Link>
+                  <Link href="/weight" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Weight</Link>
+                  <Link href="/area" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Area</Link>
+                </div>
               </div>
               
               <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Area & Land</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert square meters, square feet, acres, hectares, and square yards. Ideal for real estate and agriculture.
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">🌐 Web Development</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Encode URLs, format XML/JSON, validate patterns, convert CSS units, and debug web applications.
                 </p>
-                <Link href="/area" className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-medium">
-                  Try Area Converter →
-                </Link>
-              </div>
-              
-              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Speed & Velocity</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert MPH, KPH, knots, meters per second, and feet per second. Great for automotive and aviation.
-                </p>
-                <Link href="/speed" className="text-red-600 dark:text-red-400 hover:underline text-sm font-medium">
-                  Try Speed Converter →
-                </Link>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <strong>Use cases:</strong> URL encoding, data formatting, pattern validation, CSS conversions
+                </div>
               </div>
               
               <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Cooking & Kitchen</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-                  Convert cups, tablespoons, teaspoons, grams, ounces, and milliliters. Perfect for baking and cooking.
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">🔬 Research & Academia</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Convert scientific units, format research data, validate measurements, and process experimental results.
                 </p>
-                <Link href="/cooking" className="text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium">
-                  Try Cooking Converter →
-                </Link>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>Use cases:</strong> Unit conversions, data formatting, measurement validation, research analysis
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/temperature" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Temperature</Link>
+                  <Link href="/speed" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Speed</Link>
+                  <Link href="/area" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Area</Link>
+                </div>
+              </div>
+              
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">🏭 Engineering</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Convert engineering units, calculate measurements, format technical data, and validate specifications.
+                </p>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>Use cases:</strong> Unit conversions, measurement calculations, technical data formatting, specification validation
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/length" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Length</Link>
+                  <Link href="/weight" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Weight</Link>
+                  <Link href="/area" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Area</Link>
+                  <Link href="/speed" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Speed</Link>
+                </div>
+              </div>
+              
+              <div className="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">🍳 Cooking & Food</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  Convert cooking measurements, scale recipes, convert temperatures, and calculate nutritional values.
+                </p>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>Use cases:</strong> Recipe scaling, measurement conversions, temperature conversions, cooking calculations
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/cooking" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Cooking</Link>
+                  <Link href="/weight" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Weight</Link>
+                  <Link href="/temperature" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Temperature</Link>
+                </div>
               </div>
             </div>
           </section>
-
-          {/* Trending Developer Tools 2025 Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-              Trending Developer Tools in 2025
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 max-w-4xl mx-auto text-center mb-8">
-              Based on Google Trends, the most searched developer utilities in 2025 are focused on <strong>data formatting, encoding, and web debugging</strong>. 
-              Explore the tools gaining traction among software developers and data analysts this year.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 text-center">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JSON Formatter & Parser</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Clean, validate, and format JSON instantly — perfect for API testing and data analysis.</p>
-                <a href="/json-prettier" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">Use JSON Formatter →</a>
-              </div>
-              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 text-center">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JWT Decoder</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Decode and inspect JWT tokens for authentication debugging and API security testing.</p>
-                <a href="/jwt-decoder" className="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">Try JWT Decoder →</a>
-              </div>
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6 text-center">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Base64 Encoder / Decoder</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Convert Base64 strings for API development, image encoding, and secure data handling.</p>
-                <a href="/base64-encoder-decoder" className="text-yellow-600 dark:text-yellow-400 hover:underline text-sm font-medium">Open Base64 Tool →</a>
-              </div>
-            </div>
-          </section>
-
-
-        {/* FAQ Section for Engagement */}
-        <section className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 mt-12">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6 text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
-            <div>
-              <h3 className="font-medium">What can I convert with this unit converter?</h3>
-              <p>You can convert length, weight, temperature, area, speed, and cooking units. Our converters are designed to be fast and accurate.</p>
-            </div>
-            <div>
-              <h3 className="font-medium">Do I need to install software to use it?</h3>
-              <p>No, all converters run directly in your browser. Nothing to install or download.</p>
-            </div>
-            <div>
-              <h3 className="font-medium">Are developer tools included?</h3>
-              <p>Yes, we provide JSON, XML, Base64, URL, and JWT tools for developers and data scientists, accessible online for free.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Keyword-rich Closing Paragraph for SEO */}
-        <div className="mt-12 text-gray-700 dark:text-gray-300 max-w-5xl mx-auto text-center">
-          <p>
-            <strong>FreeUnitConvertor.com</strong> is designed to help <strong>web developers, students, and engineers</strong> access accurate and secure online tools instantly.
-            From <strong>API development utilities</strong> to <strong>real-world unit conversions</strong>, our goal is to make data handling simpler, faster, and accessible to everyone.
-          </p>
-          <p className="mt-4">
-            Explore the most searched <strong>developer tools 2025</strong> and <strong>free online converters</strong> trusted by thousands of users across the globe.
-          </p>
-        </div>
         </main>
+
+        {/* Bottom Ad Banner */}
+        <div className="mt-12">
+          <AdBanner position="inline" />
+        </div>
       </div>
     </div>
+    </>
   );
 }
