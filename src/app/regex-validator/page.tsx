@@ -197,50 +197,50 @@ const regexMetacharacters = [
   { 
     char: '.', 
     description: 'Matches any character except newline',
-    explanation: 'The dot is a wildcard that matches any single character. Use it when you need to match any character in a specific position. For example, "c.t" matches "cat", "cut", "c1t", etc.',
-    example: 'c.t matches "cat", "cut", "c1t"'
+    explanation: 'The dot is a wildcard that matches any single character. Use it when you need to match any character in a specific position. For example, &quot;c.t&quot; matches &quot;cat&quot;, &quot;cut&quot;, &quot;c1t&quot;, etc.',
+    example: 'c.t matches &quot;cat&quot;, &quot;cut&quot;, &quot;c1t&quot;'
   },
   { 
     char: '^', 
     description: 'Matches start of string',
     explanation: 'The caret ensures your pattern matches only at the beginning of the string. Without it, your pattern could match anywhere in the text. Essential for validation patterns.',
-    example: '^Hello matches "Hello world" but not "Say Hello"'
+    example: '^Hello matches &quot;Hello world&quot; but not &quot;Say Hello&quot;'
   },
   { 
     char: '$', 
     description: 'Matches end of string',
     explanation: 'The dollar sign ensures your pattern matches only at the end of the string. Combined with ^, it creates exact matches. Perfect for validating complete strings.',
-    example: 'world$ matches "Hello world" but not "world peace"'
+    example: 'world$ matches &quot;Hello world&quot; but not &quot;world peace&quot;'
   },
   { 
     char: '*', 
     description: 'Matches 0 or more of the preceding element',
-    explanation: 'The asterisk means "zero or more" of whatever comes before it. It\'s greedy by default, matching as much as possible. Use when the preceding character might not exist.',
-    example: 'ab*c matches "ac", "abc", "abbc", "abbbc"'
+    explanation: 'The asterisk means &quot;zero or more&quot; of whatever comes before it. It&apos;s greedy by default, matching as much as possible. Use when the preceding character might not exist.',
+    example: 'ab*c matches &quot;ac&quot;, &quot;abc&quot;, &quot;abbc&quot;, &quot;abbbc&quot;'
   },
   { 
     char: '+', 
     description: 'Matches 1 or more of the preceding element',
-    explanation: 'The plus means "one or more" of whatever comes before it. Unlike *, it requires at least one occurrence. Use when you need the preceding character to exist.',
-    example: 'ab+c matches "abc", "abbc" but not "ac"'
+    explanation: 'The plus means &quot;one or more&quot; of whatever comes before it. Unlike *, it requires at least one occurrence. Use when you need the preceding character to exist.',
+    example: 'ab+c matches &quot;abc&quot;, &quot;abbc&quot; but not &quot;ac&quot;'
   },
   { 
     char: '?', 
     description: 'Matches 0 or 1 of the preceding element',
     explanation: 'The question mark makes the preceding character optional. It matches either zero or one occurrence. Perfect for optional characters like hyphens in phone numbers.',
-    example: 'colou?r matches both "color" and "colour"'
+    example: 'colou?r matches both &quot;color&quot; and &quot;colour&quot;'
   },
   { 
     char: '|', 
     description: 'OR operator - matches either pattern',
     explanation: 'The pipe creates an OR condition, matching either the pattern before or after it. Use parentheses to group complex OR conditions. Great for multiple valid formats.',
-    example: '(cat|dog) matches "cat" or "dog"'
+    example: '(cat|dog) matches &quot;cat&quot; or &quot;dog&quot;'
   },
   { 
     char: '[]', 
     description: 'Character class - matches any character inside',
     explanation: 'Square brackets create a character class that matches any single character inside them. Use ranges like [a-z] for efficiency. Perfect for defining allowed characters.',
-    example: '[aeiou] matches any vowel: "a", "e", "i", "o", "u"'
+    example: '[aeiou] matches any vowel: &quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;'
   },
   { 
     char: '[^]', 
@@ -270,13 +270,13 @@ const regexMetacharacters = [
     char: '\\s', 
     description: 'Matches whitespace characters',
     explanation: 'The \\s shorthand matches any whitespace character including spaces, tabs, and newlines. Use it to match or skip whitespace in your patterns.',
-    example: 'hello\\s+world matches "hello world", "hello  world"'
+    example: 'hello\\s+world matches &quot;hello world&quot;, &quot;hello  world&quot;'
   },
   { 
     char: '\\b', 
     description: 'Word boundary',
     explanation: 'The \\b matches word boundaries - positions between word characters and non-word characters. Use it to match whole words, not parts of words.',
-    example: '\\bcat\\b matches "cat" but not "category" or "scat"'
+    example: '\\bcat\\b matches &quot;cat&quot; but not &quot;category&quot; or &quot;scat&quot;'
   }
 ];
 
@@ -299,7 +299,12 @@ export default function RegexValidatorPage() {
   });
   const [smartInput, setSmartInput] = useState('');
   const [generatedRegex, setGeneratedRegex] = useState('');
-  const [analysisResult, setAnalysisResult] = useState<any>(null);
+  const [analysisResult, setAnalysisResult] = useState<{
+    type: string;
+    patterns: Array<{name: string, regex: string, description: string}>;
+    suggestions: string[];
+    confidence: number;
+  } | null>(null);
 
   useEffect(() => {
     if (regex.trim()) {
@@ -529,7 +534,7 @@ export default function RegexValidatorPage() {
       analysis.type = 'mixed';
       const hasLetters = /[a-zA-Z]/.test(input);
       const hasNumbers = /\d/.test(input);
-      const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(input);
+      // const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(input);
       const hasSpaces = /\s/.test(input);
 
       if (hasLetters && hasNumbers && !hasSpaces) {
@@ -1141,7 +1146,7 @@ export default function RegexValidatorPage() {
                     </h4>
                     {analysisResult && analysisResult.patterns.length > 0 ? (
                       <div className="space-y-3">
-                        {analysisResult.patterns.map((pattern: any, index: number) => (
+                        {analysisResult.patterns.map((pattern: {name: string, regex: string, description: string}, index: number) => (
                           <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
                             <div className="flex items-center justify-between mb-2">
                               <h5 className="font-medium text-gray-900 dark:text-white text-sm">
