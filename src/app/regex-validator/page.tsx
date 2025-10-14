@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import DeveloperToolsNav from '@/components/DeveloperToolsNav';
 import AdBanner from '@/components/AdBanner';
+import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 const commonRegexPatterns = [
   {
@@ -149,29 +149,135 @@ const commonRegexPatterns = [
 ];
 
 const regexFlags = [
-  { flag: 'g', name: 'Global', description: 'Find all matches, not just the first' },
-  { flag: 'i', name: 'Case Insensitive', description: 'Match regardless of case' },
-  { flag: 'm', name: 'Multiline', description: '^ and $ match line breaks' },
-  { flag: 's', name: 'Dot All', description: '\'.\' matches newline characters' },
-  { flag: 'u', name: 'Unicode', description: 'Handle Unicode characters properly' },
-  { flag: 'y', name: 'Sticky', description: 'Match only at the last index' }
+  { 
+    flag: 'g', 
+    name: 'Global', 
+    description: 'Find all matches, not just the first',
+    explanation: 'Without the global flag, regex stops after finding the first match. With "g", it continues searching and returns all matches in the string. Essential for finding multiple occurrences.',
+    example: 'Without g: "hello hello".match(/hello/) returns ["hello"]\nWith g: "hello hello".match(/hello/g) returns ["hello", "hello"]'
+  },
+  { 
+    flag: 'i', 
+    name: 'Case Insensitive', 
+    description: 'Match regardless of case',
+    explanation: 'The case-insensitive flag makes your pattern match both uppercase and lowercase letters. Without it, "Hello" won\'t match "hello". Perfect for user input validation.',
+    example: '/hello/i matches "Hello", "HELLO", "hElLo"'
+  },
+  { 
+    flag: 'm', 
+    name: 'Multiline', 
+    description: '^ and $ match line breaks',
+    explanation: 'In multiline mode, ^ matches the start of each line (after newlines) and $ matches the end of each line (before newlines). Without it, ^ and $ only match the very beginning and end of the entire string.',
+    example: '/^hello/m matches "hello" at the start of any line'
+  },
+  { 
+    flag: 's', 
+    name: 'Dot All', 
+    description: '\'.\' matches newline characters',
+    explanation: 'Normally, the dot (.) doesn\'t match newline characters. The "s" flag changes this behavior, making dots match everything including newlines. Useful for matching across multiple lines.',
+    example: '/hello.world/s matches "hello\nworld" and "hello world"'
+  },
+  { 
+    flag: 'u', 
+    name: 'Unicode', 
+    description: 'Handle Unicode characters properly',
+    explanation: 'The Unicode flag enables proper handling of Unicode characters, including emojis and international characters. Without it, some Unicode characters might not match correctly.',
+    example: '/\\p{L}/u matches any Unicode letter, including é, ñ, 中'
+  },
+  { 
+    flag: 'y', 
+    name: 'Sticky', 
+    description: 'Match only at the last index',
+    explanation: 'The sticky flag makes regex match only at the exact position where the last match ended. It\'s useful for parsing text sequentially and ensuring matches are consecutive.',
+    example: 'Used with exec() to find matches one by one from a specific position'
+  }
 ];
 
 const regexMetacharacters = [
-  { char: '.', description: 'Matches any character except newline' },
-  { char: '^', description: 'Matches start of string' },
-  { char: '$', description: 'Matches end of string' },
-  { char: '*', description: 'Matches 0 or more of the preceding element' },
-  { char: '+', description: 'Matches 1 or more of the preceding element' },
-  { char: '?', description: 'Matches 0 or 1 of the preceding element' },
-  { char: '|', description: 'OR operator - matches either pattern' },
-  { char: '[]', description: 'Character class - matches any character inside' },
-  { char: '[^]', description: 'Negated character class' },
-  { char: '()', description: 'Grouping - creates a capture group' },
-  { char: '\\d', description: 'Matches any digit (0-9)' },
-  { char: '\\w', description: 'Matches word characters (a-z, A-Z, 0-9, _)' },
-  { char: '\\s', description: 'Matches whitespace characters' },
-  { char: '\\b', description: 'Word boundary' }
+  { 
+    char: '.', 
+    description: 'Matches any character except newline',
+    explanation: 'The dot is a wildcard that matches any single character. Use it when you need to match any character in a specific position. For example, &quot;c.t&quot; matches &quot;cat&quot;, &quot;cut&quot;, &quot;c1t&quot;, etc.',
+    example: 'c.t matches &quot;cat&quot;, &quot;cut&quot;, &quot;c1t&quot;'
+  },
+  { 
+    char: '^', 
+    description: 'Matches start of string',
+    explanation: 'The caret ensures your pattern matches only at the beginning of the string. Without it, your pattern could match anywhere in the text. Essential for validation patterns.',
+    example: '^Hello matches &quot;Hello world&quot; but not &quot;Say Hello&quot;'
+  },
+  { 
+    char: '$', 
+    description: 'Matches end of string',
+    explanation: 'The dollar sign ensures your pattern matches only at the end of the string. Combined with ^, it creates exact matches. Perfect for validating complete strings.',
+    example: 'world$ matches &quot;Hello world&quot; but not &quot;world peace&quot;'
+  },
+  { 
+    char: '*', 
+    description: 'Matches 0 or more of the preceding element',
+    explanation: 'The asterisk means &quot;zero or more&quot; of whatever comes before it. It&apos;s greedy by default, matching as much as possible. Use when the preceding character might not exist.',
+    example: 'ab*c matches &quot;ac&quot;, &quot;abc&quot;, &quot;abbc&quot;, &quot;abbbc&quot;'
+  },
+  { 
+    char: '+', 
+    description: 'Matches 1 or more of the preceding element',
+    explanation: 'The plus means &quot;one or more&quot; of whatever comes before it. Unlike *, it requires at least one occurrence. Use when you need the preceding character to exist.',
+    example: 'ab+c matches &quot;abc&quot;, &quot;abbc&quot; but not &quot;ac&quot;'
+  },
+  { 
+    char: '?', 
+    description: 'Matches 0 or 1 of the preceding element',
+    explanation: 'The question mark makes the preceding character optional. It matches either zero or one occurrence. Perfect for optional characters like hyphens in phone numbers.',
+    example: 'colou?r matches both &quot;color&quot; and &quot;colour&quot;'
+  },
+  { 
+    char: '|', 
+    description: 'OR operator - matches either pattern',
+    explanation: 'The pipe creates an OR condition, matching either the pattern before or after it. Use parentheses to group complex OR conditions. Great for multiple valid formats.',
+    example: '(cat|dog) matches &quot;cat&quot; or &quot;dog&quot;'
+  },
+  { 
+    char: '[]', 
+    description: 'Character class - matches any character inside',
+    explanation: 'Square brackets create a character class that matches any single character inside them. Use ranges like [a-z] for efficiency. Perfect for defining allowed characters.',
+    example: '[aeiou] matches any vowel: &quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;'
+  },
+  { 
+    char: '[^]', 
+    description: 'Negated character class',
+    explanation: 'The caret inside brackets negates the character class, matching any character NOT inside. Use it to exclude specific characters from your pattern.',
+    example: '[^0-9] matches any non-digit character'
+  },
+  { 
+    char: '()', 
+    description: 'Grouping - creates a capture group',
+    explanation: 'Parentheses group parts of your pattern and create capture groups that you can reference later. Essential for extracting specific parts of matches.',
+    example: '(\\d{3})-(\\d{3}) captures area code and number separately'
+  },
+  { 
+    char: '\\d', 
+    description: 'Matches any digit (0-9)',
+    explanation: 'The \\d shorthand matches any single digit from 0 to 9. Much more readable than [0-9]. Use it when you need to match numbers in your pattern.',
+    example: '\\d{3} matches "123", "456", "789"'
+  },
+  { 
+    char: '\\w', 
+    description: 'Matches word characters (a-z, A-Z, 0-9, _)',
+    explanation: 'The \\w shorthand matches word characters including letters, digits, and underscores. Perfect for usernames, identifiers, and word boundaries.',
+    example: '\\w+ matches "hello", "user123", "my_name"'
+  },
+  { 
+    char: '\\s', 
+    description: 'Matches whitespace characters',
+    explanation: 'The \\s shorthand matches any whitespace character including spaces, tabs, and newlines. Use it to match or skip whitespace in your patterns.',
+    example: 'hello\\s+world matches &quot;hello world&quot;, &quot;hello  world&quot;'
+  },
+  { 
+    char: '\\b', 
+    description: 'Word boundary',
+    explanation: 'The \\b matches word boundaries - positions between word characters and non-word characters. Use it to match whole words, not parts of words.',
+    example: '\\bcat\\b matches &quot;cat&quot; but not &quot;category&quot; or &quot;scat&quot;'
+  }
 ];
 
 export default function RegexValidatorPage() {
@@ -183,6 +289,22 @@ export default function RegexValidatorPage() {
   const [error, setError] = useState('');
   const [selectedPattern, setSelectedPattern] = useState<typeof commonRegexPatterns[0] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [activeTab, setActiveTab] = useState('validator');
+  const [guidedPattern, setGuidedPattern] = useState('');
+  const [guidedOptions, setGuidedOptions] = useState({
+    type: '',
+    length: '',
+    characters: '',
+    format: ''
+  });
+  const [smartInput, setSmartInput] = useState('');
+  const [generatedRegex, setGeneratedRegex] = useState('');
+  const [analysisResult, setAnalysisResult] = useState<{
+    type: string;
+    patterns: Array<{name: string, regex: string, description: string}>;
+    suggestions: string[];
+    confidence: number;
+  } | null>(null);
 
   useEffect(() => {
     if (regex.trim()) {
@@ -224,6 +346,244 @@ export default function RegexValidatorPage() {
       // Optional: Show a toast notification for feedback
     } catch (err) {
       console.error('Failed to copy text: ', err);
+    }
+  };
+
+  const generateGuidedPattern = () => {
+    let pattern = '';
+    
+    switch (guidedOptions.type) {
+      case 'email':
+        pattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
+        break;
+      case 'phone':
+        pattern = '^\\+?1?[-.\\s]?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$';
+        break;
+      case 'url':
+        pattern = '^https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)$';
+        break;
+      case 'password':
+        if (guidedOptions.length === 'strong') {
+          pattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$';
+        } else {
+          pattern = '^.{6,}$';
+        }
+        break;
+      case 'username':
+        if (guidedOptions.length === 'short') {
+          pattern = '^[a-zA-Z0-9_]{3,10}$';
+        } else {
+          pattern = '^[a-zA-Z0-9_]{3,20}$';
+        }
+        break;
+      case 'number':
+        if (guidedOptions.format === 'decimal') {
+          pattern = '^\\d+\\.\\d{1,2}$';
+        } else if (guidedOptions.format === 'integer') {
+          pattern = '^[1-9]\\d*$';
+        } else {
+          pattern = '^\\d+$';
+        }
+        break;
+      case 'custom':
+        if (guidedOptions.characters === 'letters') {
+          pattern = '^[a-zA-Z]+$';
+        } else if (guidedOptions.characters === 'numbers') {
+          pattern = '^[0-9]+$';
+        } else if (guidedOptions.characters === 'alphanumeric') {
+          pattern = '^[a-zA-Z0-9]+$';
+        } else if (guidedOptions.characters === 'no-spaces') {
+          pattern = '^\\S+$';
+        }
+        break;
+    }
+    
+    setGuidedPattern(pattern);
+    setRegex(pattern);
+  };
+
+  const analyzeInput = (input: string) => {
+    if (!input.trim()) return null;
+
+    const analysis: {
+      type: string;
+      patterns: Array<{name: string, regex: string, description: string}>;
+      suggestions: string[];
+      confidence: number;
+    } = {
+      type: '',
+      patterns: [],
+      suggestions: [],
+      confidence: 0
+    };
+
+    // Email analysis
+    if (input.includes('@') && input.includes('.')) {
+      analysis.type = 'email';
+      analysis.patterns.push({
+        name: 'Email Pattern',
+        regex: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
+        description: 'Standard email validation'
+      });
+      analysis.confidence = 90;
+    }
+
+    // Phone number analysis
+    else if (/[\d\s\-\(\)\+]/.test(input) && /\d{3,}/.test(input)) {
+      analysis.type = 'phone';
+      analysis.patterns.push({
+        name: 'US Phone Pattern',
+        regex: '^\\+?1?[-.\\s]?\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$',
+        description: 'US phone number with various formats'
+      });
+      analysis.patterns.push({
+        name: 'International Phone',
+        regex: '^\\+[1-9]\\d{1,14}$',
+        description: 'International phone number'
+      });
+      analysis.confidence = 85;
+    }
+
+    // URL analysis
+    else if (input.startsWith('http') || input.includes('www.') || input.includes('.com')) {
+      analysis.type = 'url';
+      analysis.patterns.push({
+        name: 'URL Pattern',
+        regex: '^https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)$',
+        description: 'HTTP/HTTPS URL validation'
+      });
+      analysis.confidence = 80;
+    }
+
+    // Number analysis
+    else if (/^\d+$/.test(input)) {
+      analysis.type = 'number';
+      analysis.patterns.push({
+        name: 'Positive Integer',
+        regex: '^[1-9]\\d*$',
+        description: 'Positive integers only'
+      });
+      analysis.patterns.push({
+        name: 'Any Number',
+        regex: '^\\d+$',
+        description: 'Any sequence of digits'
+      });
+      analysis.confidence = 95;
+    }
+
+    // Decimal number analysis
+    else if (/^\d+\.\d+$/.test(input)) {
+      analysis.type = 'decimal';
+      analysis.patterns.push({
+        name: 'Decimal Number',
+        regex: '^\\d+\\.\\d{1,2}$',
+        description: 'Decimal number with 1-2 decimal places'
+      });
+      analysis.patterns.push({
+        name: 'Any Decimal',
+        regex: '^\\d+\\.\\d+$',
+        description: 'Any decimal number'
+      });
+      analysis.confidence = 90;
+    }
+
+    // Date analysis
+    else if (/\d{4}-\d{2}-\d{2}/.test(input) || /\d{2}\/\d{2}\/\d{4}/.test(input)) {
+      analysis.type = 'date';
+      analysis.patterns.push({
+        name: 'ISO Date (YYYY-MM-DD)',
+        regex: '^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$',
+        description: 'ISO date format validation'
+      });
+      analysis.patterns.push({
+        name: 'US Date (MM/DD/YYYY)',
+        regex: '^(0[1-9]|1[0-2])\\/(0[1-9]|[12][0-9]|3[01])\\/\\d{4}$',
+        description: 'US date format validation'
+      });
+      analysis.confidence = 85;
+    }
+
+    // Username analysis
+    else if (/^[a-zA-Z0-9_]+$/.test(input) && input.length >= 3 && input.length <= 20) {
+      analysis.type = 'username';
+      analysis.patterns.push({
+        name: 'Username Pattern',
+        regex: '^[a-zA-Z0-9_]{3,20}$',
+        description: 'Username with alphanumeric and underscore'
+      });
+      analysis.confidence = 80;
+    }
+
+    // Password analysis
+    else if (input.length >= 6) {
+      analysis.type = 'password';
+      if (/[A-Z]/.test(input) && /[a-z]/.test(input) && /\d/.test(input) && /[!@#$%^&*]/.test(input)) {
+        analysis.patterns.push({
+          name: 'Strong Password',
+          regex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+          description: 'Strong password with uppercase, lowercase, number, and special character'
+        });
+        analysis.confidence = 90;
+      } else {
+        analysis.patterns.push({
+          name: 'Basic Password',
+          regex: '^.{6,}$',
+          description: 'Basic password with minimum length'
+        });
+        analysis.confidence = 70;
+      }
+    }
+
+    // Mixed content analysis
+    else {
+      analysis.type = 'mixed';
+      const hasLetters = /[a-zA-Z]/.test(input);
+      const hasNumbers = /\d/.test(input);
+      // const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(input);
+      const hasSpaces = /\s/.test(input);
+
+      if (hasLetters && hasNumbers && !hasSpaces) {
+        analysis.patterns.push({
+          name: 'Alphanumeric (no spaces)',
+          regex: '^[a-zA-Z0-9]+$',
+          description: 'Letters and numbers only'
+        });
+      } else if (hasLetters && !hasNumbers && !hasSpaces) {
+        analysis.patterns.push({
+          name: 'Letters Only',
+          regex: '^[a-zA-Z]+$',
+          description: 'Letters only'
+        });
+      } else if (!hasLetters && hasNumbers && !hasSpaces) {
+        analysis.patterns.push({
+          name: 'Numbers Only',
+          regex: '^\\d+$',
+          description: 'Numbers only'
+        });
+      } else if (hasSpaces) {
+        analysis.patterns.push({
+          name: 'Text with Spaces',
+          regex: '^.+$',
+          description: 'Any text including spaces'
+        });
+      } else {
+        analysis.patterns.push({
+          name: 'Custom Pattern',
+          regex: '^' + input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$',
+          description: 'Exact match for your input'
+        });
+      }
+      analysis.confidence = 60;
+    }
+
+    return analysis;
+  };
+
+  const generateSmartRegex = () => {
+    const analysis = analyzeInput(smartInput);
+    if (analysis) {
+      setAnalysisResult(analysis);
+      // Don't automatically set the regex - let user choose
     }
   };
 
@@ -281,7 +641,54 @@ export default function RegexValidatorPage() {
             <AdBanner position="top" />
           </div>
 
+          {/* Tab Navigation */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg mb-8">
+            <div className="flex border-b border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => setActiveTab('validator')}
+                className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+                  activeTab === 'validator'
+                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                🔧 Regex Validator
+              </button>
+              <button
+                onClick={() => setActiveTab('builder')}
+                className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+                  activeTab === 'builder'
+                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                🛠️ Guided Builder
+              </button>
+              <button
+                onClick={() => setActiveTab('smart')}
+                className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+                  activeTab === 'smart'
+                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                🤖 Smart Generator
+              </button>
+              <button
+                onClick={() => setActiveTab('guide')}
+                className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
+                  activeTab === 'guide'
+                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                }`}
+              >
+                📚 Regex Guide
+              </button>
+            </div>
+          </div>
+
           {/* Main Regex Tester */}
+          {activeTab === 'validator' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Input Section */}
@@ -417,16 +824,504 @@ export default function RegexValidatorPage() {
               </div>
             </div>
           </div>
+          )}
 
-          <div className="mb-8">
-            <AdBanner position="inline" />
+          {/* Guided Regex Builder */}
+          {activeTab === 'builder' && (
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
+              🛠️ Guided Regex Builder
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
+              Don&apos;t know regex? No problem! Use our guided builder to create patterns step by step.
+            </p>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Builder Options */}
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                      What do you want to validate?
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { value: 'email', label: '📧 Email', desc: 'Email addresses' },
+                        { value: 'phone', label: '📞 Phone', desc: 'Phone numbers' },
+                        { value: 'url', label: '🌐 URL', desc: 'Web addresses' },
+                        { value: 'password', label: '🔒 Password', desc: 'Password strength' },
+                        { value: 'username', label: '👤 Username', desc: 'User names' },
+                        { value: 'number', label: '🔢 Number', desc: 'Numbers' },
+                        { value: 'custom', label: '⚙️ Custom', desc: 'Other text' }
+                      ].map((option) => (
+                        <button
+                          key={option.value}
+                          onClick={() => setGuidedOptions({...guidedOptions, type: option.value})}
+                          className={`p-3 rounded-lg border-2 transition-all text-left ${
+                            guidedOptions.type === option.value
+                              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                              : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                          }`}
+                        >
+                          <div className="font-medium text-sm text-gray-900 dark:text-white">
+                            {option.label}
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400">
+                            {option.desc}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Additional Options based on type */}
+                  {guidedOptions.type === 'password' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        Password Strength
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'basic', label: 'Basic (6+ characters)', desc: 'Minimum length only' },
+                          { value: 'strong', label: 'Strong (Complex)', desc: 'Uppercase, lowercase, numbers, symbols' }
+                        ].map((option) => (
+                          <button
+                            key={option.value}
+                            onClick={() => setGuidedOptions({...guidedOptions, length: option.value})}
+                            className={`w-full p-3 rounded-lg border-2 transition-all text-left ${
+                              guidedOptions.length === option.value
+                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            }`}
+                          >
+                            <div className="font-medium text-sm text-gray-900 dark:text-white">
+                              {option.label}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              {option.desc}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {guidedOptions.type === 'username' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        Username Length
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'short', label: 'Short (3-10 chars)', desc: 'For usernames' },
+                          { value: 'long', label: 'Long (3-20 chars)', desc: 'For display names' }
+                        ].map((option) => (
+                          <button
+                            key={option.value}
+                            onClick={() => setGuidedOptions({...guidedOptions, length: option.value})}
+                            className={`w-full p-3 rounded-lg border-2 transition-all text-left ${
+                              guidedOptions.length === option.value
+                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            }`}
+                          >
+                            <div className="font-medium text-sm text-gray-900 dark:text-white">
+                              {option.label}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              {option.desc}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {guidedOptions.type === 'number' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        Number Format
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'any', label: 'Any Number', desc: '123, 456, 789' },
+                          { value: 'integer', label: 'Positive Integer', desc: '1, 2, 3 (no decimals)' },
+                          { value: 'decimal', label: 'Decimal Number', desc: '123.45, 67.89' }
+                        ].map((option) => (
+                          <button
+                            key={option.value}
+                            onClick={() => setGuidedOptions({...guidedOptions, format: option.value})}
+                            className={`w-full p-3 rounded-lg border-2 transition-all text-left ${
+                              guidedOptions.format === option.value
+                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            }`}
+                          >
+                            <div className="font-medium text-sm text-gray-900 dark:text-white">
+                              {option.label}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              {option.desc}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {guidedOptions.type === 'custom' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                        Allowed Characters
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'letters', label: 'Letters Only', desc: 'a-z, A-Z' },
+                          { value: 'numbers', label: 'Numbers Only', desc: '0-9' },
+                          { value: 'alphanumeric', label: 'Letters & Numbers', desc: 'a-z, A-Z, 0-9' },
+                          { value: 'no-spaces', label: 'No Spaces', desc: 'Any character except spaces' }
+                        ].map((option) => (
+                          <button
+                            key={option.value}
+                            onClick={() => setGuidedOptions({...guidedOptions, characters: option.value})}
+                            className={`w-full p-3 rounded-lg border-2 transition-all text-left ${
+                              guidedOptions.characters === option.value
+                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                            }`}
+                          >
+                            <div className="font-medium text-sm text-gray-900 dark:text-white">
+                              {option.label}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              {option.desc}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={generateGuidedPattern}
+                    disabled={!guidedOptions.type}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Generate Regex Pattern
+                  </button>
+                </div>
+
+                {/* Generated Pattern */}
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                      Generated Pattern
+                    </h4>
+                    {guidedPattern ? (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                        <code className="text-sm text-blue-600 dark:text-blue-400 break-all">
+                          {guidedPattern}
+                        </code>
+                        <button
+                          onClick={() => copyToClipboard(guidedPattern)}
+                          className="mt-2 text-xs bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors"
+                        >
+                          Copy Pattern
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center text-gray-500 dark:text-gray-400">
+                        Select options above to generate a pattern
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                      Test Your Pattern
+                    </h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Test String
+                        </label>
+                        <input
+                          type="text"
+                          value={testString}
+                          onChange={(e) => setTestString(e.target.value)}
+                          placeholder="Enter text to test..."
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        />
+                      </div>
+                      {guidedPattern && (
+                        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                          <div className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                            Pattern Status: <span className={`font-medium ${isValid ? 'text-green-600' : 'text-red-600'}`}>
+                              {isValid ? 'Valid' : 'Invalid'}
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-700 dark:text-gray-300">
+                            Matches Found: <span className="font-medium text-blue-600">{matches.length}</span>
+                          </div>
+                          {matches.length > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {matches.map((match, index) => (
+                                <div key={index} className="text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
+                                  Match {index + 1}: &quot;{match}&quot;
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          )}
+
+          {/* Smart Regex Generator */}
+          {activeTab === 'smart' && (
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center">
+              🤖 Smart Regex Generator
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
+              Just enter your sample text and we&apos;ll analyze it to generate the perfect regex pattern for you!
+            </p>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Input Section */}
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                      Enter your sample text:
+                    </label>
+                    <textarea
+                      value={smartInput}
+                      onChange={(e) => setSmartInput(e.target.value)}
+                      placeholder="Enter sample text like: user@example.com, (555) 123-4567, https://example.com, 123.45, etc."
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    />
+                  </div>
+
+                  <button
+                    onClick={generateSmartRegex}
+                    disabled={!smartInput.trim()}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Analyze & Generate Regex
+                  </button>
+
+                  {analysisResult && (
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                        Analysis Results
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        <div>
+                          <span className="font-medium">Detected Type:</span> 
+                          <span className="ml-2 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                            {analysisResult.type}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium">Confidence:</span> 
+                          <span className="ml-2 text-green-600 dark:text-green-400">
+                            {analysisResult.confidence}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Generated Patterns */}
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                      Generated Patterns
+                    </h4>
+                    {analysisResult && analysisResult.patterns.length > 0 ? (
+                      <div className="space-y-3">
+                        {analysisResult.patterns.map((pattern: {name: string, regex: string, description: string}, index: number) => (
+                          <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                            <div className="flex items-center justify-between mb-2">
+                              <h5 className="font-medium text-gray-900 dark:text-white text-sm">
+                                {pattern.name}
+                              </h5>
+                              <button
+                                onClick={() => {
+                                  setGeneratedRegex(pattern.regex);
+                                  setRegex(pattern.regex);
+                                }}
+                                className="text-xs bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors"
+                              >
+                                Use This
+                              </button>
+                            </div>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                              {pattern.description}
+                            </p>
+                            <code className="text-xs text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded block break-all">
+                              {pattern.regex}
+                            </code>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center text-gray-500 dark:text-gray-400">
+                        Enter sample text above to generate patterns
+                      </div>
+                    )}
+                  </div>
+
+                  {generatedRegex && (
+                    <div>
+                      <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                        Test Your Pattern
+                      </h4>
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Test String
+                          </label>
+                          <input
+                            type="text"
+                            value={testString}
+                            onChange={(e) => setTestString(e.target.value)}
+                            placeholder="Enter text to test against the generated pattern..."
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                          />
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                          <div className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                            Pattern Status: <span className={`font-medium ${isValid ? 'text-green-600' : 'text-red-600'}`}>
+                              {isValid ? 'Valid' : 'Invalid'}
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                            Matches Found: <span className="font-medium text-blue-600">{matches.length}</span>
+                          </div>
+                          {matches.length > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {matches.map((match, index) => (
+                                <div key={index} className="text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
+                                  Match {index + 1}: &quot;{match}&quot;
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Examples Section */}
+              <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  💡 Try These Examples
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                  <div className="space-y-2">
+                    <h5 className="font-medium text-gray-900 dark:text-white">Email Examples:</h5>
+                    <div className="space-y-1 text-gray-700 dark:text-gray-300">
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('user@example.com')}>
+                        user@example.com
+                      </div>
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('admin@company.org')}>
+                        admin@company.org
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h5 className="font-medium text-gray-900 dark:text-white">Phone Examples:</h5>
+                    <div className="space-y-1 text-gray-700 dark:text-gray-300">
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('(555) 123-4567')}>
+                        (555) 123-4567
+                      </div>
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('+1-555-123-4567')}>
+                        +1-555-123-4567
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h5 className="font-medium text-gray-900 dark:text-white">Other Examples:</h5>
+                    <div className="space-y-1 text-gray-700 dark:text-gray-300">
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('https://example.com')}>
+                        https://example.com
+                      </div>
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('123.45')}>
+                        123.45
+                      </div>
+                      <div className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/20 p-2 rounded" onClick={() => setSmartInput('user123')}>
+                        user123
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          )}
+
 
           {/* Regex Structure Guide */}
+          {activeTab === 'guide' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-              How Regex Works - Structure Guide
+              📚 Complete Regex Guide - Learn Regular Expressions
             </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-8 text-center">
+              Master regular expressions with our comprehensive guide. Perfect for beginners and reference for experts.
+            </p>
+
+            {/* Getting Started Section */}
+            <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-xl p-8 mb-8">
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                🚀 Getting Started with Regex
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="font-medium text-gray-900 dark:text-white mb-2">What is Regex?</h5>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                    Regular expressions (regex) are powerful patterns used to match, search, and manipulate text. 
+                    Think of them as a super-powered &quot;Find and Replace&quot; tool that can find complex patterns in text.
+                  </p>
+                  <h5 className="font-medium text-gray-900 dark:text-white mb-2">Why Use Regex?</h5>
+                  <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                    <li>• <strong>Data Validation:</strong> Check if emails, phones, or IDs are properly formatted</li>
+                    <li>• <strong>Text Processing:</strong> Find and extract specific information from documents</li>
+                    <li>• <strong>Search & Replace:</strong> Make complex changes across multiple files</li>
+                    <li>• <strong>Log Analysis:</strong> Parse log files to find errors or patterns</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="font-medium text-gray-900 dark:text-white mb-2">Basic Concepts</h5>
+                  <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                    <div className="bg-white dark:bg-gray-800 p-3 rounded">
+                      <strong>Pattern:</strong> The regex expression you write (like <code className="text-blue-600">\d&#123;3&#125;</code>)
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-3 rounded">
+                      <strong>Match:</strong> Text that fits your pattern (like &quot;123&quot; for <code className="text-blue-600">\d&#123;3&#125;</code>)
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-3 rounded">
+                      <strong>Flags:</strong> Options that change how regex works (like case-insensitive)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
@@ -506,8 +1401,10 @@ export default function RegexValidatorPage() {
               </div>
             </div>
           </div>
+          )}
 
-          {/* Common Patterns */}
+          {/* Common Patterns - Only show in validator tab */}
+          {activeTab === 'validator' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
               Common Regex Patterns by Category
@@ -581,23 +1478,33 @@ export default function RegexValidatorPage() {
               ))}
             </div>
           </div>
+          )}
 
-          {/* Regex Reference */}
+          {/* Regex Reference - Only show in guide tab */}
+          {activeTab === 'guide' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             {/* Metacharacters */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
                 Regex Metacharacters
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {regexMetacharacters.map((meta, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <code className="text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded text-sm font-mono">
-                      {meta.char}
-                    </code>
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
-                      {meta.description}
-                    </span>
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <code className="text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-3 py-1 rounded text-sm font-mono font-bold">
+                        {meta.char}
+                      </code>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">
+                        {meta.description}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                      {meta.explanation}
+                    </p>
+                    <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded font-mono">
+                      Example: {meta.example}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -610,25 +1517,33 @@ export default function RegexValidatorPage() {
               </h3>
               <div className="space-y-4">
                 {regexFlags.map((flag, index) => (
-                  <div key={index} className="border-l-4 border-blue-500 pl-4">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <code className="text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded text-sm font-mono">
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <code className="text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-600 px-3 py-1 rounded text-sm font-mono font-bold">
                         {flag.flag}
                       </code>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {flag.name}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 font-medium">
                       {flag.description}
                     </p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                      {flag.explanation}
+                    </p>
+                    <div className="text-xs text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded font-mono whitespace-pre-line">
+                      {flag.example}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+          )}
 
-          {/* SEO Content */}
+          {/* SEO Content - Only show in guide tab */}
+          {activeTab === 'guide' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
               Regex Validator - Complete Guide
@@ -684,8 +1599,10 @@ export default function RegexValidatorPage() {
               </div>
             </div>
           </div>
+          )}
 
-          {/* How to Use Section */}
+          {/* How to Use Section - Only show in guide tab */}
+          {activeTab === 'guide' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
               How to Use the Regex Validator
@@ -763,6 +1680,7 @@ export default function RegexValidatorPage() {
               </ul>
             </div>
           </div>
+          )}
 
           <DeveloperToolsNav currentPath="/regex-validator" />
         </div>

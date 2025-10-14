@@ -1122,6 +1122,12 @@ export default function AICheatSheetPage() {
   const [selectedLanguage, setSelectedLanguage] = useState(programmingLanguages[0]);
   const [activeTab, setActiveTab] = useState('syntax');
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+  const [componentName, setComponentName] = useState('');
+  const [componentDescription, setComponentDescription] = useState('');
+  const [customPrompt, setCustomPrompt] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPrompt, setSelectedPrompt] = useState<{title: string, prompt: string, category: string} | null>(null);
+  const [modalDescription, setModalDescription] = useState('');
 
   const copyToClipboard = async (text: string, promptTitle: string) => {
     try {
@@ -1130,6 +1136,45 @@ export default function AICheatSheetPage() {
       setTimeout(() => setCopiedPrompt(null), 2000);
     } catch (err) {
       console.error('Failed to copy text: ', err);
+    }
+  };
+
+  const generateCustomPrompt = () => {
+    if (!componentName.trim() || !componentDescription.trim()) {
+      return;
+    }
+    
+    const basePrompt = `Create a ${selectedLanguage.name} ${componentName} that ${componentDescription}. Include proper error handling, documentation, and best practices.`;
+    setCustomPrompt(basePrompt);
+  };
+
+  const copyCustomPrompt = async () => {
+    if (customPrompt) {
+      await copyToClipboard(customPrompt, 'Custom Prompt');
+    }
+  };
+
+  const openModal = (prompt: {title: string, prompt: string, category: string}) => {
+    setSelectedPrompt(prompt);
+    setModalDescription('');
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedPrompt(null);
+    setModalDescription('');
+  };
+
+  const generateModalPrompt = () => {
+    if (!selectedPrompt || !modalDescription.trim()) return '';
+    return selectedPrompt.prompt.replace('{description}', modalDescription);
+  };
+
+  const copyModalPrompt = async () => {
+    const prompt = generateModalPrompt();
+    if (prompt) {
+      await copyToClipboard(prompt, selectedPrompt?.title || 'Generated Prompt');
     }
   };
 
@@ -1249,7 +1294,7 @@ export default function AICheatSheetPage() {
                 console.log(`Language: ${selectedLanguage.name}, Prompts count: ${languagePrompts.length}`);
                 return languagePrompts.length > 0 ? (
                   languagePrompts.map((prompt, index) => (
-                  <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-600 transition-colors">
+                  <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-600 transition-colors cursor-pointer" onClick={() => openModal(prompt)}>
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
@@ -1259,20 +1304,18 @@ export default function AICheatSheetPage() {
                           {prompt.category}
                         </span>
                       </div>
-                      <button
-                        onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
-                        className={`px-3 py-1 text-xs rounded transition-colors ${
-                          copiedPrompt === prompt.title
-                            ? 'bg-green-500 text-white'
-                            : 'bg-blue-500 hover:bg-blue-600 text-white'
-                        }`}
-                      >
-                        {copiedPrompt === prompt.title ? '✓ Copied!' : 'Copy'}
-                      </button>
+                      <div className="flex items-center text-blue-500 hover:text-blue-600 transition-colors">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                       {prompt.prompt}
                     </p>
+                    <div className="mt-3 text-xs text-blue-600 dark:text-blue-400 font-medium">
+                      Click to customize and copy →
+                    </div>
                   </div>
                   ))
                 ) : (
@@ -1295,6 +1338,127 @@ export default function AICheatSheetPage() {
                 <li>3. Paste into ChatGPT, Claude, or your preferred AI tool</li>
                 <li>4. Get instant, language-specific code generation!</li>
               </ol>
+            </div>
+          </div>
+
+          {/* Custom Prompt Generator Section */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6 text-center">
+              🛠️ Custom Prompt Generator for {selectedLanguage.name}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
+              Create personalized AI prompts by specifying your component name and description. Perfect for technical users who need specific functionality.
+            </p>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor="componentName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Component/Function Name
+                  </label>
+                  <input
+                    id="componentName"
+                    type="text"
+                    value={componentName}
+                    onChange={(e) => setComponentName(e.target.value)}
+                    placeholder="e.g., UserService, DataProcessor, APIHandler"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="componentDescription" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Description/Functionality
+                  </label>
+                  <input
+                    id="componentDescription"
+                    type="text"
+                    value={componentDescription}
+                    onChange={(e) => setComponentDescription(e.target.value)}
+                    placeholder="e.g., handles user authentication, processes CSV files, manages database connections"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <button
+                  onClick={generateCustomPrompt}
+                  disabled={!componentName.trim() || !componentDescription.trim()}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  Generate Custom Prompt
+                </button>
+                
+                {customPrompt && (
+                  <button
+                    onClick={copyCustomPrompt}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    {copiedPrompt === 'Custom Prompt' ? '✓ Copied!' : 'Copy Prompt'}
+                  </button>
+                )}
+              </div>
+              
+              {customPrompt && (
+                <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border border-gray-200 dark:border-gray-600">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Generated Custom Prompt
+                  </h4>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                    <code className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                      {customPrompt}
+                    </code>
+                  </div>
+                </div>
+              )}
+              
+              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                  💡 Pro Tips for Technical Users
+                </h4>
+                <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                  <li>• <strong>Be specific:</strong> Use descriptive names like &quot;UserAuthenticationService&quot; instead of &quot;Service&quot;</li>
+                  <li>• <strong>Include context:</strong> Mention frameworks, libraries, or specific requirements in your description</li>
+                  <li>• <strong>Add constraints:</strong> Specify performance requirements, security needs, or integration points</li>
+                  <li>• <strong>Example:</strong> &quot;UserService that handles JWT authentication with Redis caching and rate limiting&quot;</li>
+                </ul>
+              </div>
+              
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-l-4 border-green-500">
+                <h4 className="font-semibold text-green-900 dark:text-green-100 mb-3">
+                  🚀 Quick Examples for {selectedLanguage.name}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <strong className="text-green-800 dark:text-green-200">Component Name:</strong>
+                    <div className="text-green-700 dark:text-green-300 mt-1 space-y-1">
+                      <div>• DataValidator</div>
+                      <div>• EmailService</div>
+                      <div>• CacheManager</div>
+                      <div>• FileProcessor</div>
+                    </div>
+                  </div>
+                  <div>
+                    <strong className="text-green-800 dark:text-green-200">Description:</strong>
+                    <div className="text-green-700 dark:text-green-300 mt-1 space-y-1">
+                      <div>• validates user input with custom rules</div>
+                      <div>• sends transactional emails via SMTP</div>
+                      <div>• manages Redis cache with TTL</div>
+                      <div>• processes CSV files with error handling</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1566,6 +1730,87 @@ export default function AICheatSheetPage() {
             </div>
           </div>
         </div>
+
+        {/* Modal for Customizing Prompts */}
+        {showModal && selectedPrompt && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    Customize Prompt
+                  </h3>
+                  <button
+                    onClick={closeModal}
+                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="mb-6">
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                    {selectedPrompt.title}
+                  </h4>
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {selectedPrompt.prompt}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="modalDescription" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Enter your specific description:
+                  </label>
+                  <textarea
+                    id="modalDescription"
+                    value={modalDescription}
+                    onChange={(e) => setModalDescription(e.target.value)}
+                    placeholder="e.g., handles user authentication with JWT tokens and Redis caching"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none"
+                    rows={3}
+                  />
+                </div>
+
+                {modalDescription.trim() && (
+                  <div className="mb-6">
+                    <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                      Generated Prompt:
+                    </h4>
+                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                      <code className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                        {generateModalPrompt()}
+                      </code>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    onClick={copyModalPrompt}
+                    disabled={!modalDescription.trim()}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    {copiedPrompt === selectedPrompt.title ? '✓ Copied!' : 'Copy Prompt'}
+                  </button>
+                  
+                  <button
+                    onClick={closeModal}
+                    className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
