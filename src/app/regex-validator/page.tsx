@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import DeveloperToolsNav from '@/components/DeveloperToolsNav';
 import AdBanner from '@/components/AdBanner';
+import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 const commonRegexPatterns = [
   {
@@ -405,7 +405,12 @@ export default function RegexValidatorPage() {
   const analyzeInput = (input: string) => {
     if (!input.trim()) return null;
 
-    const analysis = {
+    const analysis: {
+      type: string;
+      patterns: Array<{name: string, regex: string, description: string}>;
+      suggestions: string[];
+      confidence: number;
+    } = {
       type: '',
       patterns: [],
       suggestions: [],

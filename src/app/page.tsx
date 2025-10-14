@@ -1,14 +1,11 @@
 "use client";
 
-import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
-import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
-import { useState } from "react";
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
 
   // Tool data for search and filtering
   const allTools = [
@@ -36,12 +33,6 @@ export default function Home() {
     { name: "Cooking Converter", url: "/cooking", icon: "👨‍🍳", category: "converter", description: "Convert cooking units (cups, tbsp)" }
   ];
 
-  const filteredTools = allTools.filter(tool => {
-    const matchesSearch = tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         tool.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === "all" || tool.category === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
 
   return (
     <>
