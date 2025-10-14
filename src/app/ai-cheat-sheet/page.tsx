@@ -1126,7 +1126,7 @@ export default function AICheatSheetPage() {
   const [componentDescription, setComponentDescription] = useState('');
   const [customPrompt, setCustomPrompt] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [selectedPrompt, setSelectedPrompt] = useState<any>(null);
+  const [selectedPrompt, setSelectedPrompt] = useState<{title: string, prompt: string, category: string} | null>(null);
   const [modalDescription, setModalDescription] = useState('');
 
   const copyToClipboard = async (text: string, promptTitle: string) => {
@@ -1154,7 +1154,7 @@ export default function AICheatSheetPage() {
     }
   };
 
-  const openModal = (prompt: any) => {
+  const openModal = (prompt: {title: string, prompt: string, category: string}) => {
     setSelectedPrompt(prompt);
     setModalDescription('');
     setShowModal(true);
@@ -1427,10 +1427,10 @@ export default function AICheatSheetPage() {
                   💡 Pro Tips for Technical Users
                 </h4>
                 <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
-                  <li>• <strong>Be specific:</strong> Use descriptive names like "UserAuthenticationService" instead of "Service"</li>
+                  <li>• <strong>Be specific:</strong> Use descriptive names like &quot;UserAuthenticationService&quot; instead of &quot;Service&quot;</li>
                   <li>• <strong>Include context:</strong> Mention frameworks, libraries, or specific requirements in your description</li>
                   <li>• <strong>Add constraints:</strong> Specify performance requirements, security needs, or integration points</li>
-                  <li>• <strong>Example:</strong> "UserService that handles JWT authentication with Redis caching and rate limiting"</li>
+                  <li>• <strong>Example:</strong> &quot;UserService that handles JWT authentication with Redis caching and rate limiting&quot;</li>
                 </ul>
               </div>
               
