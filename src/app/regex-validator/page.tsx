@@ -828,7 +828,7 @@ export default function RegexValidatorPage() {
               🛠️ Guided Regex Builder
             </h3>
             <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
-              Don't know regex? No problem! Use our guided builder to create patterns step by step.
+              Don&apos;t know regex? No problem! Use our guided builder to create patterns step by step.
             </p>
             
             <div className="max-w-4xl mx-auto">
@@ -1062,7 +1062,7 @@ export default function RegexValidatorPage() {
                             <div className="mt-2 space-y-1">
                               {matches.map((match, index) => (
                                 <div key={index} className="text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
-                                  Match {index + 1}: "{match}"
+                                  Match {index + 1}: &quot;{match}&quot;
                                 </div>
                               ))}
                             </div>
@@ -1084,7 +1084,7 @@ export default function RegexValidatorPage() {
               🤖 Smart Regex Generator
             </h3>
             <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
-              Just enter your sample text and we'll analyze it to generate the perfect regex pattern for you!
+              Just enter your sample text and we&apos;ll analyze it to generate the perfect regex pattern for you!
             </p>
             
             <div className="max-w-4xl mx-auto">
@@ -1209,7 +1209,7 @@ export default function RegexValidatorPage() {
                             <div className="mt-2 space-y-1">
                               {matches.map((match, index) => (
                                 <div key={index} className="text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
-                                  Match {index + 1}: "{match}"
+                                  Match {index + 1}: &quot;{match}&quot;
                                 </div>
                               ))}
                             </div>
@@ -1290,7 +1290,7 @@ export default function RegexValidatorPage() {
                   <h5 className="font-medium text-gray-900 dark:text-white mb-2">What is Regex?</h5>
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                     Regular expressions (regex) are powerful patterns used to match, search, and manipulate text. 
-                    Think of them as a super-powered "Find and Replace" tool that can find complex patterns in text.
+                    Think of them as a super-powered &quot;Find and Replace&quot; tool that can find complex patterns in text.
                   </p>
                   <h5 className="font-medium text-gray-900 dark:text-white mb-2">Why Use Regex?</h5>
                   <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
@@ -1304,10 +1304,10 @@ export default function RegexValidatorPage() {
                   <h5 className="font-medium text-gray-900 dark:text-white mb-2">Basic Concepts</h5>
                   <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                     <div className="bg-white dark:bg-gray-800 p-3 rounded">
-                      <strong>Pattern:</strong> The regex expression you write (like <code className="text-blue-600">\d{3}</code>)
+                      <strong>Pattern:</strong> The regex expression you write (like <code className="text-blue-600">\d&#123;3&#125;</code>)
                     </div>
                     <div className="bg-white dark:bg-gray-800 p-3 rounded">
-                      <strong>Match:</strong> Text that fits your pattern (like "123" for <code className="text-blue-600">\d{3}</code>)
+                      <strong>Match:</strong> Text that fits your pattern (like &quot;123&quot; for <code className="text-blue-600">\d&#123;3&#125;</code>)
                     </div>
                     <div className="bg-white dark:bg-gray-800 p-3 rounded">
                       <strong>Flags:</strong> Options that change how regex works (like case-insensitive)
