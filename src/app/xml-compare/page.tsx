@@ -2,24 +2,9 @@
 
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
-import type { Metadata } from 'next';
 import { useState } from 'react';
 
-export const metadata: Metadata = {
-  title: "XML Compare Tool - Free Online XML Diff Checker",
-  description: "Free online XML compare tool. Compare two XML documents and find differences instantly. Perfect for developers, configuration management, and data validation.",
-  keywords: "XML compare, XML diff, XML difference checker, compare XML online, XML validator, developer tools, configuration management",
-  robots: "index, follow",
-  alternates: {
-    canonical: '/xml-compare',
-  },
-  openGraph: {
-    title: "XML Compare Tool - Free Online XML Diff Checker",
-    description: "Compare two XML documents and find differences instantly with our free online XML compare tool.",
-    type: "website",
-    url: "https://freeunitconvertor.com/xml-compare",
-  },
-};
+// Metadata removed from client component
 interface XMLDiffResult {
   path: string;
   type: 'added' | 'removed' | 'changed' | 'attribute_added' | 'attribute_removed' | 'attribute_changed';

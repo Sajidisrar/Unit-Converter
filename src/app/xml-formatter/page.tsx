@@ -2,24 +2,9 @@
 
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
-import type { Metadata } from 'next';
 import { useState } from 'react';
 
-export const metadata: Metadata = {
-  title: "XML Formatter & Minifier - Free Online XML Beautifier Tool",
-  description: "Free online XML formatter and minifier. Format, beautify, and minify XML data instantly. Perfect for developers working with XML files, APIs, and data processing.",
-  keywords: "XML formatter, XML beautifier, XML minifier, XML validator, format XML online, beautify XML, minify XML, XML tools, developer tools",
-  robots: "index, follow",
-  alternates: {
-    canonical: '/xml-formatter',
-  },
-  openGraph: {
-    title: "XML Formatter & Minifier - Free Online Tool",
-    description: "Format and minify XML data instantly with our free online XML formatter tool.",
-    type: "website",
-    url: "https://freeunitconvertor.com/xml-formatter",
-  },
-};
+// Metadata removed from client component
 export default function XMLFormatter() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
