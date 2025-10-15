@@ -1,10 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import type { Metadata } from 'next';
+import { useState } from 'react';
 
+export const metadata: Metadata = {
+  title: "XML Compare Tool - Free Online XML Diff Checker",
+  description: "Free online XML compare tool. Compare two XML documents and find differences instantly. Perfect for developers, configuration management, and data validation.",
+  keywords: "XML compare, XML diff, XML difference checker, compare XML online, XML validator, developer tools, configuration management",
+  robots: "index, follow",
+  alternates: {
+    canonical: '/xml-compare',
+  },
+  openGraph: {
+    title: "XML Compare Tool - Free Online XML Diff Checker",
+    description: "Compare two XML documents and find differences instantly with our free online XML compare tool.",
+    type: "website",
+    url: "https://freeunitconvertor.com/xml-compare",
+  },
+};
 interface XMLDiffResult {
   path: string;
   type: 'added' | 'removed' | 'changed' | 'attribute_added' | 'attribute_removed' | 'attribute_changed';
@@ -313,18 +328,6 @@ export default function XMLCompare() {
 
   return (
     <>
-      <Head>
-        <title>XML Compare Tool - Free Online XML Diff Checker</title>
-        <meta name="description" content="Free online XML compare tool. Compare two XML documents and find differences instantly. Perfect for developers, configuration management, and data validation." />
-        <meta name="keywords" content="XML compare, XML diff, XML difference checker, compare XML online, XML validator, developer tools, configuration management" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/xml-compare" />
-        <meta property="og:title" content="XML Compare Tool - Free Online XML Diff Checker" />
-        <meta property="og:description" content="Compare two XML documents and find differences instantly with our free online XML compare tool." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/xml-compare" />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">

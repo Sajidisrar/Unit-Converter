@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import { useState } from 'react';
 
+// Metadata removed from client component
 interface JsonNode {
   key?: string;
   value: unknown;
@@ -224,18 +224,6 @@ export default function JSONPrettier() {
 
   return (
     <>
-      <Head>
-        <title>JSON Prettier & Formatter - Free Online JSON Beautifier Tool</title>
-        <meta name="description" content="Free online JSON prettier and formatter. Format, beautify, minify JSON data with expand/collapse tree view. Perfect for developers and data analysis." />
-        <meta name="keywords" content="JSON prettier, JSON formatter, JSON beautifier, JSON minifier, JSON tree view, format JSON online, developer tools" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/json-prettier" />
-        <meta property="og:title" content="JSON Prettier & Formatter - Free Online Tool" />
-        <meta property="og:description" content="Format and beautify JSON data with interactive tree view using our free online JSON prettier tool." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/json-prettier" />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">

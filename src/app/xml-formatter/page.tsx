@@ -1,10 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import type { Metadata } from 'next';
+import { useState } from 'react';
 
+export const metadata: Metadata = {
+  title: "XML Formatter & Minifier - Free Online XML Beautifier Tool",
+  description: "Free online XML formatter and minifier. Format, beautify, and minify XML data instantly. Perfect for developers working with XML files, APIs, and data processing.",
+  keywords: "XML formatter, XML beautifier, XML minifier, XML validator, format XML online, beautify XML, minify XML, XML tools, developer tools",
+  robots: "index, follow",
+  alternates: {
+    canonical: '/xml-formatter',
+  },
+  openGraph: {
+    title: "XML Formatter & Minifier - Free Online Tool",
+    description: "Format and minify XML data instantly with our free online XML formatter tool.",
+    type: "website",
+    url: "https://freeunitconvertor.com/xml-formatter",
+  },
+};
 export default function XMLFormatter() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
@@ -111,18 +126,6 @@ export default function XMLFormatter() {
 
   return (
     <>
-      <Head>
-        <title>XML Formatter & Minifier - Free Online XML Beautifier Tool</title>
-        <meta name="description" content="Free online XML formatter and minifier. Format, beautify, and minify XML data instantly. Perfect for developers working with XML files, APIs, and data processing." />
-        <meta name="keywords" content="XML formatter, XML beautifier, XML minifier, XML validator, format XML online, beautify XML, minify XML, XML tools, developer tools" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/xml-formatter" />
-        <meta property="og:title" content="XML Formatter & Minifier - Free Online Tool" />
-        <meta property="og:description" content="Format and minify XML data instantly with our free online XML formatter tool." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/xml-formatter" />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">

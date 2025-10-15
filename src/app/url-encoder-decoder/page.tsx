@@ -1,9 +1,10 @@
 'use client';
 
-import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
 import DeveloperToolsNav from "@/components/DeveloperToolsNav";
 import { useState } from "react";
+
+// Metadata removed from client component
 
 function urlEncode(input: string) {
   try {
@@ -41,32 +42,6 @@ export default function UrlEncoderDecoderPage() {
 
   return (
     <>
-      <Head>
-        <title>URL Encoder Decoder - Free Online URL Encoding Tool</title>
-        <meta name="description" content="Free online URL encoder and decoder. Encode URLs for safe transmission and decode URL-encoded strings instantly. Perfect for web development and API testing." />
-        <meta name="keywords" content="url encoder, url decoder, url encoding, percent encoding, uri encoder, web development, api testing" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/url-encoder-decoder" />
-        <meta property="og:title" content="URL Encoder Decoder - Free Online Tool" />
-        <meta property="og:description" content="Encode URLs for safe transmission and decode URL-encoded strings instantly." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/url-encoder-decoder" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "URL Encoder Decoder",
-              "url": "https://freeunitconvertor.com/url-encoder-decoder",
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "All",
-              "description": "Encode and decode URLs for safe web transmission"
-            }),
-          }}
-        />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
           <header className="text-center mb-12">
