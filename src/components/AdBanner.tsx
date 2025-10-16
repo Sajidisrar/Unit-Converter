@@ -68,33 +68,24 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
       top: 'mx-auto mb-6',
       side: 'mx-auto',
       inline: 'mx-auto my-6',
-      left: 'w-48 h-96',
-      right: 'w-48 h-96'
+      left: 'w-48 h-96 min-h-[250px]',
+      right: 'w-48 h-96 min-h-[250px]'
     };
     
     return `${baseClasses} ${positionClasses[position]} ${className}`;
   };
 
-  // Show placeholder in development mode
-  const isDevelopment = process.env.NODE_ENV === 'development';
-
   return (
-    <div ref={containerRef} className={getContainerClasses()} style={{ minHeight: '50px', width: '100%' }}>
-      {isDevelopment ? (
-        <div className="bg-gray-200 dark:bg-gray-700 border-2 border-dashed border-gray-400 dark:border-gray-500 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400 text-sm font-medium" style={{ minHeight: '50px', width: '100%' }}>
-          Ad Banner ({position})
-        </div>
-      ) : (
-        <ins
-          ref={insRef}
-          className="adsbygoogle"
-          style={{ display: "block", width: "100%" }}
-          data-ad-client="ca-pub-3759958145886276"
-          data-ad-slot="4003156004"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      )}
+    <div ref={containerRef} className={getContainerClasses()} style={{ minHeight: '90px', width: '100%', display: 'block' }}>
+      <ins
+        ref={insRef}
+        className="adsbygoogle"
+        style={{ display: "block", width: "100%", minHeight: "90px" }}
+        data-ad-client="ca-pub-3759958145886276"
+        data-ad-slot="4003156004"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 }
