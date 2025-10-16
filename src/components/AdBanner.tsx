@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useRef } from 'react';
 
+// Extend the Window interface to include adsbygoogle
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
+}
+
 interface AdBannerProps {
   position: 'top' | 'side' | 'inline' | 'left' | 'right';
   className?: string;
@@ -17,28 +24,32 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
       const container = containerRef.current;
       const ins = insRef.current;
       if (!container || !ins) return;
-      const width = container.offsetWidth;
-      if (width && width > 0) {
+      
+      // Check if Google AdSense is loaded
+      if (typeof window !== 'undefined' && window.adsbygoogle) {
         try {
-          // @ts-expect-error adsbygoogle is not defined on Window
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           hasPushedRef.current = true;
-        } catch {
-          // Swallow and retry on next observer event
+          console.log('Ad pushed successfully');
+        } catch (error) {
+          console.log('Ad push failed:', error);
         }
+      } else {
+        console.log('Google AdSense not loaded yet');
       }
     }
 
-    // Attempt immediately in case width is already available
-    tryPush();
+    // Wait for Google AdSense to load
+    const checkAdSense = () => {
+      if (typeof window !== 'undefined' && window.adsbygoogle) {
+        tryPush();
+      } else {
+        setTimeout(checkAdSense, 100);
+      }
+    };
 
-    // Observe size changes to push when width becomes available
-    const resizeObserver = new ResizeObserver(() => {
-      tryPush();
-    });
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
+    // Start checking after a short delay
+    setTimeout(checkAdSense, 500);
 
     // Also attempt when element becomes visible in viewport
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -56,7 +67,6 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
     window.addEventListener('load', onLoad);
 
     return () => {
-      resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener('load', onLoad);
     };
