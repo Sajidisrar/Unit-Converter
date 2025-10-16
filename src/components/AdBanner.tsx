@@ -76,11 +76,32 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
   };
 
   return (
-    <div ref={containerRef} className={getContainerClasses()} style={{ minHeight: '90px', width: '100%', display: 'block' }}>
+    <div 
+      ref={containerRef} 
+      className={getContainerClasses()} 
+      data-ad-container="true"
+      style={{ 
+        minHeight: '90px', 
+        width: '100%', 
+        display: 'block',
+        backgroundColor: '#f3f4f6',
+        border: '1px solid #d1d5db',
+        borderRadius: '8px',
+        opacity: '1',
+        visibility: 'visible',
+        zIndex: '1'
+      }}
+    >
       <ins
         ref={insRef}
         className="adsbygoogle"
-        style={{ display: "block", width: "100%", minHeight: "90px" }}
+        style={{ 
+          display: "block", 
+          width: "100%", 
+          minHeight: "90px",
+          opacity: '1',
+          visibility: 'visible'
+        }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot="4003156004"
         data-ad-format="auto"
