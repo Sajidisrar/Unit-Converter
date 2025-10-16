@@ -25,3 +25,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Ensure ad banners are always visible */
+.adsbygoogle {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 90px !important;
+}
+
+/* Ad banner container styles */
+[data-ad-container] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 90px !important;
+}
