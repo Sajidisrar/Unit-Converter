@@ -35,12 +35,20 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <Analytics />
-      {/* Developer Tools Navigation Link */}
-      <div className="container mx-auto px-4 pt-6 flex justify-start">
-      </div>
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+          <Analytics />
+          {/* Developer Tools Navigation Link */}
+          <div className="container mx-auto px-4 pt-6 flex justify-start">
+          </div>
+          <div className="container mx-auto px-4 py-8">
+            {/* Left Banner */}
+            <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-10 hidden xl:block">
+              <AdBanner position="left" />
+            </div>
+            {/* Right Banner */}
+            <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-10 hidden xl:block">
+              <AdBanner position="right" />
+            </div>
 
         {/* Enhanced Hero Section */}
         <header className="text-center mb-12">
@@ -52,30 +60,6 @@ export default function Home() {
             Convert units, format data, encode/decode, and solve complex calculations instantly.
           </p>
           
-          {/* Field-specific benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <div className="text-3xl mb-3">🔧</div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Engineers</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Power conversion, electrical calculations, area measurements, and technical unit conversions for mechanical, electrical, and civil engineering.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <div className="text-3xl mb-3">💻</div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Developers</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                JSON/XML formatters, Base64 encoders, JWT decoders, regex validators, and data processing tools for web development.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
-              <div className="text-3xl mb-3">🏠</div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Everyone</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Cooking conversions, electricity cost calculators, temperature conversions, and everyday measurement tools.
-              </p>
-            </div>
-          </div>
         </header>
 
         {/* All Tools Grid - Moved to Top */}
@@ -98,22 +82,21 @@ export default function Home() {
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                       {tool.description}
                     </p>
-                    <div className="flex items-center justify-center text-blue-500 group-hover:text-blue-600 transition-colors">
-                      <span className="text-sm font-medium">Use Tool</span>
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
+                        <div className="flex items-center justify-center text-blue-500 group-hover:text-blue-600 transition-colors">
+                          <svg
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </div>
                   </div>
                 </Link>
               ))}
