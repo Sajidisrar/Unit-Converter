@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 
 interface AdBannerProps {
-  position: 'top' | 'side' | 'inline';
+  position: 'top' | 'side' | 'inline' | 'left' | 'right';
   className?: string;
 }
 
@@ -67,7 +67,9 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
     const positionClasses = {
       top: 'mx-auto mb-6',
       side: 'mx-auto',
-      inline: 'mx-auto my-6'
+      inline: 'mx-auto my-6',
+      left: 'w-48 h-96',
+      right: 'w-48 h-96'
     };
     
     return `${baseClasses} ${positionClasses[position]} ${className}`;

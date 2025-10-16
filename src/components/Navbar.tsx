@@ -34,6 +34,12 @@ export default function Navbar() {
             >
               Home
             </Link>
+            <Link 
+              href="/blog" 
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Blog
+            </Link>
             
             {/* Most Frequently Used Tools - Quick Access */}
             <div className="flex items-center space-x-3 border-l border-gray-300 dark:border-gray-600 pl-6">
@@ -167,13 +173,20 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
             <div className="space-y-2">
-              <Link 
-                href="/" 
-                className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </Link>
+                <Link 
+                  href="/" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/blog" 
+                  className="block py-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
+                </Link>
               
               {/* Most Frequently Used Tools for Mobile */}
               <div className="py-2 border-t border-gray-200 dark:border-gray-700 mt-2">
