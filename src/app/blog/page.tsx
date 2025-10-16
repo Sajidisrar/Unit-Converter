@@ -53,6 +53,11 @@ export default function BlogPage() {
             <AdBanner position="top" />
           </div>
 
+          {/* Ad Banner after top */}
+          <div className="mb-8">
+            <AdBanner position="inline" />
+          </div>
+
           {/* Featured Article */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Featured Article</h2>
@@ -113,12 +118,6 @@ export default function BlogPage() {
                       <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
                         {article.excerpt}
                       </p>
-                      <div className="flex items-center text-blue-500 group-hover:text-blue-600 transition-colors">
-                        <span className="text-sm font-medium">Read Article</span>
-                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
                     </div>
                   </article>
                 </Link>
