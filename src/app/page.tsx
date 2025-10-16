@@ -28,6 +28,8 @@ export default function Home() {
     { name: "Temperature Converter", url: "/temperature", icon: "🌡️", category: "converter", description: "Convert temperature (Celsius, Fahrenheit)" },
     { name: "Area Converter", url: "/area", icon: "📐", category: "converter", description: "Convert area units (sq meters, acres)" },
     { name: "Speed Converter", url: "/speed", icon: "🏃", category: "converter", description: "Convert speed (MPH, KPH, knots)" },
+    { name: "Power Converter", url: "/power", icon: "⚡", category: "converter", description: "Convert power units (watts, horsepower, BTU/h)" },
+    { name: "Electricity Consumption", url: "/electricity-consumption", icon: "🔌", category: "converter", description: "Calculate home electricity consumption and costs" },
     { name: "Cooking Converter", url: "/cooking", icon: "👨‍🍳", category: "converter", description: "Convert cooking units (cups, tbsp)" }
   ];
 
@@ -40,15 +42,40 @@ export default function Home() {
       </div>
       <div className="container mx-auto px-4 py-8">
 
-        {/* Compact Hero Section */}
-        <header className="text-center mb-8">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Free Online Tools 2025
+        {/* Enhanced Hero Section */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            Free Online Tools & Calculators 2025
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
-            Developer tools & unit converters. JSON, Base64, JWT, Regex, Length, Weight, Temperature & more.
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+            Comprehensive collection of <strong>free online tools</strong> for developers, engineers, students, and professionals. 
+            Convert units, format data, encode/decode, and solve complex calculations instantly.
           </p>
           
+          {/* Field-specific benefits */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+              <div className="text-3xl mb-3">🔧</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Engineers</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Power conversion, electrical calculations, area measurements, and technical unit conversions for mechanical, electrical, and civil engineering.
+              </p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+              <div className="text-3xl mb-3">💻</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Developers</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                JSON/XML formatters, Base64 encoders, JWT decoders, regex validators, and data processing tools for web development.
+              </p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+              <div className="text-3xl mb-3">🏠</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">For Everyone</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Cooking conversions, electricity cost calculators, temperature conversions, and everyday measurement tools.
+              </p>
+            </div>
+          </div>
         </header>
 
         {/* All Tools Grid - Moved to Top */}
@@ -211,6 +238,66 @@ export default function Home() {
             </div>
           </section>
         </main>
+
+        {/* SEO Content Section */}
+        <section className="bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-8 mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
+            Why Choose Our Free Online Tools?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="text-center">
+              <div className="text-4xl mb-4">⚡</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Lightning Fast</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Instant results with real-time calculations. No waiting, no delays.</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Highly Accurate</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Precision calculations using industry-standard conversion factors.</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🆓</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Completely Free</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">No registration required, no hidden fees, no limitations.</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">📱</div>
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Mobile Friendly</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Responsive design that works perfectly on all devices.</p>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+              Popular Tool Categories
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">🔧 Unit Converters</h4>
+                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                  <li>• <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline">Length Converter</Link> - Convert meters, feet, inches, yards, miles</li>
+                  <li>• <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline">Weight Converter</Link> - Convert kg, lbs, ounces, grams, tons</li>
+                  <li>• <Link href="/temperature" className="text-blue-600 dark:text-blue-400 hover:underline">Temperature Converter</Link> - Convert Celsius, Fahrenheit, Kelvin</li>
+                  <li>• <Link href="/area" className="text-blue-600 dark:text-blue-400 hover:underline">Area Converter</Link> - Convert square meters, acres, square feet</li>
+                  <li>• <Link href="/power" className="text-blue-600 dark:text-blue-400 hover:underline">Power Converter</Link> - Convert watts, horsepower, BTU/h</li>
+                  <li>• <Link href="/speed" className="text-blue-600 dark:text-blue-400 hover:underline">Speed Converter</Link> - Convert MPH, KPH, knots, m/s</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">💻 Developer Tools</h4>
+                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                  <li>• <Link href="/json-prettier" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</Link> - Format and validate JSON data</li>
+                  <li>• <Link href="/base64-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">Base64 Encoder</Link> - Encode and decode Base64 strings</li>
+                  <li>• <Link href="/jwt-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">JWT Decoder</Link> - Decode JSON Web Tokens</li>
+                  <li>• <Link href="/url-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</Link> - Encode and decode URLs</li>
+                  <li>• <Link href="/regex-validator" className="text-blue-600 dark:text-blue-400 hover:underline">Regex Validator</Link> - Test regular expressions</li>
+                  <li>• <Link href="/xml-formatter" className="text-blue-600 dark:text-blue-400 hover:underline">XML Formatter</Link> - Format and validate XML</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Bottom Ad Banner */}
         <div className="mt-12">

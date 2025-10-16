@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 // import { useSearchParams } from "next/navigation";
-import { 
-  convertLength, 
-  convertWeight, 
-  convertTemperature, 
-  convertArea, 
-  convertSpeed,
-  convertHeight,
-  convertCooking,
-  convertFuelEconomy
+import {
+    convertArea,
+    convertCooking,
+    convertFuelEconomy,
+    convertHeight,
+    convertLength,
+    convertPower,
+    convertSpeed,
+    convertTemperature,
+    convertWeight
 } from '@/utils/conversions';
 
 interface Unit {
@@ -21,7 +22,7 @@ interface Unit {
 interface CalculatorProps {
   title: string;
   units: Unit[];
-  conversionType: 'length' | 'weight' | 'temperature' | 'area' | 'speed' | 'height' | 'cooking' | 'fuelEconomy' | 'fitnessWeight' | 'bmi';
+  conversionType: 'length' | 'weight' | 'temperature' | 'area' | 'speed' | 'height' | 'cooking' | 'fuelEconomy' | 'fitnessWeight' | 'bmi' | 'power';
   initialFromUnit?: string;
 }
 
@@ -57,6 +58,8 @@ export default function Calculator({ title, units, conversionType, initialFromUn
         return convertCooking(value, fromUnit, toUnit);
       case 'fuelEconomy':
         return convertFuelEconomy(value, fromUnit, toUnit);
+      case 'power':
+        return convertPower(value, fromUnit, toUnit);
       case 'fitnessWeight':
         return convertWeight(value, fromUnit, toUnit);
       case 'bmi': {

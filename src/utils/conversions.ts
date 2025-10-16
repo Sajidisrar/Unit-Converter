@@ -270,3 +270,37 @@ export function convertFuelEconomy(value: number, fromUnit: string, toUnit: stri
       return lPer100km;
   }
 }
+
+// Power conversion functions
+export const powerConversions: { [key: string]: number } = {
+  // Base unit: watts
+  'W': 1,                    // watt
+  'kW': 1000,                // kilowatt
+  'MW': 1000000,             // megawatt
+  'GW': 1000000000,          // gigawatt
+  'hp': 745.7,               // horsepower (mechanical)
+  'hp_metric': 735.499,       // horsepower (metric)
+  'BTU/h': 0.293071,         // BTU per hour
+  'ft-lb/s': 1.35582,        // foot-pound per second
+  'cal/s': 4.184,            // calorie per second
+  'erg/s': 0.0000001,        // erg per second
+};
+
+export const powerUnits = [
+  { label: 'Watt (W)', value: 'W' },
+  { label: 'Kilowatt (kW)', value: 'kW' },
+  { label: 'Megawatt (MW)', value: 'MW' },
+  { label: 'Gigawatt (GW)', value: 'GW' },
+  { label: 'Horsepower (hp)', value: 'hp' },
+  { label: 'Horsepower (Metric) (hp)', value: 'hp_metric' },
+  { label: 'BTU per Hour (BTU/h)', value: 'BTU/h' },
+  { label: 'Foot-pound per Second (ft-lb/s)', value: 'ft-lb/s' },
+  { label: 'Calorie per Second (cal/s)', value: 'cal/s' },
+  { label: 'Erg per Second (erg/s)', value: 'erg/s' },
+];
+
+export function convertPower(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to watts first, then to target unit
+  const watts = value * powerConversions[fromUnit];
+  return watts / powerConversions[toUnit];
+}
