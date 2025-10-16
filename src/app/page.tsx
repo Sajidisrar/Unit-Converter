@@ -64,13 +64,16 @@ export default function Home() {
 
         {/* All Tools Grid - Moved to Top */}
         <main className="max-w-6xl mx-auto">
+          <div className="mb-8">
+            <AdBanner position="top" />
+          </div>
           <section className="mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 items-stretch">
               {allTools.map((tool, index) => (
                 <Link
                   key={index}
                   href={tool.url}
-                  className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 p-6 h-full flex flex-col"
+                  className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 p-4 h-full flex flex-col"
                 >
                   <div className="text-center flex flex-col h-full">
                     <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
@@ -82,27 +85,17 @@ export default function Home() {
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
                       {tool.description}
                     </p>
-                        <div className="flex items-center justify-center text-blue-500 group-hover:text-blue-600 transition-colors">
-                          <svg
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </div>
                   </div>
                 </Link>
               ))}
             </div>
 
             {/* Ad Banner between tools */}
+            <div className="my-8">
+              <AdBanner position="inline" />
+            </div>
+
+            {/* Additional Ad Banner */}
             <div className="my-8">
               <AdBanner position="inline" />
             </div>
