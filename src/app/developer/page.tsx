@@ -1,62 +1,59 @@
-'use client';
-
-import Link from 'next/link';
-import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
 import { developerTools } from '@/data/developerTools';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "15+ Free Online Developer Tools for 2025 | JSON, Regex, AI & More",
+  description: "Best free online developer tools for 2025. JSON formatter, Base64 encoder, URL encoder, JWT decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering. Trusted by 100K+ developers. No registration required.",
+  keywords: "free developer tools, JSON formatter online, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering, JSON to CSV converter, JSON parser, XML parser, text compare tool, color converter, developer utilities, web development tools, API testing tools, programming tools, code formatter, data conversion tools, AI development tools, machine learning tools",
+  robots: "index, follow",
+  alternates: {
+    canonical: '/developer',
+  },
+  openGraph: {
+    title: "Free Online Developer Tools - JSON, Base64, URL, JWT, XML",
+    description: "Instantly convert and analyze JSON, Base64, XML, and URL data with free developer tools. Encode, decode, parse, and format directly in your browser.",
+    type: "website",
+    url: "https://freeunitconvertor.com/developer",
+  },
+  other: {
+    'application/ld+json': JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are free online developer tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free online developer tools help you convert, encode, decode, and format data such as JSON, XML, Base64, and URLs directly in your browser without installing software."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert JSON to CSV online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, with our JSON to CSV Converter you can instantly transform JSON data into CSV format for spreadsheets and analysis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to use a JWT Decoder online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our JWT Decoder lets you inspect payload and claims of JSON Web Tokens in your browser. For sensitive production tokens, always use secure local methods."
+          }
+        }
+      ]
+    })
+  }
+};
 
 export default function DeveloperPage() {
   return (
     <>
-      <Head>
-        <title>15+ Free Online Developer Tools for 2025 | JSON, Regex, AI & More</title>
-        <meta
-          name="description"
-          content="Best free online developer tools for 2025. JSON formatter, Base64 encoder, URL encoder, JWT decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering. Trusted by 100K+ developers. No registration required."
-        />
-        <meta
-          name="keywords"
-          content="free developer tools, JSON formatter online, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering, JSON to CSV converter, JSON parser, XML parser, text compare tool, color converter, developer utilities, web development tools, API testing tools, programming tools, code formatter, data conversion tools, AI development tools, machine learning tools"
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/developer" />
-        <meta property="og:title" content="Free Online Developer Tools - JSON, Base64, URL, JWT, XML" />
-        <meta property="og:description" content="Instantly convert and analyze JSON, Base64, XML, and URL data with free developer tools. Encode, decode, parse, and format directly in your browser." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/developer" />
-      </Head>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What are free online developer tools?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Free online developer tools help you convert, encode, decode, and format data such as JSON, XML, Base64, and URLs directly in your browser without installing software."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I convert JSON to CSV online?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, with our JSON to CSV Converter you can instantly transform JSON data into CSV format for spreadsheets and analysis."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is it safe to use a JWT Decoder online?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our JWT Decoder lets you inspect payload and claims of JSON Web Tokens in your browser. For sensitive production tokens, always use secure local methods."
-            }
-          }
-        ]
-      })}} />
-
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">

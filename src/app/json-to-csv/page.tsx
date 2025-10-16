@@ -1,10 +1,10 @@
 'use client';
 
-import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
 import DeveloperToolsNav from "@/components/DeveloperToolsNav";
 import { useState } from "react";
 
+// Metadata removed from client component
 // JSON to CSV converter function
 function jsonToCsv(jsonStr: string): string {
   try {
@@ -86,32 +86,6 @@ export default function JsonToCsvPage() {
 
   return (
     <>
-      <Head>
-        <title>JSON to CSV Converter - Free Online Tool | Convert JSON Data to CSV</title>
-        <meta name="description" content="Convert JSON data to CSV format instantly with our free online JSON to CSV converter. Perfect for data analysis, Excel imports, and spreadsheet workflows. Fast, accurate, and secure." />
-        <meta name="keywords" content="json to csv, json converter, csv converter, json to csv online, data conversion, excel import, spreadsheet converter, json data, csv format" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/json-to-csv" />
-        <meta property="og:title" content="JSON to CSV Converter - Free Online Tool" />
-        <meta property="og:description" content="Convert JSON data to CSV format instantly. Perfect for data analysis and Excel imports." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/json-to-csv" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "JSON to CSV Converter",
-              "url": "https://freeunitconvertor.com/json-to-csv",
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "All",
-              "description": "Convert JSON data to CSV format for spreadsheets and data analysis"
-            }),
-          }}
-        />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
           <header className="text-center mb-12">

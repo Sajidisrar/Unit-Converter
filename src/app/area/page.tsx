@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
 import Calculator from "@/components/Calculator";
 import { areaUnits } from "@/utils/conversions";
-import AdBanner from "@/components/AdBanner";
-import Head from "next/head";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -14,6 +12,43 @@ export const metadata: Metadata = {
     description: "Convert between different area units including square meters, square feet, acres, hectares, and square yards. Popular conversions include square meter to acre, square feet to acres, and land size conversion.",
     type: "website",
   },
+  alternates: {
+    canonical: '/area',
+  },
+  other: {
+    'application/ld+json': [
+      JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "Area Converter - Free Online Unit Converter",
+        url: "https://freeunitconvertor.com/area",
+        applicationCategory: "Calculator",
+        operatingSystem: "All",
+      }),
+      JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How do I convert square meters to square feet?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "To convert square meters to square feet, multiply the number of square meters by 10.764. For example, 100 m² = 100 × 10.764 = 1,076.4 ft²."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "How many acres are in a hectare?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "One hectare equals 2.471 acres. A hectare is a metric unit of area equal to 10,000 square meters."
+            }
+          }
+        ]
+      })
+    ]
+  }
 };
 
 export default function AreaPage({ searchParams }: { searchParams: { from?: string } }) {
@@ -21,48 +56,6 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "Area Converter - Free Online Unit Converter",
-              url: "https://freeunitconvertor.com",
-              applicationCategory: "Calculator",
-              operatingSystem: "All",
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "How do I convert square meters to square feet?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "To convert square meters to square feet, multiply the number of square meters by 10.764. For example, 100 m² = 100 × 10.764 = 1,076.4 ft²."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  name: "How many acres are in a hectare?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "One hectare equals 2.471 acres. A hectare is a metric unit of area equal to 10,000 square meters."
-                  }
-                }
-              ]
-            }),
-          }}
-        />
-      </Head>
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
@@ -75,9 +68,6 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
 
         <main className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 gap-6 items-start">
-            <div className="">
-              <AdBanner position="top" />
-            </div>
             <div>
               <Calculator
                 title="Area Conversion Tool"
@@ -85,10 +75,6 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
                 conversionType="area"
                 initialFromUnit={defaultFromUnit}
               />
-
-              <div className="mt-6">
-                <AdBanner position="inline" />
-              </div>
             </div>
           </div>
 
@@ -156,9 +142,9 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
                 <summary className="cursor-pointer text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
                   How big is an acre?
                 </summary>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    An acre is 43,560 square feet or 4,047 square meters. It&apos;s roughly the size of a football field (without the end zones).
-                  </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  An acre is 43,560 square feet or 4,047 square meters. It&apos;s roughly the size of a football field (without the end zones).
+                </p>
               </details>
               
               <details>

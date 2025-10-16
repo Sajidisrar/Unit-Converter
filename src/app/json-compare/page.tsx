@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import Head from 'next/head';
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import { useState } from 'react';
 
+// Metadata removed from client component
 interface DiffResult {
   path: string;
   type: 'added' | 'removed' | 'changed';
@@ -189,59 +189,6 @@ export default function JSONCompare() {
 
   return (
     <>
-      <Head>
-        <title>Free JSON Compare Tool | Online JSON Diff Checker for Developers</title>
-        <meta
-          name="description"
-          content="Compare JSON online with our free JSON Compare Tool. Instantly detect differences between two JSON files or API responses. Perfect for developers, data scientists, and testers working with structured data, REST APIs, or AI projects."
-        />
-        <meta
-          name="keywords"
-          content="JSON compare, JSON diff, compare JSON online, JSON difference checker, JSON validator, JSON parser, online JSON formatter, API testing tools, JSON to CSV, base64 encoder, developer tools, JSON viewer, JSON merge, JSON comparator"
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/json-compare" />
-        <meta property="og:title" content="Free JSON Compare Tool | Online JSON Diff Checker for Developers" />
-        <meta property="og:description" content="Compare JSON online with our free JSON Compare Tool. Instantly detect differences between two JSON files or API responses. Perfect for developers, data scientists, and testers working with structured data, REST APIs, or AI projects." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/json-compare" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "Can I compare large JSON files online?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, our JSON Diff Checker supports large JSON files and nested structures with instant results."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is the JSON Compare Tool secure?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. All processing occurs locally in your browser — no data is stored or transmitted externally."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Can I use it for API response comparison?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, the JSON Compare Tool is ideal for validating API responses and detecting data differences between versions."
-                  }
-                }
-              ]
-            })
-          }}
-        />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">

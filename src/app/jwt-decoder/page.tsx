@@ -1,9 +1,10 @@
 'use client';
 
-import Head from "next/head";
 import AdBanner from "@/components/AdBanner";
 import DeveloperToolsNav from "@/components/DeveloperToolsNav";
 import { useState } from "react";
+
+// Metadata removed from client component
 
 function jwtDecode(input: string) {
   try {
@@ -33,32 +34,6 @@ export default function JwtDecoderPage() {
 
   return (
     <>
-      <Head>
-        <title>JWT Decoder - Free Online JSON Web Token Decoder Tool</title>
-        <meta name="description" content="Free online JWT decoder. Decode and inspect JSON Web Tokens (JWTs) instantly. Perfect for debugging authentication, API testing, and security analysis." />
-        <meta name="keywords" content="jwt decoder, json web token, jwt decode, token decoder, authentication, api security, jwt inspector" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://freeunitconvertor.com/jwt-decoder" />
-        <meta property="og:title" content="JWT Decoder - Free Online Tool" />
-        <meta property="og:description" content="Decode and inspect JSON Web Tokens (JWTs) instantly. Perfect for debugging and security analysis." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freeunitconvertor.com/jwt-decoder" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "JWT Decoder",
-              "url": "https://freeunitconvertor.com/jwt-decoder",
-              "applicationCategory": "DeveloperApplication",
-              "operatingSystem": "All",
-              "description": "Decode and inspect JSON Web Tokens for authentication and security analysis"
-            }),
-          }}
-        />
-      </Head>
-      
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
           <header className="text-center mb-12">
