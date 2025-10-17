@@ -1,7 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-// import { useSearchParams } from "next/navigation";
+import { ConversionType } from '@/types/conversions';
 import {
     convertArea,
     convertCooking,
@@ -13,6 +12,8 @@ import {
     convertTemperature,
     convertWeight
 } from '@/utils/conversions';
+import { validateNumberInput } from '@/utils/validation';
+import { useCallback, useEffect, useState } from 'react';
 
 interface Unit {
   label: string;
@@ -22,7 +23,7 @@ interface Unit {
 interface CalculatorProps {
   title: string;
   units: Unit[];
-  conversionType: 'length' | 'weight' | 'temperature' | 'area' | 'speed' | 'height' | 'cooking' | 'fuelEconomy' | 'fitnessWeight' | 'bmi' | 'power';
+  conversionType: ConversionType;
   initialFromUnit?: string;
 }
 
@@ -89,9 +90,14 @@ export default function Calculator({ title, units, conversionType, initialFromUn
         setResult(0);
       }
     } else {
-      if (inputValue && fromUnit && toUnit && !isNaN(Number(inputValue))) {
-        const convertedValue = convertValue(Number(inputValue), fromUnit, toUnit);
-        setResult(convertedValue);
+      if (inputValue && fromUnit && toUnit) {
+        const validation = validateNumberInput(inputValue);
+        if (validation.isValid) {
+          const convertedValue = convertValue(Number(inputValue), fromUnit, toUnit);
+          setResult(convertedValue);
+        } else {
+          setResult(0);
+        }
       } else {
         setResult(0);
       }
@@ -104,8 +110,8 @@ export default function Calculator({ title, units, conversionType, initialFromUn
       await navigator.clipboard.writeText(result.toString());
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy: ', err);
+    } catch {
+      // Failed to copy - user can manually copy the result
     }
   };
 
@@ -141,7 +147,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+    <div className="card p-8">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
         {title}
       </h2>
@@ -160,7 +166,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 value={weightKg}
                 onChange={(e) => setWeightKg(e.target.value)}
                 placeholder="Enter weight in kg"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="input"
               />
             </div>
             <div>
@@ -173,7 +179,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 value={heightCm}
                 onChange={(e) => setHeightCm(e.target.value)}
                 placeholder="Enter height in cm"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="input"
               />
             </div>
           </div>
@@ -189,7 +195,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Enter a value to convert"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="input"
               />
             </div>
 
@@ -203,7 +209,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                   id="fromUnit"
                   value={fromUnit}
                   onChange={handleFromUnitChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="input"
                 >
                   {units.map((unit) => (
                     <option key={unit.value} value={unit.value}>
@@ -221,7 +227,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                   id="toUnit"
                   value={toUnit}
                   onChange={handleToUnitChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  className="input"
                 >
                   {units.map((unit) => (
                     <option key={unit.value} value={unit.value}>
@@ -236,7 +242,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
             <div className="flex justify-center">
               <button
                 onClick={swapUnits}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+                className="btn btn-secondary btn-md flex items-center space-x-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
@@ -253,10 +259,10 @@ export default function Calculator({ title, units, conversionType, initialFromUn
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Result</h3>
             <button
               onClick={copyToClipboard}
-              className={`px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 ${
+              className={`btn btn-md flex items-center space-x-2 ${
                 isCopied
-                  ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                  : 'bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 dark:text-blue-400'
+                  ? 'btn-success'
+                  : 'btn-primary'
               }`}
             >
               {isCopied ? (

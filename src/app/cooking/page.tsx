@@ -1,18 +1,15 @@
-import React from "react";
-import { Metadata } from "next";
-import { cookingUnits } from "@/utils/conversions";
-import Calculator from "@/components/Calculator";
 import AdBanner from "@/components/AdBanner";
+import Calculator from "@/components/Calculator";
+import { cookingUnits } from "@/utils/conversions";
+import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Cooking Unit Converter - Cups, Tablespoons, Grams, Ounces",
-  description:
-    "Convert cooking units easily with our Cooking Unit Converter. Convert between cups, tablespoons, grams, ounces, and more for accurate cooking measurements.",
+  title: "Cooking Unit Converter - Cups to Grams | Free Online Tool",
+  description: "Convert cooking measurements between cups, tablespoons, grams, ounces, and milliliters. Free online cooking converter for bakers, chefs, and home cooks.",
   keywords:
     "cooking unit converter, cooking measurements, cups to grams, tablespoons to ounces, cooking conversion, kitchen measurements",
   openGraph: {
-    title: "Cooking Unit Converter - Cups, Tablespoons, Grams, Ounces",
-    description:
-      "Convert cooking units easily with our Cooking Unit Converter. Convert between cups, tablespoons, grams, ounces, and more for accurate cooking measurements.",
+    title: "Cooking Unit Converter - Cups to Grams | Free Online Tool",
+    description: "Convert cooking measurements between cups, tablespoons, grams, ounces, and milliliters. Free online cooking converter for bakers, chefs, and home cooks.",
   },
 };
 
@@ -45,7 +42,24 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
             </section>
             {/* SEO Content Section */}
             <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-6">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Cooking Conversion Insights</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Cooking Measurement Guide</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Understanding cooking measurements is essential for following recipes from different countries and cultures. Use our converter above for instant results.
+              </p>
+              
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Baking Conversions</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                Convert cups, tablespoons, teaspoons, grams, and ounces for baking and meal prep. Pair with the <a href="/weight" className="text-orange-600 dark:text-orange-400 hover:underline">Unit converter weight</a> for ingredient weight tracking and the <a href="/temperature" className="text-orange-600 dark:text-orange-400 hover:underline">Temperature Converter</a> for oven settings.
+              </p>
+              
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">International Recipe Scaling</h2>
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong>Baking essentials:</strong> 1 cup = 240ml, 1 tbsp = 15ml, 1 tsp = 5ml<br/>
+                  <strong>Example:</strong> 1 cup flour = 120g, 1 lb = 453.59g<br/>
+                  <strong>For liquids:</strong> 1 cup = 8 fl oz, 1 pint = 2 cups, 1 quart = 4 cups
+                </p>
+              </div>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 Convert cups, tablespoons, teaspoons, grams, and ounces for baking and meal prep. Pair with the <a href="/weight" className="text-orange-600 dark:text-orange-400 hover:underline">Unit converter weight</a> for ingredient weight tracking and the <a href="/temperature" className="text-orange-600 dark:text-orange-400 hover:underline">Temperature Converter</a> for oven settings.
               </p>

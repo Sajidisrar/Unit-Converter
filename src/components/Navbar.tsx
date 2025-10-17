@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -30,46 +30,58 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             <Link 
               href="/" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-ring rounded-md px-2 py-1"
             >
               Home
             </Link>
             <Link 
               href="/blog" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-ring rounded-md px-2 py-1"
             >
               Blog
             </Link>
             
             {/* Most Frequently Used Tools - Quick Access */}
-            <div className="flex items-center space-x-3 border-l border-gray-300 dark:border-gray-600 pl-6">
+            <div className="flex items-center space-x-2 border-l border-gray-300 dark:border-gray-600 pl-6">
               <Link 
                 href="/length" 
-                className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors font-medium"
+                className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-full hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
                 title="Length Converter - Most Popular"
               >
-                📏 Length
+                <span className="mr-1">📏</span>
+                <span>Length</span>
               </Link>
               <Link 
                 href="/weight" 
-                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors font-medium"
+                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
                 title="Weight Converter - High Usage"
               >
-                ⚖️ Weight
+                <span className="mr-1">⚖️</span>
+                <span>Weight</span>
               </Link>
               <Link 
                 href="/base64-encoder-decoder" 
-                className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1.5 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors font-medium"
+                className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
                 title="Base64 Encoder/Decoder - Developer Favorite"
               >
-                🔐 Base64
+                <span className="mr-1">🔐</span>
+                <span>Base64</span>
+              </Link>
+              <Link 
+                href="/json-prettier" 
+                className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-2 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
+                title="JSON Formatter - Developer Tool"
+              >
+                <span className="mr-1">✨</span>
+                <span>JSON</span>
               </Link>
               <Link 
                 href="/temperature" 
-                className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1.5 rounded-full hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors font-medium"
+                className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-full hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
                 title="Temperature Converter - Frequently Used"
               >
-                🌡️ Temp
+                <span className="mr-1">🌡️</span>
+                <span>Temp</span>
               </Link>
             </div>
             <div className="relative group">
@@ -157,7 +169,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 touch-target focus-ring"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
@@ -194,31 +206,51 @@ export default function Navbar() {
                 <div className="grid grid-cols-2 gap-2">
                   <Link 
                     href="/length" 
-                    className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-lg text-center font-medium"
+                    className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    📏 Length
+                    <span className="mr-1">📏</span>
+                    <span>Length</span>
                   </Link>
                   <Link 
                     href="/weight" 
-                    className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg text-center font-medium"
+                    className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    ⚖️ Weight
+                    <span className="mr-1">⚖️</span>
+                    <span>Weight</span>
                   </Link>
                   <Link 
                     href="/base64-encoder-decoder" 
-                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center font-medium"
+                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    🔐 Base64
+                    <span className="mr-1">🔐</span>
+                    <span>Base64</span>
+                  </Link>
+                  <Link 
+                    href="/json-prettier" 
+                    className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">✨</span>
+                    <span>JSON</span>
                   </Link>
                   <Link 
                     href="/temperature" 
-                    className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-lg text-center font-medium"
+                    className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    🌡️ Temp
+                    <span className="mr-1">🌡️</span>
+                    <span>Temp</span>
+                  </Link>
+                  <Link 
+                    href="/jwt-decoder" 
+                    className="text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">🔑</span>
+                    <span>JWT</span>
                   </Link>
                 </div>
               </div>

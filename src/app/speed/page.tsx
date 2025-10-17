@@ -1,16 +1,16 @@
-import Head from "next/head";
-import type { Metadata } from "next";
+import AdBanner from "@/components/AdBanner";
 import Calculator from "@/components/Calculator";
 import { speedUnits } from "@/utils/conversions";
-import AdBanner from "@/components/AdBanner";
+import type { Metadata } from "next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Speed Converter - Convert MPH, KPH, Knots & More | Unit Converter",
-  description: "Convert between different speed units including miles per hour, kilometers per hour, knots, meters per second, and feet per second. Free online speed converter.",
+  title: "Speed Converter - Convert MPH to KPH, Knots | Free Online Tool",
+  description: "Convert between miles per hour, kilometers per hour, knots, and meters per second. Free online speed converter for driving, aviation, and sports calculations.",
   keywords: "speed converter, mph to kph, knots to mph, meters per second, speed calculator, velocity converter",
   openGraph: {
-    title: "Speed Converter - Convert MPH, KPH, Knots & More",
-    description: "Convert between different speed units including miles per hour, kilometers per hour, knots, and meters per second.",
+    title: "Speed Converter - Convert MPH to KPH, Knots | Free Online Tool",
+    description: "Convert between miles per hour, kilometers per hour, knots, and meters per second. Free online speed converter for driving, aviation, and sports calculations.",
     type: "website",
   },
 };
@@ -67,7 +67,24 @@ export default function SpeedPage({ searchParams }: { searchParams: { from?: str
 
           {/* SEO Content Section */}
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-10">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Speed Conversion Insights</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Speed Unit Conversions</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Understanding speed conversions is essential for travel, logistics, and engineering applications. Use our converter above for instant results.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Driving & Aviation Applications</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Convert MPH, KPH, knots, and m/s for travel, logistics, and engineering. For projects that require distance or time calculations, combine this tool with our <a href="/length" className="text-red-600 dark:text-red-400 hover:underline">Length Converter</a> and <a href="/area" className="text-red-600 dark:text-red-400 hover:underline">Unit converter area</a>.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Sports & Fitness Calculations</h2>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Examples:</strong> 60 mph = 96.6 kph, 1 knot = 1.15 mph, 1 m/s = 3.6 kph<br/>
+                <strong>For driving:</strong> 70 mph = 112.7 kph, 100 kph = 62.1 mph<br/>
+                <strong>For aviation:</strong> 500 knots = 575 mph, 200 m/s = 447 mph
+              </p>
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Convert MPH, KPH, knots, and m/s for travel, logistics, and engineering. For projects that require distance or time calculations, combine this tool with our <a href="/length" className="text-red-600 dark:text-red-400 hover:underline">Length Converter</a> and <a href="/area" className="text-red-600 dark:text-red-400 hover:underline">Unit converter area</a>.
             </p>
