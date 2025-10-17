@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import Calculator from "@/components/Calculator";
-import { temperatureUnits } from "@/utils/conversions";
 import AdBanner from "@/components/AdBanner";
+import Calculator from "@/components/Calculator";
 import StructuredData from "@/components/StructuredData";
+import { temperatureUnits } from "@/utils/conversions";
+import type { Metadata } from "next";
 import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Temperature Converter - Convert Celsius, Fahrenheit, Kelvin | Unit Converter",
-  description: "Convert between Celsius, Fahrenheit, and Kelvin temperature scales. Free online temperature converter with instant results and conversion formulas.",
+  title: "Temperature Converter - Celsius to Fahrenheit | Free Online Tool",
+  description: "Convert between Celsius, Fahrenheit, and Kelvin instantly. Free online temperature converter with conversion formulas and real-world examples.",
   keywords: "temperature converter, celsius to fahrenheit, fahrenheit to celsius, kelvin converter, temperature scale",
   openGraph: {
-    title: "Temperature Converter - Convert Celsius, Fahrenheit, Kelvin",
-    description: "Convert between Celsius, Fahrenheit, and Kelvin temperature scales with our free online converter.",
+    title: "Temperature Converter - Celsius to Fahrenheit | Free Online Tool",
+    description: "Convert between Celsius, Fahrenheit, and Kelvin instantly. Free online temperature converter with conversion formulas and real-world examples.",
     type: "website",
   },
 };
@@ -92,7 +92,24 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
 
           {/* SEO Content Section */}
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-10">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Temperature Conversion Insights</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Temperature Scale Comparison</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Understanding different temperature scales helps in cooking, science, and HVAC applications. Use our converter above for instant results.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Conversion Formulas</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Convert between °C, °F, and K for cooking, science, and HVAC. Many users also check density or volume-based conversions in our <a href="/cooking" className="text-yellow-600 dark:text-yellow-400 hover:underline">Cooking Converter</a> and track body metrics with the <a href="/fitness" className="text-yellow-600 dark:text-yellow-400 hover:underline">Fitness Converter</a>.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Real-World Applications</h2>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Quick reference:</strong> 0°C = 32°F, 100°C = 212°F, -40°C = -40°F<br/>
+                <strong>Example:</strong> 25°C = 77°F, 68°F = 20°C<br/>
+                <strong>For cooking:</strong> 180°C = 356°F (baking), 200°C = 392°F (roasting)
+              </p>
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Convert between &deg;C, &deg;F, and K for cooking, science, and HVAC. Many users also check density or volume-based conversions in our <a href="/cooking" className="text-yellow-600 dark:text-yellow-400 hover:underline">Cooking Converter</a> and track body metrics with the <a href="/fitness" className="text-yellow-600 dark:text-yellow-400 hover:underline">Fitness Converter</a>.
             </p>

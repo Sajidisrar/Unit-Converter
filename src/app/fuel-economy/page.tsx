@@ -1,19 +1,18 @@
-import React from "react";
-import { Metadata } from "next";
-import { fuelEconomyUnits } from "@/utils/conversions";
-import Calculator from "@/components/Calculator";
 import AdBanner from "@/components/AdBanner";
+import Calculator from "@/components/Calculator";
+import { fuelEconomyUnits } from "@/utils/conversions";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fuel Economy Converter - MPG, L/100km, km/L",
+  title: "Fuel Economy Converter - MPG to L/100km | Free Online Tool",
   description:
-    "Convert fuel economy units including MPG (US and UK), L/100km, and km/L with our easy-to-use Fuel Economy Converter.",
+    "Convert MPG to L/100km, L/100km to MPG, km/L to MPG instantly. Free fuel economy converter for cars, trucks, and vehicles. Accurate calculations with real-world examples.",
   keywords:
     "fuel economy converter, MPG to L/100km, L/100km to MPG, km/L to MPG, fuel consumption units, US MPG, UK MPG",
   openGraph: {
-    title: "Fuel Economy Converter - MPG, L/100km, km/L",
+    title: "Fuel Economy Converter - MPG to L/100km | Free Online Tool",
     description:
-      "Convert fuel economy units including MPG (US and UK), L/100km, and km/L with our easy-to-use Fuel Economy Converter.",
+      "Convert MPG to L/100km, L/100km to MPG, km/L to MPG instantly. Free fuel economy converter for cars, trucks, and vehicles.",
   },
 };
 
@@ -36,7 +35,24 @@ export default function FuelEconomyPage() {
           </section>
           {/* SEO Content Section */}
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fuel Economy Insights</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">How to Convert MPG to L/100km</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Converting between MPG and L/100km is essential for comparing fuel efficiency across different regions. Use our converter above for instant results.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Understanding Fuel Economy Units</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Different countries use different fuel economy measurements. Understanding these units helps you compare vehicles and plan fuel costs accurately.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Real-World Examples</h2>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Example: 10L per 100km to MPG</strong><br/>
+                10L per 100km = 23.5 MPG (US) = 28.2 MPG (UK)<br/>
+                6L per 100km = 39.2 MPG (US) = 47.1 MPG (UK)
+              </p>
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Convert MPG (US/UK), L/100km, and km/L for vehicles and fleet analytics. Combine with <a href="/speed" className="text-indigo-600 dark:text-indigo-400 hover:underline">Speed Converter</a> and <a href="/length" className="text-indigo-600 dark:text-indigo-400 hover:underline">Length Converter</a> for route planning.
             </p>

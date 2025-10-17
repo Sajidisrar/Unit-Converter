@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://freeunitconvertor.com'),
-  title: "Free Online Unit & Developer Tools 2025 | JSON, Base64, URL, JWT, XML Converters & Regex Validator",
+  title: "Free Online Tools & Calculators 2025 | JSON, Base64, Unit Converters",
   description: "Best free online developer tools and unit converters for 2025. Format JSON, encode Base64, decode JWT, validate regex, convert units instantly. Trusted by 100K+ developers worldwide. No registration required.",
   keywords: "free online developer tools, JSON formatter online, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, regex validator, unit converter online, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, JSON to CSV converter, developer utilities, web development tools, API testing tools, data conversion tools, programming tools, code formatter, text compare tool, color converter, AI cheat sheet, prompt engineering",
   icons: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Free Online Unit & Developer Tools 2025",
+    title: "Free Online Tools & Calculators 2025",
     description: "The best free online tools for developers and unit conversions. JSON, Base64, JWT, Regex, and more.",
     type: "website",
     url: "https://freeunitconvertor.com/",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: "Free Online Unit & Developer Tools 2025",
+    title: "Free Online Tools & Calculators 2025",
     description: "The best free online tools for developers and unit conversions. JSON, Base64, JWT, Regex, and more.",
     images: ['/icon.svg'],
   },

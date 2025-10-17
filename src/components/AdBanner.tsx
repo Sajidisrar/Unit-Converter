@@ -28,15 +28,12 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
       // Check if Google AdSense is loaded
       if (typeof window !== 'undefined' && window.adsbygoogle) {
         try {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-          hasPushedRef.current = true;
-          console.log('Ad pushed successfully');
-        } catch (error) {
-          console.log('Ad push failed:', error);
-        }
-      } else {
-        console.log('Google AdSense not loaded yet');
-      }
+              (window.adsbygoogle = window.adsbygoogle || []).push({});
+              hasPushedRef.current = true;
+            } catch {
+              // Ad push failed - this is expected in development
+            }
+          }
     }
 
     // Wait for Google AdSense to load

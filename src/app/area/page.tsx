@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Area Converter - Convert Square Meters, Square Feet, Acres & More | Unit Converter",
-  description: "Convert between different area units including square meters, square feet, acres, hectares, square yards, and square kilometers. Free online area converter. Common searches: square meter to acre, square feet to acres, sq ft to sq m, land size conversion.",
+  title: "Area Converter - Square Meters to Square Feet | Free Online Tool",
+  description: "Convert between square meters, square feet, acres, hectares, and square yards. Free online area converter for real estate, construction, and land measurement.",
   keywords: "area converter, square meters to square feet, acres to hectares, square yards, area calculator, square meter to acre, square feet to acres, sq ft to sq m, land size conversion",
   openGraph: {
-    title: "Area Converter - Convert Square Meters, Square Feet, Acres & More",
-    description: "Convert between different area units including square meters, square feet, acres, hectares, and square yards. Popular conversions include square meter to acre, square feet to acres, and land size conversion.",
+    title: "Area Converter - Square Meters to Square Feet | Free Online Tool",
+    description: "Convert between square meters, square feet, acres, hectares, and square yards. Free online area converter for real estate, construction, and land measurement.",
     type: "website",
   },
   alternates: {
@@ -80,8 +80,25 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
 
           <section className="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
-              About Area Conversion
+              Area Conversion Formulas
             </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
+              Understanding area conversion formulas is essential for real estate, construction, farming, and education. Use our converter above for instant results.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Real Estate Applications</h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
+              Area conversion is essential in many practical fields such as real estate, construction, farming, and education.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Construction & Land Measurement</h2>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Real estate:</strong> 1 acre = 4,047 sq m, 1 hectare = 2.47 acres<br/>
+                <strong>Example:</strong> 100 sq m = 1,076.4 sq ft, 1 acre = 43,560 sq ft<br/>
+                <strong>For construction:</strong> 1 sq yard = 9 sq ft, 1 sq mile = 640 acres
+              </p>
+            </div>
             <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
               Area conversion is essential in many practical fields such as real estate, construction, farming, and education.
             </p>

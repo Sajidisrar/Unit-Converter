@@ -4,7 +4,7 @@ import DeveloperToolsNav from "@/components/DeveloperToolsNav";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Base64 Encoder Decoder - Free Online Base64 Encoding Tool",
+  title: "Base64 Encoder Decoder - Free Online Tool | Text to Base64",
   description: "Free online Base64 encoder and decoder. Convert text to Base64 and decode Base64 strings instantly. Perfect for web development, API testing, and data transmission.",
   keywords: "base64 encoder, base64 decoder, base64 encoding, base64 decoding, online base64, text to base64, base64 converter",
   robots: "index, follow",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: '/base64-encoder-decoder',
   },
   openGraph: {
-    title: "Base64 Encoder Decoder - Free Online Tool",
+    title: "Base64 Encoder Decoder - Free Online Tool | Text to Base64",
     description: "Convert text to Base64 and decode Base64 strings instantly. Perfect for web development and API testing.",
     type: "website",
     url: "https://freeunitconvertor.com/base64-encoder-decoder",
@@ -59,7 +59,7 @@ export default function Base64EncoderDecoderPage() {
 
             <section className="bg-gradient-to-r from-green-100 to-emerald-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
-                About Base64 Encoding
+                How Base64 Encoding Works
               </h2>
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
                 Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It&apos;s widely used in web development for encoding data that needs to be transmitted over text-based protocols.
@@ -67,9 +67,23 @@ export default function Base64EncoderDecoderPage() {
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
                 Common use cases include encoding images for data URLs, encoding credentials for HTTP Basic Authentication, and encoding binary data in JSON or XML. Base64 encoding ensures data integrity when transmitting binary information through text-based systems.
               </p>
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Common Use Cases</h2>
+              <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-4 leading-relaxed">
+                Common use cases include encoding images for data URLs, encoding credentials for HTTP Basic Authentication, and encoding binary data in JSON or XML. Base64 encoding ensures data integrity when transmitting binary information through text-based systems.
+              </p>
+              
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Security Considerations</h2>
               <p className="text-gray-600 dark:text-gray-300 max-w-3xl mb-6 leading-relaxed">
                 Our tool supports both encoding text to Base64 and decoding Base64 strings back to their original text. This is essential for developers working with APIs, web applications, and data transmission systems.
               </p>
+              
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <strong>Common use:</strong> Embedding images in HTML/CSS, API authentication, data transmission<br/>
+                  <strong>Example:</strong> &quot;Hello World&quot; → &quot;SGVsbG8gV29ybGQ=&quot;<br/>
+                  <strong>Data URL:</strong> data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+                </p>
+              </div>
             </section>
 
             {/* FAQ Section */}

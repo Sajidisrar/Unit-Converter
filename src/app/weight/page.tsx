@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import Calculator from "@/components/Calculator";
-import { weightUnits } from "@/utils/conversions";
 import AdBanner from "@/components/AdBanner";
+import Calculator from "@/components/Calculator";
 import StructuredData from "@/components/StructuredData";
+import { weightUnits } from "@/utils/conversions";
+import type { Metadata } from "next";
 import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Weight Converter - Convert Kilograms, Pounds, Ounces & More | Unit Converter",
-  description: "Convert between different weight units including kilograms, pounds, ounces, grams, tons, and stones. Free online weight converter with instant results.",
+  title: "Weight Converter - Convert kg to lbs, pounds to kg | Free Online",
+  description: "Convert between kilograms, pounds, ounces, grams, and tons instantly. Free online weight converter with accurate calculations for cooking, shipping, and health tracking.",
   keywords: "weight converter, kg to lbs, pounds to kg, ounces to grams, tons to kg, mass converter",
   openGraph: {
-    title: "Weight Converter - Convert Kilograms, Pounds, Ounces & More",
-    description: "Convert between different weight units including kilograms, pounds, ounces, grams, tons, and stones.",
+    title: "Weight Converter - Convert kg to lbs, pounds to kg | Free Online",
+    description: "Convert between kilograms, pounds, ounces, grams, and tons instantly. Free online weight converter with accurate calculations for cooking, shipping, and health tracking.",
     type: "website",
   },
 };
@@ -93,7 +93,24 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
 
           {/* SEO Content Section */}
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 my-8">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Weight Conversion Insights</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Weight Conversion Formulas</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Understanding weight conversion formulas helps ensure accuracy in cooking, shipping, and health tracking. Use our converter above for instant results.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Cooking & Baking Conversions</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Convert between kilograms, pounds, ounces, and grams for cooking, shipping, and health tracking. For body metrics and nutrition, explore the <a href="/fitness" className="text-green-600 dark:text-green-400 hover:underline">Fitness Converter</a> and <a href="/cooking" className="text-green-600 dark:text-green-400 hover:underline">Cooking Converter</a>.
+            </p>
+            
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4 mt-6">Health & Fitness Tracking</h2>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Common conversions:</strong> 1 kg = 2.2 lbs, 1 oz = 28.35g, 1 stone = 14 lbs<br/>
+                <strong>Example:</strong> 70 kg = 154.32 lbs, 150 lbs = 68.04 kg<br/>
+                <strong>For cooking:</strong> 1 cup flour = 120g, 1 lb = 453.59g
+              </p>
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Convert kilograms, pounds, ounces, and grams for cooking, shipping, and health tracking. For body metrics and nutrition, explore the <a href="/fitness" className="text-green-600 dark:text-green-400 hover:underline">Fitness Converter</a> and <a href="/cooking" className="text-green-600 dark:text-green-400 hover:underline">Cooking Converter</a>. This page is often searched as <b>Unit converter weight</b>.
             </p>
