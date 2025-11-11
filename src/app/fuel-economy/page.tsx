@@ -19,8 +19,10 @@ export const metadata: Metadata = {
 export default function FuelEconomyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-5xl mx-auto px-4 grid grid-cols-[1fr_minmax(auto,600px)_1fr] gap-4">
-        <AdBanner position="side" />
+      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)] gap-4">
+        <div className="hidden lg:block">
+          <AdBanner position="side" />
+        </div>
         <main>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
             Fuel Economy Converter
@@ -86,7 +88,6 @@ export default function FuelEconomyPage() {
             </dl>
           </section>
         </main>
-        <AdBanner position="side" />
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ declare global {
 interface AdBannerProps {
   position: 'top' | 'side' | 'inline' | 'left' | 'right';
   className?: string;
+  slotId?: string; // Optional custom slot ID to override default
 }
 
 // Unique ad slot IDs for each position
@@ -22,7 +23,7 @@ const AD_SLOTS: Record<AdBannerProps['position'], string> = {
   right: '8294061635',
 };
 
-export default function AdBanner({ position, className = '' }: AdBannerProps) {
+export default function AdBanner({ position, className = '', slotId }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const insRef = useRef<HTMLModElement | null>(null);
   const hasPushedRef = useRef(false);
@@ -184,14 +185,14 @@ export default function AdBanner({ position, className = '' }: AdBannerProps) {
         <div className="text-xs text-gray-500 p-4 text-center">
           <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
           <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
-          <div className="text-[10px]">Slot ID: {AD_SLOTS[position]}</div>
+          <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
         </div>
       )}
       <ins
         ref={insRef}
         className="adsbygoogle"
         data-ad-client="ca-pub-3759958145886276"
-        data-ad-slot={AD_SLOTS[position]}
+        data-ad-slot={slotId || AD_SLOTS[position]}
         data-ad-format="auto"
         data-full-width-responsive="true"
       />

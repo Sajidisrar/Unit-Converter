@@ -23,7 +23,7 @@ export default function ConverterLayout({
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className={`mx-auto w-full px-4 ${showSideBanners ? 'max-w-6xl' : 'max-w-4xl'} ${className}`}>
-        <div className={`grid gap-4 grid-cols-1 ${showSideBanners ? 'lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)_minmax(0,1fr)]' : ''}`}>
+        <div className={`grid gap-4 grid-cols-1 ${showSideBanners ? 'lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)]' : ''}`}>
           {showSideBanners && (
             <div className="hidden lg:block">
               <AdBanner position="side" />
@@ -48,12 +48,6 @@ export default function ConverterLayout({
 
           <AdBanner position="inline" />
         </main>
-
-          {showSideBanners && (
-            <div className="hidden lg:block">
-              <AdBanner position="side" />
-            </div>
-          )}
         </div>
       </div>
     </div>
