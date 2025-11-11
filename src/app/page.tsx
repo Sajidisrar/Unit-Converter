@@ -51,16 +51,6 @@ function Home() {
                   </Link>
                 ))}
               </div>
-
-              {/* Ad Banner between tools */}
-              <div className="my-8">
-                <AdBanner position="inline" />
-              </div>
-
-              {/* Additional Ad Banner */}
-              <div className="my-8">
-                <AdBanner position="inline" />
-              </div>
             </section>
 
 

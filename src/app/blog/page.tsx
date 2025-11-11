@@ -53,11 +53,6 @@ export default function BlogPage() {
             <AdBanner position="top" />
           </div>
 
-          {/* Ad Banner after top */}
-          <div className="mb-8">
-            <AdBanner position="inline" />
-          </div>
-
           {/* Featured Article */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Featured Article</h2>
@@ -124,15 +119,6 @@ export default function BlogPage() {
               ))}
             </div>
           </section>
-
-          <div className="mb-8">
-            <AdBanner position="inline" />
-          </div>
-
-          {/* Ad Banner before categories */}
-          <div className="mb-8">
-            <AdBanner position="inline" />
-          </div>
 
           {/* Categories Section */}
           <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12">
