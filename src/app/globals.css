@@ -130,20 +130,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ensure ad banners are always visible */
+/* Ad banner styles - allow AdSense to control most properties */
 .adsbygoogle {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  min-height: 90px !important;
+  display: block;
+  min-height: 90px;
 }
 
 /* Ad banner container styles */
 [data-ad-container] {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  min-height: 90px !important;
+  display: block;
+  min-height: 90px;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  transition: background-color 200ms ease-in-out;
+}
+
+[data-ad-container][data-ad-state="loaded"] {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Dark mode ad container */
+@media (prefers-color-scheme: dark) {
+  [data-ad-container] {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+
+  [data-ad-container][data-ad-state="loaded"] {
+    background-color: transparent;
+    border-color: transparent;
+  }
 }
 
 /* ===== ENHANCED COMPONENT SYSTEM ===== */

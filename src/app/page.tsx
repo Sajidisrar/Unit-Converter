@@ -16,15 +16,6 @@ function Home() {
         <div className="container mx-auto px-4 pt-6 flex justify-start">
         </div>
         <div className="container mx-auto px-4 py-8">
-          {/* Left Banner */}
-          <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-10 hidden xl:block">
-            <AdBanner position="left" />
-          </div>
-          {/* Right Banner */}
-          <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-10 hidden xl:block">
-            <AdBanner position="right" />
-          </div>
-
           {/* Enhanced Hero Section */}
           <header className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
