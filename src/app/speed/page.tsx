@@ -47,10 +47,10 @@ export default function SpeedPage({ searchParams }: { searchParams: { from?: str
         </header>
 
         <main className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <AdBanner position="top" />
+          </div>
           <div className="grid grid-cols-1 gap-6 items-start">
-            <div className="mb-6">
-              <AdBanner position="top" />
-            </div>
             <div>
               <Calculator
                 title="Speed Conversion Tool"

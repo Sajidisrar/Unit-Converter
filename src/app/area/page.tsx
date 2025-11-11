@@ -1,3 +1,4 @@
+import AdBanner from "@/components/AdBanner";
 import Calculator from "@/components/Calculator";
 import { areaUnits } from "@/utils/conversions";
 import type { Metadata } from "next";
@@ -67,6 +68,9 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
         </header>
 
         <main className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <AdBanner position="top" />
+          </div>
           <div className="grid grid-cols-1 gap-6 items-start">
             <div>
               <Calculator
@@ -75,6 +79,9 @@ export default function AreaPage({ searchParams }: { searchParams: { from?: stri
                 conversionType="area"
                 initialFromUnit={defaultFromUnit}
               />
+              <div className="mt-6">
+                <AdBanner position="inline" />
+              </div>
             </div>
           </div>
 
