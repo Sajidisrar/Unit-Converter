@@ -134,19 +134,44 @@ body {
 .adsbygoogle {
   display: block;
   min-height: 90px;
+  position: relative;
+  width: 100%;
+}
+
+/* Ensure AdSense iframes and wrapper elements are visible */
+[data-ad-container] iframe,
+[data-ad-container] > div > iframe,
+[data-ad-container] ins + div iframe {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1;
+}
+
+/* Ensure AdSense wrapper divs are visible */
+[data-ad-container] > div {
+  display: block !important;
+  visibility: visible !important;
+  position: relative;
+  width: 100%;
 }
 
 /* Ad banner container styles */
 [data-ad-container] {
   display: block;
+  position: relative;
   min-height: 90px;
   background-color: #f3f4f6;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   transition: background-color 200ms ease-in-out;
+  overflow: visible;
+  width: 100%;
 }
 
+/* Ensure container expands to fit ad content */
 [data-ad-container][data-ad-state="loaded"] {
+  min-height: auto;
   background-color: transparent;
   border-color: transparent;
 }
