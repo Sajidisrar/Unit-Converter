@@ -132,8 +132,8 @@ body {
 
 /* Ad banner styles - allow AdSense to control most properties */
 .adsbygoogle {
-  display: block;
-  min-height: 90px;
+  display: block !important;
+  min-height: 90px !important;
   position: relative;
   width: 100%;
 }
@@ -158,9 +158,9 @@ body {
 
 /* Ad banner container styles */
 [data-ad-container] {
-  display: block;
+  display: block !important;
   position: relative;
-  min-height: 90px;
+  min-height: 90px !important;
   background-color: #f3f4f6;
   border: 1px solid #d1d5db;
   border-radius: 8px;
