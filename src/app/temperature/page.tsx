@@ -72,10 +72,10 @@ export default function TemperaturePage({ searchParams }: { searchParams: { from
         </header>
 
         <main className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <AdBanner position="top" />
+          </div>
           <div className="grid grid-cols-1 gap-6 items-start">
-            <div className="">
-              <AdBanner position="top" />
-            </div>
             <div>
               <Calculator
                 title="Temperature Conversion Tool"

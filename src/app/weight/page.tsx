@@ -72,10 +72,10 @@ export default function WeightPage({ searchParams }: { searchParams: { from?: st
         </header>
 
         <main className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <AdBanner position="top" />
+          </div>
           <div className="grid grid-cols-1 gap-6 items-start">
-            <div className="lg:block">
-              <AdBanner position="top" />
-            </div>
             <div>
               <Calculator
                 title="Weight Conversion Tool"
