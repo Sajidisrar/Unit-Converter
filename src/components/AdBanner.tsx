@@ -123,28 +123,39 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       }
     };
 
-    // Use IntersectionObserver to initialize when visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasPushedRef.current) {
-            initializeAd();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const supportIntersectionObserver =
+      typeof window !== 'undefined' && 'IntersectionObserver' in window;
 
-    observer.observe(container);
+    let observer: IntersectionObserver | null = null;
+
+    if (supportIntersectionObserver) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasPushedRef.current) {
+              initializeAd();
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+
+      observer.observe(container);
+    }
+
+    // Attempt immediately so ads load even if the observer hasn't fired yet
+    initializeAd();
 
     // Cleanup function
     return () => {
-      observer.disconnect();
+      if (observer) {
+        observer.disconnect();
+      }
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [position]);
+  }, [position, slotId]);
 
   const getContainerClasses = () => {
     const baseClasses = 'rounded-lg flex items-center justify-center w-full';
@@ -169,23 +180,35 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       data-ad-container="true"
       data-ad-state={adState}
     >
-      {showDebugInfo && adState === 'blocked' && (
-        <div className="text-xs text-gray-500 p-4 text-center">
-          <div className="font-semibold mb-1">🚫 Ad Blocker Detected</div>
-          <div>Ad blocker is preventing ads from loading</div>
-        </div>
-      )}
-      {showDebugInfo && adState === 'error' && (
-        <div className="text-xs text-red-500 p-4 text-center">
-          <div className="font-semibold mb-1">⚠️ Ad Failed to Load</div>
-          <div>Check console for details</div>
-        </div>
-      )}
-      {showDebugInfo && adState === 'loading' && (
-        <div className="text-xs text-gray-500 p-4 text-center">
-          <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
-          <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
-          <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
+      {(showDebugInfo || adState !== 'loaded') && (
+        <div
+          className={`text-xs p-4 text-center ${
+            adState === 'error'
+              ? 'text-red-500'
+              : adState === 'blocked'
+              ? 'text-amber-500'
+              : 'text-gray-500'
+          }`}
+        >
+          {adState === 'blocked' && (
+            <>
+              <div className="font-semibold mb-1">🚫 Ad Blocker Detected</div>
+              <div>Ad blocker is preventing ads from loading</div>
+            </>
+          )}
+          {adState === 'error' && (
+            <>
+              <div className="font-semibold mb-1">⚠️ Ad Failed to Load</div>
+              <div>Check console for details</div>
+            </>
+          )}
+          {adState === 'loading' && (
+            <>
+              <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
+              <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
+              <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
+            </>
+          )}
         </div>
       )}
       <ins
