@@ -2,6 +2,7 @@
 
 import AdBanner from "@/components/AdBanner";
 import DeveloperToolsNav from "@/components/DeveloperToolsNav";
+import Head from "next/head";
 import { useState } from "react";
 
 // Metadata removed from client component
@@ -34,6 +35,9 @@ export default function JwtDecoderPage() {
 
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://freeunitconvertor.com/jwt-decoder" />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
           <header className="text-center mb-12">

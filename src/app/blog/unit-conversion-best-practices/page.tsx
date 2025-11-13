@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: '/blog/unit-conversion-best-practices',
+    canonical: 'https://freeunitconvertor.com/blog/unit-conversion-best-practices',
   },
   other: {
     'application/ld+json': JSON.stringify({

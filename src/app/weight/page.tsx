@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Weight Converter - Convert kg to lbs, pounds to kg | Free Online",
   description: "Convert between kilograms, pounds, ounces, grams, and tons instantly. Free online weight converter with accurate calculations for cooking, shipping, and health tracking.",
   keywords: "weight converter, kg to lbs, pounds to kg, ounces to grams, tons to kg, mass converter",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/weight',
+  },
   openGraph: {
     title: "Weight Converter - Convert kg to lbs, pounds to kg | Free Online",
     description: "Convert between kilograms, pounds, ounces, grams, and tons instantly. Free online weight converter with accurate calculations for cooking, shipping, and health tracking.",

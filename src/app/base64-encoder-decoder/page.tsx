@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: "base64 encoder, base64 decoder, base64 encoding, base64 decoding, online base64, text to base64, base64 converter",
   robots: "index, follow",
   alternates: {
-    canonical: '/base64-encoder-decoder',
+    canonical: 'https://freeunitconvertor.com/base64-encoder-decoder',
   },
   openGraph: {
     title: "Base64 Encoder Decoder - Free Online Tool | Text to Base64",

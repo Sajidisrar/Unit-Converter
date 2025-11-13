@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Speed Converter - Convert MPH to KPH, Knots | Free Online Tool",
   description: "Convert between miles per hour, kilometers per hour, knots, and meters per second. Free online speed converter for driving, aviation, and sports calculations.",
   keywords: "speed converter, mph to kph, knots to mph, meters per second, speed calculator, velocity converter",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/speed',
+  },
   openGraph: {
     title: "Speed Converter - Convert MPH to KPH, Knots | Free Online Tool",
     description: "Convert between miles per hour, kilometers per hour, knots, and meters per second. Free online speed converter for driving, aviation, and sports calculations.",

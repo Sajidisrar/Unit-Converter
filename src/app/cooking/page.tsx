@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "Convert cooking measurements between cups, tablespoons, grams, ounces, and milliliters. Free online cooking converter for bakers, chefs, and home cooks.",
   keywords:
     "cooking unit converter, cooking measurements, cups to grams, tablespoons to ounces, cooking conversion, kitchen measurements",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/cooking',
+  },
   openGraph: {
     title: "Cooking Unit Converter - Cups to Grams | Free Online Tool",
     description: "Convert cooking measurements between cups, tablespoons, grams, ounces, and milliliters. Free online cooking converter for bakers, chefs, and home cooks.",

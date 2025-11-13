@@ -2,6 +2,7 @@
 
 import AdBanner from '@/components/AdBanner';
 import DeveloperToolsNav from '@/components/DeveloperToolsNav';
+import Head from 'next/head';
 import { useState } from 'react';
 
 // Metadata removed from client component
@@ -111,6 +112,9 @@ export default function XMLFormatter() {
 
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://freeunitconvertor.com/xml-formatter" />
+      </Head>
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">

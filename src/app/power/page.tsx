@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: '/power',
+    canonical: 'https://freeunitconvertor.com/power',
   },
   other: {
     'application/ld+json': [

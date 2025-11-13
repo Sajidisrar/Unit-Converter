@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: '/blog',
+    canonical: 'https://freeunitconvertor.com/blog',
   },
   other: {
     'application/ld+json': JSON.stringify({

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     "Convert MPG to L/100km, L/100km to MPG, km/L to MPG instantly. Free fuel economy converter for cars, trucks, and vehicles. Accurate calculations with real-world examples.",
   keywords:
     "fuel economy converter, MPG to L/100km, L/100km to MPG, km/L to MPG, fuel consumption units, US MPG, UK MPG",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/fuel-economy',
+  },
   openGraph: {
     title: "Fuel Economy Converter - MPG to L/100km | Free Online Tool",
     description:

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   alternates: {
-    canonical: '/',
+    canonical: 'https://freeunitconvertor.com/',
   },
   openGraph: {
     title: "Free Online Tools & Calculators 2025",
