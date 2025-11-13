@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Temperature Converter - Celsius to Fahrenheit | Free Online Tool",
   description: "Convert between Celsius, Fahrenheit, and Kelvin instantly. Free online temperature converter with conversion formulas and real-world examples.",
   keywords: "temperature converter, celsius to fahrenheit, fahrenheit to celsius, kelvin converter, temperature scale",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/temperature',
+  },
   openGraph: {
     title: "Temperature Converter - Celsius to Fahrenheit | Free Online Tool",
     description: "Convert between Celsius, Fahrenheit, and Kelvin instantly. Free online temperature converter with conversion formulas and real-world examples.",

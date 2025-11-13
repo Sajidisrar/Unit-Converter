@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       type: "article",
     },
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `https://freeunitconvertor.com/blog/${slug}`,
     },
     other: {
       'application/ld+json': JSON.stringify({

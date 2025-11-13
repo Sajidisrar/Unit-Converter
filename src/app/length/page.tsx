@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Length Converter - Convert Meters, Feet, Inches & More | Unit Converter",
   description: "Convert between different length units including meters, feet, inches, yards, kilometers, and miles. Free online length converter with instant results.",
   keywords: "length converter, meters to feet, inches to cm, yards to meters, kilometers to miles, distance converter",
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/length',
+  },
   openGraph: {
     title: "Length Converter - Convert Meters, Feet, Inches & More",
     description: "Convert between different length units including meters, feet, inches, yards, kilometers, and miles.",

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: '/blog/ai-prompt-engineering',
+    canonical: 'https://freeunitconvertor.com/blog/ai-prompt-engineering',
   },
   other: {
     'application/ld+json': JSON.stringify({

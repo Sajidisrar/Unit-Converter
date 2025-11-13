@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: '/area',
+    canonical: 'https://freeunitconvertor.com/area',
   },
   other: {
     'application/ld+json': [

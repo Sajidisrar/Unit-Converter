@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: "free developer tools, JSON formatter online, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, regex validator, AI cheat sheet, prompt engineering, JSON to CSV converter, JSON parser, XML parser, text compare tool, color converter, developer utilities, web development tools, API testing tools, programming tools, code formatter, data conversion tools, AI development tools, machine learning tools",
   robots: "index, follow",
   alternates: {
-    canonical: '/developer',
+    canonical: 'https://freeunitconvertor.com/developer',
   },
   openGraph: {
     title: "Free Online Developer Tools - JSON, Base64, URL, JWT, XML",

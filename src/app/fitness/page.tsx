@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "fitness",
     "unit converter",
   ],
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/fitness',
+  },
   openGraph: {
     title: "Fitness Converter - Height, Weight & BMI Calculator",
     description:
