@@ -1,5 +1,4 @@
-import AdBanner from "@/components/AdBanner";
-import Calculator from "@/components/Calculator";
+import FuelEconomyPageClient from "@/components/FuelEconomyPageClient";
 import { fuelEconomyUnits } from "@/utils/conversions";
 import { Metadata } from "next";
 
@@ -20,26 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function FuelEconomyPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)] gap-4">
-        <div className="hidden lg:block">
-          <AdBanner position="side" />
-        </div>
-        <main>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Fuel Economy Converter
-          </h1>
-          <section>
-            <Calculator
-              title="Fuel Economy Converter"
-              units={fuelEconomyUnits}
-              conversionType="fuelEconomy"
-            />
-            <AdBanner position="inline" />
-          </section>
-          {/* SEO Content Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+  const content = (
+    <>
+      <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">How to Convert MPG to L/100km</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Converting between MPG and L/100km is essential for comparing fuel efficiency across different regions. Use our converter above for instant results.
@@ -90,8 +72,8 @@ export default function FuelEconomyPage() {
               </dd>
             </dl>
           </section>
-        </main>
-      </div>
-    </div>
+    </>
   );
+
+  return <FuelEconomyPageClient units={fuelEconomyUnits} content={content} />;
 }

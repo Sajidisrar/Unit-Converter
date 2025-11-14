@@ -1,4 +1,4 @@
-import AdBanner from "@/components/AdBanner";
+import StaticBlogPageClient from "@/components/StaticBlogPageClient";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -37,47 +37,9 @@ export const metadata: Metadata = {
 };
 
 export default function AIPromptEngineeringPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-8">
-        <article className="max-w-4xl mx-auto">
-          {/* Article Header */}
-          <header className="mb-12">
-            <div className="flex items-center space-x-4 mb-6">
-              <Link href="/blog" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Blog
-              </Link>
-              <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium">
-                AI & Development
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              How to Write Better AI Prompts: Complete Guide for Beginners
-            </h1>
-            
-            <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400 mb-8">
-              <span>🤖 AI & Development</span>
-              <span>•</span>
-              <span>5 min read</span>
-              <span>•</span>
-              <span>January 15, 2025</span>
-            </div>
-            
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              AI models are only as good as the instructions you give them. This guide explains how to write effective prompts that produce smarter, more useful responses.
-            </p>
-          </header>
-
-          <div className="mb-8">
-            <AdBanner position="top" />
-          </div>
-
-          {/* Article Content */}
-          <div className="prose prose-lg max-w-none">
+  const content = (
+    <>
+      <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">What Is Prompt Engineering?</h2>
             
             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
@@ -137,10 +99,6 @@ export default function AIPromptEngineeringPage() {
               <p className="text-green-700 dark:text-green-300 mt-2 text-sm">
                 Specific, contextual, and includes clear requirements for the output.
               </p>
-            </div>
-
-            <div className="mb-8">
-              <AdBanner position="inline" />
             </div>
 
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">Advanced Techniques</h2>
@@ -246,7 +204,6 @@ export default function AIPromptEngineeringPage() {
             </div>
           </div>
 
-          {/* Related Articles */}
           <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Related Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -271,8 +228,17 @@ export default function AIPromptEngineeringPage() {
               </Link>
             </div>
           </section>
-        </article>
-      </div>
-    </div>
+    </>
+  );
+
+  return (
+    <StaticBlogPageClient
+      category="AI & Development"
+      title="How to Write Better AI Prompts: Complete Guide for Beginners"
+      readTime="5 min read"
+      date="January 15, 2025"
+      excerpt="AI models are only as good as the instructions you give them. This guide explains how to write effective prompts that produce smarter, more useful responses."
+      content={content}
+    />
   );
 }
