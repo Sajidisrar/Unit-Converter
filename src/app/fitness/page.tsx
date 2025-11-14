@@ -1,8 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { heightUnits } from "@/utils/conversions";
-import Calculator from "@/components/Calculator";
-import AdBanner from "@/components/AdBanner";
+import FitnessPageClient from "@/components/FitnessPageClient";
 
 export const metadata: Metadata = {
   title: "Fitness Converter - Height, Weight & BMI Calculator",
@@ -61,34 +60,8 @@ const faqs = [
 ];
 
 export default function FitnessPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-          {/* Left side ad/empty */}
-          <div className="hidden md:block"><AdBanner position="side" /></div>
-          {/* Center content */}
-          <div className="col-span-1 md:col-span-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              Fitness Converter - Height, Weight &amp; BMI Calculator
-            </h1>
-
-            {/* BMI Calculator */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">BMI Calculator</h2>
-              <Calculator title="BMI Calculator" units={[]} conversionType="bmi" />
-            </section>
-
-            {/* Height Converter */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Height Converter</h2>
-              <Calculator title="Height Converter" units={heightUnits} conversionType="height" />
-            </section>
-
-            <AdBanner position="inline" />
-
-            {/* SEO Content Section */}
-            <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+  const seoContent = (
+    <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fitness Conversion Insights</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 Track height and weight with conversions that support nutrition and training. Explore the <a href="/weight" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit converter weight</a> for mass, and use the <a href="/temperature" className="text-indigo-600 dark:text-indigo-400 hover:underline">Temperature Converter</a> for exercise environment planning.
@@ -97,9 +70,10 @@ export default function FitnessPage() {
                 Health data platforms often transform records via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and encode attachments using <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a>, which are core tasks across <b>AI artificial Intelligence</b> and <b>Data Science</b>.
               </p>
             </section>
+  );
 
-            {/* FAQ Section */}
-            <section className="mt-12">
+  const faqContent = (
+    <section className="mt-12">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fitness Converter FAQ</h2>
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
                 <div className="space-y-4">
@@ -119,9 +93,7 @@ export default function FitnessPage() {
                 </div>
               </div>
             </section>
-          </div>
-        </div>
-      </div>
-    </div>
   );
+
+  return <FitnessPageClient heightUnits={heightUnits} seoContent={seoContent} faqContent={faqContent} />;
 }
