@@ -316,7 +316,7 @@ export default function TextCompare() {
             </p>
           </div>
 
-          <main className="max-w-7xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
@@ -528,10 +528,6 @@ export default function TextCompare() {
                   </div>
                 </div>
               </div>
-
-            <div className="mb-6">
-              <AdBanner position="inline" />
-            </div>
 
             {/* SEO Content Section */}
             <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mt-8">

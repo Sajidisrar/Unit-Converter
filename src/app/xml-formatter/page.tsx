@@ -126,7 +126,7 @@ export default function XMLFormatter() {
             </p>
           </div>
 
-          <main className="max-w-6xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
@@ -202,10 +202,6 @@ export default function XMLFormatter() {
                   Clear All
                 </button>
               </div>
-            </div>
-
-            <div className="mb-6">
-              <AdBanner position="inline" />
             </div>
 
             {/* SEO Content Section */}

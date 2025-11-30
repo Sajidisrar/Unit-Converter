@@ -91,18 +91,18 @@ export default function JsonToCsvPage() {
         <link rel="canonical" href="https://freeunitconvertor.com/json-to-csv" />
       </Head>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 py-8">
-          <header className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="w-full px-4 py-8">
+          <header className="text-center mb-8 max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               JSON to CSV Converter
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300">
               Convert JSON data to CSV format instantly. Perfect for data analysis, Excel imports, and spreadsheet workflows.
             </p>
           </header>
 
-          <main className="max-w-6xl mx-auto">
-            <div className="mb-6">
+          <main className="max-w-[1600px] mx-auto">
+            <div className="mb-4">
               <AdBanner position="top" />
             </div>
 
@@ -163,10 +163,6 @@ export default function JsonToCsvPage() {
                   Download CSV
                 </button>
               </div>
-            </div>
-
-            <div className="mb-6">
-              <AdBanner position="inline" />
             </div>
 
             {/* SEO Content Section */}

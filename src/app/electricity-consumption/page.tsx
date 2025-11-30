@@ -372,9 +372,6 @@ export default function ElectricityConsumptionPage() {
             </div>
           </main>
 
-          <div className="mt-12">
-            <AdBanner position="inline" />
-          </div>
         </div>
       </div>
     </>

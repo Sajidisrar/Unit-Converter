@@ -1,6 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://freeunitconvertor.com/',
+  // IMPORTANT: Use non-www version consistently (no trailing slash)
+  siteUrl: process.env.SITE_URL || 'https://freeunitconvertor.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ['/api/*'],
@@ -12,14 +13,26 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/*?from=', '/*?to=', '/*?*='],  // Block query parameter URLs
+      },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/*?from=', '/*?to=', '/*?*='],
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: ['/*?from=', '/*?to=', '/*?*='],
       },
     ],
     additionalSitemaps: [
       'https://freeunitconvertor.com/sitemap.xml',
     ],
+    host: 'https://freeunitconvertor.com',
   },
   transform: async (config, path) => {
-    // Custom priority and changefreq for different pages
+    // Homepage - highest priority
     if (path === '/') {
       return {
         loc: path,
@@ -28,10 +41,32 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    
-    if (path.includes('/length') || path.includes('/weight') || path.includes('/temperature') || 
-        path.includes('/area') || path.includes('/speed') || path.includes('/cooking') || 
-        path.includes('/fuel-economy') || path.includes('/fitness')) {
+
+    // Blog index - high priority for content hub
+    if (path === '/blog') {
+      return {
+        loc: path,
+        changefreq: 'daily',
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Individual blog posts - high priority for SEO traffic
+    if (path.startsWith('/blog/')) {
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.85,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Unit converter pages - high priority (core tools)
+    if (path.includes('/length') || path.includes('/weight') || path.includes('/temperature') ||
+        path.includes('/area') || path.includes('/speed') || path.includes('/cooking') ||
+        path.includes('/fuel-economy') || path.includes('/fitness') || path.includes('/power') ||
+        path.includes('/electricity-consumption')) {
       return {
         loc: path,
         changefreq: 'weekly',
@@ -39,8 +74,9 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    
-    if (path.includes('/developer') || path.includes('/json-to-csv') || 
+
+    // Developer tools - high priority (traffic drivers)
+    if (path.includes('/developer') || path.includes('/json-to-csv') ||
         path.includes('/base64-encoder-decoder') || path.includes('/url-encoder-decoder') ||
         path.includes('/jwt-decoder') || path.includes('/xml-formatter') ||
         path.includes('/json-compare') || path.includes('/xml-compare') ||
@@ -55,7 +91,28 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    
+
+    // About page - medium priority
+    if (path === '/about') {
+      return {
+        loc: path,
+        changefreq: 'monthly',
+        priority: 0.5,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Legal pages - low priority
+    if (path === '/privacy' || path === '/terms' || path === '/contact') {
+      return {
+        loc: path,
+        changefreq: 'yearly',
+        priority: 0.3,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Default for any other pages
     return {
       loc: path,
       changefreq: 'monthly',

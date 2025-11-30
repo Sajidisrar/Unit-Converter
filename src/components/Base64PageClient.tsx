@@ -18,16 +18,12 @@ export default function Base64PageClient() {
             </p>
           </header>
 
-          <main className="max-w-6xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
 
             <Base64EncoderDecoder />
-
-            <div className="mt-8">
-              <AdBanner position="inline" />
-            </div>
 
             <DeveloperToolsNav />
 
@@ -97,9 +93,6 @@ export default function Base64PageClient() {
             </div>
           </main>
 
-          <div className="mt-12">
-            <AdBanner position="inline" />
-          </div>
         </div>
       </div>
     </>

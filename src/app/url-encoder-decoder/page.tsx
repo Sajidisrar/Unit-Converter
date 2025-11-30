@@ -57,7 +57,7 @@ export default function UrlEncoderDecoderPage() {
             </p>
           </header>
 
-          <main className="max-w-6xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
@@ -118,10 +118,6 @@ export default function UrlEncoderDecoderPage() {
                   Copy Output
                 </button>
               </div>
-            </div>
-
-            <div className="mb-6">
-              <AdBanner position="inline" />
             </div>
 
             {/* SEO Content Section */}
