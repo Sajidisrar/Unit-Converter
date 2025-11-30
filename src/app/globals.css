@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Enable class-based dark mode for next-themes */
+@variant dark (&:where(.dark, .dark *));
+
 /* ===== DESIGN TOKEN SYSTEM ===== */
 :root {
   /* Primary Brand Colors */
@@ -107,15 +110,54 @@
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --card-background: #1e293b;
-    --card-foreground: #f8fafc;
-    --border: #334155;
-    --input: #1e293b;
-    --ring: #3b82f6;
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card-background: #1e293b;
+  --card-foreground: #f8fafc;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #3b82f6;
+
+  .btn-secondary {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-50);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-gray-700);
+  }
+
+  .btn-outline {
+    border-color: var(--color-gray-700);
+    color: var(--color-gray-200);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-gray-800);
+  }
+
+  .btn-ghost {
+    color: var(--color-gray-200);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--color-gray-800);
+  }
+
+  .input {
+    border-color: var(--color-gray-700);
+    background-color: var(--color-gray-900);
+    color: var(--color-gray-50);
+  }
+
+  .card {
+    background-color: var(--color-gray-900);
+    border-color: var(--color-gray-800);
+  }
+
+  .skeleton {
+    background-color: var(--color-gray-800);
   }
 }
 

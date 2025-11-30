@@ -204,7 +204,7 @@ export default function JSONCompare() {
             </p>
           </div>
 
-          <main className="max-w-7xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <div className="mb-6">
               <AdBanner position="top" />
             </div>
@@ -357,10 +357,6 @@ export default function JSONCompare() {
                   )}
                 </div>
               )}
-            </div>
-
-            <div className="mb-6">
-              <AdBanner position="inline" />
             </div>
 
             {/* SEO Content Section */}

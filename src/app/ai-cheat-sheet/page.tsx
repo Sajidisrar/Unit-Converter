@@ -1181,19 +1181,19 @@ export default function AICheatSheetPage() {
   return (
     <>
       <Head>
-        <title>Developer AI Cheat Sheet 2025 | 11 Programming Languages & AI Tools Reference</title>
+        <title>Free AI Cheat Sheet 2025 | 20 Programming Languages & Dev Tools Reference</title>
         <meta
           name="description"
-          content="Best free developer AI cheat sheet for 2025. Complete reference for 11 programming languages (JavaScript, Python, TypeScript, Java, C#, Go, Rust, PHP, Ruby, Swift, Kotlin) plus AI tools, frameworks, and syntax examples. Trusted by 100K+ developers."
+          content="Free developer AI cheat sheet for 2025. Complete reference for 20 programming languages with syntax, patterns, and examples. JavaScript, Python, TypeScript, Rust, Go + AI tools. Trusted by 100K+ developers."
         />
         <meta
           name="keywords"
-          content="developer cheat sheet, programming languages cheat sheet, AI development tools, JavaScript cheat sheet, Python cheat sheet, TypeScript cheat sheet, Java cheat sheet, C# cheat sheet, Go cheat sheet, Rust cheat sheet, PHP cheat sheet, Ruby cheat sheet, Swift cheat sheet, Kotlin cheat sheet, AI programming tools, machine learning tools, developer resources, coding reference, programming syntax, AI frameworks, developer tools 2025, programming reference, code examples, syntax guide"
+          content="ai cheat sheet, developer cheat sheet, programming cheat sheet, free cheat sheet, JavaScript cheat sheet, Python cheat sheet, TypeScript cheat sheet, Java cheat sheet, Rust cheat sheet, Go cheat sheet, programming reference 2025, syntax guide, code examples, developer tools, AI development, machine learning tools, chatgpt cheat sheet, coding reference"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://freeunitconvertor.com/ai-cheat-sheet" />
-        <meta property="og:title" content="Developer AI Cheat Sheet - Programming Languages & AI Tools" />
-        <meta property="og:description" content="Complete reference for 11 main programming languages with syntax, patterns, and AI development tools for modern developers." />
+        <meta property="og:title" content="Free AI Cheat Sheet 2025 | 20 Programming Languages" />
+        <meta property="og:description" content="Complete free reference for 20 programming languages with syntax, patterns, and AI development tools for modern developers." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://freeunitconvertor.com/ai-cheat-sheet" />
       </Head>
@@ -1528,11 +1528,6 @@ export default function AICheatSheetPage() {
               </div>
             )}
           </div>
-
-          <div className="mb-8">
-            <AdBanner position="inline" />
-          </div>
-
 
           {/* AI Tools Section */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">

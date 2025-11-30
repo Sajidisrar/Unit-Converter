@@ -27,8 +27,13 @@ function Home() {
             </p>
           </header>
 
+          {/* Ad Banner - Top */}
+          <div className="max-w-[1600px] mx-auto mb-6">
+            <AdBanner position="top" />
+          </div>
+
           {/* All Tools Grid - Moved to Top */}
-          <main className="max-w-6xl mx-auto">
+          <main className="max-w-[1600px] mx-auto">
             <section className="mb-12">
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 items-stretch">
                 {allTools.map((tool, index) => (
@@ -238,10 +243,6 @@ function Home() {
             </div>
           </section>
 
-          {/* Bottom Ad Banner */}
-          <div className="mt-12">
-            <AdBanner position="inline" />
-          </div>
         </div>
       </div>
         </>
