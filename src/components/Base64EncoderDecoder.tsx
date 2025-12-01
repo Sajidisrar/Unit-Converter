@@ -404,6 +404,7 @@ export default function Base64EncoderDecoder() {
               Image Preview
             </label>
             <div className="border border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-gray-50 dark:bg-gray-700">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={previewUrl}
                 alt="Preview"
