@@ -1,7 +1,5 @@
 'use client';
 
-import AdBanner from '@/components/AdBanner';
-import DeveloperToolsNav from '@/components/DeveloperToolsNav';
 import { useState } from 'react';
 
 interface JsonNode {
@@ -25,7 +23,7 @@ const SAMPLE_JSON = `{
   "timestamp": 1732920000
 }`;
 
-export default function JsonPrettierClient() {
+export default function JsonPrettierTool() {
   const [input, setInput] = useState('');
   const [jsonTree, setJsonTree] = useState<JsonNode[]>([]);
   const [error, setError] = useState('');
@@ -103,7 +101,6 @@ export default function JsonPrettierClient() {
       const tree = parseJsonToTree(parsed);
       setJsonTree(tree);
 
-      // Calculate stats
       setStats({
         keys: countKeys(parsed),
         depth: getDepth(parsed),
@@ -272,160 +269,135 @@ export default function JsonPrettierClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="w-full px-4 py-8">
-        {/* Header */}
-        <header className="text-center mb-8 max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            JSON Formatter & Prettier
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Format, beautify, and explore JSON with interactive tree view. Validate syntax and analyze structure.
-          </p>
-        </header>
+    <div>
+      {/* Stats Bar */}
+      {stats && (
+        <div className="flex flex-wrap gap-4 mb-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-sm">
+          <span className="text-gray-600 dark:text-gray-300">
+            <strong className="text-emerald-600 dark:text-emerald-400">{stats.keys}</strong> keys
+          </span>
+          <span className="text-gray-600 dark:text-gray-300">
+            <strong className="text-emerald-600 dark:text-emerald-400">{stats.depth}</strong> levels deep
+          </span>
+          <span className="text-gray-600 dark:text-gray-300">
+            <strong className="text-emerald-600 dark:text-emerald-400">{stats.size}</strong> size
+          </span>
+        </div>
+      )}
 
-        {/* Main Tool - Full Width */}
-        <main className="max-w-[1800px] mx-auto">
-          {/* Ad Banner - Top */}
-          <div className="mb-4">
-            <AdBanner position="top" />
+      {/* Two Column Layout */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-6">
+        {/* Input Panel */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              JSON Input
+            </label>
+            <button
+              onClick={loadSample}
+              className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
+            >
+              Load sample JSON
+            </button>
           </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6 mb-6">
-            {/* Stats Bar */}
-            {stats && (
-              <div className="flex flex-wrap gap-4 mb-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-sm">
-                <span className="text-gray-600 dark:text-gray-300">
-                  <strong className="text-emerald-600 dark:text-emerald-400">{stats.keys}</strong> keys
-                </span>
-                <span className="text-gray-600 dark:text-gray-300">
-                  <strong className="text-emerald-600 dark:text-emerald-400">{stats.depth}</strong> levels deep
-                </span>
-                <span className="text-gray-600 dark:text-gray-300">
-                  <strong className="text-emerald-600 dark:text-emerald-400">{stats.size}</strong> size
-                </span>
+          <div className="relative border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+            <div className="flex">
+              {/* Line Numbers */}
+              <div className="bg-gray-100 dark:bg-gray-700 text-xs font-mono py-4 min-w-[3rem] border-r border-gray-300 dark:border-gray-600">
+                {renderLineNumbers(input || '\n'.repeat(15))}
               </div>
-            )}
+              {/* Textarea */}
+              <textarea
+                className="flex-1 p-4 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none"
+                style={{ minHeight: '400px' }}
+                placeholder="Paste your JSON here..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
 
-            {/* Two Column Layout */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-6">
-              {/* Input Panel */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    JSON Input
-                  </label>
-                  <button
-                    onClick={loadSample}
-                    className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
-                  >
-                    Load sample JSON
-                  </button>
-                </div>
-                <div className="relative border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
-                  <div className="flex">
-                    {/* Line Numbers */}
-                    <div className="bg-gray-100 dark:bg-gray-700 text-xs font-mono py-4 min-w-[3rem] border-r border-gray-300 dark:border-gray-600">
-                      {renderLineNumbers(input || '\n'.repeat(15))}
-                    </div>
-                    {/* Textarea */}
-                    <textarea
-                      className="flex-1 p-4 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none"
-                      style={{ minHeight: '400px' }}
-                      placeholder="Paste your JSON here..."
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Output Panel */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {jsonTree.length > 0 ? 'Interactive Tree View' : 'Formatted Output'}
-                  </label>
-                  {jsonTree.length > 0 && (
-                    <div className="flex gap-2">
-                      <button
-                        onClick={expandAll}
-                        className="text-xs px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/50"
-                      >
-                        Expand All
-                      </button>
-                      <button
-                        onClick={collapseAll}
-                        className="text-xs px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded hover:bg-teal-200 dark:hover:bg-teal-900/50"
-                      >
-                        Collapse All
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <div
-                  className="border border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-gray-50 dark:bg-gray-700 overflow-auto"
-                  style={{ minHeight: '400px', maxHeight: '600px' }}
+        {/* Output Panel */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              {jsonTree.length > 0 ? 'Interactive Tree View' : 'Formatted Output'}
+            </label>
+            {jsonTree.length > 0 && (
+              <div className="flex gap-2">
+                <button
+                  onClick={expandAll}
+                  className="text-xs px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded hover:bg-emerald-200 dark:hover:bg-emerald-900/50"
                 >
-                  {jsonTree.length > 0 ? (
-                    <div className="space-y-0.5">
-                      {jsonTree.map((node, index) => renderTreeNode(node, index))}
-                    </div>
-                  ) : (
-                    <pre className="whitespace-pre-wrap text-gray-900 dark:text-white font-mono text-sm">
-                      {formatted || 'Formatted JSON will appear here...'}
-                    </pre>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Error Display */}
-            {error && (
-              <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                <p className="text-red-700 dark:text-red-300 text-sm font-medium">{error}</p>
-                {errorLine && (
-                  <p className="text-red-600 dark:text-red-400 text-xs mt-1">
-                    Check line {errorLine} in your input
-                  </p>
-                )}
+                  Expand All
+                </button>
+                <button
+                  onClick={collapseAll}
+                  className="text-xs px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded hover:bg-teal-200 dark:hover:bg-teal-900/50"
+                >
+                  Collapse All
+                </button>
               </div>
             )}
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={handleFormat}
-                className="px-5 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
-              >
-                Format & Tree View
-              </button>
-              <button
-                onClick={handleMinify}
-                className="px-5 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
-              >
-                Minify
-              </button>
-              <button
-                onClick={handleCopy}
-                disabled={!formatted}
-                className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                {copiedText ? 'Copied!' : 'Copy Output'}
-              </button>
-              <button
-                onClick={handleClear}
-                className="px-5 py-2.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors font-medium"
-              >
-                Clear
-              </button>
-            </div>
           </div>
 
-          {/* Developer Tools Navigation */}
-          <DeveloperToolsNav currentPath="/json-prettier" />
-        </main>
+          <div
+            className="border border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-gray-50 dark:bg-gray-700 overflow-auto"
+            style={{ minHeight: '400px', maxHeight: '600px' }}
+          >
+            {jsonTree.length > 0 ? (
+              <div className="space-y-0.5">
+                {jsonTree.map((node, index) => renderTreeNode(node, index))}
+              </div>
+            ) : (
+              <pre className="whitespace-pre-wrap text-gray-900 dark:text-white font-mono text-sm">
+                {formatted || 'Formatted JSON will appear here...'}
+              </pre>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Error Display */}
+      {error && (
+        <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+          <p className="text-red-700 dark:text-red-300 text-sm font-medium">{error}</p>
+          {errorLine && (
+            <p className="text-red-600 dark:text-red-400 text-xs mt-1">
+              Check line {errorLine} in your input
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Action Buttons */}
+      <div className="flex flex-wrap gap-3">
+        <button
+          onClick={handleFormat}
+          className="px-5 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+        >
+          Format & Tree View
+        </button>
+        <button
+          onClick={handleMinify}
+          className="px-5 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
+        >
+          Minify
+        </button>
+        <button
+          onClick={handleCopy}
+          disabled={!formatted}
+          className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          {copiedText ? 'Copied!' : 'Copy Output'}
+        </button>
+        <button
+          onClick={handleClear}
+          className="px-5 py-2.5 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors font-medium"
+        >
+          Clear
+        </button>
       </div>
     </div>
   );
