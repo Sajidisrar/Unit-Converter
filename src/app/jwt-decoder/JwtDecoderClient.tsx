@@ -88,6 +88,43 @@ function decodeJWT(token: string): DecodedJWT | { error: string } {
 
 const SAMPLE_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMyOTIwMDAwLCJleHAiOjE3MzU1MTIwMDB9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
+const CLAIM_DESCRIPTIONS: Record<string, string> = {
+  // Standard claims
+  iss: 'Issuer - Who issued the token',
+  sub: 'Subject - Who the token represents',
+  aud: 'Audience - Intended recipient',
+  exp: 'Expiration Time - When the token expires',
+  nbf: 'Not Before - Token not valid before this time',
+  iat: 'Issued At - When the token was created',
+  jti: 'JWT ID - Unique token identifier',
+  // Common custom claims
+  name: 'Full name of the user',
+  email: 'Email address',
+  role: 'User role or permission level',
+  roles: 'List of user roles',
+  scope: 'OAuth 2.0 scopes',
+  permissions: 'User permissions',
+  azp: 'Authorized Party',
+  at_hash: 'Access Token Hash',
+  nonce: 'Value to associate client session',
+};
+
+const ALGORITHM_INFO: Record<string, { name: string; type: string; secure: boolean }> = {
+  HS256: { name: 'HMAC SHA-256', type: 'Symmetric', secure: true },
+  HS384: { name: 'HMAC SHA-384', type: 'Symmetric', secure: true },
+  HS512: { name: 'HMAC SHA-512', type: 'Symmetric', secure: true },
+  RS256: { name: 'RSA SHA-256', type: 'Asymmetric', secure: true },
+  RS384: { name: 'RSA SHA-384', type: 'Asymmetric', secure: true },
+  RS512: { name: 'RSA SHA-512', type: 'Asymmetric', secure: true },
+  ES256: { name: 'ECDSA P-256', type: 'Asymmetric', secure: true },
+  ES384: { name: 'ECDSA P-384', type: 'Asymmetric', secure: true },
+  ES512: { name: 'ECDSA P-521', type: 'Asymmetric', secure: true },
+  PS256: { name: 'RSA-PSS SHA-256', type: 'Asymmetric', secure: true },
+  PS384: { name: 'RSA-PSS SHA-384', type: 'Asymmetric', secure: true },
+  PS512: { name: 'RSA-PSS SHA-512', type: 'Asymmetric', secure: true },
+  none: { name: 'No Signature', type: 'None', secure: false },
+};
+
 export default function JwtDecoderClient() {
   const [input, setInput] = useState('');
   const [decoded, setDecoded] = useState<DecodedJWT | null>(null);
@@ -254,6 +291,19 @@ export default function JwtDecoderClient() {
                       </div>
                     ))}
                   </div>
+                  {/* Algorithm Info */}
+                  {decoded.header && typeof decoded.header.alg === 'string' && ALGORITHM_INFO[decoded.header.alg] && (
+                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <span className="font-medium">{ALGORITHM_INFO[decoded.header.alg].name}</span>
+                        <span className="mx-1">•</span>
+                        <span>{ALGORITHM_INFO[decoded.header.alg].type}</span>
+                        {!ALGORITHM_INFO[decoded.header.alg].secure && (
+                          <span className="ml-2 text-red-500 dark:text-red-400">(Insecure!)</span>
+                        )}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Payload Section */}
@@ -270,11 +320,18 @@ export default function JwtDecoderClient() {
                       {copiedSection === 'payload' ? 'Copied!' : 'Copy'}
                     </button>
                   </div>
-                  <div className="font-mono text-sm space-y-1 max-h-64 overflow-y-auto">
+                  <div className="font-mono text-sm space-y-2 max-h-64 overflow-y-auto">
                     {decoded.payload && Object.entries(decoded.payload).map(([key, value]) => (
-                      <div key={key} className="flex flex-wrap">
-                        <span className="text-gray-600 dark:text-gray-400 mr-2">{key}:</span>
-                        {renderClaimValue(key, value)}
+                      <div key={key} className="group">
+                        <div className="flex flex-wrap">
+                          <span className="text-gray-600 dark:text-gray-400 mr-2" title={CLAIM_DESCRIPTIONS[key] || key}>{key}:</span>
+                          {renderClaimValue(key, value)}
+                        </div>
+                        {CLAIM_DESCRIPTIONS[key] && (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 ml-0 mt-0.5 opacity-70">
+                            {CLAIM_DESCRIPTIONS[key]}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>

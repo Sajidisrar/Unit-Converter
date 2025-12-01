@@ -13,6 +13,14 @@ interface ColorValues {
   cmyk: { c: number; m: number; y: number; k: number };
 }
 
+interface ContrastResult {
+  ratio: number;
+  aaLarge: boolean;
+  aaNormal: boolean;
+  aaaLarge: boolean;
+  aaaNormal: boolean;
+}
+
 export default function ColorConverter() {
   const [selectedColor, setSelectedColor] = useState('#3B82F6');
   const [colorValues, setColorValues] = useState<ColorValues>({
@@ -24,6 +32,38 @@ export default function ColorConverter() {
   });
   const [inputValue, setInputValue] = useState('');
   const [inputType, setInputType] = useState<'hex' | 'rgb' | 'hsl'>('hex');
+  const [bgColor, setBgColor] = useState('#FFFFFF');
+  const [contrastResult, setContrastResult] = useState<ContrastResult | null>(null);
+
+  // Calculate relative luminance for contrast
+  const getLuminance = (r: number, g: number, b: number): number => {
+    const [rs, gs, bs] = [r, g, b].map(c => {
+      c = c / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  };
+
+  // Check WCAG compliance
+  const checkContrast = useCallback((fg: string, bg: string): ContrastResult => {
+    const rgb1 = hexToRgb(fg);
+    const rgb2 = hexToRgb(bg);
+    if (!rgb1 || !rgb2) return { ratio: 1, aaLarge: false, aaNormal: false, aaaLarge: false, aaaNormal: false };
+
+    const l1 = getLuminance(rgb1.r, rgb1.g, rgb1.b);
+    const l2 = getLuminance(rgb2.r, rgb2.g, rgb2.b);
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
+    const ratio = (lighter + 0.05) / (darker + 0.05);
+
+    return {
+      ratio: Math.round(ratio * 100) / 100,
+      aaLarge: ratio >= 3,      // Large text AA
+      aaNormal: ratio >= 4.5,   // Normal text AA
+      aaaLarge: ratio >= 4.5,   // Large text AAA
+      aaaNormal: ratio >= 7,    // Normal text AAA
+    };
+  }, []);
 
   // Convert hex to RGB
   const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
@@ -210,7 +250,8 @@ export default function ColorConverter() {
 
   useEffect(() => {
     updateColorValues(selectedColor);
-  }, [selectedColor, updateColorValues]);
+    setContrastResult(checkContrast(selectedColor, bgColor));
+  }, [selectedColor, bgColor, updateColorValues, checkContrast]);
 
   return (
     <>
@@ -378,6 +419,107 @@ export default function ColorConverter() {
                         Copy
                       </button>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contrast Checker Section */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">WCAG Contrast Checker</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Color Inputs */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <div className="flex-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Foreground (Text)
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="color"
+                            value={selectedColor}
+                            onChange={(e) => handleColorChange(e.target.value)}
+                            className="w-12 h-10 rounded cursor-pointer border border-gray-300"
+                          />
+                          <span className="font-mono text-sm text-gray-600 dark:text-gray-400">{selectedColor}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Background
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="color"
+                            value={bgColor}
+                            onChange={(e) => setBgColor(e.target.value)}
+                            className="w-12 h-10 rounded cursor-pointer border border-gray-300"
+                          />
+                          <span className="font-mono text-sm text-gray-600 dark:text-gray-400">{bgColor}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Quick Background Presets */}
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">Quick:</span>
+                      {['#FFFFFF', '#000000', '#F3F4F6', '#1F2937', '#FEF3C7', '#DBEAFE'].map((color) => (
+                        <button
+                          key={color}
+                          onClick={() => setBgColor(color)}
+                          className="w-6 h-6 rounded border border-gray-300 dark:border-gray-600"
+                          style={{ backgroundColor: color }}
+                          title={color}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Contrast Results */}
+                  <div>
+                    {contrastResult && (
+                      <div className="space-y-4">
+                        {/* Ratio Display */}
+                        <div className="text-center p-4 rounded-lg" style={{ backgroundColor: bgColor }}>
+                          <span className="text-2xl font-bold" style={{ color: selectedColor }}>
+                            {contrastResult.ratio}:1
+                          </span>
+                          <p className="text-sm mt-1" style={{ color: selectedColor }}>Sample Text Preview</p>
+                        </div>
+
+                        {/* WCAG Compliance Grid */}
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                          <div className={`p-3 rounded-lg text-center ${contrastResult.aaNormal ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                            <div className={`font-semibold ${contrastResult.aaNormal ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                              {contrastResult.aaNormal ? 'Pass' : 'Fail'}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">AA Normal (4.5:1)</div>
+                          </div>
+                          <div className={`p-3 rounded-lg text-center ${contrastResult.aaLarge ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                            <div className={`font-semibold ${contrastResult.aaLarge ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                              {contrastResult.aaLarge ? 'Pass' : 'Fail'}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">AA Large (3:1)</div>
+                          </div>
+                          <div className={`p-3 rounded-lg text-center ${contrastResult.aaaNormal ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                            <div className={`font-semibold ${contrastResult.aaaNormal ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                              {contrastResult.aaaNormal ? 'Pass' : 'Fail'}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">AAA Normal (7:1)</div>
+                          </div>
+                          <div className={`p-3 rounded-lg text-center ${contrastResult.aaaLarge ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}>
+                            <div className={`font-semibold ${contrastResult.aaaLarge ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                              {contrastResult.aaaLarge ? 'Pass' : 'Fail'}
+                            </div>
+                            <div className="text-xs text-gray-600 dark:text-gray-400">AAA Large (4.5:1)</div>
+                          </div>
+                        </div>
+
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Large text is 18pt+ or 14pt+ bold. WCAG AA is the minimum standard; AAA is enhanced.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

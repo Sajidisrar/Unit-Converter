@@ -1,18 +1,16 @@
 import Link from 'next/link';
 
 const developerTools = [
-  { name: 'JSON to CSV', url: '/json-to-csv', icon: '📊' },
+  { name: 'JSON Tools', url: '/json', icon: '📋' },
+  { name: 'XML Tools', url: '/xml', icon: '📄' },
+  { name: 'YAML Tools', url: '/yaml', icon: '📝' },
+  { name: 'CSV Tools', url: '/csv', icon: '📊' },
+  { name: 'Hash Generator', url: '/hash-generator', icon: '🔒' },
   { name: 'Base64 Encoder', url: '/base64-encoder-decoder', icon: '🔐' },
   { name: 'URL Encoder', url: '/url-encoder-decoder', icon: '🌐' },
   { name: 'JWT Decoder', url: '/jwt-decoder', icon: '🔑' },
-  { name: 'XML Formatter', url: '/xml-formatter', icon: '📄' },
-  { name: 'JSON Compare', url: '/json-compare', icon: '🔍' },
-  { name: 'XML Compare', url: '/xml-compare', icon: '⚖️' },
   { name: 'Text Compare', url: '/text-compare', icon: '📝' },
   { name: 'Color Converter', url: '/color-converter', icon: '🎨' },
-  { name: 'JSON Prettier', url: '/json-prettier', icon: '✨' },
-  { name: 'JSON Parser', url: '/json-parser', icon: '🔧' },
-  { name: 'XML Parser', url: '/xml-parser', icon: '🛠️' },
   { name: 'AI Cheat Sheet', url: '/ai-cheat-sheet', icon: '🤖' },
   { name: 'Regex Validator', url: '/regex-validator', icon: '🔍' },
   { name: 'Prompt Engineering', url: '/prompt-engineering', icon: '💬' }
