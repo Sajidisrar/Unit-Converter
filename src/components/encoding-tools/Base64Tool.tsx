@@ -58,7 +58,7 @@ function getFileExtension(mimeType: string): string {
   return extensions[mimeType] || 'bin';
 }
 
-export default function Base64EncoderDecoder() {
+export default function Base64Tool() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState('');
@@ -96,7 +96,6 @@ export default function Base64EncoderDecoder() {
         return;
       }
 
-      // Remove data URL prefix if present
       let base64Data = input.trim();
       if (base64Data.includes(',')) {
         base64Data = base64Data.split(',')[1];
@@ -105,7 +104,6 @@ export default function Base64EncoderDecoder() {
       const decoded = base64ToUtf8(base64Data);
       setOutput(decoded);
 
-      // Check if it's an image and show preview
       const mime = detectMimeType(base64Data);
       setDetectedMime(mime);
       if (mime.startsWith('image/')) {
@@ -128,7 +126,6 @@ export default function Base64EncoderDecoder() {
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result as string;
-      // Result is in format "data:mime;base64,..."
       if (includeDataUrl) {
         setOutput(result);
       } else {
@@ -136,7 +133,6 @@ export default function Base64EncoderDecoder() {
         setOutput(base64);
       }
 
-      // Show preview for images
       if (file.type.startsWith('image/')) {
         setPreviewUrl(result);
       } else {
@@ -173,7 +169,6 @@ export default function Base64EncoderDecoder() {
       let base64Data = input.trim();
       let mimeType = 'application/octet-stream';
 
-      // Check if it's a data URL
       if (base64Data.startsWith('data:')) {
         const match = base64Data.match(/^data:([^;]+);base64,(.+)$/);
         if (match) {
@@ -234,28 +229,27 @@ export default function Base64EncoderDecoder() {
   };
 
   return (
-    <div className="card p-8">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-          Base64 Encoder & Decoder
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300">
-          Encode text or files to Base64, decode Base64 strings, and download decoded files.
-        </p>
-      </div>
-
+    <div>
       {/* Mode Toggle */}
-      <div className="mb-6">
-        <div className="flex space-x-4 mb-4">
+      <div className="flex justify-center mb-6">
+        <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-gray-100 dark:bg-gray-700">
           <button
             onClick={() => { setMode('encode'); handleClear(); }}
-            className={`btn btn-md ${mode === 'encode' ? 'btn-primary' : 'btn-secondary'}`}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              mode === 'encode'
+                ? 'bg-green-600 text-white'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            }`}
           >
             Encode
           </button>
           <button
             onClick={() => { setMode('decode'); handleClear(); }}
-            className={`btn btn-md ${mode === 'decode' ? 'btn-primary' : 'btn-secondary'}`}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              mode === 'decode'
+                ? 'bg-green-600 text-white'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            }`}
           >
             Decode
           </button>
@@ -264,7 +258,7 @@ export default function Base64EncoderDecoder() {
 
       {/* Tab Toggle for Encode mode */}
       {mode === 'encode' && (
-        <div className="mb-6">
+        <div className="flex justify-center mb-6">
           <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-gray-100 dark:bg-gray-700">
             <button
               onClick={() => { setTab('text'); handleClear(); }}
@@ -291,7 +285,7 @@ export default function Base64EncoderDecoder() {
       )}
 
       {/* Options */}
-      <div className="mb-4">
+      <div className="mb-4 flex justify-center">
         <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
           <input
             type="checkbox"
@@ -360,13 +354,13 @@ export default function Base64EncoderDecoder() {
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 justify-center">
           {mode === 'encode' ? (
             tab === 'text' ? (
               <button
                 onClick={handleTextEncode}
                 disabled={!input.trim()}
-                className="btn btn-primary btn-md disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 Encode to Base64
               </button>
@@ -376,14 +370,14 @@ export default function Base64EncoderDecoder() {
               <button
                 onClick={handleTextDecode}
                 disabled={!input.trim()}
-                className="btn btn-primary btn-md disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 Decode to Text
               </button>
               <button
                 onClick={handleDownload}
                 disabled={!input.trim()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 Download as File
               </button>
@@ -391,7 +385,7 @@ export default function Base64EncoderDecoder() {
           )}
           <button
             onClick={handleClear}
-            className="btn btn-secondary btn-md"
+            className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
           >
             Clear
           </button>

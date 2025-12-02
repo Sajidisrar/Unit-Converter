@@ -62,10 +62,19 @@ module.exports = {
       }
     }
 
-    // Unit converter pages - high priority (core tools)
-    if (path.includes('/length') || path.includes('/weight') || path.includes('/temperature') ||
-        path.includes('/area') || path.includes('/speed') || path.includes('/cooking') ||
-        path.includes('/fuel-economy') || path.includes('/fitness') || path.includes('/power') ||
+    // Consolidated unit converter - highest priority for converters
+    if (path === '/unit-converter') {
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.95,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Other converter pages - high priority (core tools)
+    if (path.includes('/cooking') || path.includes('/fuel-economy') ||
+        path.includes('/fitness') || path.includes('/power') ||
         path.includes('/electricity-consumption')) {
       return {
         loc: path,
@@ -75,15 +84,20 @@ module.exports = {
       }
     }
 
-    // Developer tools - high priority (traffic drivers)
-    if (path.includes('/developer') || path.includes('/json-to-csv') ||
-        path.includes('/base64-encoder-decoder') || path.includes('/url-encoder-decoder') ||
-        path.includes('/jwt-decoder') || path.includes('/xml-formatter') ||
-        path.includes('/json-compare') || path.includes('/xml-compare') ||
-        path.includes('/text-compare') || path.includes('/color-converter') ||
-        path.includes('/json-prettier') || path.includes('/json-parser') ||
-        path.includes('/xml-parser') || path.includes('/ai-cheat-sheet') ||
-        path.includes('/regex-validator') || path.includes('/prompt-engineering')) {
+    // Consolidated developer tools - high priority (traffic drivers)
+    if (path === '/encoding' || path === '/text' || path === '/ai-tools' ||
+        path === '/json' || path === '/xml' || path === '/yaml' || path === '/csv' ||
+        path === '/hash-generator') {
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
+    // Developer hub and color converter - high priority
+    if (path.includes('/developer') || path.includes('/color-converter')) {
       return {
         loc: path,
         changefreq: 'weekly',
