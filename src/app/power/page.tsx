@@ -73,8 +73,8 @@ export default async function PowerPage({ searchParams }: { searchParams: Promis
         <Link href="/electricity-consumption" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
           Electricity Consumption Calculator
         </Link>
-        <Link href="/length" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
-          Length Converter
+        <Link href="/unit-converter" className="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors">
+          Unit Converter
         </Link>
       </div>
     </section>

@@ -97,10 +97,10 @@ function Home() {
                     <strong>Use cases:</strong> API testing, authentication debugging, data validation, code formatting
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Link href="/json-prettier" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">JSON</Link>
-                    <Link href="/base64-encoder-decoder" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">Base64</Link>
-                    <Link href="/jwt-decoder" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">JWT</Link>
-                    <Link href="/regex-validator" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">Regex</Link>
+                    <Link href="/json" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">JSON</Link>
+                    <Link href="/encoding" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">Base64</Link>
+                    <Link href="/encoding" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">JWT</Link>
+                    <Link href="/text" className="text-xs bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-1 rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors">Regex</Link>
                   </div>
                 </div>
               
@@ -113,9 +113,9 @@ function Home() {
                     <strong>Use cases:</strong> Unit conversions, data formatting, file comparison, measurement analysis
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Link href="/length" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Length</Link>
-                    <Link href="/weight" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Weight</Link>
-                    <Link href="/area" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Area</Link>
+                    <Link href="/unit-converter" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Length</Link>
+                    <Link href="/unit-converter" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Weight</Link>
+                    <Link href="/unit-converter" className="text-xs bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-300 px-2 py-1 rounded hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Area</Link>
                   </div>
                 </div>
               
@@ -130,7 +130,7 @@ function Home() {
                   <div className="flex flex-wrap gap-2">
                     <Link href="/power" className="text-xs bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-300 px-2 py-1 rounded hover:bg-purple-200 dark:hover:bg-purple-700 transition-colors">Power</Link>
                     <Link href="/electricity-consumption" className="text-xs bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-300 px-2 py-1 rounded hover:bg-purple-200 dark:hover:bg-purple-700 transition-colors">Electricity</Link>
-                    <Link href="/temperature" className="text-xs bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-300 px-2 py-1 rounded hover:bg-purple-200 dark:hover:bg-purple-700 transition-colors">Temperature</Link>
+                    <Link href="/unit-converter" className="text-xs bg-purple-100 dark:bg-purple-800 text-purple-700 dark:text-purple-300 px-2 py-1 rounded hover:bg-purple-200 dark:hover:bg-purple-700 transition-colors">Temperature</Link>
                   </div>
                 </div>
                 
@@ -143,9 +143,9 @@ function Home() {
                     <strong>Use cases:</strong> Unit conversions, data formatting, measurement validation, research analysis
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Link href="/temperature" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Temperature</Link>
-                    <Link href="/speed" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Speed</Link>
-                    <Link href="/area" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Area</Link>
+                    <Link href="/unit-converter" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Temperature</Link>
+                    <Link href="/unit-converter" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Speed</Link>
+                    <Link href="/unit-converter" className="text-xs bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 px-2 py-1 rounded hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">Area</Link>
                   </div>
                 </div>
                 
@@ -158,10 +158,10 @@ function Home() {
                     <strong>Use cases:</strong> Unit conversions, measurement calculations, technical data formatting, specification validation
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Link href="/length" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Length</Link>
-                  <Link href="/weight" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Weight</Link>
-                  <Link href="/area" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Area</Link>
-                  <Link href="/speed" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Speed</Link>
+                  <Link href="/unit-converter" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Length</Link>
+                  <Link href="/unit-converter" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Weight</Link>
+                  <Link href="/unit-converter" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Area</Link>
+                  <Link href="/unit-converter" className="text-xs bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 px-2 py-1 rounded hover:bg-red-200 dark:hover:bg-red-700 transition-colors">Speed</Link>
                   </div>
                 </div>
                 
@@ -175,8 +175,8 @@ function Home() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <Link href="/cooking" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Cooking</Link>
-                    <Link href="/weight" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Weight</Link>
-                    <Link href="/temperature" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Temperature</Link>
+                    <Link href="/unit-converter" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Weight</Link>
+                    <Link href="/unit-converter" className="text-xs bg-teal-100 dark:bg-teal-800 text-teal-700 dark:text-teal-300 px-2 py-1 rounded hover:bg-teal-200 dark:hover:bg-teal-700 transition-colors">Temperature</Link>
                   </div>
                 </div>
               </div>
@@ -220,23 +220,23 @@ function Home() {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">🔧 Unit Converters</h4>
                   <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                    <li>• <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline">Length Converter</Link> - Convert meters, feet, inches, yards, miles</li>
-                    <li>• <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline">Weight Converter</Link> - Convert kg, lbs, ounces, grams, tons</li>
-                    <li>• <Link href="/temperature" className="text-blue-600 dark:text-blue-400 hover:underline">Temperature Converter</Link> - Convert Celsius, Fahrenheit, Kelvin</li>
-                    <li>• <Link href="/area" className="text-blue-600 dark:text-blue-400 hover:underline">Area Converter</Link> - Convert square meters, acres, square feet</li>
+                    <li>• <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Length Converter</Link> - Convert meters, feet, inches, yards, miles</li>
+                    <li>• <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Weight Converter</Link> - Convert kg, lbs, ounces, grams, tons</li>
+                    <li>• <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Temperature Converter</Link> - Convert Celsius, Fahrenheit, Kelvin</li>
+                    <li>• <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Area Converter</Link> - Convert square meters, acres, square feet</li>
                     <li>• <Link href="/power" className="text-blue-600 dark:text-blue-400 hover:underline">Power Converter</Link> - Convert watts, horsepower, BTU/h</li>
-                    <li>• <Link href="/speed" className="text-blue-600 dark:text-blue-400 hover:underline">Speed Converter</Link> - Convert MPH, KPH, knots, m/s</li>
+                    <li>• <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Speed Converter</Link> - Convert MPH, KPH, knots, m/s</li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">💻 Developer Tools</h4>
                   <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                    <li>• <Link href="/json-prettier" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</Link> - Format and validate JSON data</li>
-                    <li>• <Link href="/base64-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">Base64 Encoder</Link> - Encode and decode Base64 strings</li>
-                    <li>• <Link href="/jwt-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">JWT Decoder</Link> - Decode JSON Web Tokens</li>
-                    <li>• <Link href="/url-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</Link> - Encode and decode URLs</li>
-                    <li>• <Link href="/regex-validator" className="text-blue-600 dark:text-blue-400 hover:underline">Regex Validator</Link> - Test regular expressions</li>
-                    <li>• <Link href="/xml-formatter" className="text-blue-600 dark:text-blue-400 hover:underline">XML Formatter</Link> - Format and validate XML</li>
+                    <li>• <Link href="/json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON Formatter</Link> - Format and validate JSON data</li>
+                    <li>• <Link href="/encoding" className="text-blue-600 dark:text-blue-400 hover:underline">Base64 Encoder</Link> - Encode and decode Base64 strings</li>
+                    <li>• <Link href="/encoding" className="text-blue-600 dark:text-blue-400 hover:underline">JWT Decoder</Link> - Decode JSON Web Tokens</li>
+                    <li>• <Link href="/encoding" className="text-blue-600 dark:text-blue-400 hover:underline">URL Encoder</Link> - Encode and decode URLs</li>
+                    <li>• <Link href="/text" className="text-blue-600 dark:text-blue-400 hover:underline">Regex Validator</Link> - Test regular expressions</li>
+                    <li>• <Link href="/xml" className="text-blue-600 dark:text-blue-400 hover:underline">XML Formatter</Link> - Format and validate XML</li>
                   </ul>
                 </div>
               </div>

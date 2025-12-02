@@ -6,14 +6,10 @@ const developerTools = [
   { name: 'YAML Tools', url: '/yaml', icon: '📝' },
   { name: 'CSV Tools', url: '/csv', icon: '📊' },
   { name: 'Hash Generator', url: '/hash-generator', icon: '🔒' },
-  { name: 'Base64 Encoder', url: '/base64-encoder-decoder', icon: '🔐' },
-  { name: 'URL Encoder', url: '/url-encoder-decoder', icon: '🌐' },
-  { name: 'JWT Decoder', url: '/jwt-decoder', icon: '🔑' },
-  { name: 'Text Compare', url: '/text-compare', icon: '📝' },
+  { name: 'Encoding Tools', url: '/encoding', icon: '🔐' },
+  { name: 'Text Tools', url: '/text', icon: '📝' },
   { name: 'Color Converter', url: '/color-converter', icon: '🎨' },
-  { name: 'AI Cheat Sheet', url: '/ai-cheat-sheet', icon: '🤖' },
-  { name: 'Regex Validator', url: '/regex-validator', icon: '🔍' },
-  { name: 'Prompt Engineering', url: '/prompt-engineering', icon: '💬' }
+  { name: 'AI Tools', url: '/ai-tools', icon: '🤖' }
 ];
 
 interface DeveloperToolsNavProps {

@@ -21,38 +21,38 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Calculators */}
+          {/* Tools */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Calculators</h3>
+            <h3 className="text-lg font-semibold mb-4">Tools</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/developer" className="text-gray-400 hover:text-white transition-colors">
-                  🛠️ Developer Tools
+                <Link href="/unit-converter" className="text-gray-400 hover:text-white transition-colors">
+                  📏 Unit Converter
                 </Link>
               </li>
               <li>
-                <Link href="/length" className="text-gray-400 hover:text-white transition-colors">
-                  📏 Length Converter
+                <Link href="/encoding" className="text-gray-400 hover:text-white transition-colors">
+                  🔐 Encoding Tools
                 </Link>
               </li>
               <li>
-                <Link href="/weight" className="text-gray-400 hover:text-white transition-colors">
-                  ⚖️ Weight Converter
+                <Link href="/json" className="text-gray-400 hover:text-white transition-colors">
+                  📋 JSON Tools
                 </Link>
               </li>
               <li>
-                <Link href="/temperature" className="text-gray-400 hover:text-white transition-colors">
-                  🌡️ Temperature Converter
+                <Link href="/text" className="text-gray-400 hover:text-white transition-colors">
+                  📝 Text Tools
                 </Link>
               </li>
               <li>
-                <Link href="/area" className="text-gray-400 hover:text-white transition-colors">
-                  📐 Area Converter
+                <Link href="/ai-tools" className="text-gray-400 hover:text-white transition-colors">
+                  🤖 AI Tools
                 </Link>
               </li>
               <li>
-                <Link href="/speed" className="text-gray-400 hover:text-white transition-colors">
-                  🚀 Speed Converter
+                <Link href="/power" className="text-gray-400 hover:text-white transition-colors">
+                  ⚡ Power Converter
                 </Link>
               </li>
             </ul>

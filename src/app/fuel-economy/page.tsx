@@ -41,7 +41,7 @@ export default function FuelEconomyPage() {
               </p>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Convert MPG (US/UK), L/100km, and km/L for vehicles and fleet analytics. Combine with <a href="/speed" className="text-indigo-600 dark:text-indigo-400 hover:underline">Speed Converter</a> and <a href="/length" className="text-indigo-600 dark:text-indigo-400 hover:underline">Length Converter</a> for route planning.
+              Convert MPG (US/UK), L/100km, and km/L for vehicles and fleet analytics. Combine with <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit Converter</a> for route planning.
             </p>
             <p className="text-gray-600 dark:text-gray-300">
               Telematics and fleet <b>Data Science</b> pipelines frequently export telemetry via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and compress payloads with <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a> for <b>AI artificial Intelligence</b> models.

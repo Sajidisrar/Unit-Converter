@@ -79,8 +79,8 @@ export default function AboutPage() {
                     ⚡ Power Converter
                   </Link>
                   <br />
-                  <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
-                    📏 Length Converter
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                    📏 Unit Converter
                   </Link>
                 </div>
               </div>
@@ -95,12 +95,12 @@ export default function AboutPage() {
                   Encode/decode data, format JSON/XML, validate regular expressions, and work with various data formats. Perfect for API development and data processing.
                 </p>
                 <div className="mt-4">
-                  <Link href="/base64-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
-                    🔐 Base64 Tools
+                  <Link href="/encoding" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                    🔐 Encoding Tools
                   </Link>
                   <br />
-                  <Link href="/json-prettier" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
-                    ✨ JSON Formatter
+                  <Link href="/json" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                    📋 JSON Tools
                   </Link>
                 </div>
               </div>
@@ -115,11 +115,11 @@ export default function AboutPage() {
                   Learn unit conversions, understand different measurement systems, and practice with interactive tools. Great for science, math, and engineering education.
                 </p>
                 <div className="mt-4">
-                  <Link href="/temperature" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
-                    🌡️ Temperature
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                    📏 Unit Converter
                   </Link>
                   <br />
-                  <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                     ⚖️ Weight Converter
                   </Link>
                 </div>
@@ -135,11 +135,11 @@ export default function AboutPage() {
                   Convert between different measurement units used in medical practice, from temperature scales to weight measurements for patient care.
                 </p>
                 <div className="mt-4">
-                  <Link href="/temperature" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
-                    🌡️ Temperature
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                    📏 Unit Converter
                   </Link>
                   <br />
-                  <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                     ⚖️ Weight Converter
                   </Link>
                 </div>
@@ -155,11 +155,11 @@ export default function AboutPage() {
                   Convert area measurements, length units, and other dimensions essential for construction projects, property assessments, and architectural planning.
                 </p>
                 <div className="mt-4">
-                  <Link href="/area" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                     📐 Area Converter
                   </Link>
                   <br />
-                  <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+                  <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                     📏 Length Converter
                   </Link>
                 </div>

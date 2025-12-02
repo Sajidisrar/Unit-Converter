@@ -64,7 +64,7 @@ export default function FitnessPage() {
     <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fitness Conversion Insights</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Track height and weight with conversions that support nutrition and training. Explore the <a href="/weight" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit converter weight</a> for mass, and use the <a href="/temperature" className="text-indigo-600 dark:text-indigo-400 hover:underline">Temperature Converter</a> for exercise environment planning.
+                Track height and weight with conversions that support nutrition and training. Explore the <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit Converter</a> for mass and temperature conversions.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
                 Health data platforms often transform records via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and encode attachments using <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a>, which are core tasks across <b>AI artificial Intelligence</b> and <b>Data Science</b>.
