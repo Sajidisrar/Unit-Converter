@@ -117,8 +117,8 @@ export default function UnitConversionBestPracticesPage() {
                   <li>• Centimeters ↔ Inches</li>
                   <li>• Millimeters ↔ Inches</li>
                 </ul>
-                <Link href="/length" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
-                  Use Length Converter →
+                <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
+                  Use Unit Converter →
                 </Link>
               </div>
 
@@ -130,8 +130,8 @@ export default function UnitConversionBestPracticesPage() {
                   <li>• Metric Tons ↔ US Tons</li>
                   <li>• Stone ↔ Pounds</li>
                 </ul>
-                <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
-                  Use Weight Converter →
+                <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
+                  Use Unit Converter →
                 </Link>
               </div>
 
@@ -143,8 +143,8 @@ export default function UnitConversionBestPracticesPage() {
                   <li>• Fahrenheit ↔ Kelvin</li>
                   <li>• Temperature differences</li>
                 </ul>
-                <Link href="/temperature" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
-                  Use Temperature Converter →
+                <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-3 inline-block">
+                  Use Unit Converter →
                 </Link>
               </div>
 
@@ -185,17 +185,14 @@ export default function UnitConversionBestPracticesPage() {
               <h3 className="text-xl font-bold mb-3">Ready to Practice?</h3>
               <p className="mb-4">Use our comprehensive collection of unit converters to apply these best practices:</p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/length" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
-                  Length Converter
-                </Link>
-                <Link href="/weight" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
-                  Weight Converter
+                <Link href="/unit-converter" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                  Unit Converter
                 </Link>
                 <Link href="/power" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
                   Power Converter
                 </Link>
-                <Link href="/temperature" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
-                  Temperature Converter
+                <Link href="/encoding" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors">
+                  Encoding Tools
                 </Link>
               </div>
             </div>

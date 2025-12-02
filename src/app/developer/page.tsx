@@ -59,13 +59,13 @@ export default function DeveloperPage() {
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Streamline Your Data Processing & AI Workflows</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Build data workflows with <Link href="/json-to-csv" className="text-blue-600 dark:text-blue-400 hover:underline">json to csv</Link> conversion, perform <Link href="/base64-encoder-decoder" className="text-blue-600 dark:text-blue-400 hover:underline">base64 encoding</Link>, and manipulate data formats directly in your browser. These utilities are essential for modern stacks spanning <strong>AI artificial Intelligence</strong> and <strong>Data Science</strong>.
+                  Build data workflows with <Link href="/json" className="text-blue-600 dark:text-blue-400 hover:underline">JSON tools</Link> and <Link href="/csv" className="text-blue-600 dark:text-blue-400 hover:underline">CSV conversion</Link>, perform <Link href="/encoding" className="text-blue-600 dark:text-blue-400 hover:underline">encoding</Link>, and manipulate data formats directly in your browser. These utilities are essential for modern stacks spanning <strong>AI artificial Intelligence</strong> and <strong>Data Science</strong>.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">Integrate Seamless Unit Conversions</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  When your applications handle measurements, pair our developer utilities with the <Link href="/area" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter area</Link> and <Link href="/weight" className="text-blue-600 dark:text-blue-400 hover:underline">Unit converter weight</Link> to normalize inputs across metric and imperial systems.
+                  When your applications handle measurements, pair our developer utilities with the <Link href="/unit-converter" className="text-blue-600 dark:text-blue-400 hover:underline">Unit Converter</Link> to normalize inputs across metric and imperial systems.
                 </p>
               </div>
             </div>
