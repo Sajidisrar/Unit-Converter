@@ -1,0 +1,1009 @@
+{
+  "moduleId": 7,
+  "moduleName": "Security, Compliance, and Governance",
+  "description": "This module covers the security, compliance, and governance aspects of AI/ML workloads on AWS. Topics include the shared responsibility model as it applies to AI services, data privacy and encryption strategies, IAM policies for SageMaker and Bedrock, network isolation with VPCs and PrivateLink, monitoring and auditing with CloudTrail, sensitive data detection with Macie, compliance frameworks relevant to AI/ML, model governance and lineage tracking, AWS Config rules, data governance, SageMaker Role Manager, KMS encryption for ML artifacts, and audit and compliance reporting. Mastering these concepts is essential for building secure, compliant, and well-governed AI solutions on AWS.",
+  "topics": [
+    {
+      "topicName": "AWS Shared Responsibility Model for AI/ML Workloads",
+      "definition": "The AWS shared responsibility model divides security obligations between AWS and the customer. For AI/ML services, AWS is responsible for securing the underlying infrastructure (hardware, networking, managed service runtime), while customers are responsible for their data, model inputs/outputs, IAM configurations, encryption settings, and application-level security. The division shifts depending on the service type: for managed services like Amazon Bedrock, AWS handles more infrastructure responsibilities, whereas for self-managed services like SageMaker notebook instances, the customer assumes greater control and responsibility for patching and configuration."
+    },
+    {
+      "topicName": "Data Privacy and Encryption for ML Workloads",
+      "definition": "Protecting data in AI/ML workloads requires encryption at rest and in transit. AWS provides encryption at rest through AWS KMS-managed keys for S3 buckets holding training data, EBS volumes attached to training instances, and SageMaker notebook storage. Encryption in transit is enforced via TLS for API calls, data movement between services, and inter-node communication during distributed training. Customers can use AWS-managed keys, customer-managed KMS keys, or client-side encryption depending on their compliance requirements. Amazon Bedrock encrypts all data at rest by default and does not use customer data to train foundation models."
+    },
+    {
+      "topicName": "IAM Policies and Roles for SageMaker and Bedrock",
+      "definition": "AWS Identity and Access Management (IAM) controls who can access AI/ML services and what actions they can perform. SageMaker uses execution roles that grant training jobs, endpoints, and notebooks permissions to access AWS resources like S3 and ECR. Amazon Bedrock uses IAM policies to control access to foundation models, model invocation, and knowledge bases. Best practices include following the principle of least privilege, using condition keys to restrict access by model ID or VPC, applying service control policies (SCPs) in AWS Organizations, and leveraging SageMaker Role Manager to generate scoped-down IAM roles for common ML personas."
+    },
+    {
+      "topicName": "VPC Configurations and Network Isolation for ML Workloads",
+      "definition": "Virtual Private Cloud (VPC) configurations enable network-level isolation for AI/ML workloads. SageMaker training jobs, processing jobs, and endpoints can be launched within a customer's VPC, ensuring that data does not traverse the public internet. Network isolation mode prevents containers from making outbound network calls. Security groups and network ACLs control inbound and outbound traffic. VPC endpoints (interface and gateway types) allow private connectivity to AWS services like S3 and SageMaker API without using internet gateways, NAT gateways, or VPN connections."
+    },
+    {
+      "topicName": "AWS PrivateLink for Amazon Bedrock",
+      "definition": "AWS PrivateLink enables private connectivity between a customer's VPC and Amazon Bedrock without exposing traffic to the public internet. By creating a VPC interface endpoint for Bedrock, all API calls (including model invocation requests containing sensitive prompts and responses) travel through the AWS private network. This is critical for organizations with strict data residency or regulatory requirements that prohibit data from traversing the internet. PrivateLink endpoints can be combined with VPC endpoint policies to further restrict which Bedrock actions and models are accessible through the endpoint."
+    },
+    {
+      "topicName": "AWS CloudTrail and Monitoring for AI Services",
+      "definition": "AWS CloudTrail records API calls made to AWS AI services, providing an audit trail for security analysis, compliance auditing, and operational troubleshooting. CloudTrail captures who made a call, when it was made, the source IP, and the request parameters. For Amazon Bedrock, CloudTrail logs model invocation events (optionally including input/output content). Amazon CloudWatch provides metrics and alarms for SageMaker endpoints, training jobs, and Bedrock invocations. Together, these services enable organizations to detect anomalous usage patterns, track model access, and maintain comprehensive audit logs for AI workloads."
+    },
+    {
+      "topicName": "Amazon Macie for Sensitive Data Detection",
+      "definition": "Amazon Macie is a data security service that uses machine learning and pattern matching to discover and protect sensitive data stored in Amazon S3. In the context of AI/ML workloads, Macie can scan S3 buckets containing training data, model artifacts, or inference outputs to detect personally identifiable information (PII), financial data, healthcare records, or credentials. This helps organizations ensure that sensitive data is not inadvertently included in training datasets or exposed through model outputs, supporting compliance with regulations like GDPR and HIPAA."
+    },
+    {
+      "topicName": "Compliance Frameworks for AI/ML on AWS",
+      "definition": "AWS AI/ML services support multiple compliance frameworks including HIPAA (healthcare data), SOC 1/2/3 (security and availability controls), PCI DSS (payment card data), and GDPR (EU personal data protection). AWS provides compliance certifications for its infrastructure and many managed services, but customers must ensure their usage of these services also meets compliance requirements. This includes properly configuring encryption, access controls, audit logging, and data handling procedures. AWS Artifact provides on-demand access to AWS compliance reports and select online agreements."
+    },
+    {
+      "topicName": "Model Governance, Lineage Tracking, and Versioning",
+      "definition": "Model governance ensures that ML models are developed, deployed, and operated according to organizational policies and regulatory requirements. Amazon SageMaker Model Registry provides centralized model versioning, approval workflows, and metadata tracking. SageMaker ML Lineage Tracking automatically captures the relationships between datasets, training jobs, model artifacts, and endpoints, creating a complete audit trail. Model cards document model performance, intended use, and limitations. Together, these capabilities support reproducibility, accountability, and compliance with AI governance frameworks."
+    },
+    {
+      "topicName": "AWS Config Rules and Data Governance for AI/ML",
+      "definition": "AWS Config continuously monitors and records AWS resource configurations, enabling compliance auditing against desired configurations. For AI/ML workloads, Config rules can verify that SageMaker endpoints have KMS encryption enabled, notebooks are not directly accessible from the internet, training jobs run within a VPC, and S3 buckets containing training data have proper encryption and access controls. Data governance encompasses the policies and processes for managing training data quality, provenance, access controls, retention, and deletion, ensuring that AI systems are built on trustworthy, properly governed data throughout the ML lifecycle."
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "A healthcare company is using Amazon SageMaker to train a model on patient records. Under the AWS shared responsibility model, which of the following is the CUSTOMER's responsibility?",
+      "options": {
+        "A": "Patching the hypervisor on the physical servers running SageMaker training jobs",
+        "B": "Ensuring that the S3 bucket containing patient data has proper encryption and access controls",
+        "C": "Maintaining the physical security of the data center where training instances run",
+        "D": "Managing the availability of the SageMaker API endpoints across AWS Regions"
+      },
+      "correctAnswer": "B",
+      "explanation": "Under the shared responsibility model, customers are responsible for securing their data, including configuring encryption and access controls on S3 buckets containing sensitive data like patient records. AWS is responsible for hypervisor patching (A), physical data center security (C), and service availability across regions (D). For AI/ML workloads, the customer must ensure that training data, model artifacts, and IAM configurations are properly secured."
+    },
+    {
+      "id": 2,
+      "question": "How does the shared responsibility model differ between Amazon Bedrock and a self-managed ML framework on Amazon EC2?",
+      "options": {
+        "A": "The customer has identical responsibilities in both cases since they own the data",
+        "B": "With Bedrock, AWS assumes more responsibility for infrastructure and model hosting, while EC2 requires the customer to manage OS patching, runtime, and framework security",
+        "C": "With EC2, AWS manages the ML framework and model security automatically",
+        "D": "Bedrock requires customers to manage the underlying container orchestration and GPU drivers"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock is a fully managed service where AWS handles the infrastructure, model hosting, scaling, and runtime environment. The customer is responsible for their prompts, data, IAM policies, and output handling. With a self-managed ML framework on EC2, the customer assumes significantly more responsibility including OS patching, framework installation, security hardening, network configuration, and GPU driver management. This illustrates how the shared responsibility division shifts based on the service abstraction level."
+    },
+    {
+      "id": 3,
+      "question": "A company uses Amazon Bedrock to build a generative AI application. A security auditor asks who is responsible for ensuring that the foundation model itself does not contain biased training data. Under the shared responsibility model, who bears this responsibility?",
+      "options": {
+        "A": "The customer, because they selected the model",
+        "B": "AWS and the model provider (e.g., Anthropic, Meta), as the model is part of the managed service",
+        "C": "The customer must retrain the foundation model to remove bias",
+        "D": "Neither party, as foundation models cannot exhibit bias"
+      },
+      "correctAnswer": "B",
+      "explanation": "For Amazon Bedrock foundation models, the model providers (such as Anthropic, Meta, Cohere) and AWS are responsible for the base model's training data and inherent behaviors. The customer does not have access to retrain foundation models on Bedrock. However, customers are responsible for evaluating whether a model is appropriate for their use case, implementing guardrails, monitoring outputs, and ensuring their fine-tuning data (if applicable) is appropriate. The model provider is responsible for the base model's training process and data."
+    },
+    {
+      "id": 4,
+      "question": "Under the AWS shared responsibility model, which security task falls under AWS's responsibility when a customer runs a SageMaker training job?",
+      "options": {
+        "A": "Configuring the SageMaker execution role with least-privilege permissions",
+        "B": "Encrypting the training data stored in Amazon S3",
+        "C": "Securing the physical compute infrastructure and managing the ML instance hardware lifecycle",
+        "D": "Ensuring that training data does not contain personally identifiable information"
+      },
+      "correctAnswer": "C",
+      "explanation": "AWS is responsible for the security OF the cloud, which includes physical infrastructure, hardware lifecycle management, and the compute platform. The customer is responsible for security IN the cloud: configuring IAM roles (A), encrypting their data in S3 (B), and managing their training data content and compliance (D). When running SageMaker training jobs, AWS ensures the underlying hardware, virtualization layer, and managed service infrastructure are secure."
+    },
+    {
+      "id": 5,
+      "question": "A data scientist needs to encrypt training data stored in Amazon S3 and ensure the encryption keys are automatically rotated annually. Which approach meets this requirement with the LEAST operational overhead?",
+      "options": {
+        "A": "Use client-side encryption with application-managed keys and build a custom key rotation Lambda function",
+        "B": "Use SSE-S3 (Amazon S3-managed keys) with default encryption",
+        "C": "Use SSE-KMS with an AWS KMS customer-managed key and enable automatic key rotation",
+        "D": "Use SSE-C (customer-provided keys) and manually rotate keys every year"
+      },
+      "correctAnswer": "C",
+      "explanation": "SSE-KMS with a customer-managed key (CMK) and automatic key rotation enabled provides encryption at rest with AWS-managed annual key rotation, meeting the requirement with minimal operational overhead. SSE-S3 (B) provides encryption but does not give the customer control over key rotation policies. Client-side encryption with custom rotation (A) and SSE-C with manual rotation (D) both require significant operational effort. AWS KMS automatic rotation creates new key material annually while keeping the same key ID, ensuring transparent rotation."
+    },
+    {
+      "id": 6,
+      "question": "An ML team is running distributed training across multiple SageMaker instances. How can they ensure that inter-node communication during training is encrypted?",
+      "options": {
+        "A": "Enable inter-container traffic encryption in the SageMaker training job configuration",
+        "B": "Manually install TLS certificates on each training container",
+        "C": "Use S3 server-side encryption, which automatically encrypts all network traffic",
+        "D": "Deploy a VPN gateway between each training instance"
+      },
+      "correctAnswer": "A",
+      "explanation": "SageMaker provides a built-in option to enable inter-container traffic encryption for distributed training jobs. When enabled, SageMaker encrypts all communications between training containers using TLS. This is configured through the EnableInterContainerTrafficEncryption parameter in the training job configuration. There is no need to manually install certificates (B), and S3 encryption only covers data at rest, not network traffic (C). Deploying VPN gateways between instances (D) is unnecessary and operationally complex. Note that enabling inter-container encryption may increase training time slightly due to encryption overhead."
+    },
+    {
+      "id": 7,
+      "question": "A company must ensure that data sent to Amazon Bedrock for inference never traverses the public internet. Which combination of services achieves this?",
+      "options": {
+        "A": "Amazon CloudFront with Origin Access Identity for Bedrock",
+        "B": "AWS PrivateLink with a VPC interface endpoint for Amazon Bedrock",
+        "C": "AWS Direct Connect with an internet gateway for Bedrock API calls",
+        "D": "Amazon API Gateway with a private REST API in front of Bedrock"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS PrivateLink with a VPC interface endpoint for Amazon Bedrock ensures that all API traffic, including prompts and model responses, stays within the AWS private network and never traverses the public internet. CloudFront (A) is a CDN that serves content over the internet. Direct Connect with an internet gateway (C) is contradictory since the internet gateway routes traffic to the public internet. API Gateway with a private REST API (D) would add complexity and does not inherently prevent Bedrock traffic from using the internet. PrivateLink is the purpose-built solution for private connectivity to AWS services."
+    },
+    {
+      "id": 8,
+      "question": "Which encryption mechanisms does Amazon Bedrock apply by DEFAULT without requiring any customer configuration?",
+      "options": {
+        "A": "No encryption is applied by default; customers must configure all encryption settings",
+        "B": "Encryption at rest for stored data using AWS-owned keys and encryption in transit using TLS for all API calls",
+        "C": "Only encryption in transit via TLS; encryption at rest must be manually enabled",
+        "D": "Encryption at rest using customer-managed KMS keys and encryption in transit via mutual TLS"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock encrypts all data at rest by default using AWS-owned keys and encrypts all data in transit using TLS. This applies to any data that Bedrock temporarily processes, such as prompts and responses, as well as any stored customization data. Customers can optionally enhance encryption at rest by specifying their own customer-managed KMS keys for additional control, but the default encryption is applied without any configuration. Mutual TLS (D) is not a default requirement for Bedrock API calls."
+    },
+    {
+      "id": 9,
+      "question": "A company stores ML model artifacts in Amazon S3 and wants to enforce that all objects are encrypted with a specific AWS KMS key. The team also needs to prevent anyone from uploading unencrypted objects. What is the BEST approach?",
+      "options": {
+        "A": "Enable S3 default encryption with the KMS key and rely on developers to use the correct settings",
+        "B": "Enable S3 default encryption with the KMS key AND attach an S3 bucket policy that denies PutObject requests lacking the correct KMS encryption header",
+        "C": "Use AWS CloudTrail to detect unencrypted uploads and manually delete them",
+        "D": "Use Amazon Macie to automatically encrypt any unencrypted objects"
+      },
+      "correctAnswer": "B",
+      "explanation": "The best approach combines S3 default encryption (which encrypts objects when no encryption is specified) with an S3 bucket policy that explicitly denies PutObject requests that do not specify the correct KMS key. This provides defense in depth: default encryption handles cases where no encryption is specified, and the bucket policy prevents uploads with incorrect encryption settings. Relying solely on default encryption (A) does not prevent uploads with a different encryption key. CloudTrail-based detection (C) is reactive, not preventive. Macie (D) detects sensitive data but does not encrypt objects."
+    },
+    {
+      "id": 10,
+      "question": "A SageMaker training job needs to access training data in an S3 bucket and write model artifacts back to S3. Which IAM component is DIRECTLY used to grant these permissions to the training job?",
+      "options": {
+        "A": "An IAM user with access keys embedded in the training script",
+        "B": "An IAM execution role attached to the SageMaker training job",
+        "C": "An S3 bucket policy that allows all SageMaker training jobs in the account",
+        "D": "An IAM group that the training job is a member of"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker training jobs use an IAM execution role to obtain temporary credentials for accessing AWS resources. The execution role's policy defines what S3 buckets, KMS keys, and other resources the training job can access. Embedding access keys in scripts (A) is a severe security anti-pattern. While an S3 bucket policy (C) could grant access, it is not the direct mechanism SageMaker uses and granting access to all training jobs violates least privilege. IAM groups (D) are for IAM users, not AWS services. The execution role is assumed by SageMaker via AWS STS, providing temporary, scoped credentials."
+    },
+    {
+      "id": 11,
+      "question": "An organization wants to restrict Amazon Bedrock access so that developers in a specific AWS account can only invoke the Anthropic Claude model and no other foundation models. How should this be implemented?",
+      "options": {
+        "A": "Create a VPC endpoint policy that blocks all non-Claude model traffic",
+        "B": "Use an IAM policy with a Condition key that restricts the bedrock:InvokeModel action to the specific Claude model ARN",
+        "C": "Configure Amazon Bedrock to disable all models except Claude in the AWS Region",
+        "D": "Use AWS WAF rules to filter API calls to non-Claude models"
+      },
+      "correctAnswer": "B",
+      "explanation": "IAM policies support condition keys for Amazon Bedrock that can restrict which foundation models a principal can invoke. By using a condition on the model ARN (or using resource-level permissions), administrators can ensure that the InvokeModel action is only allowed for specific models like Anthropic Claude. VPC endpoint policies (A) can add restrictions but are not the primary mechanism for model-level access control. Bedrock does not have a region-level model disabling feature (C) for individual accounts. AWS WAF (D) operates at the HTTP layer and is not designed for service-level action filtering within AWS."
+    },
+    {
+      "id": 12,
+      "question": "What is the purpose of Amazon SageMaker Role Manager?",
+      "options": {
+        "A": "It automatically rotates IAM access keys for SageMaker users on a scheduled basis",
+        "B": "It provides a simplified interface to generate least-privilege IAM roles tailored to common ML personas and activities",
+        "C": "It manages the root account credentials for SageMaker Studio domains",
+        "D": "It enforces multi-factor authentication for all SageMaker API calls"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon SageMaker Role Manager simplifies the creation of IAM roles for ML workflows by providing predefined persona templates (such as data scientist, ML engineer, or MLOps engineer) and activity-based permissions. Instead of manually crafting complex IAM policies, administrators can use Role Manager to generate scoped-down roles that follow the principle of least privilege for specific ML tasks like training, deploying, or managing pipelines. It does not manage access key rotation (A), root credentials (C), or MFA enforcement (D)."
+    },
+    {
+      "id": 13,
+      "question": "A security team wants to ensure that SageMaker notebook instances can only be created within the company's VPC and never with direct internet access. Which AWS service can enforce this policy across all accounts in the organization?",
+      "options": {
+        "A": "Amazon GuardDuty with threat detection for SageMaker",
+        "B": "AWS Config rules combined with AWS Organizations service control policies (SCPs)",
+        "C": "Amazon Inspector vulnerability scanning for SageMaker notebooks",
+        "D": "AWS Trusted Advisor security checks"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS Organizations SCPs can deny the creation of SageMaker notebook instances that have direct internet access enabled, enforcing this policy across all accounts in the organization. AWS Config rules can complement this by continuously evaluating whether existing notebook instances comply with VPC and network requirements, detecting drift from the desired configuration. GuardDuty (A) detects threats but does not enforce creation policies. Inspector (C) scans for vulnerabilities in EC2 and containers, not SageMaker configuration policies. Trusted Advisor (D) provides recommendations but cannot enforce organizational policies."
+    },
+    {
+      "id": 14,
+      "question": "An ML engineer needs to grant a SageMaker training job access to a specific KMS key for decrypting training data, an S3 bucket for reading data, and an ECR repository for pulling the training container image. Following the principle of least privilege, how should the IAM execution role be configured?",
+      "options": {
+        "A": "Attach the AdministratorAccess managed policy to the execution role for simplicity",
+        "B": "Create a custom IAM policy granting kms:Decrypt for the specific key ARN, s3:GetObject for the specific bucket/prefix, and ecr:GetDownloadUrlForLayer plus ecr:BatchGetImage for the specific repository",
+        "C": "Attach the AmazonSageMakerFullAccess managed policy, which includes all necessary permissions",
+        "D": "Use the AmazonS3FullAccess and AWSKeyManagementServicePowerUser managed policies together"
+      },
+      "correctAnswer": "B",
+      "explanation": "The principle of least privilege requires granting only the specific permissions needed for the task, scoped to the exact resources. A custom policy targeting the specific KMS key ARN, S3 bucket/prefix, and ECR repository provides the minimum necessary access. AdministratorAccess (A) grants unrestricted access to all AWS resources. AmazonSageMakerFullAccess (C) includes broad permissions beyond what the training job needs. S3FullAccess and KMS PowerUser (D) grant excessive permissions to all S3 buckets and KMS keys. Specifying exact resource ARNs in the policy is a critical best practice."
+    },
+    {
+      "id": 15,
+      "question": "A financial services company wants to ensure that all traffic between their application in a VPC and Amazon Bedrock stays on the AWS private network. They also want to restrict the VPC endpoint so that only the bedrock:InvokeModel action is allowed. What should they configure?",
+      "options": {
+        "A": "A VPC gateway endpoint for Bedrock with a route table entry",
+        "B": "A VPC interface endpoint for Bedrock powered by AWS PrivateLink, with a VPC endpoint policy restricting allowed actions to bedrock:InvokeModel",
+        "C": "A NAT gateway with a security group that only allows HTTPS to Bedrock IP ranges",
+        "D": "An AWS Transit Gateway with a Bedrock service attachment"
+      },
+      "correctAnswer": "B",
+      "explanation": "A VPC interface endpoint for Bedrock, powered by AWS PrivateLink, keeps all traffic on the AWS private network. VPC endpoint policies can then restrict which API actions are allowed through the endpoint, such as limiting it to only bedrock:InvokeModel. Gateway endpoints (A) are only available for S3 and DynamoDB, not Bedrock. A NAT gateway (C) routes traffic through the public internet, defeating the purpose. Transit Gateway (D) connects VPCs and on-premises networks but does not provide a private endpoint to AWS services. The combination of PrivateLink and an endpoint policy provides both private connectivity and action-level control."
+    },
+    {
+      "id": 16,
+      "question": "What is the primary benefit of enabling network isolation mode on a SageMaker training job?",
+      "options": {
+        "A": "It encrypts all data stored on the training instance's local storage",
+        "B": "It prevents the training container from making any outbound network calls, ensuring the algorithm cannot exfiltrate data",
+        "C": "It automatically places the training job in the customer's default VPC",
+        "D": "It blocks all inbound SSH connections to the training instance"
+      },
+      "correctAnswer": "B",
+      "explanation": "Network isolation mode on SageMaker training jobs prevents containers from making any outbound network calls. This is critical when using third-party or untrusted algorithms, as it prevents the training code from sending data outside the training environment. With network isolation enabled, the container can only access the data provided via S3 input channels at job startup. It does not manage encryption (A), VPC placement (C), or SSH access (D, which SageMaker training jobs do not provide by default). Network isolation is a defense against data exfiltration by potentially untrusted training code."
+    },
+    {
+      "id": 17,
+      "question": "A company deploys a SageMaker real-time endpoint within a VPC. The endpoint needs to read model artifacts from S3 but should NOT have internet access. What must be configured to allow S3 access without internet connectivity?",
+      "options": {
+        "A": "An internet gateway attached to the VPC with a restrictive security group",
+        "B": "A NAT instance in a public subnet with routing from the private subnet",
+        "C": "A VPC gateway endpoint for S3 with an appropriate route table entry in the subnet",
+        "D": "An AWS Global Accelerator endpoint pointing to S3"
+      },
+      "correctAnswer": "C",
+      "explanation": "A VPC gateway endpoint for S3 allows resources in a VPC to access S3 over the AWS private network without requiring internet access. The gateway endpoint is added to the route table of the subnet where the SageMaker endpoint runs, directing S3 traffic through the endpoint. An internet gateway (A) would provide internet access, violating the requirement. A NAT instance (B) routes traffic through the internet. Global Accelerator (D) is for improving availability and performance of internet-facing applications, not for private S3 access. VPC gateway endpoints for S3 are free and provide private, scalable access to S3."
+    },
+    {
+      "id": 18,
+      "question": "A security architect needs to restrict a VPC interface endpoint for Amazon Bedrock so that only a specific IAM role can invoke models through it. Which mechanism supports this?",
+      "options": {
+        "A": "Security group rules on the endpoint network interface that filter by IAM role",
+        "B": "A VPC endpoint policy that includes an IAM condition restricting access to the specific role ARN using aws:PrincipalArn",
+        "C": "Network ACLs that filter traffic by IAM principal",
+        "D": "Route table entries that only route traffic from specific IAM roles"
+      },
+      "correctAnswer": "B",
+      "explanation": "VPC endpoint policies support IAM conditions, including aws:PrincipalArn, which can restrict access through the endpoint to specific IAM roles. This provides identity-based access control at the network endpoint level. Security groups (A) and network ACLs (C) operate at the network layer (IP addresses and ports) and cannot filter by IAM identity. Route tables (D) direct traffic based on destination IP ranges and cannot evaluate IAM principals. VPC endpoint policies add an additional layer of access control beyond IAM policies attached to principals."
+    },
+    {
+      "id": 19,
+      "question": "Which AWS service provides a comprehensive audit trail of ALL API calls made to Amazon SageMaker and Amazon Bedrock, including the identity of the caller, timestamp, and source IP address?",
+      "options": {
+        "A": "Amazon CloudWatch Logs",
+        "B": "AWS CloudTrail",
+        "C": "AWS X-Ray",
+        "D": "Amazon EventBridge"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS CloudTrail records API activity across AWS services, capturing details such as the identity of the caller (IAM user or role), timestamp, source IP address, request parameters, and response elements. CloudTrail provides the definitive audit trail for compliance and security analysis. CloudWatch Logs (A) stores application and service logs but does not inherently record all API calls. X-Ray (C) provides distributed tracing for application performance analysis. EventBridge (D) routes events between services but does not provide a persistent audit trail of API calls. CloudTrail is the foundational service for API-level auditing."
+    },
+    {
+      "id": 20,
+      "question": "A company using Amazon Bedrock wants to log the actual prompts and model responses for compliance auditing. How can they configure this?",
+      "options": {
+        "A": "CloudTrail automatically logs all prompt and response content for Bedrock by default",
+        "B": "Enable Amazon Bedrock model invocation logging, which can deliver prompt and response data to S3 and/or CloudWatch Logs",
+        "C": "Use Amazon Comprehend to capture and store all Bedrock input and output data",
+        "D": "Configure AWS Config to record all Bedrock request and response payloads"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock provides model invocation logging, which captures the full content of prompts and responses. This feature can be configured to deliver logs to Amazon S3 and/or Amazon CloudWatch Logs. Standard CloudTrail logging (A) records API metadata (who called what and when) but does NOT include the actual prompt and response content by default. Amazon Comprehend (C) is an NLP service for text analysis, not a logging service. AWS Config (D) tracks resource configurations, not request/response payloads. Model invocation logging must be explicitly enabled and the destination (S3/CloudWatch) must be configured."
+    },
+    {
+      "id": 21,
+      "question": "An organization needs to receive a real-time alert whenever a new SageMaker endpoint is deployed in any account within their AWS Organization. What is the MOST effective approach?",
+      "options": {
+        "A": "Parse CloudTrail logs manually every hour using a cron job",
+        "B": "Configure CloudTrail to deliver events to Amazon EventBridge, then create an EventBridge rule that triggers an SNS notification when a CreateEndpoint API call is detected",
+        "C": "Use Amazon Macie to scan for new endpoint deployments",
+        "D": "Set up a CloudWatch metric filter that counts S3 PutObject operations"
+      },
+      "correctAnswer": "B",
+      "explanation": "CloudTrail integrates with Amazon EventBridge to deliver management events in near-real-time. An EventBridge rule can match the CreateEndpoint API call from SageMaker and trigger an SNS notification (or Lambda function) for immediate alerting. Manual log parsing (A) is not real-time and is operationally burdensome. Macie (C) detects sensitive data in S3, not endpoint deployments. Monitoring S3 PutObject (D) has no relation to SageMaker endpoint creation. The CloudTrail-EventBridge-SNS pattern is an AWS best practice for real-time security alerting on specific API activities."
+    },
+    {
+      "id": 22,
+      "question": "A compliance team needs to verify that all Amazon Bedrock model invocations from the past 90 days include the identity of the invoker and the model that was called. Where should they look?",
+      "options": {
+        "A": "Amazon Bedrock console usage dashboard",
+        "B": "AWS CloudTrail event history and CloudTrail logs stored in S3 (for events older than 90 days of console history)",
+        "C": "Amazon CloudWatch custom metrics for Bedrock",
+        "D": "AWS Trusted Advisor compliance reports"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS CloudTrail records every InvokeModel API call to Amazon Bedrock, capturing the IAM identity of the caller, the model ARN, timestamp, and other metadata. CloudTrail event history in the console retains 90 days of management events. For longer retention, CloudTrail trails store events in S3. The Bedrock console dashboard (A) shows usage metrics but not per-invocation caller identity details suitable for compliance auditing. CloudWatch custom metrics (C) would need to be manually configured and lack caller identity. Trusted Advisor (D) provides best practice recommendations, not API-level audit trails."
+    },
+    {
+      "id": 23,
+      "question": "How can CloudTrail and CloudWatch work together to detect and alert on potentially unauthorized access to SageMaker training jobs?",
+      "options": {
+        "A": "CloudTrail sends logs to CloudWatch Logs; a metric filter detects DescribeTrainingJob calls from unrecognized IP addresses, triggering a CloudWatch alarm",
+        "B": "CloudWatch directly monitors SageMaker training job CPU usage and sends alerts to CloudTrail",
+        "C": "CloudTrail encrypts all CloudWatch metrics to prevent unauthorized access",
+        "D": "CloudWatch automatically blocks unauthorized API calls detected by CloudTrail"
+      },
+      "correctAnswer": "A",
+      "explanation": "CloudTrail can deliver API logs to CloudWatch Logs, where metric filters can extract specific patterns such as API calls from unrecognized IP addresses or unauthorized principals. When a metric filter matches, it increments a CloudWatch metric, which can trigger a CloudWatch alarm to notify the security team via SNS. CloudWatch does not send monitoring data to CloudTrail (B). CloudTrail does not encrypt CloudWatch metrics (C). Neither service blocks API calls (D); they provide detection and alerting, not prevention. This pattern is a standard approach for security monitoring and anomaly detection."
+    },
+    {
+      "id": 24,
+      "question": "A machine learning team stores training datasets containing customer names, email addresses, and social security numbers in Amazon S3. Which AWS service should they use to automatically discover and classify this sensitive data?",
+      "options": {
+        "A": "Amazon Comprehend",
+        "B": "Amazon Macie",
+        "C": "Amazon Rekognition",
+        "D": "AWS Glue Data Catalog"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Macie is purpose-built for discovering and classifying sensitive data in Amazon S3. It uses machine learning and pattern matching to automatically identify PII (names, emails, SSNs), financial data, credentials, and other sensitive data types. Amazon Comprehend (A) can detect PII in text through its NLP capabilities but is not designed for scanning S3 buckets at scale for data discovery. Rekognition (C) is for image and video analysis. Glue Data Catalog (D) catalogs metadata about datasets but does not scan for sensitive data content. Macie provides automated, ongoing sensitive data discovery across S3 buckets."
+    },
+    {
+      "id": 25,
+      "question": "A company is preparing training data for a sentiment analysis model. They want to ensure no credit card numbers are present in the training dataset stored in S3. How can Amazon Macie help?",
+      "options": {
+        "A": "Macie can automatically redact credit card numbers from the training data files",
+        "B": "Macie can scan the S3 bucket and generate findings that identify objects containing credit card numbers, their locations, and the number of occurrences",
+        "C": "Macie can block the SageMaker training job from accessing files containing credit card numbers",
+        "D": "Macie can encrypt all files containing credit card numbers with a separate KMS key"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Macie scans S3 objects and generates detailed findings that identify which objects contain sensitive data, the type of sensitive data found (such as credit card numbers), and the number of occurrences. This allows the team to identify and remediate affected files before using them for training. Macie does NOT automatically redact data (A), block access to files (C), or re-encrypt files (D). It is a discovery and classification service. After Macie identifies the sensitive data, the team must take separate remediation actions such as removing, redacting, or tokenizing the credit card numbers."
+    },
+    {
+      "id": 26,
+      "question": "An organization runs Amazon Macie on S3 buckets containing ML training data and receives findings indicating PII was detected. They want to automatically quarantine affected objects. What architecture achieves this?",
+      "options": {
+        "A": "Macie has a built-in quarantine feature that moves affected objects automatically",
+        "B": "Macie publishes findings to Amazon EventBridge, which triggers a Lambda function that moves affected objects to a quarantine bucket",
+        "C": "Macie sends findings directly to Amazon SageMaker, which stops any training jobs using the affected data",
+        "D": "Macie automatically deletes objects containing PII to prevent compliance violations"
+      },
+      "correctAnswer": "B",
+      "explanation": "Macie publishes findings to Amazon EventBridge (and optionally to AWS Security Hub), enabling event-driven automation. An EventBridge rule can trigger a Lambda function that copies the affected S3 object to a quarantine bucket and deletes or restricts access to the original. Macie does not have built-in quarantine (A), direct SageMaker integration (C), or automatic deletion capabilities (D). This event-driven architecture is a best practice for automated remediation of sensitive data findings. The Lambda function can also notify the data team and log the remediation action."
+    },
+    {
+      "id": 27,
+      "question": "What is the difference between Amazon Macie's managed data identifiers and custom data identifiers?",
+      "options": {
+        "A": "Managed identifiers are created by customers; custom identifiers are maintained by AWS",
+        "B": "Managed identifiers are pre-built by AWS to detect common sensitive data types like SSNs and credit cards; custom identifiers are regex patterns defined by the customer to detect organization-specific sensitive data",
+        "C": "Managed identifiers only work with structured data; custom identifiers only work with unstructured data",
+        "D": "There is no difference; they are interchangeable terms"
+      },
+      "correctAnswer": "B",
+      "explanation": "Managed data identifiers are pre-built detectors maintained by AWS that recognize common sensitive data types such as credit card numbers, SSNs, passport numbers, and API keys across many countries and formats. Custom data identifiers allow customers to define their own detection criteria using regular expressions and optional keyword lists to find organization-specific sensitive data, such as employee IDs, project codes, or proprietary data formats. Both types work with structured and unstructured data in S3. This combination allows Macie to detect both standard and organization-specific sensitive data in ML training datasets."
+    },
+    {
+      "id": 28,
+      "question": "A hospital wants to use Amazon SageMaker to train ML models on patient data. They need to comply with HIPAA. Which of the following is a PREREQUISITE before processing Protected Health Information (PHI) on AWS?",
+      "options": {
+        "A": "Deploying all SageMaker resources in the us-east-1 region only",
+        "B": "Signing a Business Associate Addendum (BAA) with AWS and using only HIPAA-eligible AWS services",
+        "C": "Obtaining SOC 2 certification for the hospital's on-premises data center",
+        "D": "Using only on-demand instances (not spot instances) for SageMaker training"
+      },
+      "correctAnswer": "B",
+      "explanation": "Before processing PHI on AWS, organizations must sign a Business Associate Addendum (BAA) with AWS and ensure they only use HIPAA-eligible services. Amazon SageMaker is HIPAA-eligible, but not all AWS services are. The BAA establishes the responsibilities of AWS as a business associate under HIPAA. There is no requirement to use only us-east-1 (A). SOC 2 certification for on-premises infrastructure (C) is unrelated to AWS HIPAA compliance. Instance purchasing model (D) does not affect HIPAA compliance. Customers must also implement appropriate access controls, encryption, and audit logging for PHI."
+    },
+    {
+      "id": 29,
+      "question": "A European company using Amazon Bedrock needs to ensure compliance with GDPR when processing EU citizen data through foundation models. Which of the following is TRUE about Amazon Bedrock and GDPR?",
+      "options": {
+        "A": "Amazon Bedrock is exempt from GDPR because it is an AI service, not a data storage service",
+        "B": "Amazon Bedrock does not use customer inputs and outputs to train foundation models, and AWS provides GDPR-compliant data processing agreements, but customers must still ensure their usage meets GDPR requirements",
+        "C": "GDPR only applies to data stored in EU regions, so using Bedrock in us-east-1 avoids GDPR obligations",
+        "D": "AWS automatically ensures full GDPR compliance for all Bedrock customers without any customer action"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock does not use customer prompts, responses, or fine-tuning data to train the underlying foundation models, which is an important GDPR consideration regarding data minimization and purpose limitation. AWS provides GDPR-compliant Data Processing Addendums (DPAs). However, customers remain responsible for ensuring their specific usage complies with GDPR, including obtaining proper consent, implementing data subject rights, conducting data protection impact assessments, and choosing appropriate data processing locations. GDPR applies to EU citizen data regardless of where it is processed (C is incorrect). AI services are not exempt from GDPR (A). AWS cannot guarantee full compliance without customer action (D)."
+    },
+    {
+      "id": 30,
+      "question": "Where can a compliance officer download AWS SOC reports and other compliance certifications to provide evidence during an audit of their AI/ML workloads?",
+      "options": {
+        "A": "AWS Trusted Advisor compliance dashboard",
+        "B": "AWS Artifact",
+        "C": "Amazon Inspector compliance reports",
+        "D": "AWS Config compliance timeline"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS Artifact is the self-service portal for on-demand access to AWS compliance reports including SOC 1/2/3, PCI DSS attestation, ISO certifications, HIPAA documentation, and other audit artifacts. These reports are produced by independent auditors and attest to AWS's infrastructure controls. Trusted Advisor (A) provides best practice recommendations, not compliance certifications. Inspector (C) generates vulnerability assessment findings for workloads. Config (D) shows resource configuration compliance against Config rules, not AWS service-level compliance certifications. Compliance officers use Artifact to obtain the evidence they need to demonstrate that the underlying AWS infrastructure meets regulatory standards."
+    },
+    {
+      "id": 31,
+      "question": "A company must demonstrate to auditors that their SageMaker-based ML system meets PCI DSS requirements for processing payment card data. Which combination of AWS features supports this? (Choose the BEST answer)",
+      "options": {
+        "A": "Use SageMaker in a VPC with encryption at rest and in transit, enable CloudTrail for audit logging, and use IAM for access control. Download the AWS PCI DSS Attestation of Compliance from AWS Artifact.",
+        "B": "Use SageMaker with default settings and reference the AWS SOC 2 report as evidence of PCI compliance",
+        "C": "Deploy SageMaker in an isolated AWS account and disable all network access to meet PCI DSS isolation requirements",
+        "D": "Use Amazon Macie to scan all payment data and generate a PCI DSS compliance certificate"
+      },
+      "correctAnswer": "A",
+      "explanation": "PCI DSS compliance requires a combination of technical controls and audit evidence. Deploying SageMaker within a VPC provides network segmentation, encryption protects cardholder data, CloudTrail provides the required audit trail, and IAM enforces access controls. AWS Artifact provides the PCI DSS Attestation of Compliance for the AWS infrastructure layer. SOC 2 (B) is a different compliance framework and does not satisfy PCI DSS requirements. Disabling all network access (C) would prevent the system from functioning. Macie (D) discovers sensitive data but does not generate PCI DSS compliance certificates. Compliance requires customer-side controls plus AWS infrastructure compliance evidence."
+    },
+    {
+      "id": 32,
+      "question": "Which compliance consideration is unique to AI/ML workloads compared to traditional application workloads on AWS?",
+      "options": {
+        "A": "The need to encrypt data at rest and in transit",
+        "B": "The requirement for IAM access controls",
+        "C": "The need to address model bias, fairness, explainability, and the provenance of training data in addition to standard security and privacy controls",
+        "D": "The requirement to use AWS CloudTrail for logging"
+      },
+      "correctAnswer": "C",
+      "explanation": "While encryption (A), IAM (B), and CloudTrail (D) apply to all AWS workloads, AI/ML workloads introduce unique compliance considerations around responsible AI. These include ensuring model fairness and bias testing, providing explainability for model decisions (especially in regulated industries like finance and healthcare), maintaining training data provenance and lineage, documenting model limitations through model cards, and complying with emerging AI-specific regulations. These AI governance requirements are layered on top of standard security and privacy controls."
+    },
+    {
+      "id": 33,
+      "question": "An ML team needs to maintain a versioned catalog of all production models, track their approval status, and enforce that only approved models can be deployed to endpoints. Which SageMaker feature is designed for this?",
+      "options": {
+        "A": "SageMaker Feature Store",
+        "B": "SageMaker Model Registry",
+        "C": "SageMaker Experiments",
+        "D": "SageMaker Debugger"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Model Registry provides a centralized repository for managing model versions, tracking approval status (e.g., PendingApproval, Approved, Rejected), and associating metadata with each model version. It integrates with SageMaker Pipelines to enforce that only approved model versions can be deployed to production endpoints. Feature Store (A) manages ML features for training and inference. Experiments (C) tracks training runs and parameters. Debugger (D) analyzes training job issues. Model Registry is the governance layer that ensures model deployment follows organizational approval workflows."
+    },
+    {
+      "id": 34,
+      "question": "A regulated financial institution needs to demonstrate to auditors the complete lineage of a production ML model, from the original training data through preprocessing, training, and deployment. Which SageMaker feature provides this capability?",
+      "options": {
+        "A": "SageMaker Clarify",
+        "B": "SageMaker ML Lineage Tracking",
+        "C": "SageMaker Ground Truth",
+        "D": "SageMaker Canvas"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker ML Lineage Tracking automatically records the relationships and metadata across the ML workflow, creating a graph that connects datasets, processing jobs, training jobs, model artifacts, and endpoints. Auditors can trace a production model back to its exact training data, preprocessing steps, hyperparameters, and algorithm. Clarify (A) provides bias detection and explainability but not full workflow lineage. Ground Truth (C) is a data labeling service. Canvas (D) is a no-code ML interface. Lineage Tracking supports auditability and reproducibility requirements common in regulated industries."
+    },
+    {
+      "id": 35,
+      "question": "What is the purpose of a SageMaker Model Card?",
+      "options": {
+        "A": "To store the trained model weights and parameters in a compressed format",
+        "B": "To document a model's intended use, performance metrics, limitations, ethical considerations, and other metadata in a structured format for governance and transparency",
+        "C": "To provide a graphical user interface for invoking the model",
+        "D": "To define the compute instance type and scaling policy for model deployment"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Model Cards provide a standardized way to document essential information about ML models, including their intended use cases, performance metrics across different demographics, known limitations, ethical considerations, training data descriptions, and evaluation results. Model Cards support responsible AI practices by making model information transparent and accessible to stakeholders including business owners, compliance teams, and end users. They do not store model weights (A), provide a UI for invocation (C), or define deployment infrastructure (D). Model Cards are a key component of model governance."
+    },
+    {
+      "id": 36,
+      "question": "An MLOps team wants to automatically trigger a model retraining pipeline when a model in the SageMaker Model Registry is changed to 'Rejected' status. How can this be accomplished?",
+      "options": {
+        "A": "SageMaker Model Registry natively triggers pipelines when model status changes",
+        "B": "Configure Amazon EventBridge to capture Model Registry status change events and trigger a SageMaker Pipeline execution",
+        "C": "Use CloudWatch alarms on Model Registry metrics to initiate retraining",
+        "D": "Configure S3 event notifications on the model artifacts bucket"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Model Registry emits events to Amazon EventBridge when model package status changes (e.g., from Approved to Rejected). An EventBridge rule can match these events and trigger actions such as starting a SageMaker Pipeline for retraining, sending an SNS notification, or invoking a Lambda function. Model Registry does not natively trigger pipelines (A). CloudWatch alarms (C) work on metrics, not status change events. S3 event notifications (D) respond to object-level operations, not model approval status changes. The EventBridge integration enables event-driven MLOps automation."
+    },
+    {
+      "id": 37,
+      "question": "A compliance team needs to track every change to the model version used by a production SageMaker endpoint over the past year. Which combination of services provides this historical record?",
+      "options": {
+        "A": "SageMaker Model Registry version history combined with CloudTrail logs of UpdateEndpoint API calls",
+        "B": "Amazon S3 versioning on the model artifacts bucket only",
+        "C": "SageMaker Debugger training job logs",
+        "D": "CloudWatch Logs from the inference container"
+      },
+      "correctAnswer": "A",
+      "explanation": "SageMaker Model Registry maintains the history of model versions and their metadata, while CloudTrail records every UpdateEndpoint and CreateEndpointConfig API call with timestamps, caller identity, and the specific model configuration deployed. Together, these services provide a complete audit trail of which model version was deployed to which endpoint and when. S3 versioning (B) tracks artifact file changes but not endpoint deployment history. Debugger (C) analyzes training job performance. CloudWatch inference logs (D) capture prediction data, not deployment change history."
+    },
+    {
+      "id": 38,
+      "question": "A company wants to ensure that all SageMaker notebook instances have encryption at rest enabled using a customer-managed KMS key. They need automatic detection of non-compliant notebooks across all accounts. Which service should they use?",
+      "options": {
+        "A": "AWS CloudTrail with real-time log analysis",
+        "B": "AWS Config with a managed or custom rule that checks SageMaker notebook instance encryption settings",
+        "C": "Amazon GuardDuty ML threat detection",
+        "D": "AWS Trusted Advisor performance checks"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS Config continuously monitors resource configurations and can evaluate SageMaker notebook instances against rules that check for KMS encryption. AWS provides managed Config rules for common checks, and custom rules can be written (using Lambda) for specific requirements like verifying a particular KMS key is used. Config provides a compliance dashboard showing compliant and non-compliant resources. CloudTrail (A) records API calls but does not perform continuous configuration evaluation. GuardDuty (C) detects security threats, not configuration compliance. Trusted Advisor (D) provides general best practice recommendations, not resource-specific compliance rules."
+    },
+    {
+      "id": 39,
+      "question": "Which of the following is an example of an AWS Config rule relevant to AI/ML security?",
+      "options": {
+        "A": "A rule that checks whether SageMaker training jobs are running within a VPC",
+        "B": "A rule that evaluates the accuracy of ML model predictions",
+        "C": "A rule that optimizes SageMaker endpoint instance types for cost",
+        "D": "A rule that measures the latency of Bedrock model invocations"
+      },
+      "correctAnswer": "A",
+      "explanation": "AWS Config rules evaluate resource configurations against desired settings. Checking whether SageMaker training jobs run within a VPC is a valid configuration compliance check that ensures network isolation security controls are in place. Config rules operate on resource configuration data, not on ML model quality (B), cost optimization (C), or performance metrics (D). Other relevant Config rules for AI/ML include checking that SageMaker endpoints have KMS encryption, that S3 buckets with training data have versioning enabled, and that notebook instances are not directly accessible from the internet."
+    },
+    {
+      "id": 40,
+      "question": "An organization needs to enforce a policy that all S3 buckets containing training data must have versioning enabled, server-side encryption with KMS, and block public access. How can they detect and report violations across multiple AWS accounts?",
+      "options": {
+        "A": "Deploy AWS Config rules in each account via AWS Organizations with an aggregator to consolidate compliance results",
+        "B": "Manually inspect each S3 bucket configuration quarterly",
+        "C": "Use Amazon SageMaker Feature Store to track S3 bucket configurations",
+        "D": "Enable Amazon CloudFront logging for all S3 buckets"
+      },
+      "correctAnswer": "A",
+      "explanation": "AWS Config rules can be deployed across all accounts in an AWS Organization using AWS CloudFormation StackSets or Config conformance packs. An AWS Config aggregator collects compliance data from multiple accounts and regions into a central view. Managed Config rules exist for S3 versioning (s3-bucket-versioning-enabled), encryption (s3-bucket-server-side-encryption-enabled), and public access (s3-bucket-public-read-prohibited). Manual inspection (B) does not scale. SageMaker Feature Store (C) manages ML features, not infrastructure configurations. CloudFront logging (D) tracks content delivery access, not S3 configuration compliance."
+    },
+    {
+      "id": 41,
+      "question": "What happens when AWS Config detects a non-compliant SageMaker resource?",
+      "options": {
+        "A": "AWS Config automatically terminates the non-compliant resource",
+        "B": "AWS Config marks the resource as non-compliant and can trigger automated remediation actions through AWS Systems Manager or Lambda functions via EventBridge",
+        "C": "AWS Config prevents the resource from being used until the compliance violation is fixed",
+        "D": "AWS Config sends a compliance report to the AWS account root email only"
+      },
+      "correctAnswer": "B",
+      "explanation": "When AWS Config evaluates a resource as non-compliant, it records the compliance status and can trigger automated remediation. Remediation actions can be defined using AWS Systems Manager Automation documents or Lambda functions. Config can also publish events to EventBridge for custom handling and send notifications via SNS. Config does NOT automatically terminate resources (A) or prevent their use (C). Notifications go to configured SNS topics and EventBridge rules, not exclusively to the root email (D). The evaluation-detection-remediation flow enables continuous compliance for AI/ML resources."
+    },
+    {
+      "id": 42,
+      "question": "A data governance team needs to ensure that training data stored in S3 is retained for exactly 7 years for regulatory compliance and cannot be deleted or modified before the retention period expires. Which S3 feature supports this?",
+      "options": {
+        "A": "S3 Lifecycle policies that transition data to Glacier after 7 years",
+        "B": "S3 Object Lock in Compliance mode with a 7-year retention period",
+        "C": "S3 versioning with MFA Delete enabled",
+        "D": "S3 Cross-Region Replication for durability"
+      },
+      "correctAnswer": "B",
+      "explanation": "S3 Object Lock in Compliance mode provides write-once-read-many (WORM) storage that prevents any user, including the root account, from deleting or modifying objects until the retention period expires. This meets regulatory requirements for data immutability. Lifecycle policies (A) manage storage class transitions and expiration but do not prevent deletion. Versioning with MFA Delete (C) requires MFA for delete operations but does not prevent authorized users from deleting. Cross-Region Replication (D) provides redundancy but does not prevent deletion. Compliance mode Object Lock is specifically designed for regulatory retention requirements."
+    },
+    {
+      "id": 43,
+      "question": "A company wants to ensure that sensitive fields in their training data are masked before being used by SageMaker. The data is in Amazon S3 and cataloged in AWS Glue. What approach should they take?",
+      "options": {
+        "A": "Enable S3 server-side encryption, which automatically masks sensitive fields",
+        "B": "Use AWS Glue ETL jobs with custom transformations or AWS Glue DataBrew to detect and mask sensitive fields before the data is consumed by SageMaker",
+        "C": "Configure SageMaker to automatically detect and mask sensitive data during training",
+        "D": "Use Amazon CloudFront to filter sensitive data before it reaches SageMaker"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS Glue ETL jobs can apply custom transformations to mask, hash, or tokenize sensitive fields in datasets. AWS Glue DataBrew provides a visual interface with built-in PII detection and masking recipes that can redact, substitute, or hash sensitive data. The processed data is written back to S3 for SageMaker to consume. S3 encryption (A) protects data at the storage level but does not mask individual fields. SageMaker does not automatically detect and mask sensitive data during training (C). CloudFront (D) is a CDN that does not provide data masking capabilities. Data preprocessing is the correct stage to apply masking."
+    },
+    {
+      "id": 44,
+      "question": "An organization is building a data governance framework for their ML training data. Which of the following should be included? (Choose the BEST answer)",
+      "options": {
+        "A": "Data lineage tracking, data quality validation, access controls, retention policies, and documentation of data sources and transformations",
+        "B": "Only encryption and access controls, as these cover all governance needs",
+        "C": "Model hyperparameter tuning logs and training loss curves",
+        "D": "Endpoint auto-scaling configuration and instance type selection"
+      },
+      "correctAnswer": "A",
+      "explanation": "A comprehensive data governance framework for ML training data includes data lineage tracking (understanding where data came from and how it was transformed), data quality validation (ensuring data accuracy and completeness), access controls (who can read and modify data), retention and deletion policies, data cataloging and documentation, privacy impact assessments, and compliance with relevant regulations. Encryption and access controls (B) are necessary but insufficient on their own. Hyperparameter tuning (C) and endpoint configuration (D) relate to model training and deployment, not data governance. Strong data governance underpins trustworthy AI."
+    },
+    {
+      "id": 45,
+      "question": "A SageMaker processing job needs to access data in S3, process it, and write results back. The security team requires that the processing job's IAM role can ONLY access a specific S3 bucket prefix (s3://ml-data-bucket/approved-data/*). How should the IAM policy be written?",
+      "options": {
+        "A": "Grant s3:* permissions on s3://ml-data-bucket/* and rely on the processing job code to only access the approved prefix",
+        "B": "Grant s3:GetObject and s3:PutObject permissions with the Resource ARN restricted to arn:aws:s3:::ml-data-bucket/approved-data/*",
+        "C": "Use a bucket policy to allow all SageMaker roles full access to the bucket",
+        "D": "Grant AmazonS3ReadOnlyAccess managed policy and add a deny statement for other buckets"
+      },
+      "correctAnswer": "B",
+      "explanation": "The most secure and precise approach is to specify the exact S3 actions needed (GetObject for reading, PutObject for writing) and restrict the Resource ARN to the specific bucket prefix. This follows the principle of least privilege by limiting both the actions and the resources. Granting s3:* on the entire bucket (A) provides excessive permissions. A bucket policy allowing all SageMaker roles (C) violates least privilege. The S3ReadOnlyAccess managed policy (D) grants read access to ALL S3 buckets. Resource-level restrictions in IAM policies are essential for securing ML data pipelines."
+    },
+    {
+      "id": 46,
+      "question": "A company uses AWS KMS to encrypt SageMaker training job volumes. They want to ensure that the KMS key used for encryption cannot be used by any other team in the organization. How should they configure this?",
+      "options": {
+        "A": "Use an AWS-managed KMS key, which is automatically scoped to the ML team",
+        "B": "Create a customer-managed KMS key with a key policy that restricts usage to specific IAM roles used by the ML team and the SageMaker service",
+        "C": "Create a separate AWS account for the ML team and use SSE-S3 encryption",
+        "D": "Enable KMS key rotation, which automatically restricts the key to the original creator"
+      },
+      "correctAnswer": "B",
+      "explanation": "Customer-managed KMS keys have key policies that control who can use and manage the key. By configuring the key policy to allow only specific IAM roles (the ML team's roles and the SageMaker service role), other teams are prevented from using the key. AWS-managed keys (A) are shared across all principals with appropriate IAM permissions in the account and cannot be restricted via key policy. SSE-S3 (C) uses Amazon-managed keys without customer control over access. Key rotation (D) creates new cryptographic material but does not change access permissions. The KMS key policy is the primary mechanism for controlling key usage."
+    },
+    {
+      "id": 47,
+      "question": "What is the relationship between a KMS key policy and an IAM policy when granting access to encrypt SageMaker model artifacts?",
+      "options": {
+        "A": "IAM policies always override KMS key policies",
+        "B": "KMS key policies always override IAM policies",
+        "C": "Both the KMS key policy must allow the account to use IAM for access control, AND the IAM policy must grant the KMS actions. Both must permit access for it to be allowed.",
+        "D": "Only the KMS key policy matters; IAM policies are ignored for KMS"
+      },
+      "correctAnswer": "C",
+      "explanation": "KMS uses a dual-authorization model. The KMS key policy is the primary access control mechanism. If the key policy includes a statement enabling IAM policies for the account (the default key policy statement), then IAM policies can also grant KMS permissions. For access to be allowed, BOTH the key policy must enable IAM-based access AND the IAM policy must grant the specific KMS actions (like kms:Encrypt, kms:Decrypt, kms:GenerateDataKey). If either denies access or fails to grant it, the request is denied. This dual-layer model provides defense in depth for cryptographic key access."
+    },
+    {
+      "id": 48,
+      "question": "A SageMaker training job uses a customer-managed KMS key to encrypt the training volume. Which KMS actions must the SageMaker execution role have permissions for?",
+      "options": {
+        "A": "kms:Encrypt only",
+        "B": "kms:Decrypt only",
+        "C": "kms:GenerateDataKey and kms:Decrypt (for envelope encryption used by EBS volumes)",
+        "D": "kms:CreateKey and kms:ScheduleKeyDeletion"
+      },
+      "correctAnswer": "C",
+      "explanation": "AWS services like SageMaker use envelope encryption for EBS volumes. The service requests a data key from KMS using GenerateDataKey, receives both a plaintext and encrypted copy of the data key, uses the plaintext key to encrypt the volume data, and stores the encrypted data key alongside the encrypted data. When reading, it uses kms:Decrypt to decrypt the data key. Therefore, the execution role needs kms:GenerateDataKey (to create the data key) and kms:Decrypt (to decrypt the data key for reading). kms:CreateKey and kms:ScheduleKeyDeletion (D) are administrative actions not needed for data encryption operations."
+    },
+    {
+      "id": 49,
+      "question": "An organization wants to use a single KMS key to encrypt SageMaker training data in S3, training job volumes, and model artifacts. However, they want to track which service is using the key for auditing. How can they achieve this?",
+      "options": {
+        "A": "Create separate KMS keys for each use case since a single key cannot be tracked",
+        "B": "Use CloudTrail to log all KMS API calls, which include the requesting service, resource ARN, and encryption context in each log entry",
+        "C": "Enable KMS key rotation to create separate audit entries for each rotation",
+        "D": "Use AWS Config to track real-time KMS key usage per service"
+      },
+      "correctAnswer": "B",
+      "explanation": "CloudTrail logs all KMS API calls including Encrypt, Decrypt, and GenerateDataKey. Each log entry includes the requesting service (e.g., s3.amazonaws.com, sagemaker.amazonaws.com), the specific resource ARN, the encryption context (key-value pairs providing additional context), and the caller identity. This allows auditors to determine which service used the key, for what purpose, and when. A single key can be used across services while maintaining full auditability. Creating separate keys (A) is an option but not required for tracking. Key rotation (C) does not create per-service audit separation. Config (D) tracks resource configurations, not real-time KMS usage."
+    },
+    {
+      "id": 50,
+      "question": "A company needs to audit all AI/ML activities for SOC 2 compliance. The auditor requires evidence that access to ML models is restricted to authorized personnel, all model changes are logged, and data is encrypted. Which set of AWS services provides this evidence?",
+      "options": {
+        "A": "Amazon Rekognition for access control, Amazon Polly for change logging, and Amazon Translate for encryption",
+        "B": "IAM policies and roles for access control, CloudTrail for change logging, and KMS for encryption, with AWS Artifact to provide the SOC 2 report",
+        "C": "Amazon Cognito for all three requirements",
+        "D": "AWS Shield for access control, AWS WAF for change logging, and AWS Certificate Manager for encryption"
+      },
+      "correctAnswer": "B",
+      "explanation": "For SOC 2 compliance of AI/ML workloads: IAM policies and roles enforce who can access and modify ML models (access control). CloudTrail records all API calls including model creation, updates, and deployments (change logging). KMS provides encryption at rest and integrates with SageMaker and Bedrock (encryption). AWS Artifact provides the actual SOC 2 report from independent auditors that attests to AWS infrastructure controls. Rekognition, Polly, and Translate (A) are AI services, not security services. Cognito (C) handles user authentication but not encryption or comprehensive audit logging. Shield and WAF (D) are for DDoS and web application protection."
+    },
+    {
+      "id": 51,
+      "question": "An auditor asks the ML team to prove that a specific production model was approved by an authorized reviewer before deployment. Which AWS service provides this evidence?",
+      "options": {
+        "A": "CloudWatch metrics showing the model's inference performance",
+        "B": "SageMaker Model Registry showing the model version's approval status, approval timestamp, and the IAM identity that changed the status (captured in CloudTrail)",
+        "C": "S3 access logs showing who downloaded the model artifacts",
+        "D": "Amazon Inspector vulnerability scan results for the inference endpoint"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Model Registry records the approval status of each model version (PendingApproval, Approved, Rejected). Combined with CloudTrail, auditors can see exactly who (IAM identity) changed the approval status and when. This provides the evidence chain that an authorized reviewer approved the model before it was deployed to production. CloudWatch metrics (A) show performance, not approval history. S3 access logs (C) show artifact access, not approval workflows. Inspector (D) checks for vulnerabilities, not deployment approval evidence. This capability is essential for regulated industries requiring model governance controls."
+    },
+    {
+      "id": 52,
+      "question": "A company is building a generative AI application using Amazon Bedrock and needs to implement guardrails to prevent the model from generating harmful or inappropriate content. Which feature should they use?",
+      "options": {
+        "A": "Amazon Bedrock Guardrails, which provides configurable content filtering, denied topic detection, and PII redaction for model inputs and outputs",
+        "B": "AWS WAF content inspection rules applied to the Bedrock API endpoint",
+        "C": "Amazon Comprehend sentiment analysis as a post-processing filter",
+        "D": "IAM policy conditions that block specific words in API requests"
+      },
+      "correctAnswer": "A",
+      "explanation": "Amazon Bedrock Guardrails is a purpose-built feature that allows configuring content filters (for categories like hate, violence, sexual content), denied topic policies, word/phrase filters, sensitive information filters (PII detection and redaction), and contextual grounding checks. Guardrails evaluate both model inputs (prompts) and outputs (responses). AWS WAF (B) inspects HTTP requests but is not designed for semantic content filtering of AI prompts and responses. Comprehend (C) could provide sentiment analysis but lacks the comprehensive guardrail capabilities. IAM conditions (D) cannot inspect or filter prompt content. Guardrails are the integrated solution for responsible AI content controls."
+    },
+    {
+      "id": 53,
+      "question": "A healthcare company uses Amazon Bedrock and must ensure that any PII in user prompts is automatically redacted before the prompt reaches the foundation model. Which approach provides this capability?",
+      "options": {
+        "A": "Configure Bedrock Guardrails with sensitive information filters that detect and mask PII types such as names, SSNs, and email addresses in input prompts",
+        "B": "Train a custom foundation model that ignores PII in prompts",
+        "C": "Use S3 server-side encryption to protect prompts containing PII",
+        "D": "Enable CloudTrail logging to detect PII in prompts after they are processed"
+      },
+      "correctAnswer": "A",
+      "explanation": "Amazon Bedrock Guardrails includes sensitive information filters that can detect and mask various PII types (names, addresses, SSNs, phone numbers, email addresses, etc.) in prompts before they are sent to the foundation model. This is configured through the Guardrails settings and applied automatically to all invocations using that guardrail. Training a custom model (B) does not address the PII exposure in the prompt. S3 encryption (C) protects stored data, not in-flight prompts. CloudTrail logging (D) is reactive detection, not proactive redaction. Guardrails provide real-time, inline PII protection."
+    },
+    {
+      "id": 54,
+      "question": "A company wants to prevent their Amazon Bedrock application from discussing topics related to competitor products or providing investment advice. Which Bedrock Guardrails feature addresses this?",
+      "options": {
+        "A": "Content filters for harmful content categories",
+        "B": "Denied topic policies that block conversations about specified topics with natural language definitions",
+        "C": "Word filters that block specific keywords",
+        "D": "PII filters that redact sensitive information"
+      },
+      "correctAnswer": "B",
+      "explanation": "Bedrock Guardrails denied topic policies allow organizations to define topics that the model should not discuss, using natural language descriptions and optional example phrases. The guardrail evaluates whether a prompt or response relates to a denied topic and blocks it accordingly. This is more sophisticated than simple keyword blocking because it understands the semantic meaning. Content filters (A) address harmful content categories like hate and violence, not business-specific topic restrictions. Word filters (C) block exact words/phrases but cannot understand semantic meaning. PII filters (D) address personal information, not topic restrictions."
+    },
+    {
+      "id": 55,
+      "question": "A data engineer is setting up an Amazon SageMaker Studio domain for a team. Which network configuration provides the MOST secure setup for accessing AWS resources?",
+      "options": {
+        "A": "PublicInternetOnly mode with broad security group rules",
+        "B": "VPCOnly mode with the domain connected to a private VPC, using VPC endpoints for AWS service access and security groups restricting traffic",
+        "C": "PublicInternetOnly mode with IAM restrictions and no VPC",
+        "D": "VPCOnly mode with an internet gateway and public subnets"
+      },
+      "correctAnswer": "B",
+      "explanation": "VPCOnly mode for SageMaker Studio domains ensures that all traffic between Studio and AWS services stays within the VPC. Combined with VPC endpoints (interface and gateway types) for services like S3, SageMaker API, and CloudWatch, all communications remain on the AWS private network. Security groups further restrict inbound and outbound traffic. PublicInternetOnly mode (A, C) routes some traffic through the internet. VPCOnly mode with an internet gateway and public subnets (D) defeats the purpose of VPC isolation. VPCOnly mode with private subnets and VPC endpoints is the most secure configuration for regulated environments."
+    },
+    {
+      "id": 56,
+      "question": "When using Amazon Bedrock with a VPC interface endpoint (AWS PrivateLink), what additional security layer can be applied to control which specific Bedrock APIs can be called through the endpoint?",
+      "options": {
+        "A": "S3 bucket policies",
+        "B": "VPC endpoint policies",
+        "C": "Amazon Cognito user pool policies",
+        "D": "AWS Certificate Manager private CA policies"
+      },
+      "correctAnswer": "B",
+      "explanation": "VPC endpoint policies are IAM resource-based policies attached to VPC interface endpoints that control which principals can use the endpoint and which actions they can perform through it. For a Bedrock VPC endpoint, the policy can restrict allowed actions (e.g., only bedrock:InvokeModel, not bedrock:CreateModelCustomizationJob), allowed principals (specific IAM roles), and allowed resources (specific model ARNs). S3 bucket policies (A) control S3 access, not Bedrock endpoint access. Cognito (C) handles user authentication. Certificate Manager (D) manages TLS certificates. VPC endpoint policies provide an additional authorization layer beyond IAM policies."
+    },
+    {
+      "id": 57,
+      "question": "A company needs to ensure that SageMaker endpoints in their VPC can ONLY communicate with specific AWS services (S3, CloudWatch, SageMaker API) and cannot reach the public internet or any other services. What combination of configurations achieves this?",
+      "options": {
+        "A": "Deploy endpoints in a private subnet with no route to an internet gateway or NAT gateway, and create only VPC endpoints for S3, CloudWatch, and SageMaker API",
+        "B": "Deploy endpoints in a public subnet with a restrictive security group",
+        "C": "Use network ACLs to block all outbound traffic except to specific AWS IP ranges",
+        "D": "Deploy endpoints in a private subnet with a NAT gateway and use security groups to allow specific services"
+      },
+      "correctAnswer": "A",
+      "explanation": "Deploying in a private subnet without internet gateway or NAT gateway routes ensures no internet access. By creating only VPC endpoints for the specific required services (S3 gateway endpoint, CloudWatch and SageMaker API interface endpoints), the endpoints can only communicate with those services. Security groups on the endpoints further restrict traffic. Public subnets (B) have internet routes. Blocking by AWS IP ranges (C) is unreliable as ranges change and overlap between services. A NAT gateway (D) provides internet access, violating the requirement. This architecture enforces strict network-level service allowlisting."
+    },
+    {
+      "id": 58,
+      "question": "An ML team uses Amazon SageMaker Clarify to detect bias in their model. After running a Clarify processing job, they discover significant bias against a protected demographic group. Under responsible AI governance, what should the team do FIRST?",
+      "options": {
+        "A": "Deploy the model immediately and monitor for complaints",
+        "B": "Document the bias findings, communicate to stakeholders, and investigate the root cause in the training data and model architecture before proceeding with deployment",
+        "C": "Delete the model and the training data to eliminate the bias",
+        "D": "Use more training data without investigating the existing bias"
+      },
+      "correctAnswer": "B",
+      "explanation": "Responsible AI governance requires that bias findings are documented, communicated to relevant stakeholders (legal, compliance, business owners), and thoroughly investigated before proceeding. Root cause analysis should examine whether the bias stems from imbalanced training data, biased features, label bias, or model architecture choices. Deploying a biased model (A) could cause harm and regulatory violations. Deleting everything (C) destroys evidence and does not address the underlying issue. Adding more data without investigation (D) may not resolve the bias. Documentation and investigation support accountability and informed decision-making about whether and how to proceed."
+    },
+    {
+      "id": 59,
+      "question": "A regulated company is deploying an ML model that makes automated decisions affecting customers. The regulatory framework requires that they can explain WHY the model made a specific decision. Which SageMaker feature supports this requirement?",
+      "options": {
+        "A": "SageMaker Debugger, which explains model predictions in natural language",
+        "B": "SageMaker Clarify explainability, which uses SHAP values to show feature importance and individual prediction explanations",
+        "C": "SageMaker Autopilot, which automatically generates explainable models",
+        "D": "SageMaker Ground Truth, which provides human explanations for model outputs"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Clarify provides model explainability using SHAP (SHapley Additive exPlanations) values, which quantify the contribution of each feature to a specific prediction. This enables both global explanations (which features are most important overall) and local explanations (why the model made a specific decision for a specific input). Debugger (A) analyzes training job performance and tensor values, not prediction explanations. Autopilot (C) generates models with explainability reports but Clarify is the dedicated explainability feature. Ground Truth (D) is a data labeling service. SHAP-based explainability is widely accepted in regulated industries for fulfilling model interpretability requirements."
+    },
+    {
+      "id": 60,
+      "question": "A company has enabled Amazon Bedrock model invocation logging to S3 for compliance. They want to ensure these log files cannot be tampered with after creation. Which approach provides log integrity protection?",
+      "options": {
+        "A": "Enable S3 versioning on the logging bucket",
+        "B": "Enable S3 Object Lock in Compliance mode on the logging bucket and configure a retention period",
+        "C": "Enable S3 Transfer Acceleration on the logging bucket",
+        "D": "Enable S3 Intelligent-Tiering on the logging bucket"
+      },
+      "correctAnswer": "B",
+      "explanation": "S3 Object Lock in Compliance mode provides immutable (WORM) storage that prevents any user, including the root account, from deleting or overwriting objects until the retention period expires. This ensures that Bedrock invocation logs cannot be tampered with, meeting audit trail integrity requirements. Versioning (A) preserves previous versions but does not prevent deletion of version markers or objects. Transfer Acceleration (C) speeds up transfers but does not protect integrity. Intelligent-Tiering (D) optimizes storage costs. Compliance mode Object Lock is the strongest protection for log integrity in regulated environments."
+    },
+    {
+      "id": 61,
+      "question": "An organization using Amazon Bedrock wants to ensure that customer data submitted in prompts is NOT used to train or improve any foundation models. What is Amazon Bedrock's default behavior regarding customer data?",
+      "options": {
+        "A": "Bedrock uses customer prompts and outputs to improve foundation models by default, and customers must opt out",
+        "B": "Bedrock does NOT use customer inputs or outputs to train or improve any foundation models, and this is the default behavior that cannot be overridden",
+        "C": "Bedrock shares anonymized prompt data with model providers for improvement unless the customer signs a separate agreement",
+        "D": "Bedrock stores customer prompts for 30 days for model improvement and then deletes them"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock does NOT use customer inputs (prompts) or outputs (model responses) to train or improve any AWS or third-party foundation models. This is the default behavior and is a core privacy feature of the service. Customer data is not shared with model providers. This privacy guarantee is critical for organizations in regulated industries and for maintaining data confidentiality. There is no opt-out needed because data sharing does not occur. This differentiates Bedrock from some other AI services where data may be used for model improvement."
+    },
+    {
+      "id": 62,
+      "question": "A SageMaker endpoint is deployed in a VPC with a security group. The endpoint needs to be accessible only from a specific application running in the same VPC on port 443. Which security group configuration is correct?",
+      "options": {
+        "A": "Inbound rule: Allow HTTPS (443) from 0.0.0.0/0; Outbound rule: Allow all traffic",
+        "B": "Inbound rule: Allow HTTPS (443) from the application's security group ID; Outbound rule: Allow HTTPS (443) to the application's security group ID",
+        "C": "Inbound rule: Allow all traffic from the VPC CIDR; Outbound rule: Allow all traffic to the VPC CIDR",
+        "D": "Inbound rule: Allow HTTPS (443) from the application's security group ID; Outbound rule: Allow all traffic (or restrict based on needs for S3, CloudWatch access)"
+      },
+      "correctAnswer": "D",
+      "explanation": "The inbound rule should allow HTTPS (port 443) only from the application's security group, restricting access to known sources. The outbound rule should be configured based on what the endpoint needs to communicate with (such as S3 for model artifacts via VPC endpoint and CloudWatch for metrics). Allowing inbound from 0.0.0.0/0 (A) permits access from anywhere. Restricting outbound to only the application (B) would prevent the endpoint from accessing necessary services. Allowing all VPC traffic (C) is overly permissive. Security group best practices for ML endpoints involve restricting inbound to known consumers and outbound to required services."
+    },
+    {
+      "id": 63,
+      "question": "A company's security policy requires that all data processing for ML workloads must occur within the EU. They are using Amazon SageMaker. How should they enforce data residency?",
+      "options": {
+        "A": "Use SageMaker in any region and enable cross-region encryption",
+        "B": "Deploy all SageMaker resources in an EU region (e.g., eu-west-1), use S3 buckets in the same region, and apply IAM policies and SCPs that deny SageMaker actions in non-EU regions",
+        "C": "Use SageMaker Autopilot, which automatically chooses the nearest EU region",
+        "D": "Configure SageMaker to replicate data to EU regions automatically"
+      },
+      "correctAnswer": "B",
+      "explanation": "Data residency is enforced by deploying all resources in the desired region and using preventive controls to ensure no resources are created elsewhere. Deploying SageMaker, S3, and related resources in an EU region ensures data stays in the EU. IAM policies and AWS Organizations SCPs with condition keys on aws:RequestedRegion can deny the creation of SageMaker and S3 resources in non-EU regions. Cross-region encryption (A) does not address data residency. Autopilot (C) does not automatically select regions for compliance. SageMaker does not have automatic data replication (D). SCPs provide organization-wide enforcement of data residency."
+    },
+    {
+      "id": 64,
+      "question": "An organization wants to use Amazon SageMaker Role Manager to create an IAM role for a data scientist who should be able to run training jobs and access specific S3 buckets but should NOT be able to deploy models or manage endpoints. How does Role Manager help?",
+      "options": {
+        "A": "Role Manager only creates full-access roles; fine-grained permissions must be configured manually",
+        "B": "Role Manager provides persona-based templates and allows selecting specific ML activities (like training) while excluding others (like deployment), generating a least-privilege role",
+        "C": "Role Manager automatically detects what permissions a data scientist needs by monitoring their actions",
+        "D": "Role Manager delegates all permission management to AWS Support"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Role Manager provides templates based on ML personas (data scientist, ML engineer, MLOps) and allows administrators to select specific ML activities that the role should support. For a data scientist who only trains models, the administrator can select activities like 'Run training jobs' and 'Access S3 data' while excluding 'Deploy models' and 'Manage endpoints.' The resulting IAM role includes only the permissions needed for the selected activities. It does not create only full-access roles (A), automatically detect needs (C), or delegate to AWS Support (D). Role Manager significantly reduces the effort of creating properly scoped ML roles."
+    },
+    {
+      "id": 65,
+      "question": "A machine learning team is evaluating whether to use Amazon Bedrock or self-hosted models on SageMaker for a sensitive workload. From a SECURITY perspective, what is a key advantage of Amazon Bedrock?",
+      "options": {
+        "A": "Bedrock provides complete access to the underlying model weights, allowing deeper security inspection",
+        "B": "Bedrock manages infrastructure security, model hosting, and provides built-in data privacy guarantees (no data used for model training), reducing the customer's security surface area",
+        "C": "Bedrock allows customers to run models on dedicated hardware for physical isolation",
+        "D": "Bedrock requires no IAM configuration, simplifying security management"
+      },
+      "correctAnswer": "B",
+      "explanation": "As a fully managed service, Amazon Bedrock handles infrastructure security, patching, scaling, and model hosting. Its data privacy guarantee (customer data is never used to train foundation models) is built into the service. This reduces the customer's security surface area compared to self-hosting on SageMaker, where customers must manage EC2 instances, containers, networking, patching, and more. Bedrock does NOT provide access to model weights (A). While Bedrock offers throughput provisioning, it does not provide dedicated physical hardware selection (C). Bedrock still requires IAM configuration (D) for access control. The managed security posture is a significant advantage for security-conscious organizations."
+    },
+    {
+      "id": 66,
+      "question": "A company uses SageMaker Pipelines for their ML workflow. They want to ensure that a model bias check must pass before the model can be registered in the Model Registry. How should they architect this?",
+      "options": {
+        "A": "Manually run Clarify bias detection after each pipeline execution and update the registry if the check passes",
+        "B": "Include a SageMaker Clarify bias check step in the pipeline, followed by a conditional step that only registers the model in Model Registry if the bias metrics meet predefined thresholds",
+        "C": "Configure the Model Registry to automatically run bias detection on registered models",
+        "D": "Use CloudWatch alarms on model accuracy metrics to prevent biased model registration"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Pipelines supports Clarify processing steps that evaluate model bias. A conditional step (ConditionStep) can evaluate the bias metrics output against predefined thresholds. If the check passes, the pipeline proceeds to register the model in the Model Registry. If it fails, the pipeline can halt or branch to an alerting step. This automates the governance gate within the ML workflow. Manual processes (A) are error-prone and do not scale. Model Registry does not auto-run bias checks (C). CloudWatch alarms on accuracy (D) do not measure bias. Embedding governance checks directly in the pipeline ensures consistent enforcement."
+    },
+    {
+      "id": 67,
+      "question": "An AWS Organization has multiple accounts running AI/ML workloads. The security team needs a centralized view of all security findings from these accounts, including findings from Macie (sensitive data in training datasets), GuardDuty (unusual API activity), and Config (non-compliant SageMaker resources). Which service provides this aggregation?",
+      "options": {
+        "A": "Amazon CloudWatch cross-account dashboards",
+        "B": "AWS Security Hub, which aggregates and normalizes findings from multiple security services across accounts",
+        "C": "AWS CloudTrail organization trail",
+        "D": "Amazon EventBridge cross-account event bus"
+      },
+      "correctAnswer": "B",
+      "explanation": "AWS Security Hub provides a centralized, comprehensive view of security findings across multiple AWS accounts and services. It ingests findings from Macie, GuardDuty, Inspector, Config, Firewall Manager, and third-party tools, normalizing them into the AWS Security Finding Format (ASFF). Security Hub enables prioritization, correlation, and aggregation of findings across the organization. CloudWatch dashboards (A) show metrics and alarms, not security findings. CloudTrail organization trails (C) aggregate API logs, not security findings. EventBridge (D) routes events but does not provide a unified security findings dashboard. Security Hub is the aggregation point for security posture management."
+    },
+    {
+      "id": 68,
+      "question": "A team is fine-tuning a foundation model on Amazon Bedrock using proprietary data. They need to ensure the fine-tuning data and resulting custom model are encrypted with their own KMS key. What should they configure?",
+      "options": {
+        "A": "Bedrock does not support customer-managed KMS keys for fine-tuning",
+        "B": "Specify a customer-managed KMS key in the Bedrock model customization job configuration, which encrypts the fine-tuning data and custom model artifacts at rest",
+        "C": "Upload the fine-tuning data to an encrypted S3 bucket, but the custom model will use AWS-managed encryption only",
+        "D": "Use client-side encryption for the training data and Bedrock will pass through the encryption"
+      },
+      "correctAnswer": "B",
+      "explanation": "Amazon Bedrock supports customer-managed KMS keys for model customization (fine-tuning) jobs. When creating a customization job, customers can specify a KMS key ARN that will be used to encrypt the fine-tuning data during processing and the resulting custom model artifacts at rest. This provides the customer with full control over the encryption key, including the ability to audit key usage via CloudTrail, rotate the key, and revoke access. Bedrock does support customer KMS keys (A is incorrect). While S3 encryption protects stored data (C), the Bedrock-level KMS key provides additional protection. Client-side encryption (D) would not work as Bedrock needs to read the data."
+    },
+    {
+      "id": 69,
+      "question": "A security architect is reviewing the network architecture for an ML platform on AWS. They find that SageMaker notebook instances are in a public subnet with direct internet access. What is the security risk, and how should it be remediated?",
+      "options": {
+        "A": "There is no security risk; public subnet placement is the recommended configuration",
+        "B": "The risk is that the notebooks can be accessed from the internet and can exfiltrate data. Remediation: move notebooks to a private subnet within the VPC, disable direct internet access, and use VPC endpoints for AWS service access",
+        "C": "The risk is only related to cost; private subnets are cheaper",
+        "D": "The risk is reduced performance; moving to a private subnet improves training speed"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker notebook instances with direct internet access in a public subnet present significant security risks: they can be a target for attacks if credentials are compromised, and they can be used to exfiltrate sensitive training data or model artifacts to external destinations. Remediation involves disabling direct internet access on the notebook instance, placing it in a private VPC subnet, and using VPC endpoints for necessary AWS service connectivity (S3, SageMaker API, etc.). This follows the principle of defense in depth and minimizes the attack surface. AWS Config rules can detect and flag this configuration."
+    },
+    {
+      "id": 70,
+      "question": "When using SageMaker Model Registry, a model package group contains multiple model versions. The organization needs to control who can approve or reject model versions. How should they implement this access control?",
+      "options": {
+        "A": "Use S3 bucket policies on the model artifact location to control who can change approval status",
+        "B": "Use IAM policies that grant sagemaker:UpdateModelPackage only to authorized approver roles, combined with a condition key scoping to the specific model package group ARN",
+        "C": "Configure the Model Registry to require a password for approval changes",
+        "D": "Use Amazon Cognito to authenticate users before they can approve models"
+      },
+      "correctAnswer": "B",
+      "explanation": "Access to update model package approval status in SageMaker Model Registry is controlled through IAM policies. By granting the sagemaker:UpdateModelPackage action only to authorized approver roles and scoping the resource to the specific model package group ARN, organizations ensure that only designated personnel can approve or reject model versions. S3 bucket policies (A) control artifact access, not Model Registry approval status. Model Registry does not have a password mechanism (C). While Cognito (D) can provide authentication, IAM is the primary mechanism for authorizing SageMaker API actions. This IAM-based approach integrates with the organization's existing identity governance."
+    },
+    {
+      "id": 71,
+      "question": "A company runs ML inference workloads on SageMaker endpoints. They receive a request from a customer exercising their GDPR 'right to be forgotten.' The customer's data was used in the training dataset. What challenge does this present for the ML team?",
+      "options": {
+        "A": "No challenge; deleting the customer's record from the database is sufficient",
+        "B": "The model may have learned patterns from the customer's data, and simply deleting the source data does not remove the data's influence from the trained model. The team may need to retrain the model without the customer's data to fully comply.",
+        "C": "GDPR does not apply to ML models, only to databases",
+        "D": "The SageMaker endpoint automatically forgets individual data points upon deletion from S3"
+      },
+      "correctAnswer": "B",
+      "explanation": "This is a significant challenge in ML governance. When a customer's data was used to train a model, the model's parameters have been influenced by that data. Simply deleting the source record does not remove the data's influence from the model's weights and biases. Full compliance may require retraining the model without the customer's data (sometimes called 'machine unlearning'). GDPR does apply to ML models if they process personal data (C is incorrect). Models do not automatically forget data (D). Organizations should plan for this by maintaining training data lineage, using reproducible pipelines, and documenting their approach to data deletion requests as part of their data governance framework."
+    },
+    {
+      "id": 72,
+      "question": "A company wants to implement a comprehensive audit strategy for their Amazon Bedrock application. Which combination of logging provides the MOST complete audit coverage?",
+      "options": {
+        "A": "CloudTrail data events only",
+        "B": "CloudWatch application logs only",
+        "C": "CloudTrail for API call metadata (who, when, what model), Bedrock model invocation logging for prompt/response content, and CloudWatch for operational metrics and alarms",
+        "D": "S3 server access logs for the Bedrock configuration bucket only"
+      },
+      "correctAnswer": "C",
+      "explanation": "Comprehensive audit coverage requires multiple layers: CloudTrail captures API-level metadata (caller identity, timestamp, action, source IP) for all Bedrock API calls. Bedrock model invocation logging captures the actual content of prompts and responses, which is critical for content compliance and quality auditing. CloudWatch provides operational metrics (invocation counts, latency, errors) and enables alarms for anomaly detection. Together, these three layers provide complete visibility into who called the service, what was sent and received, and how the service performed. Individual layers provide incomplete coverage."
+    },
+    {
+      "id": 73,
+      "question": "An organization is deploying an AI system that makes automated loan decisions. Regulatory requirements mandate that they maintain documentation of the model's intended use, limitations, and performance across different demographic groups. Which SageMaker feature is BEST suited for this documentation requirement?",
+      "options": {
+        "A": "SageMaker Experiments for tracking training hyperparameters",
+        "B": "SageMaker Model Cards for structured documentation of model details, intended use, ethical considerations, and performance metrics across evaluation groups",
+        "C": "SageMaker Debugger for capturing training tensors",
+        "D": "SageMaker Processing jobs for generating PDF reports"
+      },
+      "correctAnswer": "B",
+      "explanation": "SageMaker Model Cards provide a structured framework for documenting essential information about ML models, including intended use cases, known limitations, ethical considerations, evaluation details, and performance metrics broken down by demographic groups. This directly addresses regulatory requirements for model documentation in sensitive domains like lending. Model Cards can be programmatically created and updated, and they integrate with the Model Registry for governance workflows. Experiments (A) track training parameters, not model documentation. Debugger (C) analyzes training performance. Processing jobs (D) could generate reports but Model Cards provide a standardized, integrated solution."
+    },
+    {
+      "id": 74,
+      "question": "A machine learning team is using Amazon SageMaker with AWS PrivateLink. They have configured a VPC interface endpoint for the SageMaker API but discover that training jobs cannot pull container images from Amazon ECR. What is the MOST LIKELY cause?",
+      "options": {
+        "A": "SageMaker does not support ECR container images when using PrivateLink",
+        "B": "The team has not created VPC interface endpoints for ECR API and ECR Docker (dkr) services, which are required for private image pulls",
+        "C": "The KMS encryption is blocking container image downloads",
+        "D": "CloudTrail is logging the ECR calls and causing throttling"
+      },
+      "correctAnswer": "B",
+      "explanation": "When using SageMaker in a private VPC without internet access, separate VPC endpoints are needed for each AWS service the training job communicates with. For pulling container images, two ECR endpoints are required: the ECR API endpoint (for authentication and image manifest retrieval) and the ECR Docker (dkr) endpoint (for actual image layer downloads). Additionally, an S3 gateway endpoint is needed since ECR stores image layers in S3. SageMaker fully supports ECR with PrivateLink (A is incorrect). KMS encryption (C) does not affect image downloads. CloudTrail logging (D) does not cause throttling. This is a common configuration oversight when setting up private ML environments."
+    },
+    {
+      "id": 75,
+      "question": "A company has set up AWS Config rules to check that SageMaker endpoints use KMS encryption. A new endpoint was deployed without encryption and Config flagged it as non-compliant. The team wants to automatically remediate this. What is the recommended approach?",
+      "options": {
+        "A": "Configure AWS Config automatic remediation using a Systems Manager Automation document that deletes the non-compliant endpoint and creates a new one with KMS encryption",
+        "B": "Wait for the team to manually fix it during the next sprint",
+        "C": "Use Amazon Macie to automatically add encryption to the endpoint",
+        "D": "Configure CloudFront to encrypt traffic to the endpoint instead"
+      },
+      "correctAnswer": "A",
+      "explanation": "AWS Config supports automatic remediation actions triggered when a resource is found non-compliant. These remediation actions use AWS Systems Manager Automation documents. For a SageMaker endpoint without encryption, the automation document can delete the non-compliant endpoint and deploy a new one with the correct KMS encryption configuration. This ensures compliance drift is corrected quickly without manual intervention. Manual remediation (B) is slow and error-prone. Macie (C) discovers sensitive data but cannot modify SageMaker endpoint encryption. CloudFront (D) is a CDN, not an encryption solution for SageMaker. Automated remediation is an AWS best practice for maintaining continuous compliance."
+    },
+    {
+      "id": 76,
+      "question": "A company stores model artifacts, training data, and inference results across multiple S3 buckets. They need to implement a tagging strategy that supports cost allocation, access control, and compliance auditing for their ML workloads. Which approach is BEST?",
+      "options": {
+        "A": "Tagging is optional and has no impact on security or compliance for ML workloads",
+        "B": "Apply a consistent tagging strategy with tags like 'DataClassification' (public/internal/confidential), 'Project', 'Environment' (dev/staging/prod), 'Team', and 'ComplianceScope' (HIPAA/PCI), then use tag-based IAM policies and Config rules for enforcement",
+        "C": "Tag only production resources and leave development resources untagged",
+        "D": "Use only the default AWS tags and avoid custom tags to keep configurations simple"
+      },
+      "correctAnswer": "B",
+      "explanation": "A comprehensive tagging strategy is foundational to ML governance. Data classification tags enable tag-based IAM policies that restrict access based on sensitivity. Project and team tags support cost allocation and ownership tracking. Environment tags differentiate between development and production resources. Compliance scope tags help Config rules and audit processes identify which resources fall under specific regulatory frameworks. Tag-based access control (ABAC) is particularly powerful in ML environments where multiple teams share AWS resources. Ignoring tagging (A), partial tagging (C), or minimal tagging (D) all miss the governance and security benefits."
+    },
+    {
+      "id": 77,
+      "question": "A company is evaluating the security of their ML inference pipeline. Model predictions are being cached in Amazon ElastiCache for low-latency retrieval. What security consideration is MOST important for this caching layer?",
+      "options": {
+        "A": "ElastiCache performance optimization using larger instance types",
+        "B": "Encrypting data at rest and in transit in ElastiCache, ensuring the cache is deployed in a private subnet with restrictive security groups, and implementing appropriate TTL policies to minimize the duration of sensitive predictions in the cache",
+        "C": "Migrating from ElastiCache to DynamoDB for better availability",
+        "D": "Enabling ElastiCache Auto Discovery for all clients"
+      },
+      "correctAnswer": "B",
+      "explanation": "Model predictions may contain sensitive information (e.g., health risk scores, financial assessments). The caching layer must be secured with encryption at rest (using KMS) and in transit (using TLS). Deploying ElastiCache in a private subnet with restrictive security groups prevents unauthorized network access. TTL (Time-To-Live) policies ensure that sensitive predictions are not retained longer than necessary, aligning with data minimization principles. Performance optimization (A) and Auto Discovery (D) are operational concerns, not security concerns. Migrating to DynamoDB (C) does not inherently solve the security requirements. The caching layer is often overlooked in ML security reviews."
+    },
+    {
+      "id": 78,
+      "question": "An organization needs to ensure that their Amazon Bedrock usage complies with their internal AI governance policy, which requires: (1) all model invocations go through a central approved endpoint, (2) only approved foundation models can be used, and (3) all interactions are logged. Which architecture meets ALL three requirements?",
+      "options": {
+        "A": "Let individual teams call Bedrock directly from their applications with shared credentials",
+        "B": "Deploy a centralized API layer that routes requests through a VPC endpoint to Bedrock, use IAM policies with model-level restrictions, enable both CloudTrail logging and Bedrock model invocation logging, and apply SCPs to prevent direct Bedrock access from non-central accounts",
+        "C": "Use Amazon API Gateway as a proxy with no authentication required",
+        "D": "Enable Bedrock in all accounts and rely on teams to self-report their usage"
+      },
+      "correctAnswer": "B",
+      "explanation": "This architecture addresses all three requirements: (1) A centralized API layer with a VPC endpoint provides the single approved endpoint, and SCPs prevent other accounts from calling Bedrock directly. (2) IAM policies with conditions on model ARNs restrict which foundation models can be invoked. (3) CloudTrail logs API metadata and Bedrock model invocation logging captures prompt/response content. Shared credentials (A) violate security best practices. An unauthenticated API Gateway (C) lacks access control. Self-reporting (D) is unreliable and unenforceable. This centralized governance pattern is a best practice for organizations adopting generative AI at scale."
+    },
+    {
+      "id": 79,
+      "question": "A financial services company uses SageMaker to deploy a fraud detection model. An auditor requires evidence that the model was tested for accuracy AND fairness before deployment, and that the test results are immutably recorded. Which combination of AWS services provides this evidence trail?",
+      "options": {
+        "A": "SageMaker Clarify for bias and accuracy testing, results stored in S3 with Object Lock, model approval recorded in Model Registry with CloudTrail capturing the approval action",
+        "B": "SageMaker Autopilot for automated testing, results emailed to the compliance team",
+        "C": "Amazon Comprehend for model evaluation, results stored in DynamoDB",
+        "D": "SageMaker Ground Truth for model testing, results stored in a SageMaker notebook"
+      },
+      "correctAnswer": "A",
+      "explanation": "This combination provides a complete, tamper-proof evidence trail: SageMaker Clarify generates bias and accuracy evaluation reports. Storing these reports in S3 with Object Lock in Compliance mode ensures they cannot be modified or deleted. The Model Registry records the approval decision, and CloudTrail captures the IAM identity and timestamp of who approved the model. Together, this provides auditors with immutable evidence of pre-deployment testing and approval. Autopilot (B) builds models but email is not an auditable record. Comprehend (C) is for NLP tasks, not model evaluation. Ground Truth (D) is for data labeling, not model testing."
+    },
+    {
+      "id": 80,
+      "question": "A company is using Amazon Bedrock Agents to build an autonomous AI system that can access company databases and take actions. What is the MOST critical security principle to apply when configuring the agent's permissions?",
+      "options": {
+        "A": "Grant the agent administrator-level access so it can handle any customer request without errors",
+        "B": "Apply the principle of least privilege by granting the agent's IAM role only the minimum permissions needed for its specific tasks, implementing action group-level restrictions, and logging all actions for audit",
+        "C": "Use a shared service account for all agents to simplify management",
+        "D": "Disable IAM for the agent and use application-level authentication instead"
+      },
+      "correctAnswer": "B",
+      "explanation": "Autonomous AI agents that can take actions (query databases, call APIs, modify data) require strict security controls. The principle of least privilege is critical: the agent's IAM role should only permit the specific actions and resources needed for its defined tasks. Action groups should be scoped to specific operations. All agent actions should be logged (via CloudTrail and Bedrock logging) for audit and accountability. Administrator access (A) is dangerous as it allows the agent to perform any action. Shared accounts (C) violate the principle of individual accountability. Disabling IAM (D) removes AWS's primary access control mechanism. As AI agents become more autonomous, strict permission boundaries become more important."
+    }
+  ]
+}

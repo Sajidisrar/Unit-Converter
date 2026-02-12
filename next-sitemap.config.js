@@ -96,6 +96,16 @@ module.exports = {
       }
     }
 
+    // Learning & Practice tools - high priority
+    if (path === '/aws-practice-exam') {
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
+      }
+    }
+
     // Developer hub and color converter - high priority
     if (path.includes('/developer') || path.includes('/color-converter')) {
       return {
