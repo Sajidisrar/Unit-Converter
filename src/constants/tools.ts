@@ -11,16 +11,21 @@ export const allTools: ToolConfig[] = [
   { name: "Encoding Tools", url: "/encoding", icon: "🔐", category: "developer", description: "Base64, URL encoding, and JWT decoding" },
   { name: "Text Tools", url: "/text", icon: "📝", category: "developer", description: "Compare text and test regex patterns" },
   { name: "Color Converter", url: "/color-converter", icon: "🎨", category: "developer", description: "Convert color formats" },
+  { name: "OCR Scanner", url: "/ocr-scanner", icon: "📷", category: "developer", description: "Extract text from images using OCR" },
   
   // Unit Converters
   { name: "Unit Converter", url: "/unit-converter", icon: "📏", category: "converter", description: "Convert length, weight, temperature, area, and speed" },
   { name: "Power Converter", url: "/power", icon: "⚡", category: "converter", description: "Convert power units (watts, horsepower, BTU/h)" },
   { name: "Electricity Consumption", url: "/electricity-consumption", icon: "🔌", category: "converter", description: "Calculate home electricity consumption and costs" },
-  { name: "Cooking Converter", url: "/cooking", icon: "👨‍🍳", category: "converter", description: "Convert cooking units (cups, tbsp)" }
+  { name: "Cooking Converter", url: "/cooking", icon: "👨‍🍳", category: "converter", description: "Convert cooking units (cups, tbsp)" },
+
+  // Learning & Practice
+  { name: "AWS AI Practitioner Exam", url: "/aws-practice-exam", icon: "☁️", category: "learning", description: "Practice exam for AWS Certified AI Practitioner (AIF-C01)" },
 ];
 
 export const developerTools = allTools.filter(tool => tool.category === 'developer');
 export const converterTools = allTools.filter(tool => tool.category === 'converter');
+export const learningTools = allTools.filter(tool => tool.category === 'learning');
 
 export const toolCategories = [
   {
@@ -34,5 +39,11 @@ export const toolCategories = [
     tools: converterTools,
     description: 'Convert between various units of measurement for everyday and professional use.',
     color: 'orange'
+  },
+  {
+    name: 'Learning & Practice',
+    tools: learningTools,
+    description: 'Practice exams and study tools for cloud certifications.',
+    color: 'green'
   }
 ];

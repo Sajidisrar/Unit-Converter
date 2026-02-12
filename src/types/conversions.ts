@@ -61,7 +61,7 @@ export interface ToolConfig {
   name: string;
   url: string;
   icon: string;
-  category: 'developer' | 'converter';
+  category: 'developer' | 'converter' | 'learning';
   description: string;
 }
 

@@ -1,0 +1,400 @@
+{
+  "examName": "AWS Certified AI Practitioner",
+  "examCode": "AIF-C01",
+  "certificationLevel": "Foundational",
+  "description": "The AWS Certified AI Practitioner certification validates foundational knowledge of AI/ML concepts, generative AI, and related AWS services. It is designed for individuals who are familiar with, but do not necessarily build, solutions using AI/ML technologies on AWS.",
+
+  "examDetails": {
+    "totalQuestions": 65,
+    "scoredQuestions": 50,
+    "unscoredQuestions": 15,
+    "unscoredNote": "15 unscored (pretest) questions are included to evaluate future exam items. These are NOT identified on the exam — you must answer all 65 questions as if they count.",
+    "duration": "90 minutes",
+    "durationNote": "You get 90 minutes (1 hour 30 minutes) to complete the exam. This gives you roughly 1 minute 23 seconds per question.",
+    "additionalTime": "ESL +30 minutes accommodation available for non-native English speakers (request before scheduling).",
+    "examCost": "$100 USD",
+    "examFormat": "Proctored exam",
+    "deliveryMethod": [
+      "Pearson VUE testing center (in-person)",
+      "Online proctored exam (from home/office)"
+    ],
+    "prerequisites": "None required. AWS recommends familiarity with AWS Cloud concepts. AWS Cloud Practitioner Essentials or AWS Technical Essentials courses are recommended for those new to AWS.",
+    "validityPeriod": "3 years from exam date",
+    "recertification": "Retake the AIF-C01 exam OR earn the AWS Certified Machine Learning Engineer - Associate credential before expiry.",
+    "languages": [
+      "English",
+      "Arabic",
+      "French (France)",
+      "German",
+      "Italian",
+      "Japanese",
+      "Korean",
+      "Portuguese (Brazil)",
+      "Spanish (Latin America)",
+      "Spanish (Spain)",
+      "Simplified Chinese",
+      "Traditional Chinese"
+    ]
+  },
+
+  "scoringDetails": {
+    "scoreRange": {
+      "minimum": 100,
+      "maximum": 1000
+    },
+    "passingScore": 700,
+    "passingScoreNote": "You need a minimum scaled score of 700 out of 1000 to pass. This is approximately 70% but uses scaled scoring (not a simple percentage).",
+    "scoringModel": "Compensatory",
+    "scoringModelExplanation": "You do NOT need to pass each domain individually. Your overall score across all domains determines if you pass. A strong performance in one domain can compensate for a weaker performance in another.",
+    "scaledScoring": "AWS uses a scaled scoring model. Raw scores are converted to a scaled score between 100-1000. The conversion accounts for difficulty differences between exam versions, so passing always represents the same competency level.",
+    "resultDelivery": "Pass/Fail result shown immediately on screen. Detailed score report sent via email within 5 business days.",
+    "scoreReport": "Your score report shows your overall scaled score and a performance indicator (Meets/Needs Improvement) for each domain."
+  },
+
+  "questionTypes": [
+    {
+      "type": "Multiple Choice",
+      "description": "One correct response out of four options (A, B, C, D). This is the most common question type.",
+      "tip": "Eliminate obviously wrong answers first to improve your odds."
+    },
+    {
+      "type": "Multiple Response",
+      "description": "Two or more correct responses out of five or more options. The question will specify how many answers to select (e.g., 'Select TWO').",
+      "tip": "Read carefully how many answers are required. No partial credit — you must select ALL correct answers."
+    },
+    {
+      "type": "Ordering",
+      "description": "Arrange 3-5 responses in the correct sequence to complete a task or process.",
+      "tip": "Think about the logical flow of the process. Identify the first and last steps, then fill in the middle."
+    },
+    {
+      "type": "Matching",
+      "description": "Match a list of responses to a list of 3-7 prompts. For example, match AWS services to their descriptions.",
+      "tip": "Start with the matches you are most confident about, then work through the remaining ones."
+    }
+  ],
+
+  "examDomains": [
+    {
+      "domainNumber": 1,
+      "domainName": "Fundamentals of AI and ML",
+      "weightPercentage": 20,
+      "approximateScoredQuestions": 10,
+      "taskStatements": [
+        "Explain basic AI concepts and terminologies",
+        "Identify practical use cases for AI",
+        "Describe the ML development lifecycle"
+      ],
+      "keyTopics": [
+        "Types of AI: Narrow AI, General AI, Super AI",
+        "ML types: Supervised, Unsupervised, Reinforcement Learning",
+        "Deep Learning and Neural Networks",
+        "NLP and Computer Vision fundamentals",
+        "Training, validation, and test data splits",
+        "Overfitting, underfitting, bias-variance tradeoff",
+        "Key terminology: features, labels, epochs, hyperparameters, inference",
+        "AWS AI/ML service stack overview"
+      ],
+      "mappedModules": ["Module 1: Fundamentals of ML and AI"]
+    },
+    {
+      "domainNumber": 2,
+      "domainName": "Fundamentals of Generative AI",
+      "weightPercentage": 24,
+      "approximateScoredQuestions": 12,
+      "taskStatements": [
+        "Explain the basic concepts of generative AI",
+        "Understand the capabilities and limitations of generative AI for solving business problems",
+        "Describe AWS infrastructure and technologies for building generative AI applications"
+      ],
+      "keyTopics": [
+        "Foundation Models (FMs) concepts and characteristics",
+        "Large Language Models (LLMs) and Transformers",
+        "Tokens, embeddings, and vector databases",
+        "Amazon Bedrock overview and model providers",
+        "Amazon Titan models",
+        "Amazon Q (Q Business, Q Developer)",
+        "Generative AI application patterns (text, image, code generation)",
+        "RAG (Retrieval Augmented Generation) concepts",
+        "Prompt engineering fundamentals",
+        "Inference parameters (temperature, top-p, top-k)"
+      ],
+      "mappedModules": [
+        "Module 5: Developing Generative AI Solutions",
+        "Module 6: Optimizing Foundation Models",
+        "Module 8: Essentials of Prompt Engineering"
+      ]
+    },
+    {
+      "domainNumber": 3,
+      "domainName": "Applications of Foundation Models",
+      "weightPercentage": 28,
+      "approximateScoredQuestions": 14,
+      "taskStatements": [
+        "Describe design considerations for foundation model applications",
+        "Choose effective prompt engineering techniques",
+        "Describe the training and fine-tuning process for foundation models",
+        "Describe methods to evaluate foundation model performance"
+      ],
+      "keyTopics": [
+        "Amazon Bedrock Knowledge Bases and Agents",
+        "Amazon Bedrock Guardrails",
+        "Fine-tuning vs continued pre-training vs RAG vs prompt engineering",
+        "Amazon Bedrock fine-tuning capabilities",
+        "Model evaluation and benchmarking (BLEU, ROUGE, human eval)",
+        "Amazon Bedrock Model Evaluation",
+        "Prompt engineering techniques (zero-shot, few-shot, chain-of-thought)",
+        "Prompt chaining and multi-step workflows",
+        "AWS AI services: Rekognition, Comprehend, Transcribe, Polly, Translate, Lex, Textract, Kendra, Personalize, Forecast",
+        "SageMaker for ML development",
+        "SageMaker built-in algorithms and endpoints",
+        "MLOps: SageMaker Pipelines, Model Registry",
+        "Cost optimization for AI/ML workloads"
+      ],
+      "mappedModules": [
+        "Module 2: AI Use Cases and Applications",
+        "Module 4: Developing ML Solutions",
+        "Module 5: Developing Generative AI Solutions",
+        "Module 6: Optimizing Foundation Models",
+        "Module 8: Essentials of Prompt Engineering"
+      ]
+    },
+    {
+      "domainNumber": 4,
+      "domainName": "Guidelines for Responsible AI",
+      "weightPercentage": 14,
+      "approximateScoredQuestions": 7,
+      "taskStatements": [
+        "Explain the development of AI systems that are responsible",
+        "Recognize the importance of transparent and explainable models"
+      ],
+      "keyTopics": [
+        "Responsible AI pillars: fairness, explainability, robustness, privacy, governance, transparency, safety",
+        "Bias types: selection, measurement, confirmation, historical bias",
+        "Fairness metrics and equity in AI systems",
+        "Explainability: SHAP, LIME, feature importance",
+        "AWS AI Service Cards",
+        "Amazon SageMaker Clarify (bias detection and explainability)",
+        "Human-in-the-loop with Amazon A2I",
+        "Model monitoring for drift and fairness degradation",
+        "Regulatory considerations: GDPR, EU AI Act"
+      ],
+      "mappedModules": ["Module 3: Responsible AI Practices"]
+    },
+    {
+      "domainNumber": 5,
+      "domainName": "Security, Compliance, and Governance for AI Solutions",
+      "weightPercentage": 14,
+      "approximateScoredQuestions": 7,
+      "taskStatements": [
+        "Explain methods to secure AI systems",
+        "Recognize governance and compliance regulations for AI systems"
+      ],
+      "keyTopics": [
+        "AWS Shared Responsibility Model for AI/ML",
+        "Data privacy and encryption (at rest, in transit) for ML",
+        "IAM policies for SageMaker and Bedrock",
+        "VPC configurations and network isolation",
+        "AWS PrivateLink for Bedrock",
+        "CloudTrail logging for AI services",
+        "Amazon Macie for sensitive data detection",
+        "Compliance frameworks: HIPAA, SOC, PCI DSS, GDPR",
+        "Model governance, lineage, and versioning",
+        "AWS KMS encryption for ML artifacts",
+        "Data governance for training data and model outputs"
+      ],
+      "mappedModules": ["Module 7: Security, Compliance, and Governance"]
+    }
+  ],
+
+  "domainWeightSummary": {
+    "domain1_fundamentals_ai_ml": "20%",
+    "domain2_fundamentals_generative_ai": "24%",
+    "domain3_applications_foundation_models": "28%",
+    "domain4_responsible_ai": "14%",
+    "domain5_security_compliance_governance": "14%",
+    "highestWeight": "Domain 3: Applications of Foundation Models (28%) — Focus most study time here",
+    "lowestWeight": "Domains 4 and 5 (14% each) — Still important, don't skip them"
+  },
+
+  "examStrategy": {
+    "timeManagement": {
+      "totalTime": "90 minutes for 65 questions",
+      "timePerQuestion": "~1 minute 23 seconds per question",
+      "strategy": [
+        "First pass (60 min): Answer all questions you are confident about. Flag uncertain ones for review.",
+        "Second pass (20 min): Return to flagged questions. Eliminate wrong answers and make your best choice.",
+        "Final review (10 min): Review any remaining flagged questions. Ensure no questions are left unanswered.",
+        "NEVER leave a question blank — there is no penalty for guessing."
+      ]
+    },
+    "studyPrioritization": {
+      "description": "Allocate study time roughly proportional to domain weights, but focus more on your weakest areas.",
+      "recommended": [
+        {
+          "priority": 1,
+          "domain": "Domain 3: Applications of Foundation Models (28%)",
+          "studyTimePercent": "30%",
+          "reason": "Highest weight. Covers practical application of FMs, AWS AI services, fine-tuning, RAG, and prompt engineering."
+        },
+        {
+          "priority": 2,
+          "domain": "Domain 2: Fundamentals of Generative AI (24%)",
+          "studyTimePercent": "25%",
+          "reason": "Second highest weight. Covers Bedrock, foundation models, LLMs, and GenAI concepts."
+        },
+        {
+          "priority": 3,
+          "domain": "Domain 1: Fundamentals of AI and ML (20%)",
+          "studyTimePercent": "20%",
+          "reason": "Core ML concepts that form the foundation for all other domains."
+        },
+        {
+          "priority": 4,
+          "domain": "Domain 4: Responsible AI (14%)",
+          "studyTimePercent": "13%",
+          "reason": "Smaller weight but concepts are testable and specific. Know SageMaker Clarify and bias types well."
+        },
+        {
+          "priority": 5,
+          "domain": "Domain 5: Security, Compliance, Governance (14%)",
+          "studyTimePercent": "12%",
+          "reason": "Overlap with general AWS security knowledge. Focus on AI-specific security features."
+        }
+      ]
+    },
+    "answerTechniques": [
+      {
+        "technique": "Elimination Method",
+        "description": "For every question, eliminate obviously wrong answers first. Even eliminating one option improves your odds from 25% to 33%."
+      },
+      {
+        "technique": "Look for AWS-Preferred Answers",
+        "description": "AWS exams favor managed services over self-managed solutions. If an option uses a fully managed AWS service vs. a custom implementation, the managed service is usually correct."
+      },
+      {
+        "technique": "Keyword Spotting",
+        "description": "Pay attention to keywords: 'MOST cost-effective', 'LEAST operational overhead', 'BEST', 'FIRST'. These qualifiers change the correct answer."
+      },
+      {
+        "technique": "Scenario-Based Pattern",
+        "description": "For 'A company wants to...' questions: (1) Identify the requirement, (2) Map it to an AWS service, (3) Choose the simplest solution that meets ALL requirements."
+      },
+      {
+        "technique": "When in Doubt, Choose Managed",
+        "description": "Amazon Bedrock over self-hosted models, SageMaker over EC2, managed services over custom code. AWS exams prefer their managed service offerings."
+      },
+      {
+        "technique": "Read All Options",
+        "description": "Never select the first answer that looks right. Read ALL four options before choosing. The best answer might be option D."
+      },
+      {
+        "technique": "Watch for Absolute Words",
+        "description": "Be cautious of options with absolutes like 'always', 'never', 'only', 'all'. These are often incorrect because most AWS services have nuanced use cases."
+      }
+    ],
+    "commonTrapTopics": [
+      {
+        "trap": "Bedrock vs SageMaker confusion",
+        "tip": "Bedrock = managed access to foundation models (no ML expertise needed). SageMaker = full ML platform for building/training/deploying custom models."
+      },
+      {
+        "trap": "RAG vs Fine-tuning vs Prompt Engineering",
+        "tip": "Prompt Engineering = fastest, cheapest, try first. RAG = when you need current/proprietary data without changing the model. Fine-tuning = when you need to change model behavior/style and have labeled data."
+      },
+      {
+        "trap": "Confusing AI services",
+        "tip": "Comprehend = NLP text analysis. Rekognition = image/video. Textract = document/OCR. Transcribe = speech-to-text. Polly = text-to-speech. Translate = language translation. Lex = chatbots."
+      },
+      {
+        "trap": "Bias types confusion",
+        "tip": "Selection bias = non-representative sample. Measurement bias = flawed data collection. Historical bias = real-world inequalities in data. Confirmation bias = favoring existing beliefs."
+      },
+      {
+        "trap": "Inference parameters",
+        "tip": "Temperature = randomness (higher = more creative). Top-p = cumulative probability threshold. Top-k = number of top tokens to consider. Max tokens = output length limit."
+      },
+      {
+        "trap": "Shared Responsibility for AI",
+        "tip": "AWS secures infrastructure. YOU secure your data, IAM, encryption settings, model inputs/outputs, and application-level security."
+      }
+    ],
+    "lastMinuteChecklist": [
+      "Know all AWS AI services and their primary use cases (Rekognition, Comprehend, Transcribe, Polly, Translate, Lex, Textract, Kendra, Personalize, Forecast, Fraud Detector)",
+      "Understand Amazon Bedrock: what it is, models available, Knowledge Bases, Agents, Guardrails",
+      "Know the ML pipeline: data collection → preprocessing → feature engineering → training → evaluation → deployment → monitoring",
+      "Understand fine-tuning vs RAG vs prompt engineering — when to use each",
+      "Know inference parameters: temperature, top-p, top-k, max tokens",
+      "Understand responsible AI: bias types, SageMaker Clarify, AI Service Cards, explainability (SHAP/LIME)",
+      "Know security basics: IAM for Bedrock/SageMaker, VPC, PrivateLink, KMS encryption, CloudTrail logging",
+      "Remember: Bedrock does NOT use customer data to train models (data privacy)",
+      "Know model evaluation metrics: accuracy, precision, recall, F1, AUC-ROC (classification) and RMSE, MAE (regression)",
+      "Understand Amazon Q: Q Business (enterprise search/assistant), Q Developer (coding assistant)"
+    ]
+  },
+
+  "examDayTips": [
+    "Arrive 15 minutes early if testing at a Pearson VUE center",
+    "For online proctored: test your system requirements beforehand, ensure quiet room with clear desk",
+    "Bring two forms of valid ID (testing center) or have one ready (online)",
+    "Read each question TWICE before answering",
+    "Flag difficult questions and come back — don't waste 5 minutes on one question",
+    "Answer every single question — no penalty for wrong answers",
+    "Trust your first instinct unless you find a clear reason to change your answer",
+    "Use the strike-through feature to eliminate wrong answers visually",
+    "If two answers seem correct, choose the one that is MORE specific to the question's requirements",
+    "Take a deep breath if you feel rushed — 90 minutes is enough if you manage time well"
+  ],
+
+  "practiceModulesMapping": {
+    "description": "How the 8 practice exam modules map to the 5 official exam domains",
+    "mapping": [
+      {
+        "practiceModule": "Module 1: Fundamentals of ML and AI",
+        "examDomain": "Domain 1: Fundamentals of AI and ML (20%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 2: AI Use Cases and Applications",
+        "examDomain": "Domain 3: Applications of Foundation Models (28%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 3: Responsible AI Practices",
+        "examDomain": "Domain 4: Guidelines for Responsible AI (14%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 4: Developing ML Solutions",
+        "examDomain": "Domain 3: Applications of Foundation Models (28%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 5: Developing Generative AI Solutions",
+        "examDomain": "Domain 2: Fundamentals of Generative AI (24%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 6: Optimizing Foundation Models",
+        "examDomain": "Domain 3: Applications of Foundation Models (28%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 7: Security, Compliance, and Governance",
+        "examDomain": "Domain 5: Security, Compliance, and Governance (14%)",
+        "relevance": "Primary"
+      },
+      {
+        "practiceModule": "Module 8: Essentials of Prompt Engineering",
+        "examDomain": "Domain 2: Fundamentals of Generative AI (24%) + Domain 3: Applications of Foundation Models (28%)",
+        "relevance": "Shared"
+      }
+    ]
+  },
+
+  "sources": [
+    "https://aws.amazon.com/certification/certified-ai-practitioner/",
+    "https://d1.awsstatic.com/training-and-certification/docs-ai-practitioner/AWS-Certified-AI-Practitioner_Exam-Guide.pdf",
+    "https://docs.aws.amazon.com/aws-certification/latest/examguides/ai-practitioner-01.html"
+  ]
+}
