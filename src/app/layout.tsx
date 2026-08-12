@@ -18,9 +18,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://freeunitconvertor.com'),
-  title: "Free Online Tools & Calculators 2025 | JSON, Base64, Unit Converters",
-  description: "Best free online developer tools and unit converters for 2025. Format JSON, encode Base64, decode JWT, validate regex, convert units instantly. Trusted by 100K+ developers worldwide. No registration required.",
-  keywords: "free online developer tools, JSON formatter online, Base64 encoder decoder, URL encoder decoder, JWT token decoder, XML formatter, regex validator, unit converter online, length converter, weight converter, temperature converter, area converter, speed converter, cooking converter, JSON to CSV converter, developer utilities, web development tools, API testing tools, data conversion tools, programming tools, code formatter, text compare tool, color converter, AI cheat sheet, prompt engineering",
+  title: "Free Online Unit Converter | Length, Weight, Temperature, Power & More",
+  description: "Free online unit converter for length, weight, temperature, area, speed, power, cooking, fuel economy, and fitness. Accurate metric and imperial conversions with instant results. No registration required.",
+  keywords: "unit converter, online unit converter, free unit converter, length converter, weight converter, temperature converter, area converter, speed converter, power converter, cooking converter, metric converter, imperial converter, meters to feet, kg to lbs, celsius to fahrenheit, cups to grams, watts to horsepower, BMI calculator, fuel economy converter",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     canonical: 'https://freeunitconvertor.com/',
   },
   openGraph: {
-    title: "Free Online Tools & Calculators 2025",
-    description: "The best free online tools for developers and unit conversions. JSON, Base64, JWT, Regex, and more.",
+    title: "Free Online Unit Converter | Length, Weight, Temperature & More",
+    description: "Free unit converter for length, weight, temperature, area, speed, power, and cooking. Accurate metric and imperial conversions.",
     type: "website",
     url: "https://freeunitconvertor.com/",
     siteName: "Free Unit Converter",
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: "Free Online Tools & Calculators 2025",
-    description: "The best free online tools for developers and unit conversions. JSON, Base64, JWT, Regex, and more.",
+    title: "Free Online Unit Converter",
+    description: "Free unit converter for length, weight, temperature, area, speed, power, and cooking. Accurate conversions with instant results.",
     images: ['/icon.svg'],
   },
   other: {
@@ -71,36 +71,6 @@ export const metadata: Metadata = {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeunitconvertor.com/" }
-        ]
-      }),
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is an online unit converter?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "An online unit converter lets you quickly change values between measurement systems such as length, weight, temperature, area, speed, and cooking units."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this unit converter free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, all our converters are completely free to use without any registration required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What developer tools are available?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We provide free developer tools including JSON Formatter, JSON to CSV Converter, Base64 Encoder/Decoder, URL Encoder/Decoder, JWT Decoder, Unix Timestamp Converter, and Number Base Converter."
-            }
-          }
         ]
       })
     ]
