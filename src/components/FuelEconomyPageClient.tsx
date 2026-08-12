@@ -17,24 +17,30 @@ interface FuelEconomyPageClientProps {
 export default function FuelEconomyPageClient({ units, content }: FuelEconomyPageClientProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)] gap-4">
-        <div className="hidden lg:block">
-          <AdBanner position="side" />
-        </div>
-
-        <main>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+      <div className="container mx-auto px-4 py-8">
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             Fuel Economy Converter
           </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Convert between MPG (US/UK), L/100km, and km/L. Compare vehicle fuel efficiency across different measurement systems.
+          </p>
+        </header>
 
-          <section>
-            <Calculator
-              title="Fuel Economy Converter"
-              units={units}
-              conversionType="fuelEconomy"
-            />
+        <main className="max-w-4xl mx-auto">
+          <div className="mb-6">
+            <AdBanner position="top" />
+          </div>
+
+          <Calculator
+            title="Fuel Economy Converter"
+            units={units}
+            conversionType="fuelEconomy"
+          />
+
+          <div className="mt-8">
             <AdBanner position="inline" />
-          </section>
+          </div>
 
           {content}
         </main>

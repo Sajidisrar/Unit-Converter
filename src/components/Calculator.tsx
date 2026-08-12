@@ -147,17 +147,17 @@ export default function Calculator({ title, units, conversionType, initialFromUn
   };
 
   return (
-    <div className="card p-8">
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 md:p-8">
+      <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
         {title}
       </h2>
-      
-      <div className="space-y-6">
+
+      <div className="space-y-5">
         {/* Input Section */}
         {conversionType === 'bmi' ? (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="weightKg" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="weightKg" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
                 Weight (kg)
               </label>
               <input
@@ -165,12 +165,12 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 type="number"
                 value={weightKg}
                 onChange={(e) => setWeightKg(e.target.value)}
-                placeholder="Enter weight in kg"
-                className="input"
+                placeholder="e.g. 70"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-lg"
               />
             </div>
             <div>
-              <label htmlFor="heightCm" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="heightCm" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
                 Height (cm)
               </label>
               <input
@@ -178,38 +178,39 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 type="number"
                 value={heightCm}
                 onChange={(e) => setHeightCm(e.target.value)}
-                placeholder="Enter height in cm"
-                className="input"
+                placeholder="e.g. 175"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-lg"
               />
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <>
+            {/* Value Input */}
             <div>
-              <label htmlFor="inputValue" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Enter Value
+              <label htmlFor="inputValue" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
+                Value
               </label>
               <input
                 id="inputValue"
                 type="number"
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder="Enter a value to convert"
-                className="input"
+                placeholder="Enter a number"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-lg"
               />
             </div>
 
-            {/* Unit Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="fromUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  From Unit
+            {/* Unit Selection Row */}
+            <div className="flex items-end gap-3">
+              <div className="flex-1">
+                <label htmlFor="fromUnit" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
+                  From
                 </label>
                 <select
                   id="fromUnit"
                   value={fromUnit}
                   onChange={handleFromUnitChange}
-                  className="input"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   {units.map((unit) => (
                     <option key={unit.value} value={unit.value}>
@@ -219,15 +220,26 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 </select>
               </div>
 
-              <div>
-                <label htmlFor="toUnit" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  To Unit
+              {/* Swap Button */}
+              <button
+                onClick={swapUnits}
+                className="shrink-0 w-10 h-10 mb-0.5 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-900/60 transition-colors"
+                title="Swap units"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </button>
+
+              <div className="flex-1">
+                <label htmlFor="toUnit" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
+                  To
                 </label>
                 <select
                   id="toUnit"
                   value={toUnit}
                   onChange={handleToUnitChange}
-                  className="input"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 >
                   {units.map((unit) => (
                     <option key={unit.value} value={unit.value}>
@@ -237,75 +249,51 @@ export default function Calculator({ title, units, conversionType, initialFromUn
                 </select>
               </div>
             </div>
-
-            {/* Swap Button */}
-            <div className="flex justify-center">
-              <button
-                onClick={swapUnits}
-                className="btn btn-secondary btn-md flex items-center space-x-2"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
-                <span>Swap Units</span>
-              </button>
-            </div>
-          </div>
+          </>
         )}
 
         {/* Result Section */}
-        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Result</h3>
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-xl p-5 border border-blue-100 dark:border-blue-900/50">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Result</span>
             <button
               onClick={copyToClipboard}
-              className={`btn btn-md flex items-center space-x-2 ${
+              className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 isCopied
-                  ? 'btn-success'
-                  : 'btn-primary'
+                  ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600'
               }`}
             >
-              {isCopied ? (
-                <>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Copied!</span>
-                </>
-              ) : (
-                <>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                  <span>Copy Result</span>
-                </>
-              )}
+              {isCopied ? 'Copied!' : 'Copy'}
             </button>
           </div>
-          
-          <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              {result === 0 ? '-' : result.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+
+          <div className="text-center py-2">
+            <div className="text-4xl font-bold text-gray-900 dark:text-white mb-1">
+              {result === 0 ? '--' : result.toLocaleString(undefined, { maximumFractionDigits: 6 })}
             </div>
             {conversionType === 'bmi' ? (
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className={`text-sm font-medium ${
+                result === 0 ? 'text-gray-400' :
+                result < 18.5 ? 'text-blue-600 dark:text-blue-400' :
+                result < 25 ? 'text-green-600 dark:text-green-400' :
+                result < 30 ? 'text-yellow-600 dark:text-yellow-400' :
+                'text-red-600 dark:text-red-400'
+              }`}>
                 {getBmiCategory(result)}
               </div>
             ) : (
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-gray-500 dark:text-gray-400">
                 {units.find(unit => unit.value === toUnit)?.label}
               </div>
             )}
           </div>
         </div>
 
-        {/* Conversion Formula Display */}
+        {/* Conversion Summary */}
         {conversionType !== 'bmi' && inputValue && fromUnit && toUnit && !isNaN(Number(inputValue)) && (
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-            <h4 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">Conversion</h4>
-            <p className="text-sm text-blue-700 dark:text-blue-300">
-              {inputValue} {units.find(unit => unit.value === fromUnit)?.label} = {result.toLocaleString()} {units.find(unit => unit.value === toUnit)?.label}
-            </p>
+          <div className="text-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg py-3 px-4">
+            <span className="font-medium text-gray-700 dark:text-gray-300">{inputValue}</span> {units.find(unit => unit.value === fromUnit)?.label} = <span className="font-medium text-gray-700 dark:text-gray-300">{result.toLocaleString(undefined, { maximumFractionDigits: 6 })}</span> {units.find(unit => unit.value === toUnit)?.label}
           </div>
         )}
       </div>

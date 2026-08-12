@@ -41,30 +41,23 @@ export default function ConverterPageClient({
           </p>
         </header>
 
-        <main className="max-w-6xl mx-auto">
+        <main className="max-w-4xl mx-auto">
           <div className="mb-6">
             <AdBanner position="top" />
           </div>
 
-          <div className="grid grid-cols-1 gap-6 items-start">
-            <div>
-              <Calculator
-                title={`${title} Tool`}
-                units={units}
-                conversionType={conversionType}
-                initialFromUnit={defaultFromUnit || units[0]?.value}
-              />
-            </div>
+          <Calculator
+            title={`${title} Tool`}
+            units={units}
+            conversionType={conversionType}
+            initialFromUnit={defaultFromUnit || units[0]?.value}
+          />
 
-            <div className="mt-6">
-              <AdBanner position="inline" />
-            </div>
+          <div className="mt-8">
+            <AdBanner position="inline" />
           </div>
 
-          {/* SEO Content Section */}
           {seoContent}
-
-          {/* FAQ Section */}
           {faqContent}
         </main>
       </div>
