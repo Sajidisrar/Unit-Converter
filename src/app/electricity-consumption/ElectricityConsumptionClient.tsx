@@ -119,9 +119,9 @@ export default function ElectricityConsumptionClient() {
             <AdBanner position="top" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 overflow-hidden">
             {/* Appliance Selection */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 min-w-0">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Select Appliances
               </h2>
@@ -142,10 +142,11 @@ export default function ElectricityConsumptionClient() {
                   <div className="flex gap-2">
                     <input
                       type="number"
+                      min="0"
                       placeholder="Power (W)"
                       value={customAppliance.power || ''}
-                      onChange={(e) => setCustomAppliance({...customAppliance, power: Number(e.target.value)})}
-                      className="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
+                      onChange={(e) => setCustomAppliance({...customAppliance, power: Math.max(0, Number(e.target.value))})}
+                      className="flex-1 min-w-0 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
                     />
                     <button
                       onClick={addCustomAppliance}
@@ -184,7 +185,7 @@ export default function ElectricityConsumptionClient() {
             </div>
 
             {/* Selected Appliances & Calculations */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 min-w-0">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Your Appliances
               </h2>
@@ -197,8 +198,9 @@ export default function ElectricityConsumptionClient() {
                 <input
                   type="number"
                   step="0.01"
+                  min="0"
                   value={electricityRate}
-                  onChange={(e) => setElectricityRate(Number(e.target.value))}
+                  onChange={(e) => setElectricityRate(Math.max(0, Number(e.target.value)))}
                   className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
                 />
               </div>
@@ -229,8 +231,8 @@ export default function ElectricityConsumptionClient() {
                           max="24"
                           step="0.5"
                           value={appliance.hours}
-                          onChange={(e) => updateAppliance(index, 'hours', Number(e.target.value))}
-                          className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
+                          onChange={(e) => updateAppliance(index, 'hours', Math.max(0, Math.min(24, Number(e.target.value))))}
+                          className="w-full min-w-0 p-2 border border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
                         />
                       </div>
                       <div>
@@ -241,8 +243,8 @@ export default function ElectricityConsumptionClient() {
                           type="number"
                           min="0"
                           value={appliance.power}
-                          onChange={(e) => updateAppliance(index, 'power', Number(e.target.value))}
-                          className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
+                          onChange={(e) => updateAppliance(index, 'power', Math.max(0, Number(e.target.value)))}
+                          className="w-full min-w-0 p-2 border border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white"
                         />
                       </div>
                     </div>
