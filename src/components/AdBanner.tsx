@@ -158,7 +158,7 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
   }, [position, slotId]);
 
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg flex items-center justify-center w-full';
+    const baseClasses = 'rounded-lg w-full overflow-hidden';
     const positionClasses = {
       top: 'mx-auto mb-6 min-h-[90px]',
       side: 'mx-auto',
@@ -214,6 +214,7 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       <ins
         ref={insRef}
         className="adsbygoogle"
+        style={{ display: 'block', minHeight: '90px' }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot={slotId || AD_SLOTS[position]}
         data-ad-format="auto"
