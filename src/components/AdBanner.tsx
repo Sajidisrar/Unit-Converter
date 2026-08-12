@@ -158,7 +158,7 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
   }, [position, slotId]);
 
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg w-full overflow-hidden';
+    const baseClasses = 'rounded-lg w-full';
     const positionClasses = {
       top: 'mx-auto mb-6 min-h-[90px]',
       side: 'mx-auto',
@@ -180,7 +180,16 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       data-ad-container="true"
       data-ad-state={adState}
     >
-      {(showDebugInfo || adState !== 'loaded') && (
+      <ins
+        ref={insRef}
+        className="adsbygoogle"
+        style={{ display: 'block', minHeight: '90px' }}
+        data-ad-client="ca-pub-3759958145886276"
+        data-ad-slot={slotId || AD_SLOTS[position]}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+      {adState !== 'loaded' && (
         <div
           className={`text-xs p-4 text-center ${
             adState === 'error'
@@ -191,35 +200,16 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
           }`}
         >
           {adState === 'blocked' && (
-            <>
-              <div className="font-semibold mb-1">🚫 Ad Blocker Detected</div>
-              <div>Ad blocker is preventing ads from loading</div>
-            </>
+            <div>Ad blocker detected</div>
           )}
           {adState === 'error' && (
-            <>
-              <div className="font-semibold mb-1">⚠️ Ad Failed to Load</div>
-              <div>Check console for details</div>
-            </>
+            <div>Ad failed to load</div>
           )}
-          {adState === 'loading' && (
-            <>
-              <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
-              <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
-              <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
-            </>
+          {showDebugInfo && adState === 'loading' && (
+            <div className="text-[10px]">Ad Placeholder ({position}) - Slot: {slotId || AD_SLOTS[position]}</div>
           )}
         </div>
       )}
-      <ins
-        ref={insRef}
-        className="adsbygoogle"
-        style={{ display: 'block', minHeight: '90px' }}
-        data-ad-client="ca-pub-3759958145886276"
-        data-ad-slot={slotId || AD_SLOTS[position]}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
     </div>
   );
 }
