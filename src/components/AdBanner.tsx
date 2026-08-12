@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
-// Extend the Window interface to include adsbygoogle
 declare global {
   interface Window {
     adsbygoogle: Array<Record<string, unknown>>;
@@ -11,10 +11,9 @@ declare global {
 interface AdBannerProps {
   position: 'top' | 'side' | 'inline' | 'left' | 'right';
   className?: string;
-  slotId?: string; // Optional custom slot ID to override default
+  slotId?: string;
 }
 
-// Unique ad slot IDs for each position
 const AD_SLOTS: Record<AdBannerProps['position'], string> = {
   top: '4003156004',
   inline: '1920224971',
@@ -24,19 +23,21 @@ const AD_SLOTS: Record<AdBannerProps['position'], string> = {
 };
 
 export default function AdBanner({ position, className = '', slotId }: AdBannerProps) {
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const insRef = useRef<HTMLModElement | null>(null);
-  const hasPushedRef = useRef(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [adState, setAdState] = useState<'loading' | 'loaded' | 'error' | 'blocked'>('loading');
+  const [adKey, setAdKey] = useState(0);
+
+  // Reset ad on route change so a fresh <ins> is created
+  useEffect(() => {
+    setAdKey(prev => prev + 1);
+    setAdState('loading');
+  }, [pathname]);
 
   useEffect(() => {
-    const container = containerRef.current;
     const ins = insRef.current;
-
-    if (!container || !ins) {
-      return;
-    }
+    if (!ins) return;
 
     const isDev = process.env.NODE_ENV === 'development';
     const isLocalhost = typeof window !== 'undefined' &&
@@ -44,143 +45,66 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
        window.location.hostname === '127.0.0.1' ||
        window.location.hostname.startsWith('192.168.'));
 
-    // In development on localhost, AdSense won't work - show friendly message
     if (isDev && isLocalhost) {
-      console.info(`[AdBanner] Development mode detected - ads won't load on localhost. Deploy to production to see ads.`);
-      setAdState('loading'); // Keep in loading state to show placeholder
       return;
     }
 
-    // Check for ad blocker
-    const checkAdBlocker = () => {
-      if (typeof window === 'undefined') return false;
+    let pushed = false;
+    let timeoutId: NodeJS.Timeout | null = null;
 
-      // Simple ad blocker detection
-      const testDiv = document.createElement('div');
-      testDiv.innerHTML = '&nbsp;';
-      testDiv.className = 'adsbox';
-      testDiv.style.position = 'absolute';
-      testDiv.style.left = '-999px';
-      document.body.appendChild(testDiv);
-      const isBlocked = testDiv.offsetHeight === 0;
-      document.body.removeChild(testDiv);
-      return isBlocked;
-    };
+    const pushAd = () => {
+      if (pushed) return;
+      if (typeof window === 'undefined' || !window.adsbygoogle) return false;
 
-    // Single initialization function
-    const initializeAd = () => {
-      // Clear any existing timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-
-      // Skip if already pushed
-      if (hasPushedRef.current) {
-        return;
-      }
-
-      // Check if AdSense is loaded
-      if (typeof window === 'undefined' || !window.adsbygoogle) {
-        // Check for ad blocker
-        if (checkAdBlocker()) {
-          setAdState('blocked');
-          console.warn('[AdBanner] Ad blocker detected');
-          return;
-        }
-
-        // Retry after delay (max 10 seconds)
-        const startTime = Date.now();
-        const maxWaitTime = 10000; // 10 seconds
-
-        const retryInit = () => {
-          if (Date.now() - startTime > maxWaitTime) {
-            setAdState('error');
-            console.error('[AdBanner] AdSense script failed to load within timeout. Check your network or AdSense configuration.');
-            return;
-          }
-
-          if (window.adsbygoogle) {
-            initializeAd();
-          } else {
-            timeoutRef.current = setTimeout(retryInit, 200);
-          }
-        };
-
-        timeoutRef.current = setTimeout(retryInit, 200);
-        return;
-      }
-
-      // Push the ad
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-        hasPushedRef.current = true;
+        pushed = true;
         setAdState('loaded');
-        console.log(`[AdBanner] Ad initialized successfully for position: ${position}`);
-      } catch (error) {
+        return true;
+      } catch {
         setAdState('error');
-        console.error('[AdBanner] Failed to push ad:', error);
+        return true;
       }
     };
 
-    const supportIntersectionObserver =
-      typeof window !== 'undefined' && 'IntersectionObserver' in window;
-
-    let observer: IntersectionObserver | null = null;
-
-    if (supportIntersectionObserver) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !hasPushedRef.current) {
-              initializeAd();
-            }
-          });
-        },
-        { threshold: 0.05 }
-      );
-
-      observer.observe(container);
+    // Try immediately
+    if (!pushAd()) {
+      // Retry until AdSense script loads (max 15s)
+      const start = Date.now();
+      const retry = () => {
+        if (Date.now() - start > 15000) {
+          setAdState('error');
+          return;
+        }
+        if (!pushAd()) {
+          timeoutId = setTimeout(retry, 300);
+        }
+      };
+      timeoutId = setTimeout(retry, 300);
     }
 
-    // Attempt immediately so ads load even if the observer hasn't fired yet
-    initializeAd();
-
-    // Cleanup function
     return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [position, slotId]);
+  }, [adKey, position, slotId]);
 
-  const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg w-full';
-    const positionClasses = {
-      top: 'mx-auto mb-6 min-h-[90px]',
-      side: 'mx-auto',
-      inline: 'mx-auto my-6 min-h-[250px]',
-      left: 'w-48 h-96 min-h-[250px]',
-      right: 'w-48 h-96 min-h-[250px]'
-    };
-
-    return `${baseClasses} ${positionClasses[position]} ${className}`;
+  const positionClasses: Record<string, string> = {
+    top: 'mx-auto mb-6 min-h-[90px]',
+    side: 'mx-auto',
+    inline: 'mx-auto my-6 min-h-[250px]',
+    left: 'w-48 h-96 min-h-[250px]',
+    right: 'w-48 h-96 min-h-[250px]',
   };
-
-  // Show different states for debugging
-  const showDebugInfo = process.env.NODE_ENV === 'development';
 
   return (
     <div
       ref={containerRef}
-      className={getContainerClasses()}
+      className={`w-full ${positionClasses[position]} ${className}`}
       data-ad-container="true"
       data-ad-state={adState}
     >
       <ins
+        key={adKey}
         ref={insRef}
         className="adsbygoogle"
         style={{ display: 'block', minHeight: '90px' }}
@@ -189,27 +113,6 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-      {adState !== 'loaded' && (
-        <div
-          className={`text-xs p-4 text-center ${
-            adState === 'error'
-              ? 'text-red-500'
-              : adState === 'blocked'
-              ? 'text-amber-500'
-              : 'text-gray-500'
-          }`}
-        >
-          {adState === 'blocked' && (
-            <div>Ad blocker detected</div>
-          )}
-          {adState === 'error' && (
-            <div>Ad failed to load</div>
-          )}
-          {showDebugInfo && adState === 'loading' && (
-            <div className="text-[10px]">Ad Placeholder ({position}) - Slot: {slotId || AD_SLOTS[position]}</div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
