@@ -53,28 +53,28 @@ export default function Navbar() {
                 <span>Units</span>
               </Link>
               <Link
-                href="/encoding"
-                className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-full hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
-                title="Encoding Tools"
+                href="/power"
+                className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-full hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
+                title="Power Converter"
               >
-                <span className="mr-1">🔐</span>
-                <span>Encoding</span>
+                <span className="mr-1">⚡</span>
+                <span>Power</span>
               </Link>
               <Link
-                href="/json"
-                className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-2 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
-                title="JSON Tools"
-              >
-                <span className="mr-1">📋</span>
-                <span>JSON</span>
-              </Link>
-              <Link
-                href="/text"
+                href="/cooking"
                 className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 px-3 py-2 rounded-full hover:bg-teal-200 dark:hover:bg-teal-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
-                title="Text Tools"
+                title="Cooking Converter"
               >
-                <span className="mr-1">📝</span>
-                <span>Text</span>
+                <span className="mr-1">👨‍🍳</span>
+                <span>Cooking</span>
+              </Link>
+              <Link
+                href="/fitness"
+                className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-full hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors font-medium touch-target focus-ring flex items-center"
+                title="Fitness Converter"
+              >
+                <span className="mr-1">💪</span>
+                <span>Fitness</span>
               </Link>
             </div>
             <ThemeSwitcher />
@@ -119,7 +119,7 @@ export default function Navbar() {
               
               {/* Quick Access Tools for Mobile */}
               <div className="py-2 border-t border-gray-200 dark:border-gray-700 mt-2">
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Quick Access</div>
+                <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Converters</div>
                 <div className="grid grid-cols-2 gap-2">
                   <Link
                     href="/unit-converter"
@@ -130,44 +130,44 @@ export default function Navbar() {
                     <span>Unit Converter</span>
                   </Link>
                   <Link
-                    href="/encoding"
-                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span className="mr-1">🔐</span>
-                    <span>Encoding</span>
-                  </Link>
-                  <Link
-                    href="/json"
-                    className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span className="mr-1">📋</span>
-                    <span>JSON</span>
-                  </Link>
-                  <Link
-                    href="/text"
-                    className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span className="mr-1">📝</span>
-                    <span>Text Tools</span>
-                  </Link>
-                  <Link
-                    href="/ai-tools"
-                    className="text-xs bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span className="mr-1">🤖</span>
-                    <span>AI Tools</span>
-                  </Link>
-                  <Link
                     href="/power"
                     className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <span className="mr-1">⚡</span>
                     <span>Power</span>
+                  </Link>
+                  <Link
+                    href="/cooking"
+                    className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">👨‍🍳</span>
+                    <span>Cooking</span>
+                  </Link>
+                  <Link
+                    href="/fitness"
+                    className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">💪</span>
+                    <span>Fitness</span>
+                  </Link>
+                  <Link
+                    href="/electricity-consumption"
+                    className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">🔌</span>
+                    <span>Electricity</span>
+                  </Link>
+                  <Link
+                    href="/fuel-economy"
+                    className="text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-2 rounded-lg text-center font-medium flex items-center justify-center"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="mr-1">⛽</span>
+                    <span>Fuel Economy</span>
                   </Link>
                 </div>
               </div>

@@ -160,9 +160,9 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
   const getContainerClasses = () => {
     const baseClasses = 'rounded-lg flex items-center justify-center w-full';
     const positionClasses = {
-      top: 'mx-auto mb-6',
+      top: 'mx-auto mb-6 min-h-[90px]',
       side: 'mx-auto',
-      inline: 'mx-auto my-6',
+      inline: 'mx-auto my-6 min-h-[250px]',
       left: 'w-48 h-96 min-h-[250px]',
       right: 'w-48 h-96 min-h-[250px]'
     };

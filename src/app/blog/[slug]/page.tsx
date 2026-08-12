@@ -3,6 +3,10 @@ import blogData from "@/data/blog-posts.json";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  return blogData.posts.map((post) => ({ slug: post.id }));
+}
+
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -44,8 +48,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
           name: "Unit Converter",
           url: "https://freeunitconvertor.com"
         },
-        datePublished: "2025-01-15",
-        dateModified: "2025-01-15",
+        datePublished: post.date || "2025-01-15",
+        dateModified: post.dateModified || post.date || "2025-01-15",
         url: `https://freeunitconvertor.com/blog/${slug}`
       })
     }

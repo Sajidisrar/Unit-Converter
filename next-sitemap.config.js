@@ -4,7 +4,13 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://freeunitconvertor.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ['/api/*'],
+  exclude: [
+    '/api/*',
+    '/json', '/xml', '/yaml', '/csv', '/hash-generator',
+    '/encoding', '/text', '/color-converter', '/ai-tools',
+    '/ocr-scanner', '/aws-practice-exam', '/developer',
+    '/blog/ai-prompt-engineering',
+  ],
   changefreq: 'daily',
   priority: 0.7,
   sitemapSize: 5000,
@@ -13,17 +19,17 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/*?from=', '/*?to=', '/*?*='],  // Block query parameter URLs
+        disallow: ['/*?from=', '/*?to='],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/*?from=', '/*?to=', '/*?*='],
+        disallow: ['/*?from=', '/*?to='],
       },
       {
         userAgent: 'Bingbot',
         allow: '/',
-        disallow: ['/*?from=', '/*?to=', '/*?*='],
+        disallow: ['/*?from=', '/*?to='],
       },
     ],
     additionalSitemaps: [
@@ -80,38 +86,6 @@ module.exports = {
         loc: path,
         changefreq: 'weekly',
         priority: 0.9,
-        lastmod: new Date().toISOString(),
-      }
-    }
-
-    // Consolidated developer tools - high priority (traffic drivers)
-    if (path === '/encoding' || path === '/text' || path === '/ai-tools' ||
-        path === '/json' || path === '/xml' || path === '/yaml' || path === '/csv' ||
-        path === '/hash-generator') {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: new Date().toISOString(),
-      }
-    }
-
-    // Learning & Practice tools - high priority
-    if (path === '/aws-practice-exam') {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: new Date().toISOString(),
-      }
-    }
-
-    // Developer hub and color converter - high priority
-    if (path.includes('/developer') || path.includes('/color-converter')) {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.8,
         lastmod: new Date().toISOString(),
       }
     }

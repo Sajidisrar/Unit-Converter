@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     title: 'Unit Converter - Convert Length, Weight, Temperature, Area, Speed',
     description: 'Free online unit converter for length, weight, temperature, area, and speed. Instant, accurate conversions between metric and imperial units.',
     type: 'website',
+    url: 'https://freeunitconvertor.com/unit-converter',
+  },
+  alternates: {
+    canonical: 'https://freeunitconvertor.com/unit-converter',
   },
 };
 

@@ -21,9 +21,9 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Tools */}
+          {/* Converters */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Tools</h3>
+            <h3 className="text-lg font-semibold mb-4">Converters</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/unit-converter" className="text-gray-400 hover:text-white transition-colors">
@@ -31,28 +31,28 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/encoding" className="text-gray-400 hover:text-white transition-colors">
-                  🔐 Encoding Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/json" className="text-gray-400 hover:text-white transition-colors">
-                  📋 JSON Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/text" className="text-gray-400 hover:text-white transition-colors">
-                  📝 Text Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai-tools" className="text-gray-400 hover:text-white transition-colors">
-                  🤖 AI Tools
-                </Link>
-              </li>
-              <li>
                 <Link href="/power" className="text-gray-400 hover:text-white transition-colors">
                   ⚡ Power Converter
+                </Link>
+              </li>
+              <li>
+                <Link href="/electricity-consumption" className="text-gray-400 hover:text-white transition-colors">
+                  🔌 Electricity Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/cooking" className="text-gray-400 hover:text-white transition-colors">
+                  👨‍🍳 Cooking Converter
+                </Link>
+              </li>
+              <li>
+                <Link href="/fitness" className="text-gray-400 hover:text-white transition-colors">
+                  💪 Fitness Converter
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-economy" className="text-gray-400 hover:text-white transition-colors">
+                  ⛽ Fuel Economy
                 </Link>
               </li>
             </ul>
@@ -65,6 +65,11 @@ export default function Footer() {
               <li>
                 <Link href="/" className="text-gray-400 hover:text-white transition-colors">
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -107,7 +112,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Unit Converter. All rights reserved.
+              © 2026 Unit Converter. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">

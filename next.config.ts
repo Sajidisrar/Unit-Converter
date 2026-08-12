@@ -4,25 +4,36 @@ const nextConfig: NextConfig = {
   output: "standalone",
   async redirects() {
     return [
-      // Unit converter consolidation redirects
+      // Unit converter consolidation redirects (legacy URLs)
       { source: '/length', destination: '/unit-converter', permanent: true },
       { source: '/weight', destination: '/unit-converter', permanent: true },
       { source: '/temperature', destination: '/unit-converter', permanent: true },
       { source: '/area', destination: '/unit-converter', permanent: true },
       { source: '/speed', destination: '/unit-converter', permanent: true },
 
-      // Encoding tools consolidation redirects
-      { source: '/base64-encoder-decoder', destination: '/encoding', permanent: true },
-      { source: '/jwt-decoder', destination: '/encoding', permanent: true },
-      { source: '/url-encoder-decoder', destination: '/encoding', permanent: true },
+      // Removed developer tools -- redirect to homepage
+      { source: '/json', destination: '/', permanent: true },
+      { source: '/json-prettier', destination: '/', permanent: true },
+      { source: '/xml', destination: '/', permanent: true },
+      { source: '/xml-formatter', destination: '/', permanent: true },
+      { source: '/yaml', destination: '/', permanent: true },
+      { source: '/csv', destination: '/', permanent: true },
+      { source: '/hash-generator', destination: '/', permanent: true },
+      { source: '/encoding', destination: '/', permanent: true },
+      { source: '/base64-encoder-decoder', destination: '/', permanent: true },
+      { source: '/jwt-decoder', destination: '/', permanent: true },
+      { source: '/url-encoder-decoder', destination: '/', permanent: true },
+      { source: '/text', destination: '/', permanent: true },
+      { source: '/regex-validator', destination: '/', permanent: true },
+      { source: '/text-compare', destination: '/', permanent: true },
+      { source: '/color-converter', destination: '/', permanent: true },
+      { source: '/ai-tools', destination: '/', permanent: true },
+      { source: '/ocr-scanner', destination: '/', permanent: true },
+      { source: '/aws-practice-exam', destination: '/', permanent: true },
+      { source: '/developer', destination: '/', permanent: true },
 
-      // Text tools consolidation redirects
-      { source: '/regex-validator', destination: '/text', permanent: true },
-      { source: '/text-compare', destination: '/text', permanent: true },
-
-      // Other tool redirects
-      { source: '/json-prettier', destination: '/json', permanent: true },
-      { source: '/xml-formatter', destination: '/xml', permanent: true },
+      // Removed blog posts
+      { source: '/blog/ai-prompt-engineering', destination: '/blog', permanent: true },
     ];
   },
 };

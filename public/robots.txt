@@ -3,21 +3,18 @@ User-agent: *
 Allow: /
 Disallow: /*?from=
 Disallow: /*?to=
-Disallow: /*?*=
 
 # Googlebot
 User-agent: Googlebot
 Allow: /
 Disallow: /*?from=
 Disallow: /*?to=
-Disallow: /*?*=
 
 # Bingbot
 User-agent: Bingbot
 Allow: /
 Disallow: /*?from=
 Disallow: /*?to=
-Disallow: /*?*=
 
 # Host
 Host: https://freeunitconvertor.com

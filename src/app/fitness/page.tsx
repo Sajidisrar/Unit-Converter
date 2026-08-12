@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Fitness Converter - Height, Weight & BMI Calculator",
     description:
       "Convert fitness units and calculate BMI easily. Includes height, weight, and body mass index tools.",
-    url: "https://yourdomain.com/fitness",
+    url: "https://freeunitconvertor.com/fitness",
     siteName: "Unit Converter",
     locale: "en_US",
     type: "website",
@@ -67,7 +67,7 @@ export default function FitnessPage() {
                 Track height and weight with conversions that support nutrition and training. Explore the <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit Converter</a> for mass and temperature conversions.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                Health data platforms often transform records via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and encode attachments using <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a>, which are core tasks across <b>AI artificial Intelligence</b> and <b>Data Science</b>.
+                Use our <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">unit converter</a> for additional weight and length conversions, or the <a href="/cooking" className="text-indigo-600 dark:text-indigo-400 hover:underline">cooking converter</a> for nutrition-related measurements.
               </p>
             </section>
   );

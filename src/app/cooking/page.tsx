@@ -43,7 +43,7 @@ export default function CookingPage({ searchParams }: { searchParams: { from?: s
           Convert cups, tablespoons, teaspoons, grams, and ounces for baking and meal prep. Pair with the <a href="/unit-converter" className="text-orange-600 dark:text-orange-400 hover:underline">Unit Converter</a> for ingredient weight tracking and temperature settings.
         </p>
         <p className="text-gray-600 dark:text-gray-300">
-          Recipe systems and nutrition apps often require unit conversions like <b>grams to cups</b>, <b>ml to tablespoons</b>, and <b>ounces to grams</b> for accurate calculations. Developers working on food-related apps may also use <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">JSON to CSV</a> for recipe datasets and <a href="/developer" className="text-orange-600 dark:text-orange-400 hover:underline">Base64 encoding</a> for storing recipe images, especially in <b>AI artificial intelligence</b> nutrition analysis and <b>data science pipelines</b>.
+          Recipe systems and nutrition apps often require unit conversions like <b>grams to cups</b>, <b>ml to tablespoons</b>, and <b>ounces to grams</b> for accurate calculations. Use our <a href="/unit-converter" className="text-orange-600 dark:text-orange-400 hover:underline">unit converter</a> for additional weight and volume conversions.
         </p>
       </section>
 

@@ -44,7 +44,7 @@ export default function FuelEconomyPage() {
               Convert MPG (US/UK), L/100km, and km/L for vehicles and fleet analytics. Combine with <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit Converter</a> for route planning.
             </p>
             <p className="text-gray-600 dark:text-gray-300">
-              Telematics and fleet <b>Data Science</b> pipelines frequently export telemetry via <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">json to csv</a> and compress payloads with <a href="/developer" className="text-indigo-600 dark:text-indigo-400 hover:underline">base64 encoding</a> for <b>AI artificial Intelligence</b> models.
+              For related conversions, try our <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">unit converter</a> for distance and speed calculations, or the <a href="/power" className="text-indigo-600 dark:text-indigo-400 hover:underline">power converter</a> for engine power comparisons.
             </p>
           </section>
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
