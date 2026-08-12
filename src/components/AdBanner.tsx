@@ -28,7 +28,7 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
   const insRef = useRef<HTMLModElement | null>(null);
   const hasPushedRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [adState, setAdState] = useState<'loading' | 'loaded' | 'error' | 'blocked'>('loading');
+  const [, setAdState] = useState<'loading' | 'loaded' | 'error' | 'blocked'>('loading');
 
   useEffect(() => {
     const container = containerRef.current;
@@ -38,18 +38,8 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       return;
     }
 
-    const isDev = process.env.NODE_ENV === 'development';
-    const isLocalhost = typeof window !== 'undefined' &&
-      (window.location.hostname === 'localhost' ||
-       window.location.hostname === '127.0.0.1' ||
-       window.location.hostname.startsWith('192.168.'));
-
-    // In development on localhost, AdSense won't work - show friendly message
-    if (isDev && isLocalhost) {
-      console.info(`[AdBanner] Development mode detected - ads won't load on localhost. Deploy to production to see ads.`);
-      setAdState('loading'); // Keep in loading state to show placeholder
-      return;
-    }
+    // No early return for localhost -- let AdSense load with data-adtest="on"
+    // so test ads display during development
 
     // Check for ad blocker
     const checkAdBlocker = () => {
@@ -170,54 +160,25 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
     return `${baseClasses} ${positionClasses[position]} ${className}`;
   };
 
-  // Show different states for debugging
-  const showDebugInfo = process.env.NODE_ENV === 'development';
+  const isTest = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' ||
+     window.location.hostname === '127.0.0.1');
 
   return (
     <div
       ref={containerRef}
       className={getContainerClasses()}
       data-ad-container="true"
-      data-ad-state={adState}
     >
-      {(showDebugInfo || adState !== 'loaded') && (
-        <div
-          className={`text-xs p-4 text-center ${
-            adState === 'error'
-              ? 'text-red-500'
-              : adState === 'blocked'
-              ? 'text-amber-500'
-              : 'text-gray-500'
-          }`}
-        >
-          {adState === 'blocked' && (
-            <>
-              <div className="font-semibold mb-1">🚫 Ad Blocker Detected</div>
-              <div>Ad blocker is preventing ads from loading</div>
-            </>
-          )}
-          {adState === 'error' && (
-            <>
-              <div className="font-semibold mb-1">⚠️ Ad Failed to Load</div>
-              <div>Check console for details</div>
-            </>
-          )}
-          {adState === 'loading' && (
-            <>
-              <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
-              <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
-              <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
-            </>
-          )}
-        </div>
-      )}
       <ins
         ref={insRef}
         className="adsbygoogle"
+        style={{ display: 'block' }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot={slotId || AD_SLOTS[position]}
         data-ad-format="auto"
         data-full-width-responsive="true"
+        {...(isTest ? { 'data-adtest': 'on' } : {})}
       />
     </div>
   );
