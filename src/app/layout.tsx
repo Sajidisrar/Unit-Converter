@@ -106,10 +106,9 @@ export default function RootLayout({
             `}
           </Script>
           <Script
-            async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3759958145886276"
             crossOrigin="anonymous"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
           />
           <Navbar />
           {children}

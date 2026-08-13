@@ -31,6 +31,13 @@ module.exports = {
         allow: '/',
         disallow: ['/*?from=', '/*?to='],
       },
+      // The AdSense crawler must reach every page it serves ads on, including
+      // converter URLs that carry ?from= / ?to= query parameters. Without this
+      // the wildcard disallow above applies and those slots come back unfilled.
+      {
+        userAgent: 'Mediapartners-Google',
+        allow: '/',
+      },
     ],
     additionalSitemaps: [
       'https://freeunitconvertor.com/sitemap.xml',
