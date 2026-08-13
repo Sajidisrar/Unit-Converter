@@ -21,11 +21,8 @@ export default function Home() {
           </header>
 
           {/* Ad Banner - Top */}
-          {/* DIAGNOSTIC: temporarily pointed at the "New Banner" unit (3361474127)
-              to isolate whether the existing units are at fault or ad serving is
-              limited account-wide. Revert to the default slot once answered. */}
           <div className="max-w-[1600px] mx-auto mb-6">
-            <AdBanner position="top" slotId="3361474127" />
+            <AdBanner position="top" />
           </div>
 
           {/* Converter Tools Grid */}
