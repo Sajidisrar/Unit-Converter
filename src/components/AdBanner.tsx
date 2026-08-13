@@ -23,155 +23,79 @@ const AD_SLOTS: Record<AdBannerProps['position'], string> = {
   right: '8294061635',
 };
 
+// 'loading' reserves space, 'loaded' lets the creative size itself, and
+// 'unfilled' / 'error' collapse the slot so no empty gap is left behind.
+type AdState = 'loading' | 'loaded' | 'unfilled' | 'error';
+
+// Test ads in development only. Derived from NODE_ENV rather than the
+// hostname so the server and client render the same markup.
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 export default function AdBanner({ position, className = '', slotId }: AdBannerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const insRef = useRef<HTMLModElement | null>(null);
   const hasPushedRef = useRef(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [adState, setAdState] = useState<'loading' | 'loaded' | 'error' | 'blocked'>('loading');
+  const [adState, setAdState] = useState<AdState>('loading');
 
   useEffect(() => {
-    const container = containerRef.current;
     const ins = insRef.current;
 
-    if (!container || !ins) {
+    if (!ins) {
       return;
     }
 
-    const isDev = process.env.NODE_ENV === 'development';
-    const isLocalhost = typeof window !== 'undefined' &&
-      (window.location.hostname === 'localhost' ||
-       window.location.hostname === '127.0.0.1' ||
-       window.location.hostname.startsWith('192.168.'));
+    // AdSense writes data-ad-status on the <ins> once the request resolves:
+    // 'filled' when a creative was returned, 'unfilled' when it had nothing
+    // to serve. Watching it is the only way to know a slot came back empty.
+    const readAdStatus = () => {
+      const status = ins.getAttribute('data-ad-status');
 
-    // In development on localhost, AdSense won't work - show friendly message
-    if (isDev && isLocalhost) {
-      console.info(`[AdBanner] Development mode detected - ads won't load on localhost. Deploy to production to see ads.`);
-      setAdState('loading'); // Keep in loading state to show placeholder
-      return;
-    }
+      if (status === 'filled') {
+        setAdState('loaded');
+      } else if (status === 'unfilled') {
+        setAdState('unfilled');
+      }
 
-    // Check for ad blocker
-    const checkAdBlocker = () => {
-      if (typeof window === 'undefined') return false;
-
-      // Simple ad blocker detection
-      const testDiv = document.createElement('div');
-      testDiv.innerHTML = '&nbsp;';
-      testDiv.className = 'adsbox';
-      testDiv.style.position = 'absolute';
-      testDiv.style.left = '-999px';
-      document.body.appendChild(testDiv);
-      const isBlocked = testDiv.offsetHeight === 0;
-      document.body.removeChild(testDiv);
-      return isBlocked;
+      if (IS_DEV && status) {
+        console.log(`[AdBanner] Slot ${slotId || AD_SLOTS[position]} (${position}): ${status}`);
+      }
     };
 
-    // Single initialization function
-    const initializeAd = () => {
-      // Clear any existing timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
+    const observer = new MutationObserver(readAdStatus);
+    observer.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
 
-      // Skip if already pushed
-      if (hasPushedRef.current) {
-        return;
-      }
+    // Covers the case where AdSense resolved this slot before we attached.
+    readAdStatus();
 
-      // Check if AdSense is loaded
-      if (typeof window === 'undefined' || !window.adsbygoogle) {
-        // Check for ad blocker
-        if (checkAdBlocker()) {
-          setAdState('blocked');
-          console.warn('[AdBanner] Ad blocker detected');
-          return;
-        }
-
-        // Retry after delay (max 10 seconds)
-        const startTime = Date.now();
-        const maxWaitTime = 10000; // 10 seconds
-
-        const retryInit = () => {
-          if (Date.now() - startTime > maxWaitTime) {
-            setAdState('error');
-            console.error('[AdBanner] AdSense script failed to load within timeout. Check your network or AdSense configuration.');
-            return;
-          }
-
-          if (window.adsbygoogle) {
-            initializeAd();
-          } else {
-            timeoutRef.current = setTimeout(retryInit, 200);
-          }
-        };
-
-        timeoutRef.current = setTimeout(retryInit, 200);
-        return;
-      }
-
-      // Push the ad
+    // This form creates the queue array when the script has not arrived yet,
+    // so AdSense drains it on load. No polling or readiness check is needed.
+    if (!hasPushedRef.current) {
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         hasPushedRef.current = true;
-        setAdState('loaded');
-        console.log(`[AdBanner] Ad initialized successfully for position: ${position}`);
       } catch (error) {
         setAdState('error');
         console.error('[AdBanner] Failed to push ad:', error);
       }
-    };
-
-    const supportIntersectionObserver =
-      typeof window !== 'undefined' && 'IntersectionObserver' in window;
-
-    let observer: IntersectionObserver | null = null;
-
-    if (supportIntersectionObserver) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !hasPushedRef.current) {
-              initializeAd();
-            }
-          });
-        },
-        { threshold: 0.05 }
-      );
-
-      observer.observe(container);
     }
 
-    // Attempt immediately so ads load even if the observer hasn't fired yet
-    initializeAd();
-
-    // Cleanup function
     return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      observer.disconnect();
     };
   }, [position, slotId]);
 
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg flex items-center justify-center w-full';
+    const baseClasses = 'rounded-lg w-full';
     const positionClasses = {
-      top: 'mx-auto mb-6',
-      side: 'mx-auto',
-      inline: 'mx-auto my-6',
+      top: 'mx-auto mb-6 min-h-[90px]',
+      side: 'mx-auto min-h-[250px]',
+      inline: 'mx-auto my-6 min-h-[90px]',
       left: 'w-48 h-96 min-h-[250px]',
       right: 'w-48 h-96 min-h-[250px]'
     };
 
     return `${baseClasses} ${positionClasses[position]} ${className}`;
   };
-
-  // Show different states for debugging
-  const showDebugInfo = process.env.NODE_ENV === 'development';
 
   return (
     <div
@@ -180,44 +104,15 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       data-ad-container="true"
       data-ad-state={adState}
     >
-      {(showDebugInfo || adState !== 'loaded') && (
-        <div
-          className={`text-xs p-4 text-center ${
-            adState === 'error'
-              ? 'text-red-500'
-              : adState === 'blocked'
-              ? 'text-amber-500'
-              : 'text-gray-500'
-          }`}
-        >
-          {adState === 'blocked' && (
-            <>
-              <div className="font-semibold mb-1">🚫 Ad Blocker Detected</div>
-              <div>Ad blocker is preventing ads from loading</div>
-            </>
-          )}
-          {adState === 'error' && (
-            <>
-              <div className="font-semibold mb-1">⚠️ Ad Failed to Load</div>
-              <div>Check console for details</div>
-            </>
-          )}
-          {adState === 'loading' && (
-            <>
-              <div className="font-semibold mb-1">📍 Ad Placeholder ({position})</div>
-              <div className="text-[10px] mt-1">Ads don&apos;t show on localhost in development mode</div>
-              <div className="text-[10px]">Slot ID: {slotId || AD_SLOTS[position]}</div>
-            </>
-          )}
-        </div>
-      )}
       <ins
         ref={insRef}
         className="adsbygoogle"
+        style={{ display: 'block', minHeight: '90px' }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot={slotId || AD_SLOTS[position]}
         data-ad-format="auto"
         data-full-width-responsive="true"
+        {...(IS_DEV ? { 'data-adtest': 'on' } : {})}
       />
     </div>
   );

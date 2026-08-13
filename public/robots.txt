@@ -16,6 +16,10 @@ Allow: /
 Disallow: /*?from=
 Disallow: /*?to=
 
+# Mediapartners-Google
+User-agent: Mediapartners-Google
+Allow: /
+
 # Host
 Host: https://freeunitconvertor.com
 

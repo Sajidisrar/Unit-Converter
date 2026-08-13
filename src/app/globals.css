@@ -172,63 +172,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ad banner styles - allow AdSense to control most properties */
+/* Ad banner styles - AdSense sets its own inline sizing on the <ins>,
+   so avoid !important width/height rules that fight responsive units. */
 .adsbygoogle {
-  display: block !important;
-  min-height: 90px !important;
-  position: relative;
-  width: 100%;
-}
-
-/* Ensure AdSense iframes and wrapper elements are visible */
-[data-ad-container] iframe,
-[data-ad-container] > div > iframe,
-[data-ad-container] ins + div iframe {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 1;
-}
-
-/* Ensure AdSense wrapper divs are visible */
-[data-ad-container] > div {
-  display: block !important;
-  visibility: visible !important;
+  display: block;
   position: relative;
   width: 100%;
 }
 
 /* Ad banner container styles */
 [data-ad-container] {
-  display: block !important;
+  display: block;
   position: relative;
-  min-height: 90px !important;
-  background-color: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  transition: background-color 200ms ease-in-out;
   overflow: visible;
   width: 100%;
 }
 
-/* Ensure container expands to fit ad content */
+/* A filled slot sizes itself to the creative */
 [data-ad-container][data-ad-state="loaded"] {
   min-height: auto;
-  background-color: transparent;
-  border-color: transparent;
 }
 
-/* Dark mode ad container */
-@media (prefers-color-scheme: dark) {
-  [data-ad-container] {
-    background-color: #1e293b;
-    border-color: #334155;
-  }
-
-  [data-ad-container][data-ad-state="loaded"] {
-    background-color: transparent;
-    border-color: transparent;
-  }
+/* AdSense returned no creative (or the push failed) - collapse the slot
+   rather than leaving reserved whitespace on the page. */
+[data-ad-container][data-ad-state="unfilled"],
+[data-ad-container][data-ad-state="error"] {
+  display: none;
 }
 
 /* ===== ENHANCED COMPONENT SYSTEM ===== */
