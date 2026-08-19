@@ -1,3 +1,5 @@
+import { ConversionType } from '@/types/conversions';
+
 // Length conversion functions
 export const lengthConversions: { [key: string]: number } = {
   // Base unit: meters
@@ -36,9 +38,9 @@ export const weightConversions: { [key: string]: number } = {
   'mg': 0.000001,        // milligram
   'g': 0.001,            // gram
   'kg': 1,               // kilogram
-  'oz': 0.0283495,       // ounce
-  'lb': 0.453592,        // pound
-  'st': 6.35029,         // stone
+  'oz': 0.028349523125,  // ounce (1/16 lb, exact)
+  'lb': 0.45359237,      // pound (exact, international avoirdupois)
+  'st': 6.35029318,      // stone (14 lb, exact)
   't': 1000,             // metric ton
 };
 
@@ -104,11 +106,11 @@ export const areaConversions: { [key: string]: number } = {
   'm2': 1,               // square meter
   'km2': 1000000,        // square kilometer
   'in2': 0.00064516,     // square inch
-  'ft2': 0.092903,       // square foot
-  'yd2': 0.836127,       // square yard
-  'ac': 4046.86,         // acre
+  'ft2': 0.09290304,     // square foot (0.3048^2, exact)
+  'yd2': 0.83612736,     // square yard (0.9144^2, exact)
+  'ac': 4046.8564224,    // acre (exact)
   'ha': 10000,           // hectare
-  'mi2': 2589988.11,     // square mile
+  'mi2': 2589988.110336, // square mile (1609.344^2, exact)
 };
 
 export const areaUnits = [
@@ -134,11 +136,11 @@ export function convertArea(value: number, fromUnit: string, toUnit: string): nu
 export const speedConversions: { [key: string]: number } = {
   // Base unit: meters per second
   'm/s': 1,              // meters per second
-  'km/h': 0.277778,     // kilometers per hour
+  'km/h': 1 / 3.6,      // kilometers per hour (exact)
   'mph': 0.44704,       // miles per hour
   'ft/s': 0.3048,       // feet per second
-  'knot': 0.514444,     // knot
-  'mach': 343,          // mach (speed of sound)
+  'knot': 1852 / 3600,  // knot (1 nmi/h, exact)
+  'mach': 343,          // mach (speed of sound in air at 20 C, approximate)
 };
 
 export const speedUnits = [
@@ -161,10 +163,10 @@ export const cookingConversions: { [key: string]: number } = {
   // Base unit: milliliters
   'ml': 1,               // milliliter
   'l': 1000,             // liter
-  'tsp': 4.92892,        // teaspoon
-  'tbsp': 14.7868,       // tablespoon
+  'tsp': 4.92892159375,  // teaspoon (US, exact)
+  'tbsp': 14.78676478125, // tablespoon (US, exact)
   'cup': 240,            // cup
-  'fl oz': 29.5735,      // fluid ounce
+  'fl oz': 29.5735295625, // fluid ounce (US, exact)
   'g': 1,                // gram (assuming water equivalence)
 };
 
@@ -218,9 +220,9 @@ export function calculateBMI(weightKg: number, heightCm: number): number {
 export function getBMICategory(bmi: number): string {
   if (bmi < 18.5) {
     return 'Underweight';
-  } else if (bmi < 24.9) {
+  } else if (bmi < 25) {
     return 'Normal weight';
-  } else if (bmi < 29.9) {
+  } else if (bmi < 30) {
     return 'Overweight';
   } else {
     return 'Obesity';
@@ -278,11 +280,11 @@ export const powerConversions: { [key: string]: number } = {
   'kW': 1000,                // kilowatt
   'MW': 1000000,             // megawatt
   'GW': 1000000000,          // gigawatt
-  'hp': 745.7,               // horsepower (mechanical)
-  'hp_metric': 735.499,       // horsepower (metric)
-  'BTU/h': 0.293071,         // BTU per hour
+  'hp': 745.6998715822702,   // horsepower (mechanical, exact)
+  'hp_metric': 735.49875,    // horsepower (metric, exact)
+  'BTU/h': 0.29307107017,    // BTU per hour (IT)
   'ft-lb/s': 1.35582,        // foot-pound per second
-  'cal/s': 4.184,            // calorie per second
+  'cal/s': 4.184,            // calorie per second (thermochemical, exact)
   'erg/s': 0.0000001,        // erg per second
 };
 
@@ -303,4 +305,269 @@ export function convertPower(value: number, fromUnit: string, toUnit: string): n
   // Convert to watts first, then to target unit
   const watts = value * powerConversions[fromUnit];
   return watts / powerConversions[toUnit];
+}
+
+// Volume conversion functions
+export const volumeConversions: { [key: string]: number } = {
+  // Base unit: litres
+  'ml': 0.001,                 // millilitre
+  'cl': 0.01,                  // centilitre
+  'l': 1,                      // litre
+  'm3': 1000,                  // cubic metre
+  'cm3': 0.001,                // cubic centimetre
+  'in3': 0.016387064,          // cubic inch (2.54^3, exact)
+  'ft3': 28.316846592,         // cubic foot (1728 in^3, exact)
+  'tsp': 0.00492892159375,     // teaspoon (US, exact)
+  'tbsp': 0.01478676478125,    // tablespoon (US, exact)
+  'flozUS': 0.0295735295625,   // fluid ounce (US, exact)
+  'flozUK': 0.0284130625,      // fluid ounce (UK, exact)
+  'cup': 0.2365882365,         // cup (US customary, 8 fl oz, exact)
+  'ptUS': 0.473176473,         // pint (US, exact)
+  'ptUK': 0.56826125,          // pint (UK, exact)
+  'qtUS': 0.946352946,         // quart (US, exact)
+  'galUS': 3.785411784,        // gallon (US, exact)
+  'galUK': 4.54609,            // gallon (UK, exact)
+};
+
+export const volumeUnits = [
+  { label: 'Millilitre (ml)', value: 'ml' },
+  { label: 'Centilitre (cl)', value: 'cl' },
+  { label: 'Litre (l)', value: 'l' },
+  { label: 'Cubic Metre (m³)', value: 'm3' },
+  { label: 'Cubic Centimetre (cm³)', value: 'cm3' },
+  { label: 'Cubic Inch (in³)', value: 'in3' },
+  { label: 'Cubic Foot (ft³)', value: 'ft3' },
+  { label: 'Teaspoon (US)', value: 'tsp' },
+  { label: 'Tablespoon (US)', value: 'tbsp' },
+  { label: 'Fluid Ounce (US)', value: 'flozUS' },
+  { label: 'Fluid Ounce (UK)', value: 'flozUK' },
+  { label: 'Cup (US)', value: 'cup' },
+  { label: 'Pint (US)', value: 'ptUS' },
+  { label: 'Pint (UK)', value: 'ptUK' },
+  { label: 'Quart (US)', value: 'qtUS' },
+  { label: 'Gallon (US)', value: 'galUS' },
+  { label: 'Gallon (UK)', value: 'galUK' },
+];
+
+export function convertVolume(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to litres first, then to target unit
+  const litres = value * volumeConversions[fromUnit];
+  return litres / volumeConversions[toUnit];
+}
+
+// Data storage conversion functions
+export const dataStorageConversions: { [key: string]: number } = {
+  // Base unit: bytes. Decimal (kB) and binary (KiB) prefixes both included --
+  // they differ by 2.4% at kB and over 9% by TB, which is the whole point.
+  'bit': 0.125,                // bit
+  'B': 1,                      // byte
+  'kB': 1e3,                   // kilobyte (decimal)
+  'MB': 1e6,                   // megabyte (decimal)
+  'GB': 1e9,                   // gigabyte (decimal)
+  'TB': 1e12,                  // terabyte (decimal)
+  'PB': 1e15,                  // petabyte (decimal)
+  'KiB': 1024,                 // kibibyte (binary)
+  'MiB': 1048576,              // mebibyte (binary)
+  'GiB': 1073741824,           // gibibyte (binary)
+  'TiB': 1099511627776,        // tebibyte (binary)
+};
+
+export const dataStorageUnits = [
+  { label: 'Bit (b)', value: 'bit' },
+  { label: 'Byte (B)', value: 'B' },
+  { label: 'Kilobyte (kB, 1000 B)', value: 'kB' },
+  { label: 'Megabyte (MB, 1000 kB)', value: 'MB' },
+  { label: 'Gigabyte (GB, 1000 MB)', value: 'GB' },
+  { label: 'Terabyte (TB, 1000 GB)', value: 'TB' },
+  { label: 'Petabyte (PB, 1000 TB)', value: 'PB' },
+  { label: 'Kibibyte (KiB, 1024 B)', value: 'KiB' },
+  { label: 'Mebibyte (MiB, 1024 KiB)', value: 'MiB' },
+  { label: 'Gibibyte (GiB, 1024 MiB)', value: 'GiB' },
+  { label: 'Tebibyte (TiB, 1024 GiB)', value: 'TiB' },
+];
+
+export function convertDataStorage(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to bytes first, then to target unit
+  const bytes = value * dataStorageConversions[fromUnit];
+  return bytes / dataStorageConversions[toUnit];
+}
+
+// Time conversion functions
+export const timeConversions: { [key: string]: number } = {
+  // Base unit: seconds
+  'ms': 0.001,                 // millisecond
+  's': 1,                      // second
+  'min': 60,                   // minute
+  'h': 3600,                   // hour
+  'day': 86400,                // day
+  'week': 604800,              // week
+  'month': 2629746,            // month (average Gregorian, 365.2425/12 days)
+  'year': 31556952,            // year (average Gregorian, 365.2425 days)
+};
+
+export const timeUnits = [
+  { label: 'Millisecond (ms)', value: 'ms' },
+  { label: 'Second (s)', value: 's' },
+  { label: 'Minute (min)', value: 'min' },
+  { label: 'Hour (h)', value: 'h' },
+  { label: 'Day', value: 'day' },
+  { label: 'Week', value: 'week' },
+  { label: 'Month (average)', value: 'month' },
+  { label: 'Year (average)', value: 'year' },
+];
+
+export function convertTime(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to seconds first, then to target unit
+  const seconds = value * timeConversions[fromUnit];
+  return seconds / timeConversions[toUnit];
+}
+
+// Pressure conversion functions
+export const pressureConversions: { [key: string]: number } = {
+  // Base unit: pascals
+  'Pa': 1,                        // pascal
+  'hPa': 100,                     // hectopascal
+  'kPa': 1000,                    // kilopascal
+  'MPa': 1e6,                     // megapascal
+  'bar': 100000,                  // bar
+  'mbar': 100,                    // millibar
+  'atm': 101325,                  // standard atmosphere (exact)
+  'psi': 6894.757293168361,       // pound per square inch
+  'torr': 101325 / 760,           // torr (1/760 atm, exact)
+  'mmHg': 133.322387415,          // millimetre of mercury (conventional)
+  'inHg': 3386.388640341,         // inch of mercury (conventional)
+};
+
+export const pressureUnits = [
+  { label: 'Pascal (Pa)', value: 'Pa' },
+  { label: 'Hectopascal (hPa)', value: 'hPa' },
+  { label: 'Kilopascal (kPa)', value: 'kPa' },
+  { label: 'Megapascal (MPa)', value: 'MPa' },
+  { label: 'Bar', value: 'bar' },
+  { label: 'Millibar (mbar)', value: 'mbar' },
+  { label: 'Atmosphere (atm)', value: 'atm' },
+  { label: 'Pound per Square Inch (psi)', value: 'psi' },
+  { label: 'Torr', value: 'torr' },
+  { label: 'Millimetre of Mercury (mmHg)', value: 'mmHg' },
+  { label: 'Inch of Mercury (inHg)', value: 'inHg' },
+];
+
+export function convertPressure(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to pascals first, then to target unit
+  const pascals = value * pressureConversions[fromUnit];
+  return pascals / pressureConversions[toUnit];
+}
+
+// Energy conversion functions
+export const energyConversions: { [key: string]: number } = {
+  // Base unit: joules
+  'J': 1,                          // joule
+  'kJ': 1000,                      // kilojoule
+  'MJ': 1e6,                       // megajoule
+  'cal': 4.184,                    // calorie (thermochemical, exact)
+  'kcal': 4184,                    // kilocalorie / food calorie (exact)
+  'Wh': 3600,                      // watt hour (exact)
+  'kWh': 3600000,                  // kilowatt hour (exact)
+  'BTU': 1055.05585262,            // British thermal unit (IT)
+  'ft-lb': 1.3558179483314004,     // foot-pound
+  'eV': 1.602176634e-19,           // electronvolt (exact, SI 2019)
+};
+
+export const energyUnits = [
+  { label: 'Joule (J)', value: 'J' },
+  { label: 'Kilojoule (kJ)', value: 'kJ' },
+  { label: 'Megajoule (MJ)', value: 'MJ' },
+  { label: 'Calorie (cal)', value: 'cal' },
+  { label: 'Kilocalorie (kcal)', value: 'kcal' },
+  { label: 'Watt Hour (Wh)', value: 'Wh' },
+  { label: 'Kilowatt Hour (kWh)', value: 'kWh' },
+  { label: 'British Thermal Unit (BTU)', value: 'BTU' },
+  { label: 'Foot-pound (ft-lb)', value: 'ft-lb' },
+  { label: 'Electronvolt (eV)', value: 'eV' },
+];
+
+export function convertEnergy(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to joules first, then to target unit
+  const joules = value * energyConversions[fromUnit];
+  return joules / energyConversions[toUnit];
+}
+
+// Angle conversion functions
+export const angleConversions: { [key: string]: number } = {
+  // Base unit: radians
+  'rad': 1,                        // radian
+  'mrad': 0.001,                   // milliradian
+  'deg': Math.PI / 180,            // degree
+  'grad': Math.PI / 200,           // gradian
+  'arcmin': Math.PI / 10800,       // arcminute (1/60 degree)
+  'arcsec': Math.PI / 648000,      // arcsecond (1/3600 degree)
+  'turn': 2 * Math.PI,             // full turn / revolution
+};
+
+export const angleUnits = [
+  { label: 'Radian (rad)', value: 'rad' },
+  { label: 'Milliradian (mrad)', value: 'mrad' },
+  { label: 'Degree (°)', value: 'deg' },
+  { label: 'Gradian (gon)', value: 'grad' },
+  { label: 'Arcminute (′)', value: 'arcmin' },
+  { label: 'Arcsecond (″)', value: 'arcsec' },
+  { label: 'Turn (revolution)', value: 'turn' },
+];
+
+export function convertAngle(value: number, fromUnit: string, toUnit: string): number {
+  // Convert to radians first, then to target unit
+  const radians = value * angleConversions[fromUnit];
+  return radians / angleConversions[toUnit];
+}
+
+// Single dispatch point for every conversion family. Both the Calculator
+// component and the useConverter hook route through this, so a new converter
+// only has to be registered once.
+export function convertByType(
+  conversionType: ConversionType,
+  value: number,
+  fromUnit: string,
+  toUnit: string
+): number {
+  switch (conversionType) {
+    case 'length':
+      return convertLength(value, fromUnit, toUnit);
+    case 'weight':
+    case 'fitnessWeight':
+      return convertWeight(value, fromUnit, toUnit);
+    case 'temperature':
+      return convertTemperature(value, fromUnit, toUnit);
+    case 'area':
+      return convertArea(value, fromUnit, toUnit);
+    case 'speed':
+      return convertSpeed(value, fromUnit, toUnit);
+    case 'height':
+      return convertHeight(value, fromUnit, toUnit);
+    case 'cooking':
+      return convertCooking(value, fromUnit, toUnit);
+    case 'fuelEconomy':
+      return convertFuelEconomy(value, fromUnit, toUnit);
+    case 'power':
+      return convertPower(value, fromUnit, toUnit);
+    case 'volume':
+      return convertVolume(value, fromUnit, toUnit);
+    case 'dataStorage':
+      return convertDataStorage(value, fromUnit, toUnit);
+    case 'time':
+      return convertTime(value, fromUnit, toUnit);
+    case 'pressure':
+      return convertPressure(value, fromUnit, toUnit);
+    case 'energy':
+      return convertEnergy(value, fromUnit, toUnit);
+    case 'angle':
+      return convertAngle(value, fromUnit, toUnit);
+    case 'bmi': {
+      // BMI is not a unit conversion: value is weight in kg and toUnit
+      // carries height in cm as a string.
+      const heightM = Number(toUnit) / 100;
+      return heightM > 0 ? value / (heightM * heightM) : 0;
+    }
+    default:
+      return 0;
+  }
 }

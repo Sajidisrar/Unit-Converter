@@ -1,17 +1,7 @@
 'use client';
 
 import { ConversionResult, ConversionType } from '@/types/conversions';
-import {
-    convertArea,
-    convertCooking,
-    convertFuelEconomy,
-    convertHeight,
-    convertLength,
-    convertPower,
-    convertSpeed,
-    convertTemperature,
-    convertWeight
-} from '@/utils/conversions';
+import { convertByType } from '@/utils/conversions';
 import { validateConversionInput } from '@/utils/validation';
 import { useCallback, useMemo, useState } from 'react';
 
@@ -24,41 +14,9 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
   const [inputValue, setInputValue] = useState<string>('');
   const [fromUnit, setFromUnit] = useState<string>('');
   const [toUnit, setToUnit] = useState<string>('');
-  const [error, setError] = useState<string>('');
 
   const convertValue = useCallback((value: number, from: string, to: string): number => {
-    switch (conversionType) {
-      case 'length':
-        return convertLength(value, from, to);
-      case 'weight':
-        return convertWeight(value, from, to);
-      case 'temperature':
-        return convertTemperature(value, from, to);
-      case 'area':
-        return convertArea(value, from, to);
-      case 'speed':
-        return convertSpeed(value, from, to);
-      case 'height':
-        return convertHeight(value, from, to);
-      case 'cooking':
-        return convertCooking(value, from, to);
-      case 'fuelEconomy':
-        return convertFuelEconomy(value, from, to);
-      case 'power':
-        return convertPower(value, from, to);
-      case 'fitnessWeight':
-        return convertWeight(value, from, to);
-      case 'bmi': {
-        // Special case for BMI calculation
-        const heightM = Number(to) / 100;
-        if (heightM > 0) {
-          return value / (heightM * heightM);
-        }
-        return 0;
-      }
-      default:
-        return 0;
-    }
+    return convertByType(conversionType, value, from, to);
   }, [conversionType]);
 
   const result = useMemo((): ConversionResult => {
@@ -76,7 +34,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     // Validate input
     const validation = validateConversionInput(inputValue, fromUnit, toUnit, availableUnits);
     if (!validation.isValid) {
-      setError(validation.error || 'Invalid input');
       return {
         value: 0,
         fromUnit,
@@ -90,8 +47,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     try {
       const numValue = Number(inputValue);
       const convertedValue = convertValue(numValue, fromUnit, toUnit);
-      
-      setError('');
       return {
         value: numValue,
         fromUnit,
@@ -101,7 +56,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
       };
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Conversion failed';
-      setError(errorMessage);
       return {
         value: Number(inputValue),
         fromUnit,
@@ -117,7 +71,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     setInputValue('');
     setFromUnit('');
     setToUnit('');
-    setError('');
   }, []);
 
   const copyResult = useCallback(async (): Promise<boolean> => {
@@ -139,7 +92,7 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     setFromUnit,
     toUnit,
     setToUnit,
-    error,
+    error: result.error ?? '',
     result,
     reset,
     copyResult

@@ -1,9 +1,11 @@
 "use client";
 
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Calculator from "@/components/Calculator";
+import { getCategoryLabel, getToolByUrl } from "@/constants/tools";
 import { ConversionType } from "@/types/conversions";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface Unit {
   label: string;
@@ -18,6 +20,8 @@ interface ConverterPageClientProps {
   defaultFromUnit?: string;
   seoContent?: ReactNode;
   faqContent?: ReactNode;
+  /** Registry URL for this tool, used to build the breadcrumb trail. */
+  toolUrl?: string;
 }
 
 export default function ConverterPageClient({
@@ -28,15 +32,38 @@ export default function ConverterPageClient({
   defaultFromUnit,
   seoContent,
   faqContent,
+  toolUrl,
 }: ConverterPageClientProps) {
+  const tool = toolUrl ? getToolByUrl(toolUrl) : undefined;
+  // Resolve ?from= on the client. Reading it on the server would opt the whole
+  // page out of static rendering for a parameter robots.txt already disallows.
+  const [fromUnit, setFromUnit] = useState(defaultFromUnit);
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('from');
+
+    if (requested && units.some((unit) => unit.value === requested)) {
+      setFromUnit(requested);
+    }
+  }, [units]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="page-ground">
       <div className="container mx-auto px-4 py-8">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+        {tool && (
+          <Breadcrumbs
+            trail={[
+              { name: getCategoryLabel(tool.category) },
+              { name: tool.name, url: tool.url },
+            ]}
+          />
+        )}
+        <header className="mb-10 max-w-3xl">
+          {tool && <p className="eyebrow mb-3">{getCategoryLabel(tool.category)}</p>}
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-gray-900 dark:text-white mb-4">
             {title}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
             {subtitle}
           </p>
         </header>
@@ -50,7 +77,7 @@ export default function ConverterPageClient({
             title={`${title} Tool`}
             units={units}
             conversionType={conversionType}
-            initialFromUnit={defaultFromUnit || units[0]?.value}
+            initialFromUnit={fromUnit || units[0]?.value}
           />
 
           <div className="mt-8">

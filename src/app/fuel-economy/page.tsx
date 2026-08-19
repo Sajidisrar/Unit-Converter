@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function FuelEconomyPage() {
   const content = (
     <>
-      <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+      <section className="card-panel p-8 mt-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">How to Convert MPG to L/100km</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Converting between MPG and L/100km is essential for comparing fuel efficiency across different regions. Use our converter above for instant results.
@@ -47,7 +47,7 @@ export default function FuelEconomyPage() {
               For related conversions, try our <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">unit converter</a> for distance and speed calculations, or the <a href="/power" className="text-indigo-600 dark:text-indigo-400 hover:underline">power converter</a> for engine power comparisons.
             </p>
           </section>
-          <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+          <section className="card-panel p-8 mt-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               Frequently Asked Questions
             </h2>

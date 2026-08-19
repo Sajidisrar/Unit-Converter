@@ -61,7 +61,7 @@ const faqs = [
 
 export default function FitnessPage() {
   const seoContent = (
-    <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+    <section className="card-panel p-8 mt-8">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fitness Conversion Insights</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 Track height and weight with conversions that support nutrition and training. Explore the <a href="/unit-converter" className="text-indigo-600 dark:text-indigo-400 hover:underline">Unit Converter</a> for mass and temperature conversions.
@@ -75,7 +75,7 @@ export default function FitnessPage() {
   const faqContent = (
     <section className="mt-12">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Fitness Converter FAQ</h2>
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+              <div className="card-panel p-8 mt-8">
                 <div className="space-y-4">
                   {faqs.map((faq, idx) => (
                     <div key={idx}>

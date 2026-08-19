@@ -51,9 +51,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function PowerPage({ searchParams }: { searchParams: Promise<{ from?: string }> }) {
-  const params = await searchParams;
-  const defaultFromUnit = params.from || "W";
+export default function PowerPage() {
+  const defaultFromUnit = "W";
 
   const seoContent = (
     <section className="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
@@ -81,7 +80,7 @@ export default async function PowerPage({ searchParams }: { searchParams: Promis
   );
 
   const faqContent = (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <div className="card-panel p-8">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
         Frequently Asked Questions - Power Conversion
       </h2>
@@ -153,6 +152,7 @@ export default async function PowerPage({ searchParams }: { searchParams: Promis
       defaultFromUnit={defaultFromUnit}
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/power"
     />
   );
 }

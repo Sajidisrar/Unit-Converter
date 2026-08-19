@@ -1,17 +1,7 @@
 'use client';
 
 import { ConversionType } from '@/types/conversions';
-import {
-    convertArea,
-    convertCooking,
-    convertFuelEconomy,
-    convertHeight,
-    convertLength,
-    convertPower,
-    convertSpeed,
-    convertTemperature,
-    convertWeight
-} from '@/utils/conversions';
+import { convertByType } from '@/utils/conversions';
 import { validateNumberInput } from '@/utils/validation';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -42,40 +32,7 @@ export default function Calculator({ title, units, conversionType, initialFromUn
 
   // Conversion functions
   const convertValue = useCallback((value: number, fromUnit: string, toUnit: string): number => {
-    switch (conversionType) {
-      case 'length':
-        return convertLength(value, fromUnit, toUnit);
-      case 'weight':
-        return convertWeight(value, fromUnit, toUnit);
-      case 'temperature':
-        return convertTemperature(value, fromUnit, toUnit);
-      case 'area':
-        return convertArea(value, fromUnit, toUnit);
-      case 'speed':
-        return convertSpeed(value, fromUnit, toUnit);
-      case 'height':
-        return convertHeight(value, fromUnit, toUnit);
-      case 'cooking':
-        return convertCooking(value, fromUnit, toUnit);
-      case 'fuelEconomy':
-        return convertFuelEconomy(value, fromUnit, toUnit);
-      case 'power':
-        return convertPower(value, fromUnit, toUnit);
-      case 'fitnessWeight':
-        return convertWeight(value, fromUnit, toUnit);
-      case 'bmi': {
-        // value is weight in kg
-        // fromUnit is height in cm (string)
-        const heightM = Number(toUnit) / 100;
-        if (heightM > 0) {
-          return value / (heightM * heightM);
-        } else {
-          return 0;
-        }
-      }
-      default:
-        return 0;
-    }
+    return convertByType(conversionType, value, fromUnit, toUnit);
   }, [conversionType]);
 
   // Auto convert on change

@@ -4,13 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 application providing free online unit conversion tools and developer utilities. The site offers two main categories: **Unit Converters** (length, weight, temperature, area, speed, power, cooking) and **Developer Tools** (JSON formatter, Base64 encoder/decoder, JWT decoder, regex validator, etc.).
+This is a Next.js 15 application providing free online unit conversion tools. It covers measurement (length, weight, temperature, area, speed, volume, time, pressure, angle), energy and power, cooking, fitness, fuel economy and data storage, plus hand-written landing pages for high-intent conversion pairs such as `/kg-to-lbs`.
+
+The developer tools that once lived here (JSON, YAML, XML, CSV, Base64, JWT, regex, colour, OCR, AWS exam) were removed to align with the freeunitconvertor.com domain. Their URLs are 301-redirected to `/` in `next.config.ts`; do not reintroduce them without revisiting that decision.
 
 The application uses:
 - **Next.js 15** with App Router and React 19
 - **TypeScript** with strict type checking
 - **Tailwind CSS v4** with custom design token system
-- **Turbopack** for faster development and builds
+- **Turbopack** for development only. The production build uses webpack: a Turbopack production build emits server chunks that fail to instantiate under `next start` with `output: "standalone"`.
 - Vercel Analytics for tracking
 - Google AdSense for monetization
 
@@ -34,8 +36,12 @@ npm run lint:check        # Lint with zero warnings allowed (used in pre-commit)
 # Type checking
 npm run type-check        # Run TypeScript compiler check
 
-# Pre-commit validation (runs both)
-npm run check-all         # Runs type-check + lint:check
+# Tests (Vitest)
+npm run test              # Run the conversion test suite
+npm run test:watch        # Watch mode
+
+# Pre-commit validation
+npm run check-all         # type-check + lint:check + test
 ```
 
 ## Architecture & Code Organization
@@ -73,19 +79,28 @@ src/
 - Each conversion type (length, weight, temperature, etc.) uses a base unit approach
 - Conversions always go: `fromUnit → baseUnit → toUnit`
 - Example: Converting inches to feet: `inches → meters → feet`
-- The `useConverter` hook provides a unified interface for all converter pages
+- `convertByType(conversionType, value, from, to)` is the single dispatch point. Both `Calculator` and the `useConverter` hook route through it, so a new converter is registered once
+- Temperature is affine (slope and offset), not a plain ratio. Anything that assumes a single multiplication factor must special-case it
+- Use exact definitional constants, not rounded ones: a foot is exactly 0.3048 m, a pound exactly 0.45359237 kg. `src/utils/conversions.test.ts` asserts these to ten decimal places
+- `Calculator` is the live calculator component. `useConverter` currently has no consumer
 
 **Component Patterns**:
-- `ConverterLayout` is the shared layout wrapper for all converter pages
-- Converter pages follow a consistent pattern: use `useConverter` hook + `ConverterLayout` component
-- Shared components in `components/shared/` are designed to be reusable across tools
+- `ConverterPageClient` is the shell for tool pages: heading, calculator, ads, SEO content and FAQs. Pass `toolUrl` so it can render breadcrumbs from the registry
+- `ConversionPairPage` is the shell for conversion-pair landing pages. It computes its factor, worked example and table rows via `convertByType`, so published numbers cannot drift from the tool
+- `FaqSection` renders questions and their FAQPage schema together, so the two cannot fall out of sync. `ConversionTable` and `RelatedTools` are the other shared content blocks
+- `ConverterLayout` exists but no live page uses it
 - Ad banner placement is handled via the `AdBanner` component with positioning props
 
 **Tool Registration**:
-- All tools are registered in `src/constants/tools.ts` in the `allTools` array
-- Each tool requires: name, url, icon, category, description
-- Tools are automatically categorized and displayed on the homepage
-- Adding a new tool requires: creating the page + adding entry to `allTools`
+- `src/constants/tools.ts` is the single source of truth. The navbar, footer, homepage grid, breadcrumbs and related-tool blocks all derive from it — never hardcode a tool list
+- Each tool requires: name, url, icon, category, description, keywords. Optional: relatedPosts, featured
+- `popularConversions` in the same file registers the conversion-pair landing pages so they are linked from the footer and homepage rather than orphaned
+- Adding a new tool: create the page, add the entry to `allTools`
+
+**Ad placement**:
+- AdSense fills only the *first* occurrence of a slot ID on a page; later duplicates return `unfilled`. `AD_SLOTS` in `src/components/AdBanner.tsx` maps positions to IDs, and several positions currently share one
+- Never render the same position twice on a page. `AdBanner` reference-counts mounted slots and warns, but the fix belongs at the call site
+- Verify after changes: build, then check no page's HTML contains a repeated `data-ad-slot`
 
 ### Type System
 
@@ -151,16 +166,18 @@ The project uses Tailwind CSS v4 with a custom design token system defined in `g
 - Structured data (JSON-LD) is used throughout for SEO
 
 **Build Configuration**:
-- Turbopack enabled for dev and build
+- Turbopack for dev only; production builds use webpack (see Project Overview)
 - Standalone output mode for optimized deployments
-- Sitemap generation runs post-build
+- Sitemap generation runs post-build via the `postbuild` script. `next-sitemap.config.js` derives `lastmod` from git history, so it reflects real content dates
+- `public/sitemap.xml` is generated output and is gitignored
 
 ## Testing & Validation
 
 Before committing:
-1. Run `npm run check-all` to validate both types and linting
-2. Pre-commit hooks will enforce this automatically
-3. Build the project with `npm run build` to catch build-time issues
+1. Run `npm run check-all` — type-check, lint and the Vitest suite
+2. Pre-commit hooks enforce this automatically
+3. Build with `npm run build` to catch build-time issues
+4. Any change to `src/utils/conversions.ts` needs test coverage. Assert against exact definitional values, not the current output
 
 ## Deployment
 

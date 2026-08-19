@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <p className="text-gray-600 dark:text-gray-300">Your privacy matters. This page explains how we handle your data.</p>
         </header>
 
-        <main className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 space-y-6">
+        <main className="max-w-3xl mx-auto card-panel p-8 space-y-6">
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Information We Collect</h2>
             <p className="text-gray-700 dark:text-gray-300">

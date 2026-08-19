@@ -103,7 +103,7 @@ export default function ElectricityConsumptionClient() {
   }, {} as Record<string, typeof appliances>);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="page-ground">
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
@@ -121,7 +121,7 @@ export default function ElectricityConsumptionClient() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 overflow-hidden">
             {/* Appliance Selection */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 min-w-0">
+            <div className="card-panel p-6 min-w-0">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Select Appliances
               </h2>
@@ -185,7 +185,7 @@ export default function ElectricityConsumptionClient() {
             </div>
 
             {/* Selected Appliances & Calculations */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 min-w-0">
+            <div className="card-panel p-6 min-w-0">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 Your Appliances
               </h2>
@@ -325,7 +325,7 @@ export default function ElectricityConsumptionClient() {
           </section>
 
           {/* FAQ Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="card-panel p-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
               Frequently Asked Questions - Electricity Consumption
             </h2>

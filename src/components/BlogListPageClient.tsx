@@ -22,7 +22,7 @@ export default function BlogListPageClient({ posts }: BlogListPageClientProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
-        <header className="text-center mb-12">
+        <header className="mb-10 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             Unit Converter Blog
           </h1>
@@ -39,7 +39,7 @@ export default function BlogListPageClient({ posts }: BlogListPageClientProps) {
           {/* Featured Article */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Featured Article</h2>
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="card-panel overflow-hidden">
               <div className="md:flex">
                 <div className="md:w-1/3 bg-gradient-to-br from-blue-500 to-purple-600 p-8 flex items-center justify-center">
                   <div className="text-6xl">📝</div>
@@ -77,7 +77,7 @@ export default function BlogListPageClient({ posts }: BlogListPageClientProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {otherPosts.map((article) => (
                 <Link key={article.id} href={`/blog/${article.id}`} className="group">
-                  <article className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
+                  <article className="card-panel overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
                     <div className="p-6">
                       <div className="flex items-center space-x-4 mb-4">
                         <span className="text-3xl group-hover:scale-110 transition-transform duration-300">📝</span>
@@ -104,7 +104,7 @@ export default function BlogListPageClient({ posts }: BlogListPageClientProps) {
           </section>
 
           {/* Categories Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12">
+          <section className="card-panel p-8 mb-12">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Browse by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Link href="/blog?category=guides" className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 text-center hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">

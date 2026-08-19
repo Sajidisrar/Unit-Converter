@@ -60,7 +60,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
           </div>
 
           {/* Article Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+          <div className="card-panel p-8 mb-8">
             <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-800 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-strong:text-gray-900 dark:prose-strong:text-white prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-blue-600 dark:prose-code:text-blue-400 prose-pre:bg-gray-100 dark:prose-pre:bg-gray-900 prose-blockquote:border-blue-500 prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 prose-th:text-gray-900 dark:prose-th:text-white prose-td:text-gray-700 dark:prose-td:text-gray-300">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {post.content}
@@ -94,7 +94,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
 
           {/* Ad Banner before CTA */}
           <div className="mt-8 mb-8">
-            <AdBanner position="inline" />
+            <AdBanner position="article-end" />
           </div>
 
           {/* Call to Action */}
