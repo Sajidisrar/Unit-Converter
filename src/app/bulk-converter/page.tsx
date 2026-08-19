@@ -6,15 +6,24 @@ import RelatedTools from "@/components/shared/RelatedTools";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bulk Unit Converter - Convert a Whole List at Once",
+  // Title leads with the head term and covers the two phrasings people
+  // actually search: "bulk unit converter" and "batch convert".
+  title: "Bulk Unit Converter - Batch Convert a List of Values at Once",
   description:
-    "Paste a column of values and convert them all at once. Handles length, weight, temperature, volume, energy and more, with CSV download and copy to clipboard.",
+    "Paste a spreadsheet column and batch convert hundreds of values in one go. Length, weight, temperature, volume, energy and more, with CSV export and copy to clipboard.",
   alternates: { canonical: "https://freeunitconvertor.com/bulk-converter" },
   openGraph: {
-    title: "Bulk Unit Converter - Convert a Whole List at Once",
+    title: "Bulk Unit Converter - Batch Convert a List of Values at Once",
     description:
-      "Paste a column of values and convert them all at once, then copy the results or download a CSV.",
+      "Paste a column from Excel or Google Sheets and convert every value at once, then copy the results or download a CSV.",
     url: "https://freeunitconvertor.com/bulk-converter",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Bulk Unit Converter - Batch Convert a List of Values",
+    description:
+      "Convert a whole column of measurements at once. CSV export, nothing uploaded.",
   },
 };
 
@@ -30,8 +39,8 @@ export default function BulkConverterPage() {
             Bulk Unit Converter
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-            Convert a whole column of values in one go. Paste from a spreadsheet, pick your units,
-            and copy the results back or download them as CSV.
+            Batch convert a whole column of measurements in one go. Paste straight from Excel or
+            Google Sheets, pick your units, then copy the results back or download them as CSV.
           </p>
         </header>
 
@@ -67,10 +76,50 @@ export default function BulkConverterPage() {
             </div>
           </section>
 
+          <section className="card-panel p-8 my-8">
+            <p className="eyebrow mb-2">Working from a spreadsheet</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+              Converting an Excel or Google Sheets column
+            </h2>
+            <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
+              <p>
+                Spreadsheets can convert units with a formula, but only if you know the factor and
+                are willing to add a helper column. For a one-off job it is usually quicker to
+                select the column, copy it, and paste it here.
+              </p>
+              <ol className="list-decimal pl-5 space-y-2">
+                <li>Select the cells you want to convert and copy them.</li>
+                <li>Paste into the box above — one value per row is handled automatically.</li>
+                <li>Choose the unit you are converting from and to.</li>
+                <li>
+                  Copy the results back into an adjacent column, or download the CSV if you would
+                  rather keep the original and converted values side by side.
+                </li>
+              </ol>
+              <p>
+                Common uses: converting a parts list from inches to millimetres, a set of weights
+                from pounds to kilograms, sensor readings from Fahrenheit to Celsius, or file sizes
+                between gigabytes and gibibytes. Anything the{" "}
+                <a href="/unit-converter" className="text-[var(--accent)] hover:underline">single-value converters</a>{" "}
+                handle works here too — every converter page also has a bulk tab.
+              </p>
+            </div>
+          </section>
+
           <AdBanner position="inline" />
 
           <FaqSection
             entries={[
+              {
+                question: "How do I convert multiple values at once?",
+                answer:
+                  "Paste them into the box above, one per line or separated by commas. Every value is converted as you type, so there is no button to press and no limit on how many times you can change the units.",
+              },
+              {
+                question: "Can I batch convert a column from Excel or Google Sheets?",
+                answer:
+                  "Yes. Select the cells, copy, and paste straight in — a copied spreadsheet column arrives as one value per line and is handled without reformatting. Download CSV gives you the input and output side by side to paste back.",
+              },
               {
                 question: "How many values can I convert at once?",
                 answer:

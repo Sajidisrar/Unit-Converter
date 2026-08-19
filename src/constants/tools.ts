@@ -45,7 +45,16 @@ export const allTools: ToolConfig[] = [
     icon: "📋",
     category: "measurement",
     description: "Convert a whole column of values at once, with CSV export",
-    keywords: ["bulk unit converter", "convert a list of values", "batch conversion", "csv unit converter"],
+    keywords: [
+      "bulk unit converter",
+      "batch convert units",
+      "convert multiple values at once",
+      "convert a list of measurements",
+      "spreadsheet unit converter",
+      "excel unit conversion",
+      "csv unit converter",
+      "convert a column of values",
+    ],
   },
   {
     name: "Angle Converter",
@@ -151,6 +160,26 @@ export const toolCategories: { id: ToolCategory; label: string }[] = [
 export const toolsByCategory = toolCategories.map((category) => ({
   ...category,
   tools: allTools.filter((tool) => tool.category === category.id),
+}));
+
+// Navbar grouping only. The six categories above stay as they are, because
+// they give precise breadcrumbs ("Home / Kitchen / Cooking Converter") and a
+// granular footer. Four of them hold one or two tools, though, which made six
+// top-level dropdowns wrap onto two lines on a 1280px laptop.
+//
+// This is presentation, not structure: the category labels render as <button>
+// and carry no href, so collapsing them removes no link and no anchor text.
+// Every tool is still listed, and the footer still lists all of them by
+// category on every page.
+export const navGroups: { label: string; categories: ToolCategory[] }[] = [
+  { label: 'Measurement', categories: ['measurement'] },
+  { label: 'Energy & Power', categories: ['energy'] },
+  { label: 'Everyday', categories: ['kitchen', 'health', 'motoring', 'data'] },
+];
+
+export const toolsByNavGroup = navGroups.map((group) => ({
+  ...group,
+  tools: allTools.filter((tool) => group.categories.includes(tool.category)),
 }));
 
 export const featuredTools = allTools.filter((tool) => tool.featured);

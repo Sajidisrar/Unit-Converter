@@ -60,7 +60,11 @@ export interface ToolConfig {
   icon: string;
   category: ToolCategory;
   description: string;
-  /** Search terms this tool should answer for. Used in page metadata. */
+  /**
+   * Search intents this tool should answer. Reference for whoever writes the
+   * page copy -- deliberately NOT emitted as a keywords meta tag, which every
+   * major engine ignores and which reads as stuffing.
+   */
   keywords: string[];
   /** blog-posts.json ids to cross-link from this tool's page. */
   relatedPosts?: string[];

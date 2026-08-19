@@ -1,4 +1,4 @@
-import { toolsByCategory } from '@/constants/tools';
+import { toolsByNavGroup } from '@/constants/tools';
 import Link from 'next/link';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
@@ -31,8 +31,8 @@ export default function Navbar() {
               Home
             </Link>
 
-            {toolsByCategory.map((category) => (
-              <div key={category.id} className="relative group">
+            {toolsByNavGroup.map((category) => (
+              <div key={category.label} className="relative group">
                 <button
                   type="button"
                   className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-ring rounded-md px-2 py-1"
@@ -93,8 +93,8 @@ export default function Navbar() {
           <div className="pt-2 border-t border-gray-200 dark:border-gray-700 space-y-4">
             <Link href="/" className="block py-2 text-gray-600 dark:text-gray-300">Home</Link>
 
-            {toolsByCategory.map((category) => (
-              <div key={category.id}>
+            {toolsByNavGroup.map((category) => (
+              <div key={category.label}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
                   {category.label}
                 </p>
