@@ -165,6 +165,9 @@ export default function UnitConverterClient() {
             </div>
           </div>
 
+          <AdBanner position="inline" />
+
+
           {/* SEO Content */}
           <div className="card-panel p-6 mb-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">About Unit Conversion</h2>

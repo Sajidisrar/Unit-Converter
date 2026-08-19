@@ -20,14 +20,20 @@ interface AdBannerProps {
 // 'unfilled' for any later occurrence of the same ID. Positions that can
 // appear together on one page must therefore map to different IDs.
 //
-// TODO: 'article-end' currently borrows the side-rail slot because no
-// dedicated unit exists for it yet. Create a purpose-made display unit in
-// the AdSense dashboard and point it here.
+// Slot IDs map to the four display units on publisher
+// ca-pub-3759958145886276:
+//   4003156004  "NewAdd"      top of page
+//   1920224971  "inline"      mid content
+//   3361474127  "New Banner"  end of article
+//   8294061635  "side"        side rail
+//
+// side/left/right still share one ID, which is safe only because no page
+// renders more than one of them. Any new layout that does needs its own unit.
 const AD_SLOTS: Record<AdBannerProps['position'], string> = {
   top: '4003156004',
   inline: '1920224971',
+  'article-end': '3361474127',
   side: '8294061635',
-  'article-end': '8294061635',
   left: '8294061635',
   right: '8294061635',
 };

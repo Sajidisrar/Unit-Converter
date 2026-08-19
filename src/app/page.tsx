@@ -87,6 +87,8 @@ export default function Home() {
           </div>
         </section>
 
+        <AdBanner position="inline" />
+
         <section className="card-panel p-6 sm:p-10 my-12">
           <p className="eyebrow mb-2">Search terms</p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-3">
