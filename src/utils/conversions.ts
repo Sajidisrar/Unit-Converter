@@ -36,9 +36,9 @@ export const weightConversions: { [key: string]: number } = {
   'mg': 0.000001,        // milligram
   'g': 0.001,            // gram
   'kg': 1,               // kilogram
-  'oz': 0.0283495,       // ounce
-  'lb': 0.453592,        // pound
-  'st': 6.35029,         // stone
+  'oz': 0.028349523125,  // ounce (1/16 lb, exact)
+  'lb': 0.45359237,      // pound (exact, international avoirdupois)
+  'st': 6.35029318,      // stone (14 lb, exact)
   't': 1000,             // metric ton
 };
 
@@ -104,11 +104,11 @@ export const areaConversions: { [key: string]: number } = {
   'm2': 1,               // square meter
   'km2': 1000000,        // square kilometer
   'in2': 0.00064516,     // square inch
-  'ft2': 0.092903,       // square foot
-  'yd2': 0.836127,       // square yard
-  'ac': 4046.86,         // acre
+  'ft2': 0.09290304,     // square foot (0.3048^2, exact)
+  'yd2': 0.83612736,     // square yard (0.9144^2, exact)
+  'ac': 4046.8564224,    // acre (exact)
   'ha': 10000,           // hectare
-  'mi2': 2589988.11,     // square mile
+  'mi2': 2589988.110336, // square mile (1609.344^2, exact)
 };
 
 export const areaUnits = [
@@ -134,11 +134,11 @@ export function convertArea(value: number, fromUnit: string, toUnit: string): nu
 export const speedConversions: { [key: string]: number } = {
   // Base unit: meters per second
   'm/s': 1,              // meters per second
-  'km/h': 0.277778,     // kilometers per hour
+  'km/h': 1 / 3.6,      // kilometers per hour (exact)
   'mph': 0.44704,       // miles per hour
   'ft/s': 0.3048,       // feet per second
-  'knot': 0.514444,     // knot
-  'mach': 343,          // mach (speed of sound)
+  'knot': 1852 / 3600,  // knot (1 nmi/h, exact)
+  'mach': 343,          // mach (speed of sound in air at 20 C, approximate)
 };
 
 export const speedUnits = [
@@ -161,10 +161,10 @@ export const cookingConversions: { [key: string]: number } = {
   // Base unit: milliliters
   'ml': 1,               // milliliter
   'l': 1000,             // liter
-  'tsp': 4.92892,        // teaspoon
-  'tbsp': 14.7868,       // tablespoon
+  'tsp': 4.92892159375,  // teaspoon (US, exact)
+  'tbsp': 14.78676478125, // tablespoon (US, exact)
   'cup': 240,            // cup
-  'fl oz': 29.5735,      // fluid ounce
+  'fl oz': 29.5735295625, // fluid ounce (US, exact)
   'g': 1,                // gram (assuming water equivalence)
 };
 
@@ -218,9 +218,9 @@ export function calculateBMI(weightKg: number, heightCm: number): number {
 export function getBMICategory(bmi: number): string {
   if (bmi < 18.5) {
     return 'Underweight';
-  } else if (bmi < 24.9) {
+  } else if (bmi < 25) {
     return 'Normal weight';
-  } else if (bmi < 29.9) {
+  } else if (bmi < 30) {
     return 'Overweight';
   } else {
     return 'Obesity';
@@ -278,11 +278,11 @@ export const powerConversions: { [key: string]: number } = {
   'kW': 1000,                // kilowatt
   'MW': 1000000,             // megawatt
   'GW': 1000000000,          // gigawatt
-  'hp': 745.7,               // horsepower (mechanical)
-  'hp_metric': 735.499,       // horsepower (metric)
-  'BTU/h': 0.293071,         // BTU per hour
+  'hp': 745.6998715822702,   // horsepower (mechanical, exact)
+  'hp_metric': 735.49875,    // horsepower (metric, exact)
+  'BTU/h': 0.29307107017,    // BTU per hour (IT)
   'ft-lb/s': 1.35582,        // foot-pound per second
-  'cal/s': 4.184,            // calorie per second
+  'cal/s': 4.184,            // calorie per second (thermochemical, exact)
   'erg/s': 0.0000001,        // erg per second
 };
 

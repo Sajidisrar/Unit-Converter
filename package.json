@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack && next-sitemap",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint src/ --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint src/ --ext .ts,.tsx,.js,.jsx --fix",
     "lint:check": "eslint src/ --ext .ts,.tsx,.js,.jsx --max-warnings 0",
     "type-check": "tsc --noEmit",
-    "check-all": "npm run type-check && npm run lint:check",
+    "check-all": "npm run type-check && npm run lint:check && npm run test",
     "prepare": "husky install",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -38,7 +40,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.11"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
