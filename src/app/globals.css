@@ -246,8 +246,11 @@ body {
    prevent. If a slot is reliably unfilled, remove the ad unit rather than
    hiding it at runtime. */
 
-/* A duplicate slot is a call-site bug, never legitimate content, so it does
-   collapse -- it should not hold space it can never fill. */
+/* Nothing reserves height any more, so collapsing an unfilled slot no longer
+   moves content -- there was never a gap to remove. This just keeps unfilled,
+   errored and duplicate slots out of the flow completely. */
+[data-ad-container]:not([data-ad-debug])[data-ad-state="unfilled"],
+[data-ad-container]:not([data-ad-debug])[data-ad-state="error"],
 [data-ad-container]:not([data-ad-debug])[data-ad-state="duplicate"] {
   display: none;
 }

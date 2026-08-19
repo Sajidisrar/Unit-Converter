@@ -128,18 +128,18 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
     };
   }, [position, resolvedSlot]);
 
+  // No reserved height. AdSense sizes a filled unit itself (it rewrites the
+  // <ins> style, overriding any min-height we set), so reserving space only
+  // ever showed as an empty gap when a slot came back unfilled. Margins are
+  // applied only once a creative is present, so an unfilled slot leaves no
+  // trace in the layout.
   const getContainerClasses = () => {
-    const baseClasses = 'rounded-lg w-full';
-    const positionClasses = {
-      top: 'mx-auto mb-6 min-h-[90px]',
-      side: 'mx-auto min-h-[250px]',
-      inline: 'mx-auto my-6 min-h-[90px]',
-      'article-end': 'mx-auto my-6 min-h-[90px]',
-      left: 'w-48 h-96 min-h-[250px]',
-      right: 'w-48 h-96 min-h-[250px]'
-    };
+    const spacing = adState === 'loaded'
+      ? { top: 'mb-6', inline: 'my-6', 'article-end': 'my-6', side: '', left: '', right: '' }[position]
+      : '';
+    const sizing = position === 'left' || position === 'right' ? 'w-48' : 'w-full';
 
-    return `${baseClasses} ${positionClasses[position]} ${className}`;
+    return `rounded-lg mx-auto ${sizing} ${spacing} ${className}`.replace(/\s+/g, ' ').trim();
   };
 
   return (
@@ -162,7 +162,7 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       <ins
         ref={insRef}
         className="adsbygoogle"
-        style={{ display: 'block', minHeight: '90px' }}
+        style={{ display: 'block' }}
         data-ad-client="ca-pub-3759958145886276"
         data-ad-slot={resolvedSlot}
         data-ad-format="auto"
