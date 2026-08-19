@@ -40,6 +40,14 @@ export const allTools: ToolConfig[] = [
     keywords: ["psi to bar", "bar to psi", "tyre pressure", "kPa to psi"],
   },
   {
+    name: "Bulk Converter",
+    url: "/bulk-converter",
+    icon: "📋",
+    category: "measurement",
+    description: "Convert a whole column of values at once, with CSV export",
+    keywords: ["bulk unit converter", "convert a list of values", "batch conversion", "csv unit converter"],
+  },
+  {
     name: "Angle Converter",
     url: "/angle",
     icon: "📐",
@@ -100,6 +108,15 @@ export const allTools: ToolConfig[] = [
   },
 
   // Kitchen
+  {
+    name: "Recipe Scaler",
+    url: "/recipe-scaler",
+    icon: "🥣",
+    category: "kitchen",
+    description: "Halve or double a recipe and convert cups to grams",
+    keywords: ["scale a recipe", "halve a recipe", "double a recipe", "recipe converter", "cups to grams"],
+    featured: true,
+  },
   {
     name: "Cooking Converter",
     url: "/cooking",
