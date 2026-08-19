@@ -166,3 +166,33 @@ export function getRelatedTools(url: string, limit = 3): ToolConfig[] {
 
 // Retained for existing imports; every tool is a converter now.
 export const converterTools = allTools;
+
+/**
+ * Hand-written pages for high-intent conversion pairs. Kept separate from
+ * allTools because they are landing pages rather than tools, but they still
+ * need internal links -- a page reachable only from the sitemap is orphaned.
+ */
+export interface ConversionPair {
+  name: string;
+  url: string;
+  /** Tool the pair belongs to, for grouping and cross-links. */
+  toolUrl: string;
+}
+
+export const popularConversions: ConversionPair[] = [
+  { name: "Metres to Feet", url: "/meters-to-feet", toolUrl: "/unit-converter" },
+  { name: "Kg to Lbs", url: "/kg-to-lbs", toolUrl: "/unit-converter" },
+  { name: "Celsius to Fahrenheit", url: "/celsius-to-fahrenheit", toolUrl: "/unit-converter" },
+  { name: "Inches to CM", url: "/inches-to-cm", toolUrl: "/unit-converter" },
+  { name: "Miles to KM", url: "/miles-to-km", toolUrl: "/unit-converter" },
+  { name: "Grams to Ounces", url: "/grams-to-ounces", toolUrl: "/unit-converter" },
+  { name: "MPH to KM/H", url: "/mph-to-kmh", toolUrl: "/unit-converter" },
+  { name: "Litres to Gallons", url: "/litres-to-gallons", toolUrl: "/volume" },
+  { name: "Watts to Horsepower", url: "/watts-to-horsepower", toolUrl: "/power" },
+  { name: "Cups to Grams", url: "/cups-to-grams", toolUrl: "/cooking" },
+];
+
+/** Conversion pages belonging to a given tool, for on-page cross-linking. */
+export function getConversionsForTool(toolUrl: string): ConversionPair[] {
+  return popularConversions.filter((pair) => pair.toolUrl === toolUrl);
+}

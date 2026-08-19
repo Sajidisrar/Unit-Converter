@@ -14,7 +14,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
   const [inputValue, setInputValue] = useState<string>('');
   const [fromUnit, setFromUnit] = useState<string>('');
   const [toUnit, setToUnit] = useState<string>('');
-  const [error, setError] = useState<string>('');
 
   const convertValue = useCallback((value: number, from: string, to: string): number => {
     return convertByType(conversionType, value, from, to);
@@ -35,7 +34,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     // Validate input
     const validation = validateConversionInput(inputValue, fromUnit, toUnit, availableUnits);
     if (!validation.isValid) {
-      setError(validation.error || 'Invalid input');
       return {
         value: 0,
         fromUnit,
@@ -49,8 +47,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     try {
       const numValue = Number(inputValue);
       const convertedValue = convertValue(numValue, fromUnit, toUnit);
-      
-      setError('');
       return {
         value: numValue,
         fromUnit,
@@ -60,7 +56,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
       };
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Conversion failed';
-      setError(errorMessage);
       return {
         value: Number(inputValue),
         fromUnit,
@@ -76,7 +71,6 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     setInputValue('');
     setFromUnit('');
     setToUnit('');
-    setError('');
   }, []);
 
   const copyResult = useCallback(async (): Promise<boolean> => {
@@ -98,7 +92,7 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
     setFromUnit,
     toUnit,
     setToUnit,
-    error,
+    error: result.error ?? '',
     result,
     reset,
     copyResult

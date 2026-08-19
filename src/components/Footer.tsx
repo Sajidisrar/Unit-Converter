@@ -1,4 +1,4 @@
-import { toolsByCategory } from '@/constants/tools';
+import { popularConversions, toolsByCategory } from '@/constants/tools';
 import Link from 'next/link';
 
 // Sitemap-style footer. Rendered on every page, so these are the cheapest
@@ -46,7 +46,25 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row justify-between gap-4">
+        <div className="border-t border-gray-800 mt-10 pt-8">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">
+            Popular Conversions
+          </h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {popularConversions.map((pair) => (
+              <li key={pair.url}>
+                <Link
+                  href={pair.url}
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {pair.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between gap-4">
           <p className="text-sm text-gray-500">
             © {year} Free Unit Converter. All rights reserved.
           </p>
