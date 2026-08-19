@@ -22,7 +22,13 @@ export type ConversionType =
   | 'fuelEconomy' 
   | 'fitnessWeight' 
   | 'bmi' 
-  | 'power';
+  | 'power'
+  | 'volume'
+  | 'dataStorage'
+  | 'time'
+  | 'pressure'
+  | 'energy'
+  | 'angle';
 
 export interface ConversionResult {
   value: number;
@@ -39,36 +45,25 @@ export interface ConversionError {
   field?: string;
 }
 
-// JSON handling types
-export interface JsonNode {
-  key?: string;
-  value: JsonValue;
-  type: 'object' | 'array' | 'string' | 'number' | 'boolean' | 'null';
-  expanded: boolean;
-  level: number;
-}
-
-export type JsonValue = 
-  | string 
-  | number 
-  | boolean 
-  | null 
-  | JsonValue[] 
-  | { [key: string]: JsonValue };
-
 // Tool configuration types
+export type ToolCategory =
+  | 'measurement'
+  | 'energy'
+  | 'health'
+  | 'motoring'
+  | 'kitchen'
+  | 'data';
+
 export interface ToolConfig {
   name: string;
   url: string;
   icon: string;
-  category: 'developer' | 'converter' | 'learning';
+  category: ToolCategory;
   description: string;
-}
-
-export interface DeveloperTool {
-  name: string;
-  url: string;
-  icon: string;
-  description: string;
-  category: string;
+  /** Search terms this tool should answer for. Used in page metadata. */
+  keywords: string[];
+  /** blog-posts.json ids to cross-link from this tool's page. */
+  relatedPosts?: string[];
+  /** Surfaced above the fold on the homepage. */
+  featured?: boolean;
 }

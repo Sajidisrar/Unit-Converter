@@ -1,17 +1,7 @@
 'use client';
 
 import { ConversionResult, ConversionType } from '@/types/conversions';
-import {
-    convertArea,
-    convertCooking,
-    convertFuelEconomy,
-    convertHeight,
-    convertLength,
-    convertPower,
-    convertSpeed,
-    convertTemperature,
-    convertWeight
-} from '@/utils/conversions';
+import { convertByType } from '@/utils/conversions';
 import { validateConversionInput } from '@/utils/validation';
 import { useCallback, useMemo, useState } from 'react';
 
@@ -27,38 +17,7 @@ export function useConverter({ conversionType, availableUnits }: UseConverterPro
   const [error, setError] = useState<string>('');
 
   const convertValue = useCallback((value: number, from: string, to: string): number => {
-    switch (conversionType) {
-      case 'length':
-        return convertLength(value, from, to);
-      case 'weight':
-        return convertWeight(value, from, to);
-      case 'temperature':
-        return convertTemperature(value, from, to);
-      case 'area':
-        return convertArea(value, from, to);
-      case 'speed':
-        return convertSpeed(value, from, to);
-      case 'height':
-        return convertHeight(value, from, to);
-      case 'cooking':
-        return convertCooking(value, from, to);
-      case 'fuelEconomy':
-        return convertFuelEconomy(value, from, to);
-      case 'power':
-        return convertPower(value, from, to);
-      case 'fitnessWeight':
-        return convertWeight(value, from, to);
-      case 'bmi': {
-        // Special case for BMI calculation
-        const heightM = Number(to) / 100;
-        if (heightM > 0) {
-          return value / (heightM * heightM);
-        }
-        return 0;
-      }
-      default:
-        return 0;
-    }
+    return convertByType(conversionType, value, from, to);
   }, [conversionType]);
 
   const result = useMemo((): ConversionResult => {

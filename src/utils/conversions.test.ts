@@ -1,14 +1,20 @@
 import { describe, expect, it } from 'vitest';
 import {
   calculateBMI,
+  convertAngle,
   convertArea,
   convertCooking,
+  convertDataStorage,
+  convertEnergy,
   convertFuelEconomy,
   convertHeight,
   convertLength,
   convertPower,
+  convertPressure,
   convertSpeed,
   convertTemperature,
+  convertTime,
+  convertVolume,
   convertWeight,
   getBMICategory,
 } from './conversions';
@@ -220,5 +226,164 @@ describe('BMI', () => {
   it('treats the band boundaries as WHO defines them', () => {
     expect(getBMICategory(24.95)).toBe('Normal weight');
     expect(getBMICategory(29.95)).toBe('Overweight');
+  });
+});
+
+describe('convertVolume', () => {
+  it('converts litres to millilitres exactly', () => {
+    expect(convertVolume(1, 'l', 'ml')).toBeCloseTo(1000, EXACT);
+  });
+
+  // 1 US gallon = 3.785411784 L exactly
+  it('converts US gallons to litres exactly', () => {
+    expect(convertVolume(1, 'galUS', 'l')).toBeCloseTo(3.785411784, EXACT);
+  });
+
+  // 1 imperial gallon = 4.54609 L exactly
+  it('converts UK gallons to litres exactly', () => {
+    expect(convertVolume(1, 'galUK', 'l')).toBeCloseTo(4.54609, EXACT);
+  });
+
+  it('keeps the imperial gallon larger than the US gallon', () => {
+    expect(convertVolume(1, 'galUK', 'l')).toBeGreaterThan(convertVolume(1, 'galUS', 'l'));
+  });
+
+  // A US gallon is 8 pints, 4 quarts, 128 fluid ounces
+  it('holds the US gallon subdivisions', () => {
+    expect(convertVolume(1, 'galUS', 'ptUS')).toBeCloseTo(8, 9);
+    expect(convertVolume(1, 'galUS', 'qtUS')).toBeCloseTo(4, 9);
+    expect(convertVolume(1, 'galUS', 'flozUS')).toBeCloseTo(128, 9);
+  });
+
+  // An imperial gallon is 8 pints of 20 fluid ounces
+  it('holds the imperial gallon subdivisions', () => {
+    expect(convertVolume(1, 'galUK', 'ptUK')).toBeCloseTo(8, 9);
+    expect(convertVolume(1, 'galUK', 'flozUK')).toBeCloseTo(160, 9);
+  });
+
+  it('converts cubic metres to litres exactly', () => {
+    expect(convertVolume(1, 'm3', 'l')).toBeCloseTo(1000, EXACT);
+  });
+
+  it('holds 1728 cubic inches to the cubic foot', () => {
+    expect(convertVolume(1, 'ft3', 'in3')).toBeCloseTo(1728, 6);
+  });
+});
+
+describe('convertDataStorage', () => {
+  it('converts bytes to bits exactly', () => {
+    expect(convertDataStorage(1, 'B', 'bit')).toBeCloseTo(8, EXACT);
+  });
+
+  it('uses decimal prefixes for kB', () => {
+    expect(convertDataStorage(1, 'kB', 'B')).toBeCloseTo(1000, EXACT);
+  });
+
+  it('uses binary prefixes for KiB', () => {
+    expect(convertDataStorage(1, 'KiB', 'B')).toBeCloseTo(1024, EXACT);
+  });
+
+  // The decimal/binary gap is why "1 TB" drives show as ~931 GiB
+  it('reproduces the drive-capacity discrepancy', () => {
+    expect(convertDataStorage(1, 'TB', 'GiB')).toBeCloseTo(931.3225746154785, 6);
+  });
+
+  it('converts gibibytes to bytes exactly', () => {
+    expect(convertDataStorage(1, 'GiB', 'B')).toBeCloseTo(1073741824, EXACT);
+  });
+});
+
+describe('convertTime', () => {
+  it('converts hours to minutes exactly', () => {
+    expect(convertTime(1, 'h', 'min')).toBeCloseTo(60, EXACT);
+  });
+
+  it('converts days to seconds exactly', () => {
+    expect(convertTime(1, 'day', 's')).toBeCloseTo(86400, EXACT);
+  });
+
+  it('converts weeks to days exactly', () => {
+    expect(convertTime(1, 'week', 'day')).toBeCloseTo(7, EXACT);
+  });
+
+  // Average Gregorian year: 365.2425 days
+  it('uses the average Gregorian year', () => {
+    expect(convertTime(1, 'year', 'day')).toBeCloseTo(365.2425, 6);
+  });
+
+  it('holds twelve average months to the average year', () => {
+    expect(convertTime(1, 'year', 'month')).toBeCloseTo(12, 6);
+  });
+});
+
+describe('convertPressure', () => {
+  it('converts bar to pascals exactly', () => {
+    expect(convertPressure(1, 'bar', 'Pa')).toBeCloseTo(100000, EXACT);
+  });
+
+  it('converts atmospheres to pascals exactly', () => {
+    expect(convertPressure(1, 'atm', 'Pa')).toBeCloseTo(101325, EXACT);
+  });
+
+  // 1 atm = 760 torr by definition
+  it('holds 760 torr to the atmosphere', () => {
+    expect(convertPressure(1, 'atm', 'torr')).toBeCloseTo(760, 9);
+  });
+
+  it('converts psi to pascals', () => {
+    expect(convertPressure(1, 'psi', 'Pa')).toBeCloseTo(6894.757293168361, 6);
+  });
+
+  // Typical car tyre pressure, a common real-world lookup
+  it('converts 32 psi to bar', () => {
+    expect(convertPressure(32, 'psi', 'bar')).toBeCloseTo(2.2063, 4);
+  });
+});
+
+describe('convertEnergy', () => {
+  it('converts kilowatt hours to joules exactly', () => {
+    expect(convertEnergy(1, 'kWh', 'J')).toBeCloseTo(3600000, EXACT);
+  });
+
+  it('converts kilocalories to kilojoules exactly', () => {
+    expect(convertEnergy(1, 'kcal', 'kJ')).toBeCloseTo(4.184, EXACT);
+  });
+
+  it('converts watt hours to joules exactly', () => {
+    expect(convertEnergy(1, 'Wh', 'J')).toBeCloseTo(3600, EXACT);
+  });
+
+  it('converts BTU to joules', () => {
+    expect(convertEnergy(1, 'BTU', 'J')).toBeCloseTo(1055.05585262, 6);
+  });
+
+  it('converts electronvolts to joules', () => {
+    expect(convertEnergy(1, 'eV', 'J')).toBeCloseTo(1.602176634e-19, 25);
+  });
+});
+
+describe('convertAngle', () => {
+  it('converts a full turn to degrees', () => {
+    expect(convertAngle(1, 'turn', 'deg')).toBeCloseTo(360, 9);
+  });
+
+  it('converts radians to degrees', () => {
+    expect(convertAngle(Math.PI, 'rad', 'deg')).toBeCloseTo(180, 9);
+  });
+
+  it('holds 400 gradians to the turn', () => {
+    expect(convertAngle(1, 'turn', 'grad')).toBeCloseTo(400, 9);
+  });
+
+  it('holds 60 arcminutes to the degree', () => {
+    expect(convertAngle(1, 'deg', 'arcmin')).toBeCloseTo(60, 9);
+  });
+
+  it('holds 3600 arcseconds to the degree', () => {
+    expect(convertAngle(1, 'deg', 'arcsec')).toBeCloseTo(3600, 9);
+  });
+
+  it('round-trips degrees through radians', () => {
+    expect(convertAngle(convertAngle(45, 'deg', 'rad'), 'rad', 'deg')).toBeCloseTo(45, 9);
   });
 });
