@@ -1,7 +1,31 @@
 import type { NextConfig } from "next";
 
+// Only the real domain may be indexed. Amplify preview branches serve
+// byte-identical content on *.amplifyapp.com, which competes with production
+// for the same queries. amplify.yml already sets SITE_URL per branch, so reuse
+// it rather than introducing a second switch.
+const PRODUCTION_URL = "https://freeunitconvertor.com";
+const isProductionSite = (process.env.SITE_URL || PRODUCTION_URL) === PRODUCTION_URL;
+
 const nextConfig: NextConfig = {
   output: "standalone",
+  async headers() {
+    if (isProductionSite) {
+      return [];
+    }
+
+    // Deliberately a header on a crawlable page rather than a robots.txt
+    // Disallow: a disallowed URL is never fetched, so the crawler would never
+    // read the noindex and the preview could stay indexed indefinitely.
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Unit converter consolidation redirects (legacy URLs)
