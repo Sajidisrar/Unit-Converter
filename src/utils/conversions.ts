@@ -160,30 +160,81 @@ export function convertSpeed(value: number, fromUnit: string, toUnit: string): n
 
 // Cooking conversion functions
 export const cookingConversions: { [key: string]: number } = {
-  // Base unit: milliliters
-  'ml': 1,               // milliliter
-  'l': 1000,             // liter
+  // Base unit: millilitres. Volumes only -- mass units live in
+  // cookingMassUnitsInGrams below, because crossing between the two needs a
+  // density and cannot be a fixed ratio.
+  'ml': 1,               // millilitre
+  'l': 1000,             // litre
   'tsp': 4.92892159375,  // teaspoon (US, exact)
   'tbsp': 14.78676478125, // tablespoon (US, exact)
-  'cup': 240,            // cup
+  'cup': 240,            // cup (metric, as most modern recipes assume)
   'fl oz': 29.5735295625, // fluid ounce (US, exact)
-  'g': 1,                // gram (assuming water equivalence)
+};
+
+// 'g' used to sit in cookingConversions mapped to 1, i.e. water density, so
+// "1 cup of flour" reported 240 g instead of 120 g -- a 100% error on the most
+// common kitchen conversion. Mass is separated out so density is explicit.
+export const cookingMassUnitsInGrams: { [key: string]: number } = {
+  'g': 1,
+  'kg': 1000,
+  'oz': 28.349523125,   // avoirdupois ounce (exact)
+  'lb': 453.59237,      // pound (exact)
 };
 
 export const cookingUnits = [
-  { label: 'Milliliter (ml)', value: 'ml' },
-  { label: 'Liter (l)', value: 'l' },
+  { label: 'Millilitre (ml)', value: 'ml' },
+  { label: 'Litre (l)', value: 'l' },
   { label: 'Teaspoon (tsp)', value: 'tsp' },
   { label: 'Tablespoon (tbsp)', value: 'tbsp' },
   { label: 'Cup (cup)', value: 'cup' },
   { label: 'Fluid Ounce (fl oz)', value: 'fl oz' },
-  { label: 'Gram (g) – water equivalence', value: 'g' },
+  { label: 'Gram (g)', value: 'g' },
+  { label: 'Kilogram (kg)', value: 'kg' },
+  { label: 'Ounce (oz)', value: 'oz' },
+  { label: 'Pound (lb)', value: 'lb' },
 ];
 
-export function convertCooking(value: number, fromUnit: string, toUnit: string): number {
-  // Convert to milliliters first, then to target unit
-  const milliliters = value * cookingConversions[fromUnit];
-  return milliliters / cookingConversions[toUnit];
+export function isCookingMassUnit(unit: string): boolean {
+  return unit in cookingMassUnitsInGrams;
+}
+
+/**
+ * Cooking conversion.
+ *
+ * Volume-to-volume and mass-to-mass are fixed ratios. A mass/volume crossing
+ * depends on what is being measured, so it takes a density in grams per
+ * millilitre -- 0.5 for plain flour, 1 for water, 1.417 for honey. The density
+ * table lives in ./ingredients; this function only does the arithmetic, which
+ * keeps the two free of a circular import.
+ *
+ * Density defaults to 1 (water), which is what the old behaviour assumed for
+ * every ingredient.
+ */
+export function convertCooking(
+  value: number,
+  fromUnit: string,
+  toUnit: string,
+  density: number = 1
+): number {
+  const fromMass = isCookingMassUnit(fromUnit);
+  const toMass = isCookingMassUnit(toUnit);
+
+  if (fromMass && toMass) {
+    return (value * cookingMassUnitsInGrams[fromUnit]) / cookingMassUnitsInGrams[toUnit];
+  }
+
+  if (!fromMass && !toMass) {
+    const millilitres = value * cookingConversions[fromUnit];
+    return millilitres / cookingConversions[toUnit];
+  }
+
+  if (fromMass) {
+    const grams = value * cookingMassUnitsInGrams[fromUnit];
+    return grams / density / cookingConversions[toUnit];
+  }
+
+  const millilitres = value * cookingConversions[fromUnit];
+  return (millilitres * density) / cookingMassUnitsInGrams[toUnit];
 }
 
 // Fitness Height conversion functions
