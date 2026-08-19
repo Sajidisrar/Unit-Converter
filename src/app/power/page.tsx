@@ -51,9 +51,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function PowerPage({ searchParams }: { searchParams: Promise<{ from?: string }> }) {
-  const params = await searchParams;
-  const defaultFromUnit = params.from || "W";
+export default function PowerPage() {
+  const defaultFromUnit = "W";
 
   const seoContent = (
     <section className="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">

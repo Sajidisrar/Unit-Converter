@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Calculator from '@/components/Calculator';
 import TabContainer from '@/components/shared/TabContainer';
 import AdBanner from '@/components/AdBanner';
-import DeveloperToolsNav from '@/components/DeveloperToolsNav';
 import {
   lengthUnits,
   weightUnits,
@@ -231,9 +230,6 @@ export default function UnitConverterClient() {
               </div>
             </div>
           </div>
-
-          {/* Developer Tools Navigation */}
-          <DeveloperToolsNav currentPath="/unit-converter" />
         </main>
       </div>
     </div>

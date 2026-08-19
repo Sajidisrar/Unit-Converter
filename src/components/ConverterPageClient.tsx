@@ -3,7 +3,7 @@
 import AdBanner from "@/components/AdBanner";
 import Calculator from "@/components/Calculator";
 import { ConversionType } from "@/types/conversions";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface Unit {
   label: string;
@@ -29,6 +29,18 @@ export default function ConverterPageClient({
   seoContent,
   faqContent,
 }: ConverterPageClientProps) {
+  // Resolve ?from= on the client. Reading it on the server would opt the whole
+  // page out of static rendering for a parameter robots.txt already disallows.
+  const [fromUnit, setFromUnit] = useState(defaultFromUnit);
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('from');
+
+    if (requested && units.some((unit) => unit.value === requested)) {
+      setFromUnit(requested);
+    }
+  }, [units]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
@@ -50,7 +62,7 @@ export default function ConverterPageClient({
             title={`${title} Tool`}
             units={units}
             conversionType={conversionType}
-            initialFromUnit={defaultFromUnit || units[0]?.value}
+            initialFromUnit={fromUnit || units[0]?.value}
           />
 
           <div className="mt-8">

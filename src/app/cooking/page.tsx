@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CookingPage({ searchParams }: { searchParams: { from?: string } }) {
-  const defaultFromUnit = searchParams.from || "cup";
+export default function CookingPage() {
+  const defaultFromUnit = "cup";
 
   const seoContent = (
     <>
