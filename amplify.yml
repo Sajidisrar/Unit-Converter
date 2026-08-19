@@ -11,10 +11,18 @@ applications:
             - npm ci
         build:
           commands:
-            # Construct Amplify preview URL so next-sitemap gets a valid SITE_URL
-            - export SITE_URL="https://${AMPLIFY_BRANCH}.${AMPLIFY_APP_ID}.amplifyapp.com"
-            - echo "Using SITE_URL=$SITE_URL"
-            - npm run build
+            # Production must build with the real domain: next-sitemap writes
+            # SITE_URL into every <loc>, and a sitemap served from
+            # freeunitconvertor.com listing *.amplifyapp.com URLs is ignored by
+            # Google as cross-domain. Preview branches keep their Amplify URL.
+            - |
+              if [ "$AMPLIFY_BRANCH" = "main" ]; then
+                export SITE_URL="https://freeunitconvertor.com"
+              else
+                export SITE_URL="https://${AMPLIFY_BRANCH}.${AMPLIFY_APP_ID}.amplifyapp.com"
+              fi
+              echo "Using SITE_URL=$SITE_URL"
+              npm run build
       artifacts:
         # Amplify Next.js SSR ignores artifacts for serving, but keeping for completeness
         baseDirectory: .next

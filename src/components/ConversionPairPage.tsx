@@ -83,10 +83,10 @@ export default function ConversionPairPage({
 
   return (
     <div className="page-ground">
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto w-full max-w-3xl px-4 py-8">
         <Breadcrumbs trail={[{ name: converterName, url: converterUrl }, { name: title }]} />
 
-        <header className="mb-10 max-w-3xl">
+        <header className="mb-10">
           <p className="eyebrow mb-3">Conversion guide</p>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-gray-900 dark:text-white mb-4">
             {title}
@@ -94,7 +94,7 @@ export default function ConversionPairPage({
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{subtitle}</p>
         </header>
 
-        <main className="max-w-3xl mx-auto">
+        <main>
           <section className="result-panel p-8 mb-8 text-center">
             <p className="eyebrow mb-2">Conversion factor</p>
             {isAffine ? (

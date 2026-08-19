@@ -23,8 +23,8 @@ export default function StaticBlogPageClient({
 }: StaticBlogPageClientProps) {
   return (
     <div className="page-ground">
-      <div className="container mx-auto px-4 py-8">
-        <article className="max-w-4xl mx-auto">
+      <div className="mx-auto w-full max-w-4xl px-4 py-8">
+        <article>
           {/* Article Header */}
           <header className="mb-12">
             <div className="flex items-center space-x-4 mb-6">

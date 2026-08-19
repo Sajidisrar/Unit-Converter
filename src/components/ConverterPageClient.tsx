@@ -49,7 +49,7 @@ export default function ConverterPageClient({
 
   return (
     <div className="page-ground">
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto w-full max-w-4xl px-4 py-8">
         {tool && (
           <Breadcrumbs
             trail={[
@@ -58,7 +58,7 @@ export default function ConverterPageClient({
             ]}
           />
         )}
-        <header className="mb-10 max-w-3xl">
+        <header className="mb-10">
           {tool && <p className="eyebrow mb-3">{getCategoryLabel(tool.category)}</p>}
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-gray-900 dark:text-white mb-4">
             {title}
@@ -68,7 +68,7 @@ export default function ConverterPageClient({
           </p>
         </header>
 
-        <main className="max-w-4xl mx-auto">
+        <main>
           <div className="mb-6">
             <AdBanner position="top" />
           </div>

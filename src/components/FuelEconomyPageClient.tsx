@@ -17,7 +17,7 @@ interface FuelEconomyPageClientProps {
 export default function FuelEconomyPageClient({ units, content }: FuelEconomyPageClientProps) {
   return (
     <div className="page-ground">
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto w-full max-w-4xl px-4 py-8">
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             Fuel Economy Converter
@@ -27,7 +27,7 @@ export default function FuelEconomyPageClient({ units, content }: FuelEconomyPag
           </p>
         </header>
 
-        <main className="max-w-4xl mx-auto">
+        <main>
           <div className="mb-6">
             <AdBanner position="top" />
           </div>

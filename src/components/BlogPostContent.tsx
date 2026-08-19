@@ -22,8 +22,8 @@ interface BlogPostContentProps {
 export default function BlogPostContent({ post, relatedPosts }: BlogPostContentProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-8">
-        <article className="max-w-4xl mx-auto">
+      <div className="mx-auto w-full max-w-4xl px-4 py-8">
+        <article>
           {/* Article Header */}
           <header className="mb-12">
             <div className="flex items-center space-x-4 mb-6">

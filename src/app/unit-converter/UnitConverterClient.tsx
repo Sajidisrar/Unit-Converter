@@ -78,7 +78,7 @@ export default function UnitConverterClient() {
         </header>
 
         {/* Main Tool */}
-        <main className="max-w-6xl mx-auto">
+        <main>
           {/* Ad Banner - Top */}
           <div className="mb-4">
             <AdBanner position="top" />

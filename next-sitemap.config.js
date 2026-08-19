@@ -85,10 +85,12 @@ function changefreqFor(routePath) {
   return 'weekly';
 }
 
+// Use the non-www host consistently, with no trailing slash.
+const siteUrl = process.env.SITE_URL || 'https://freeunitconvertor.com';
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  // Use the non-www host consistently, with no trailing slash.
-  siteUrl: process.env.SITE_URL || 'https://freeunitconvertor.com',
+  siteUrl,
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   // The long exclude list here named routes that no longer exist. Only the
@@ -107,8 +109,8 @@ module.exports = {
       // applies to it and those slots come back unfilled.
       { userAgent: 'Mediapartners-Google', allow: '/' },
     ],
-    additionalSitemaps: ['https://freeunitconvertor.com/sitemap.xml'],
-    host: 'https://freeunitconvertor.com',
+    additionalSitemaps: [`${siteUrl}/sitemap.xml`],
+    host: siteUrl,
   },
   transform: async (config, routePath) => ({
     loc: routePath,
