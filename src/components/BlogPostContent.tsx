@@ -94,7 +94,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
 
           {/* Ad Banner before CTA */}
           <div className="mt-8 mb-8">
-            <AdBanner position="inline" />
+            <AdBanner position="article-end" />
           </div>
 
           {/* Call to Action */}

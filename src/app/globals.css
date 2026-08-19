@@ -196,7 +196,8 @@ body {
 /* AdSense returned no creative (or the push failed) - collapse the slot
    rather than leaving reserved whitespace on the page. */
 [data-ad-container][data-ad-state="unfilled"],
-[data-ad-container][data-ad-state="error"] {
+[data-ad-container][data-ad-state="error"],
+[data-ad-container][data-ad-state="duplicate"] {
   display: none;
 }
 
