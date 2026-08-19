@@ -85,9 +85,10 @@ src/
 - `Calculator` is the live calculator component. `useConverter` currently has no consumer
 
 **Component Patterns**:
-- `ConverterLayout` is the shared layout wrapper for all converter pages
-- Converter pages follow a consistent pattern: use `useConverter` hook + `ConverterLayout` component
-- Shared components in `components/shared/` are designed to be reusable across tools
+- `ConverterPageClient` is the shell for tool pages: heading, calculator, ads, SEO content and FAQs. Pass `toolUrl` so it can render breadcrumbs from the registry
+- `ConversionPairPage` is the shell for conversion-pair landing pages. It computes its factor, worked example and table rows via `convertByType`, so published numbers cannot drift from the tool
+- `FaqSection` renders questions and their FAQPage schema together, so the two cannot fall out of sync. `ConversionTable` and `RelatedTools` are the other shared content blocks
+- `ConverterLayout` exists but no live page uses it
 - Ad banner placement is handled via the `AdBanner` component with positioning props
 
 **Tool Registration**:
@@ -165,9 +166,10 @@ The project uses Tailwind CSS v4 with a custom design token system defined in `g
 - Structured data (JSON-LD) is used throughout for SEO
 
 **Build Configuration**:
-- Turbopack enabled for dev and build
+- Turbopack for dev only; production builds use webpack (see Project Overview)
 - Standalone output mode for optimized deployments
-- Sitemap generation runs post-build
+- Sitemap generation runs post-build via the `postbuild` script. `next-sitemap.config.js` derives `lastmod` from git history, so it reflects real content dates
+- `public/sitemap.xml` is generated output and is gitignored
 
 ## Testing & Validation
 
