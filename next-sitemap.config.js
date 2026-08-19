@@ -100,13 +100,19 @@ module.exports = {
   priority: 0.7,
   sitemapSize: 5000,
   robotsTxtOptions: {
+    // ?from= and ?to= are deliberately NOT disallowed.
+    //
+    // Blocking them stopped Googlebot crawling URLs like /length?from=in, so
+    // it never saw the 308 those legacy paths return and they sat in "Blocked
+    // by robots.txt" indefinitely -- neither deindexed nor passing signal to
+    // /unit-converter. robots.txt also prevents crawling rather than indexing,
+    // so the rule never achieved the deduplication it was added for.
+    //
+    // Parameter variants are handled properly instead: the params are read
+    // client-side, so the server response is identical to the clean URL, and
+    // every page carries a self-referencing canonical.
     policies: [
-      { userAgent: '*', allow: '/', disallow: ['/*?from=', '/*?to='] },
-      { userAgent: 'Googlebot', allow: '/', disallow: ['/*?from=', '/*?to='] },
-      { userAgent: 'Bingbot', allow: '/', disallow: ['/*?from=', '/*?to='] },
-      // The AdSense crawler must reach every page it serves ads on, including
-      // converter URLs carrying ?from= / ?to=. Without this the disallow above
-      // applies to it and those slots come back unfilled.
+      { userAgent: '*', allow: '/', disallow: ['/api'] },
       { userAgent: 'Mediapartners-Google', allow: '/' },
     ],
     additionalSitemaps: [`${siteUrl}/sitemap.xml`],

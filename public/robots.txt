@@ -1,20 +1,7 @@
 # *
 User-agent: *
 Allow: /
-Disallow: /*?from=
-Disallow: /*?to=
-
-# Googlebot
-User-agent: Googlebot
-Allow: /
-Disallow: /*?from=
-Disallow: /*?to=
-
-# Bingbot
-User-agent: Bingbot
-Allow: /
-Disallow: /*?from=
-Disallow: /*?to=
+Disallow: /api
 
 # Mediapartners-Google
 User-agent: Mediapartners-Google
