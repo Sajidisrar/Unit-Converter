@@ -2,7 +2,9 @@
 
 import AdBanner from "@/components/AdBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BulkConverter from "@/components/BulkConverter";
 import Calculator from "@/components/Calculator";
+import TabContainer from "@/components/shared/TabContainer";
 import { getCategoryLabel, getToolByUrl } from "@/constants/tools";
 import { ConversionType } from "@/types/conversions";
 import { ReactNode, useEffect, useState } from "react";
@@ -38,6 +40,7 @@ export default function ConverterPageClient({
   // Resolve ?from= on the client. Reading it on the server would opt the whole
   // page out of static rendering for a parameter robots.txt already disallows.
   const [fromUnit, setFromUnit] = useState(defaultFromUnit);
+  const [mode, setMode] = useState<'single' | 'bulk'>('single');
 
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get('from');
@@ -73,12 +76,30 @@ export default function ConverterPageClient({
             <AdBanner position="top" />
           </div>
 
-          <Calculator
-            title={`${title} Tool`}
-            units={units}
-            conversionType={conversionType}
-            initialFromUnit={fromUnit || units[0]?.value}
+          <TabContainer
+            tabs={[
+              { id: 'single', label: 'Single value', icon: '🔢' },
+              { id: 'bulk', label: 'Bulk list', icon: '📋' },
+            ]}
+            activeTab={mode}
+            onTabChange={(id) => setMode(id as 'single' | 'bulk')}
+            accentColor="blue"
           />
+
+          {mode === 'single' ? (
+            <Calculator
+              title={`${title} Tool`}
+              units={units}
+              conversionType={conversionType}
+              initialFromUnit={fromUnit || units[0]?.value}
+            />
+          ) : (
+            <BulkConverter
+              units={units}
+              conversionType={conversionType}
+              defaultFrom={fromUnit || units[0]?.value}
+            />
+          )}
 
           <div className="mt-8">
             <AdBanner position="inline" />
