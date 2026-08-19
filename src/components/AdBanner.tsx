@@ -140,16 +140,15 @@ export default function AdBanner({ position, className = '', slotId }: AdBannerP
       className={getContainerClasses()}
       data-ad-container="true"
       data-ad-state={adState}
+      {...(IS_DEV ? { 'data-ad-debug': 'true' } : {})}
     >
       {/* Dev-only status readout. An unfilled slot is collapsed by CSS, which
           makes it indistinguishable from a slot that never rendered -- this
           makes fill visible without deploying a diagnostic ad unit. */}
       {IS_DEV && (
-        <span
-          data-ad-debug="true"
-          className="absolute top-0 left-0 z-50 bg-black/75 text-white text-[10px] font-mono px-1.5 py-0.5 rounded-br pointer-events-none"
-        >
-          {position} · {resolvedSlot} · {adState}
+        <span className="absolute top-0 left-0 z-50 bg-black/75 text-white text-[10px] font-mono px-1.5 py-0.5 rounded-br pointer-events-none">
+          ad · {position} · {resolvedSlot} · {adState}
+          {adState === 'unfilled' && ' (expected on localhost)'}
         </span>
       )}
       <ins

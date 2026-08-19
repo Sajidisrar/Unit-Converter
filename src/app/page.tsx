@@ -23,31 +23,39 @@ export default function Home() {
         </div>
 
         <main className="max-w-[1600px] mx-auto">
-          {/* Tools, grouped by the registry so this can never drift from the nav */}
-          {toolsByCategory.map((category) => (
-            <section key={category.id} className="mb-10">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-                {category.label}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-                {category.tools.map((tool) => (
+          {/* One dense grid rather than a section per category: four of the six
+              categories hold a single tool, which left large empty rows and a
+              needlessly long page. Order still follows the registry, and the
+              category is shown on each card so the grouping is still legible. */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+              All Converters
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
+              {toolsByCategory.flatMap((category) =>
+                category.tools.map((tool) => (
                   <Link
                     key={tool.url}
                     href={tool.url}
-                    className="group card card-interactive p-6 h-full flex flex-col"
+                    className="group card card-interactive p-5 h-full flex flex-col"
                   >
-                    <div className="text-4xl mb-3" aria-hidden="true">{tool.icon}</div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl leading-none" aria-hidden="true">{tool.icon}</span>
+                      <span className="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        {category.label}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {tool.name}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-300 flex-1">
                       {tool.description}
                     </p>
                   </Link>
-                ))}
-              </div>
-            </section>
-          ))}
+                ))
+              )}
+            </div>
+          </section>
 
           {/* Popular conversion pairs. These point at the dedicated pages -- the
               anchor text and the destination now describe the same thing. */}

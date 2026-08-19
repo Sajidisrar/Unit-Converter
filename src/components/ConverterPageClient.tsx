@@ -53,7 +53,7 @@ export default function ConverterPageClient({
         {tool && (
           <Breadcrumbs
             trail={[
-              { name: getCategoryLabel(tool.category), url: '/' },
+              { name: getCategoryLabel(tool.category) },
               { name: tool.name, url: tool.url },
             ]}
           />

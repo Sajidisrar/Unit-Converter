@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 export interface Crumb {
   name: string;
-  url: string;
+  /** Omit for a crumb with no page of its own -- it renders as plain text. */
+  url?: string;
 }
 
 interface BreadcrumbsProps {
@@ -27,7 +28,8 @@ export default function Breadcrumbs({ trail }: BreadcrumbsProps) {
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: `${SITE}${crumb.url === '/' ? '/' : crumb.url}`,
+      // A crumb without a page of its own carries no item URL.
+      ...(crumb.url ? { item: `${SITE}${crumb.url}` } : {}),
     })),
   };
 
@@ -38,16 +40,20 @@ export default function Breadcrumbs({ trail }: BreadcrumbsProps) {
           const isLast = index === crumbs.length - 1;
 
           return (
-            <li key={crumb.url} className="flex items-center gap-2">
+            <li key={index} className="flex items-center gap-2">
               {isLast ? (
                 <span aria-current="page" className="text-gray-900 dark:text-gray-200 font-medium">
                   {crumb.name}
                 </span>
               ) : (
                 <>
-                  <Link href={crumb.url} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    {crumb.name}
-                  </Link>
+                  {crumb.url ? (
+                    <Link href={crumb.url} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      {crumb.name}
+                    </Link>
+                  ) : (
+                    <span>{crumb.name}</span>
+                  )}
                   <span aria-hidden="true" className="text-gray-400">/</span>
                 </>
               )}

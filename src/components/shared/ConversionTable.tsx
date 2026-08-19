@@ -24,8 +24,10 @@ export default function ConversionTable({ caption, columns, rows }: ConversionTa
             </tr>
           </thead>
           <tbody>
-            {rows.map(([from, to]) => (
-              <tr key={from} className="border-b border-gray-100 dark:border-gray-700/50">
+            {rows.map(([from, to], index) => (
+              // Keyed by index: the left-hand value repeats on purpose, since
+              // one quantity often converts into several others.
+              <tr key={index} className="border-b border-gray-100 dark:border-gray-700/50">
                 <td className="py-2 pr-4 text-gray-700 dark:text-gray-300">{from}</td>
                 <td className="py-2 pr-4 text-gray-700 dark:text-gray-300 font-mono text-sm">{to}</td>
               </tr>

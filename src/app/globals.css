@@ -193,12 +193,33 @@ body {
   min-height: auto;
 }
 
-/* AdSense returned no creative (or the push failed) - collapse the slot
-   rather than leaving reserved whitespace on the page. */
-[data-ad-container][data-ad-state="unfilled"],
-[data-ad-container][data-ad-state="error"],
-[data-ad-container][data-ad-state="duplicate"] {
+/* An unfilled or errored slot KEEPS its reserved height.
+   
+   Collapsing it was worse than the gap it removed. The fill result arrives a
+   second or two after load, so hiding the container then shifts everything
+   below it upward -- a layout shift inside the window Google measures CLS
+   over, which is the exact problem the min-height reservation exists to
+   prevent. If a slot is reliably unfilled, remove the ad unit rather than
+   hiding it at runtime. */
+
+/* A duplicate slot is a call-site bug, never legitimate content, so it does
+   collapse -- it should not hold space it can never fill. */
+[data-ad-container]:not([data-ad-debug])[data-ad-state="duplicate"] {
   display: none;
+}
+
+/* Development-only: outline the reserved area so an unfilled slot is visible
+   rather than looking like a rendering failure. AdSense does not serve to
+   localhost, so every slot resolves to 'unfilled' during local development. */
+[data-ad-container][data-ad-debug] {
+  outline: 1px dashed var(--color-gray-400);
+  outline-offset: -1px;
+}
+
+[data-ad-container][data-ad-debug][data-ad-state="unfilled"],
+[data-ad-container][data-ad-debug][data-ad-state="error"],
+[data-ad-container][data-ad-debug][data-ad-state="duplicate"] {
+  background: color-mix(in srgb, var(--color-gray-400) 8%, transparent);
 }
 
 /* ===== ENHANCED COMPONENT SYSTEM ===== */
