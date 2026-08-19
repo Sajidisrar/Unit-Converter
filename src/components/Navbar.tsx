@@ -8,7 +8,7 @@ import { ThemeSwitcher } from './ThemeSwitcher';
 // <details> disclosure instead of React state.
 export default function Navbar() {
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
+    <nav className="sticky top-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--surface)]/85 backdrop-blur">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="flex items-center space-x-2">
@@ -44,7 +44,7 @@ export default function Navbar() {
                   </svg>
                 </button>
                 <div className="absolute left-0 top-full pt-2 w-64 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-opacity">
-                  <ul className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2">
+                  <ul className="card-panel py-2 shadow-xl">
                     {category.tools.map((tool) => (
                       <li key={tool.url}>
                         <Link

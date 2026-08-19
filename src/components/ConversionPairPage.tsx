@@ -82,22 +82,21 @@ export default function ConversionPairPage({
     : `${toLabel} = ${fromLabel} × ${format(slope)}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="page-ground">
       <div className="container mx-auto px-4 py-8">
         <Breadcrumbs trail={[{ name: converterName, url: converterUrl }, { name: title }]} />
 
-        <header className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <header className="mb-10 max-w-3xl">
+          <p className="eyebrow mb-3">Conversion guide</p>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-gray-900 dark:text-white mb-4">
             {title}
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{subtitle}</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{subtitle}</p>
         </header>
 
         <main className="max-w-3xl mx-auto">
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8 text-center">
-            <p className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">
-              Conversion factor
-            </p>
+          <section className="result-panel p-8 mb-8 text-center">
+            <p className="eyebrow mb-2">Conversion factor</p>
             {isAffine ? (
               <>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -122,7 +121,7 @@ export default function ConversionPairPage({
 
           <AdBanner position="top" />
 
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 my-8">
+          <section className="card-panel p-8 my-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               The formula
             </h2>
@@ -147,7 +146,7 @@ export default function ConversionPairPage({
             </p>
           </section>
 
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 my-8">
+          <section className="card-panel p-8 my-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               {title} conversion table
             </h2>
@@ -177,7 +176,7 @@ export default function ConversionPairPage({
             </div>
           </section>
 
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 my-8">
+          <section className="card-panel p-8 my-8">
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               About {fromLabel} and {toLabel}
             </h2>
@@ -186,15 +185,12 @@ export default function ConversionPairPage({
             </div>
           </section>
 
-          <section className="bg-blue-600 text-white rounded-xl shadow-lg p-8 my-8 text-center">
-            <h2 className="text-2xl font-bold mb-3">Need other units?</h2>
-            <p className="text-blue-100 mb-6">
+          <section className="card-panel p-8 my-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Need other units?</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               The full {converterName.toLowerCase()} handles every unit in this family.
             </p>
-            <Link
-              href={converterUrl}
-              className="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors"
-            >
+            <Link href={converterUrl} className="btn-accent inline-block px-6 py-3">
               Open the {converterName}
             </Link>
           </section>

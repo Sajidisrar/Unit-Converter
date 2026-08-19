@@ -10,8 +10,9 @@ interface ConversionTableProps {
  */
 export default function ConversionTable({ caption, columns, rows }: ConversionTableProps) {
   return (
-    <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 my-8">
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">{caption}</h2>
+    <section className="card-panel p-8 my-8">
+      <p className="eyebrow mb-2">Quick reference</p>
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-5">{caption}</h2>
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>

@@ -7,7 +7,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 mt-16">
+    <footer className="mt-16 border-t border-[var(--border-subtle)] bg-[var(--surface)] text-gray-600 dark:text-gray-300">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           <div className="col-span-2">
@@ -17,9 +17,9 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
               </div>
-              <span className="text-lg font-bold text-white">Free Unit Converter</span>
+              <span className="text-lg font-bold text-gray-900 dark:text-white">Free Unit Converter</span>
             </Link>
-            <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 max-w-sm">
               Free online conversion tools for length, weight, temperature, volume, energy,
               pressure and more. No registration, no downloads, results as you type.
             </p>
@@ -27,7 +27,7 @@ export default function Footer() {
 
           {toolsByCategory.map((category) => (
             <div key={category.id}>
-              <h2 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">
+              <h2 className="eyebrow mb-3">
                 {category.label}
               </h2>
               <ul className="space-y-2">
@@ -35,7 +35,7 @@ export default function Footer() {
                   <li key={tool.url}>
                     <Link
                       href={tool.url}
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
+                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors"
                     >
                       {tool.name}
                     </Link>
@@ -46,8 +46,8 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-gray-800 mt-10 pt-8">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">
+        <div className="border-t border-[var(--border-subtle)] mt-10 pt-8">
+          <h2 className="eyebrow mb-3">
             Popular Conversions
           </h2>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
@@ -55,7 +55,7 @@ export default function Footer() {
               <li key={pair.url}>
                 <Link
                   href={pair.url}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors"
                 >
                   {pair.name}
                 </Link>
@@ -64,16 +64,16 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between gap-4">
-          <p className="text-sm text-gray-500">
+        <div className="border-t border-[var(--border-subtle)] mt-8 pt-6 flex flex-col sm:flex-row justify-between gap-4">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             © {year} Free Unit Converter. All rights reserved.
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <li><Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-            <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-            <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
-            <li><Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy</Link></li>
-            <li><Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms</Link></li>
+            <li><Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors">Blog</Link></li>
+            <li><Link href="/about" className="text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors">About</Link></li>
+            <li><Link href="/contact" className="text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors">Contact</Link></li>
+            <li><Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors">Privacy</Link></li>
+            <li><Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-[var(--accent)] transition-colors">Terms</Link></li>
           </ul>
         </div>
       </div>

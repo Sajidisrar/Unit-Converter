@@ -93,13 +93,27 @@
   --transition-slow: 300ms ease-in-out;
 
   /* Light Mode Colors */
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #111827;
   --card-background: #ffffff;
   --card-foreground: #111827;
   --border: #e5e7eb;
   --input: #ffffff;
-  --ring: #3b82f6;
+  --ring: #2563eb;
+
+  --surface: #ffffff;
+  --surface-nested: #f8fafc;
+  --surface-raised: #ffffff;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --text-muted: #4b5563;
+  --text-dim: #6b7280;
+  /* Darker amber so the pill keeps contrast on a light ground */
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-foreground: #ffffff;
+  --positive-bg: rgba(5, 150, 105, 0.10);
+  --positive-border: rgba(5, 150, 105, 0.28);
+  --glow: rgba(37, 99, 235, 0.08);
 }
 
 @theme inline {
@@ -109,15 +123,43 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark Mode */
+/* Dark Mode -- the default theme.
+   The gray scale is redefined here rather than in components: tailwind.config
+   maps gray-* to these variables, so retuning them moves every existing
+   dark:bg-gray-800 / dark:border-gray-700 to the new palette at once. */
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card-background: #1e293b;
-  --card-foreground: #f8fafc;
-  --border: #334155;
-  --input: #1e293b;
-  --ring: #3b82f6;
+  --background: #080e15;
+  --foreground: #f1f5f9;
+  --card-background: #111a24;
+  --card-foreground: #f1f5f9;
+  --border: #1e2b38;
+  --input: #0d151d;
+  --ring: #fbbf24;
+
+  --surface: #111a24;
+  --surface-nested: #0d151d;
+  --surface-raised: #16212c;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --text-muted: #a8b6c6;
+  --text-dim: #7d8fa3;
+  --accent: #fbbf24;
+  --accent-hover: #f2b30c;
+  --accent-foreground: #1a1206;
+  --positive-bg: rgba(16, 185, 129, 0.12);
+  --positive-border: rgba(16, 185, 129, 0.28);
+  --glow: rgba(37, 99, 235, 0.16);
+
+  /* Navy-tinted neutrals */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #a8b6c6;
+  --color-gray-400: #7d8fa3;
+  --color-gray-500: #5b6b7d;
+  --color-gray-600: #37485a;
+  --color-gray-700: #1e2b38;
+  --color-gray-800: #111a24;
+  --color-gray-900: #080e15;
 
   .btn-secondary {
     background-color: var(--color-gray-800);
@@ -170,6 +212,8 @@ body {
   line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 /* Ad banner styles - AdSense sets its own inline sizing on the <ins>,
@@ -300,20 +344,21 @@ body {
 }
 
 /* Input System */
-.input {
+.input,
+select.input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-gray-300);
-  border-radius: 0.5rem;
-  background-color: white;
-  color: var(--color-gray-900);
-  transition: border-color 200ms ease-in-out;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  background-color: var(--input);
+  color: var(--foreground);
+  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 2px var(--color-primary-500);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .input-error {
@@ -326,26 +371,86 @@ body {
 
 /* Card System */
 .card {
-  background-color: white;
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-gray-200);
-  transition: all 200ms ease-in-out;
+  background-color: var(--surface);
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 200ms ease-in-out, background-color 200ms ease-in-out;
 }
 
-.card-hover:hover {
-  box-shadow: var(--shadow-xl);
-  transform: scale(1.05);
+.card-hover:hover,
+.card-interactive:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
+  background-color: var(--surface-raised);
 }
 
 .card-interactive {
   cursor: pointer;
-  transition: all 300ms ease-in-out;
 }
 
-.card-interactive:hover {
-  box-shadow: var(--shadow-xl);
-  transform: scale(1.05);
+/* Large panels: section wrappers that contain their own nested cards. */
+.card-panel {
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.5rem;
+}
+
+/* A card sitting inside a .card-panel needs to read as recessed, not raised. */
+.card-nested {
+  background-color: var(--surface-nested);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+}
+
+/* Page ground: flat colour plus one soft off-centre glow. Replaces the
+   blue-to-indigo gradient that every page repeated inline. */
+.page-ground {
+  min-height: 100vh;
+  background-color: var(--background);
+  background-image: radial-gradient(60rem 40rem at 15% -10%, var(--glow), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* Small uppercase label that sits above a section heading. */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Result readout: small source value above a large converted value. */
+.result-panel {
+  background-color: var(--positive-bg);
+  border: 1px solid var(--positive-border);
+  border-radius: 1rem;
+}
+
+/* Amber pill, the primary call to action. */
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Bordered companion to .btn-accent. */
+.btn-ghost-outline {
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.btn-ghost-outline:hover {
+  background-color: var(--surface-raised);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
 }
 
 /* Enhanced Focus States */

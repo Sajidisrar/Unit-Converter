@@ -80,7 +80,7 @@ export default function PowerPage() {
   );
 
   const faqContent = (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <div className="card-panel p-8">
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
         Frequently Asked Questions - Power Conversion
       </h2>

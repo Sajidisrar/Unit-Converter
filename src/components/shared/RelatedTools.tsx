@@ -15,13 +15,14 @@ export default function RelatedTools({ currentUrl }: RelatedToolsProps) {
 
   return (
     <section className="my-8">
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Related Converters</h2>
+      <p className="eyebrow mb-2">Keep going</p>
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-5">Related converters</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {related.map((tool) => (
           <Link
             key={tool.url}
             href={tool.url}
-            className="card card-interactive p-4 flex items-start gap-3"
+            className="card-nested card-interactive p-4 flex items-start gap-3"
           >
             <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
             <span>

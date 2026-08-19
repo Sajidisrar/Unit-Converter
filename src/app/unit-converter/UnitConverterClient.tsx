@@ -65,10 +65,10 @@ export default function UnitConverterClient() {
   const config = converterConfigs[activeTab as keyof typeof converterConfigs];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="page-ground">
       <div className="w-full px-4 py-8">
         {/* Header */}
-        <header className="text-center mb-8 max-w-4xl mx-auto">
+        <header className="mb-10 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             Unit Converter
           </h1>
@@ -84,7 +84,7 @@ export default function UnitConverterClient() {
             <AdBanner position="top" />
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6 mb-6">
+          <div className="card-panel p-4 md:p-6 mb-6">
             {/* Tab Navigation */}
             <TabContainer
               tabs={converterTabs}
@@ -109,7 +109,7 @@ export default function UnitConverterClient() {
           </div>
 
           {/* Quick Reference */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+          <div className="card-panel p-6 mb-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Quick Conversion Reference</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -166,7 +166,7 @@ export default function UnitConverterClient() {
           </div>
 
           {/* SEO Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+          <div className="card-panel p-6 mb-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">About Unit Conversion</h2>
 
             <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
@@ -185,7 +185,7 @@ export default function UnitConverterClient() {
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+          <div className="card-panel p-6 mb-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Frequently Asked Questions</h2>
 
             <div className="space-y-4">

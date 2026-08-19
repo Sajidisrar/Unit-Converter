@@ -20,7 +20,7 @@ export default function CookingPage() {
 
   const seoContent = (
     <>
-      <section className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-6">
+      <section className="card-panel p-8 mt-6">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Cooking Measurement Guide</h2>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           Understanding cooking measurements is essential for following recipes from different countries and cultures. Use our converter above for instant results.
@@ -71,7 +71,7 @@ export default function CookingPage() {
 
   const faqContent = (
     <section>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mt-8">
+      <div className="card-panel p-8 mt-8">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
           Frequently Asked Questions
         </h2>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function PressurePage() {
   const seoContent = (
     <>
-      <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 my-8">
+      <section className="card-panel p-8 my-8">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
           Understanding pressure units
         </h2>

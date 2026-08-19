@@ -22,7 +22,7 @@ export default function ContactPage() {
           <p className="text-gray-600 dark:text-gray-300">We&apos;d love to hear from you. Send us a message.</p>
         </header>
 
-        <main className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <main className="max-w-3xl mx-auto card-panel p-8">
           <form className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
@@ -46,7 +46,7 @@ export default function ContactPage() {
           </form>
         </main>
 
-        <section className="max-w-4xl mx-auto mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+        <section className="max-w-4xl mx-auto mt-12 card-panel p-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Why Contact Free Unit Converter?
           </h2>

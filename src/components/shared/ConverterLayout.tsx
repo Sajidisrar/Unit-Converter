@@ -21,7 +21,7 @@ export default function ConverterLayout({
   className = ''
 }: ConverterLayoutProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="page-ground">
       <div className={`mx-auto w-full px-4 ${showSideBanners ? 'max-w-6xl' : 'max-w-4xl'} ${className}`}>
         <div className={`grid gap-4 grid-cols-1 ${showSideBanners ? 'lg:grid-cols-[minmax(0,1fr)_minmax(auto,600px)]' : ''}`}>
           {showSideBanners && (
@@ -42,7 +42,7 @@ export default function ConverterLayout({
             )}
           </header>
 
-          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+          <section className="card-panel p-6 mb-8">
             {children}
           </section>
 
