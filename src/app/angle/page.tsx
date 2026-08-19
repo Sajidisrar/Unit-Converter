@@ -108,6 +108,7 @@ export default function AnglePage() {
       defaultFromUnit="deg"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/angle"
     />
   );
 }

@@ -139,6 +139,7 @@ export default function CookingPage() {
       defaultFromUnit={defaultFromUnit}
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/cooking"
     />
   );
 }

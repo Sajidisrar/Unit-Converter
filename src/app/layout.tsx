@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import SiteSchema from "@/components/SiteSchema";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -20,7 +21,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://freeunitconvertor.com'),
   title: "Free Online Unit Converter | Length, Weight, Temperature, Power & More",
   description: "Free online unit converter for length, weight, temperature, area, speed, power, cooking, fuel economy, and fitness. Accurate metric and imperial conversions with instant results. No registration required.",
-  keywords: "unit converter, online unit converter, free unit converter, length converter, weight converter, temperature converter, area converter, speed converter, power converter, cooking converter, metric converter, imperial converter, meters to feet, kg to lbs, celsius to fahrenheit, cups to grams, watts to horsepower, BMI calculator, fuel economy converter",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
@@ -57,23 +57,6 @@ export const metadata: Metadata = {
     title: "Free Online Unit Converter",
     description: "Free unit converter for length, weight, temperature, area, speed, power, and cooking. Accurate conversions with instant results.",
     images: ['/icon.svg'],
-  },
-  other: {
-    'application/ld+json': [
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Free Online Unit Converter",
-        "url": "https://freeunitconvertor.com"
-      }),
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeunitconvertor.com/" }
-        ]
-      })
-    ]
   }
 };
 
@@ -110,6 +93,7 @@ export default function RootLayout({
             crossOrigin="anonymous"
             strategy="afterInteractive"
           />
+          <SiteSchema />
           <Navbar />
           {children}
           <Footer />

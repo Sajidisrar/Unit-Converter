@@ -99,6 +99,7 @@ export default function DataStoragePage() {
       defaultFromUnit="GB"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/data-storage"
     />
   );
 }

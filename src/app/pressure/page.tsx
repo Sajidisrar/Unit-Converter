@@ -106,6 +106,7 @@ export default function PressurePage() {
       defaultFromUnit="bar"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/pressure"
     />
   );
 }

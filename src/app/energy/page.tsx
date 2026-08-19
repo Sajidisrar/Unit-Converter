@@ -105,6 +105,7 @@ export default function EnergyPage() {
       defaultFromUnit="kWh"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/energy"
     />
   );
 }

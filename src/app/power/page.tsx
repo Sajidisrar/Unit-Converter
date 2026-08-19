@@ -152,6 +152,7 @@ export default function PowerPage() {
       defaultFromUnit={defaultFromUnit}
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/power"
     />
   );
 }

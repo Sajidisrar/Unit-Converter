@@ -100,6 +100,7 @@ export default function TimePage() {
       defaultFromUnit="h"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/time"
     />
   );
 }

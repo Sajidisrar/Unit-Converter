@@ -110,6 +110,7 @@ export default function VolumePage() {
       defaultFromUnit="l"
       seoContent={seoContent}
       faqContent={faqContent}
+      toolUrl="/volume"
     />
   );
 }

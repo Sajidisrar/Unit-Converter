@@ -1,7 +1,9 @@
 "use client";
 
 import AdBanner from "@/components/AdBanner";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Calculator from "@/components/Calculator";
+import { getCategoryLabel, getToolByUrl } from "@/constants/tools";
 import { ConversionType } from "@/types/conversions";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -18,6 +20,8 @@ interface ConverterPageClientProps {
   defaultFromUnit?: string;
   seoContent?: ReactNode;
   faqContent?: ReactNode;
+  /** Registry URL for this tool, used to build the breadcrumb trail. */
+  toolUrl?: string;
 }
 
 export default function ConverterPageClient({
@@ -28,7 +32,9 @@ export default function ConverterPageClient({
   defaultFromUnit,
   seoContent,
   faqContent,
+  toolUrl,
 }: ConverterPageClientProps) {
+  const tool = toolUrl ? getToolByUrl(toolUrl) : undefined;
   // Resolve ?from= on the client. Reading it on the server would opt the whole
   // page out of static rendering for a parameter robots.txt already disallows.
   const [fromUnit, setFromUnit] = useState(defaultFromUnit);
@@ -44,6 +50,14 @@ export default function ConverterPageClient({
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
+        {tool && (
+          <Breadcrumbs
+            trail={[
+              { name: getCategoryLabel(tool.category), url: '/' },
+              { name: tool.name, url: tool.url },
+            ]}
+          />
+        )}
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
             {title}
