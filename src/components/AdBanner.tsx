@@ -20,19 +20,21 @@ interface AdBannerProps {
 // 'unfilled' for any later occurrence of the same ID. Positions that can
 // appear together on one page must therefore map to different IDs.
 //
-// Slot IDs map to the four display units on publisher
-// ca-pub-3759958145886276:
-//   4003156004  "NewAdd"      top of page
-//   1920224971  "inline"      mid content
-//   3361474127  "New Banner"  end of article
-//   8294061635  "side"        side rail
+// Slot IDs map to the display units on publisher ca-pub-3759958145886276:
+//   4003156004  "NewAdd"  top of page
+//   1920224971  "inline"  mid content
+//   8294061635  "side"    side rail
 //
-// side/left/right still share one ID, which is safe only because no page
-// renders more than one of them. Any new layout that does needs its own unit.
+// Do NOT use 3361474127 -- that unit has been deleted from the account.
+//
+// article-end, side, left and right all share 8294061635. That is safe only
+// because no single page renders more than one of them; article pages pair
+// article-end with top and inline, which are distinct. A layout that renders
+// two of these together needs a new unit created in the dashboard first.
 const AD_SLOTS: Record<AdBannerProps['position'], string> = {
   top: '4003156004',
   inline: '1920224971',
-  'article-end': '3361474127',
+  'article-end': '8294061635',
   side: '8294061635',
   left: '8294061635',
   right: '8294061635',
