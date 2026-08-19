@@ -1,9 +1,11 @@
 import ConverterPageClient from "@/components/ConverterPageClient";
+import ConversionTable from "@/components/shared/ConversionTable";
 import { cookingUnits } from "@/utils/conversions";
+import { convertCookingWithDensity, ingredients } from "@/utils/ingredients";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cooking Unit Converter - Cups to Grams | Free Online Tool",
-  description: "Convert cooking measurements between cups, tablespoons, grams, ounces, and milliliters. Free online cooking converter for bakers, chefs, and home cooks.",
+  description: "Convert cooking measurements between cups, tablespoons, grams, ounces and millilitres. Accounts for ingredient density, so a cup of flour is 120 g and a cup of honey 340 g.",
   keywords:
     "cooking unit converter, cooking measurements, cups to grams, tablespoons to ounces, cooking conversion, kitchen measurements",
   alternates: {
@@ -17,6 +19,13 @@ export const metadata: Metadata = {
 
 export default function CookingPage() {
   const defaultFromUnit = "cup";
+
+  // Built from the same density table the converter uses, so the published
+  // figures cannot drift away from the tool.
+  const cupWeightRows = ingredients.map((entry) => [
+    `1 cup ${entry.label.toLowerCase()}`,
+    `${Math.round(convertCookingWithDensity(1, "cup", "g", entry.id))} g`,
+  ] as [string, string]);
 
   const seoContent = (
     <>
@@ -47,7 +56,39 @@ export default function CookingPage() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-gray-800 dark:to-gray-700 rounded-xl shadow-lg p-10 my-12">
+      <section className="card-panel p-8 my-8">
+        <p className="eyebrow mb-2">Why the ingredient matters</p>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+          A cup is a volume, not a weight
+        </h2>
+        <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
+          <p>
+            This is the most common mistake in kitchen conversion. A cup measures the space an
+            ingredient occupies; a gram measures how much matter is in it. How many grams fit in
+            a cup depends entirely on density, and the spread is large: a cup of rolled oats is
+            90 g while a cup of honey is 340 g, nearly four times heavier.
+          </p>
+          <p>
+            That is why the converter above asks which ingredient you are measuring whenever you
+            cross between volume and weight. Get it wrong and a cake recipe can be out by a
+            factor of two.
+          </p>
+          <p>
+            One caveat worth stating plainly: these are reference figures, not guarantees. Flour
+            is the least consistent common ingredient — scooping the cup straight from the bag
+            compacts it and can push 120 g towards 145 g. Spoon it in loosely and level it off,
+            or better still, weigh it.
+          </p>
+        </div>
+      </section>
+
+      <ConversionTable
+        caption="What one cup weighs, by ingredient"
+        columns={["Ingredient", "Weight"]}
+        rows={cupWeightRows}
+      />
+
+      <section className="card-panel p-10 my-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
           About Cooking Conversions
         </h2>

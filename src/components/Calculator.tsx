@@ -1,7 +1,8 @@
 'use client';
 
 import { ConversionType } from '@/types/conversions';
-import { convertByType } from '@/utils/conversions';
+import { convertByType, isCookingMassUnit } from '@/utils/conversions';
+import { convertCookingWithDensity, ingredients } from '@/utils/ingredients';
 import { validateNumberInput } from '@/utils/validation';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -30,10 +31,20 @@ export default function Calculator({ title, units, conversionType, initialFromUn
   const [weightKg, setWeightKg] = useState<string>('');
   const [heightCm, setHeightCm] = useState<string>('');
 
+  // Cooking only. A cup of flour and a cup of honey differ by nearly three
+  // times, so mass/volume conversions need to know what is being measured.
+  const [ingredientId, setIngredientId] = useState<string>('water');
+  const crossesMassAndVolume =
+    conversionType === 'cooking' && isCookingMassUnit(fromUnit) !== isCookingMassUnit(toUnit);
+
   // Conversion functions
-  const convertValue = useCallback((value: number, fromUnit: string, toUnit: string): number => {
-    return convertByType(conversionType, value, fromUnit, toUnit);
-  }, [conversionType]);
+  const convertValue = useCallback((value: number, from: string, to: string): number => {
+    if (conversionType === 'cooking') {
+      return convertCookingWithDensity(value, from, to, ingredientId);
+    }
+
+    return convertByType(conversionType, value, from, to);
+  }, [conversionType, ingredientId]);
 
   // Auto convert on change
   useEffect(() => {
@@ -142,6 +153,27 @@ export default function Calculator({ title, units, conversionType, initialFromUn
           </div>
         ) : (
           <>
+            {crossesMassAndVolume && (
+              <div>
+                <label htmlFor="ingredient" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">
+                  Ingredient
+                </label>
+                <select
+                  id="ingredient"
+                  value={ingredientId}
+                  onChange={(e) => setIngredientId(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                >
+                  {ingredients.map((entry) => (
+                    <option key={entry.id} value={entry.id}>{entry.label}</option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+                  Weight depends on the ingredient: a cup of flour is 120 g, a cup of honey 340 g.
+                </p>
+              </div>
+            )}
+
             {/* Value Input */}
             <div>
               <label htmlFor="inputValue" className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1.5">

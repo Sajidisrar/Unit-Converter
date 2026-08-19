@@ -11,7 +11,7 @@ export type IngredientCategory =
 export interface Ingredient {
   id: string;
   label: string;
-  /** Grams per millilitre. */
+  /** Grams per millilitre, written as gramsPerCup / 240 so the source figure stays visible. */
   density: number;
   /** Lower-case terms the recipe parser matches against free text. */
   aliases: string[];
@@ -28,30 +28,30 @@ export interface Ingredient {
 export const ingredients: Ingredient[] = [
   // Liquids
   { id: 'water', label: 'Water', density: 1, aliases: ['water'], category: 'liquid' },
-  { id: 'milk', label: 'Milk', density: 1.03, aliases: ['milk', 'whole milk', 'semi-skimmed milk'], category: 'liquid' },
-  { id: 'oil', label: 'Vegetable oil', density: 0.908, aliases: ['oil', 'vegetable oil', 'sunflower oil', 'olive oil'], category: 'liquid' },
-  { id: 'honey', label: 'Honey', density: 1.417, aliases: ['honey'], category: 'liquid' },
-  { id: 'maple-syrup', label: 'Maple syrup', density: 1.32, aliases: ['maple syrup', 'syrup'], category: 'liquid' },
+  { id: 'milk', label: 'Milk', density: 247 / 240, aliases: ['milk', 'whole milk', 'semi-skimmed milk'], category: 'liquid' },
+  { id: 'oil', label: 'Vegetable oil', density: 218 / 240, aliases: ['oil', 'vegetable oil', 'sunflower oil', 'olive oil'], category: 'liquid' },
+  { id: 'honey', label: 'Honey', density: 340 / 240, aliases: ['honey'], category: 'liquid' },
+  { id: 'maple-syrup', label: 'Maple syrup', density: 317 / 240, aliases: ['maple syrup', 'syrup'], category: 'liquid' },
 
   // Flours and powders
-  { id: 'flour', label: 'Plain flour', density: 0.5, aliases: ['flour', 'plain flour', 'all purpose flour', 'all-purpose flour', 'ap flour'], category: 'flour' },
-  { id: 'bread-flour', label: 'Bread flour', density: 0.529, aliases: ['bread flour', 'strong flour', 'strong white flour'], category: 'flour' },
-  { id: 'cake-flour', label: 'Cake flour', density: 0.475, aliases: ['cake flour', 'sponge flour'], category: 'flour' },
-  { id: 'cornflour', label: 'Cornflour / cornstarch', density: 0.5, aliases: ['cornflour', 'cornstarch', 'corn starch'], category: 'flour' },
-  { id: 'cocoa', label: 'Cocoa powder', density: 0.417, aliases: ['cocoa', 'cocoa powder', 'cacao'], category: 'other' },
+  { id: 'flour', label: 'Plain flour', density: 120 / 240, aliases: ['flour', 'plain flour', 'all purpose flour', 'all-purpose flour', 'ap flour'], category: 'flour' },
+  { id: 'bread-flour', label: 'Bread flour', density: 127 / 240, aliases: ['bread flour', 'strong flour', 'strong white flour'], category: 'flour' },
+  { id: 'cake-flour', label: 'Cake flour', density: 114 / 240, aliases: ['cake flour', 'sponge flour'], category: 'flour' },
+  { id: 'cornflour', label: 'Cornflour / cornstarch', density: 120 / 240, aliases: ['cornflour', 'cornstarch', 'corn starch'], category: 'flour' },
+  { id: 'cocoa', label: 'Cocoa powder', density: 100 / 240, aliases: ['cocoa', 'cocoa powder', 'cacao'], category: 'other' },
 
   // Sugars
-  { id: 'sugar', label: 'Granulated sugar', density: 0.833, aliases: ['sugar', 'granulated sugar', 'caster sugar', 'white sugar'], category: 'sugar' },
-  { id: 'brown-sugar', label: 'Brown sugar (packed)', density: 0.917, aliases: ['brown sugar', 'light brown sugar', 'dark brown sugar', 'muscovado'], category: 'sugar' },
-  { id: 'icing-sugar', label: 'Icing sugar', density: 0.5, aliases: ['icing sugar', 'powdered sugar', 'confectioners sugar'], category: 'sugar' },
+  { id: 'sugar', label: 'Granulated sugar', density: 200 / 240, aliases: ['sugar', 'granulated sugar', 'caster sugar', 'white sugar'], category: 'sugar' },
+  { id: 'brown-sugar', label: 'Brown sugar (packed)', density: 220 / 240, aliases: ['brown sugar', 'light brown sugar', 'dark brown sugar', 'muscovado'], category: 'sugar' },
+  { id: 'icing-sugar', label: 'Icing sugar', density: 120 / 240, aliases: ['icing sugar', 'powdered sugar', 'confectioners sugar'], category: 'sugar' },
 
   // Fats
-  { id: 'butter', label: 'Butter', density: 0.946, aliases: ['butter', 'unsalted butter', 'salted butter'], category: 'fat' },
+  { id: 'butter', label: 'Butter', density: 227 / 240, aliases: ['butter', 'unsalted butter', 'salted butter'], category: 'fat' },
 
   // Grains and other solids
-  { id: 'oats', label: 'Rolled oats', density: 0.375, aliases: ['oats', 'rolled oats', 'porridge oats'], category: 'grain' },
-  { id: 'rice', label: 'Rice (uncooked)', density: 0.771, aliases: ['rice', 'white rice', 'basmati', 'long grain rice'], category: 'grain' },
-  { id: 'salt', label: 'Table salt', density: 1.2, aliases: ['salt', 'table salt', 'fine salt'], category: 'other' },
+  { id: 'oats', label: 'Rolled oats', density: 90 / 240, aliases: ['oats', 'rolled oats', 'porridge oats'], category: 'grain' },
+  { id: 'rice', label: 'Rice (uncooked)', density: 185 / 240, aliases: ['rice', 'white rice', 'basmati', 'long grain rice'], category: 'grain' },
+  { id: 'salt', label: 'Table salt', density: 288 / 240, aliases: ['salt', 'table salt', 'fine salt'], category: 'other' },
 ];
 
 const byId = new Map(ingredients.map((entry) => [entry.id, entry]));
